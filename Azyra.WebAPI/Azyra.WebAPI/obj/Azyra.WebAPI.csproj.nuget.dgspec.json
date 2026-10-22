@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\54470890855\\source\\repos\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {}
+    "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\54470890855\\source\\repos\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {
+    "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\54470890855\\source\\repos\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
         "projectName": "Azyra.WebAPI",
-        "projectPath": "C:\\Users\\54470890855\\source\\repos\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
+        "projectPath": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
         "packagesPath": "C:\\Users\\54470890855\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\54470890855\\source\\repos\\Azyra.WebAPI\\Azyra.WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -56,6 +56,12 @@
               "target": "Package",
               "version": "[10.0.13, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.13, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[10.0.13, )"
@@ -65,6 +71,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.13, )"
+            },
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[9.0.21, )"
             }
           },
           "imports": [
