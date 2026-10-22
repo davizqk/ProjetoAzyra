@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
+        "projectName": "Azyra.WebAPI",
+        "projectPath": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\55286872840\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\obj\\",
+=======
     "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj": {}
   },
   "projects": {
@@ -12,12 +25,17 @@
         "projectPath": "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
         "packagesPath": "C:\\Users\\58115162825\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\obj\\",
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\55286872840\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\58115162825\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -62,6 +80,10 @@
               "target": "Package",
               "version": "[10.0.13, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[10.0.13, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[10.0.13, )"
@@ -71,6 +93,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.13, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.1, )"
             },
             "System.Security.Cryptography.Pkcs": {
               "target": "Package",
@@ -96,7 +122,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
