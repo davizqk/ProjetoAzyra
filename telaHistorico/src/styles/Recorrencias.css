@@ -1,0 +1,166 @@
+/* CONFIGURAÇÕES GERAIS */
+.recorrencias {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 48px 16px 32px;
+  box-sizing: border-box;
+  background: #F5F5F5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TÍTULO */
+.rec-titulo {
+  margin: 0 0 24px;
+  color: #000;
+  text-align: center;
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* ABAS */
+.rec-abas {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.rec-aba {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border: 1px solid rgba(72, 113, 160, 0.2);
+  border-radius: 999px;
+  background: #E0EDF3;
+  color: #4871A0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(11px, 3.4vw, 15px);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rec-aba-ativa {
+  background: #4871A0;
+  color: #fff;
+}
+
+/* CARD DE RESUMO */
+.rec-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(72, 113, 160, 0.2);
+  border-radius: 16px;
+  background: #E0EDF3;
+}
+
+.rec-card-icone {
+  flex: 0 0 auto;
+  width: clamp(40px, 12vw, 56px);
+  height: auto;
+}
+
+.rec-card-texto {
+  margin: 0;
+  color: #424242;
+  font-size: clamp(13px, 3.6vw, 15px);
+  font-weight: 400;
+}
+
+.rec-card-destaque {
+  margin: 0;
+  color: #4871A0;
+  font-size: clamp(18px, 5.5vw, 22px);
+  font-weight: 700;
+}
+
+/* SUBTÍTULO */
+.rec-subtitulo {
+  margin: 0 0 12px;
+  color: #4871A0;
+  font-size: clamp(15px, 4.2vw, 17px);
+  font-weight: 500;
+}
+
+/* LISTA DE ATRASOS */
+.rec-lista {
+  padding: 0 20px;
+  margin: 0 0 24px;
+  list-style: none;
+  border: 1px solid rgba(72, 113, 160, 0.2);
+  border-radius: 16px;
+  background: #E0EDF3;
+}
+
+.rec-lista-item {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(72, 113, 160, 0.2);
+  color: #424242;
+  font-size: clamp(13px, 4vw, 16px);
+  font-weight: 400;
+}
+
+.rec-lista-item:last-child {
+  border-bottom: none;
+}
+
+/* AVISO */
+.rec-aviso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 1px solid rgba(72, 113, 160, 0.2);
+  border-radius: 16px;
+  background: #CEE0F2;
+  color: #424242;
+  font-size: clamp(12px, 3.6vw, 15px);
+  line-height: 1.5;
+}
+
+.rec-aviso p {
+  margin: 0;
+}
+
+.rec-aviso strong {
+  font-weight: 600;
+}
+
+.rec-aviso-icone {
+  display: flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #4871A0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* CELULARES ESTREITOS */
+@media (max-width: 360px) {
+  .rec-abas {
+    gap: 8px;
+  }
+
+  .rec-card,
+  .rec-aviso {
+    padding: 14px 12px;
+  }
+
+  .rec-lista {
+    padding: 0 14px;
+  }
+}
