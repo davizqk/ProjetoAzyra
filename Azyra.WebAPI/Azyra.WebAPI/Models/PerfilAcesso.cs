@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Azyra.WebAPI.Models;
-
-public partial class PerfilAcesso
+﻿namespace Azyra.WebAPI.Models
 {
-    public int IdPerfil { get; set; }
+    public class PerfilAcesso
+    {
+        public int IdPerfilAcesso { get; set; }
 
-    public string Nome { get; set; } = null!;
+        public string Nome { get; set; } = string.Empty;
 
-    public string? Permissoes { get; set; }
+        public string Descricao { get; set; } = string.Empty;
+        public object Permissoes { get; internal set; }
+        public object? IdPerfil { get; internal set; }
+    }
 }

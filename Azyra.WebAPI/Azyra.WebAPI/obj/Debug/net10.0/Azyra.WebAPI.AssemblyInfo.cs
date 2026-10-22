@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Azyra.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9e966f68d524c3c3bb6a5874b1d6b20e508704c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+868109db482fcf146085eedeeca68c9554b2ddcf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Azyra.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Azyra.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
