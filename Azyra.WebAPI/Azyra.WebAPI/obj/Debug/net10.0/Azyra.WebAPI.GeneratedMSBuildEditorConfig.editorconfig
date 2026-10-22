@@ -20,17 +20,34 @@ build_property.TargetFrameworkVersion = v10.0
 build_property.EntryPointFilePath = 
 build_property.RootNamespace = Azyra.WebAPI
 build_property.RootNamespace = Azyra.WebAPI
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\51155097840\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI\
+=======
+<<<<<<< HEAD
+build_property.ProjectDir = C:\Users\55286872840\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI\
+=======
+build_property.ProjectDir = C:\Users\58115162825\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI\
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
+>>>>>>> 6c00a7d35e19903058ef3110775d982adb642662
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\51155097840\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI
+=======
+<<<<<<< HEAD
+build_property.MSBuildProjectDirectory = C:\Users\55286872840\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI
+=======
+build_property.MSBuildProjectDirectory = C:\Users\58115162825\Desktop\ProjetoAzyra\Azyra.WebAPI\Azyra.WebAPI
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
+>>>>>>> 6c00a7d35e19903058ef3110775d982adb642662
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+<<<<<<< HEAD
 [C:/Users/51155097840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,5 +73,60 @@ build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/51155097840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Shared/_Layout.cshtml]
+=======
+<<<<<<< HEAD
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55286872840/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Shared/_Layout.cshtml]
+=======
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/58115162825/Desktop/ProjetoAzyra/Azyra.WebAPI/Azyra.WebAPI/Pages/Shared/_Layout.cshtml]
+>>>>>>> 484c93fe8568ea6503e5272c9a3291d9feda11fa
+>>>>>>> 6c00a7d35e19903058ef3110775d982adb642662
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fpditr789l

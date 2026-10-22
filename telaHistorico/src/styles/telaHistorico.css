@@ -1,0 +1,301 @@
+/* CONFIGURAÇÕES GERAIS */
+.pagina-historico {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+
+.tela-historico {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 48px 16px 32px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #F5F5F5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TÍTULO */
+.cabecalho-historico {
+  width: 100%;
+  text-align: center;
+}
+
+.titulo-historico {
+  margin: 0 0 24px;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ABAS */
+.abas-historico {
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 22px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.aba-historico {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 0 5px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(72, 113, 160, 0.2);
+  border-radius: 999px;
+
+  background-color: #E0EDF3;
+  color: #4871A0;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(11px, 3.4vw, 15px);
+  font-weight: 600;
+  text-align: center;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.aba-historico.aba-ativa {
+  background-color: #4871A0;
+  color: #fff;
+}
+
+.aba-historico:focus-visible {
+  outline: 2px solid #424242;
+  outline-offset: 3px;
+}
+
+/* LISTA DE REGISTROS */
+.lista-registros {
+  width: 100%;
+  max-width: 450px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* CARDS */
+.card-registro {
+  width: 100%;
+  min-height: 68px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 55px 70px 14px;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid #E4EBF0;
+  border-radius: 11px;
+  background-color: #E0EDF3;
+}
+
+/* INFORMAÇÕES DO REGISTRO */
+.info-registro {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.data-registro {
+  color: #222;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(13px, 4vw, 16px);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.turma-registro {
+  overflow: hidden;
+  color: #999;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* HORÁRIO */
+.horario-registro {
+  width: 100%;
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #4871A0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* STATUS */
+.status-atraso {
+  width: 70px;
+  min-height: 27px;
+  padding: 5px 6px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+
+  border-radius: 20px;
+  background-color: #FCE6E7;
+
+  color: #F04444;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* SETA */
+.seta-registro {
+  display: block;
+  width: 14px;
+  height: 14px;
+  justify-self: center;
+  object-fit: contain;
+}
+
+/* LISTA VAZIA */
+.lista-vazia {
+  display: none;
+}
+
+/* CELULARES */
+@media (max-width: 480px) {
+  .tela-historico {
+    padding: 48px 16px 24px;
+  }
+
+  .titulo-historico {
+    margin: 0 0 24px;
+    font-size: 19px;
+  }
+
+  .abas-historico {
+    max-width: 100%;
+    gap: 9px;
+    margin-bottom: 22px;
+  }
+
+  .aba-historico {
+    height: 38px;
+    padding: 0 5px;
+  }
+
+  .lista-registros {
+    max-width: 100%;
+    gap: 8px;
+  }
+
+  .card-registro {
+    min-height: 60px;
+    padding: 9px 7px;
+
+    grid-template-columns: minmax(0, 1fr) 40px 54px 10px;
+    gap: 5px;
+
+    border-radius: 10px;
+  }
+
+  .data-registro {
+    font-size: clamp(13px, 4vw, 16px);
+  }
+
+  .turma-registro {
+    font-size: 11px;
+  }
+
+  .horario-registro {
+    min-height: 36px;
+    font-size: 12px;
+  }
+
+  .status-atraso {
+    width: 54px;
+    min-height: 24px;
+    padding: 4px 3px;
+    font-size: 10px;
+  }
+
+  .seta-registro {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* CELULARES ESTREITOS */
+@media (max-width: 340px) {
+  .tela-historico {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .abas-historico {
+    gap: 8px;
+  }
+
+  .aba-historico {
+    font-size: 11px;
+  }
+
+  .card-registro {
+    padding: 8px 5px;
+    grid-template-columns: minmax(0, 1fr) 36px 47px 9px;
+    gap: 4px;
+  }
+
+  .data-registro {
+    font-size: 13px;
+  }
+
+  .turma-registro {
+    font-size: 11px;
+  }
+
+  .horario-registro {
+    font-size: 11px;
+  }
+
+  .status-atraso {
+    width: 46px;
+    min-height: 22px;
+    font-size: 9px;
+  }
+
+  .seta-registro {
+    width: 9px;
+    height: 9px;
+  }
+}
