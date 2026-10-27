@@ -11,17 +11,17 @@ public partial class Turma
 
     public int AnoLetivo { get; set; }
 
-    public int? IdModelo { get; set; }
+    public int IdModelo { get; set; }
 
-    public int? IdPeriodo { get; set; }
+    public int IdPeriodo { get; set; }
 
     public virtual ICollection<Aluno> Alunos { get; set; } = new List<Aluno>();
 
     public virtual ICollection<HorarioTurma> HorarioTurmas { get; set; } = new List<HorarioTurma>();
 
-    public virtual ModeloEnsino? IdModeloNavigation { get; set; }
+    public virtual ModeloEnsino IdModeloNavigation { get; set; } = null!;
 
-    public virtual Periodo? IdPeriodoNavigation { get; set; }
+    public virtual Periodo IdPeriodoNavigation { get; set; } = null!;
 
-    public virtual ICollection<Qrcode> Qrcodes { get; set; } = new List<Qrcode>();
+    public virtual ICollection<QRCode> Qrcodes { get; set; } = new List<QRCode>();
 }
