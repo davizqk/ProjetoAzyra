@@ -54,9 +54,9 @@ public partial class AzyraContext : DbContext
 
             entity.ToTable("Aluno");
 
-            entity.HasIndex(e => e.Matricula, "UQ__Aluno__0FB9FB4F6738CE8A").IsUnique();
+            entity.HasIndex(e => e.Cpf, "UQ__Aluno__0FB9FB4F6738CE8A").IsUnique();
 
-            entity.Property(e => e.Matricula)
+            entity.Property(e => e.Cpf)
                 .HasMaxLength(30)
                 .IsUnicode(false);
             entity.Property(e => e.Nome)

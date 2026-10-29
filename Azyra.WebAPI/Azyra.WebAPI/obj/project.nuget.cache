@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b/q2arRQKi8=",
+  "dgSpecHash": "y0QhBaWCvHk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\54470890855\\Downloads\\Azyra.WebAPI_Completa_NET10\\Azyra.WebAPI_Completa\\Azyra.WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\54470890855\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\54470890855\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

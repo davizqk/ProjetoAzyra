@@ -58,7 +58,7 @@ public class AlunoController : ControllerBase
     private static Aluno ToEntity(AlunoRequestDTO dto) => new()
     {
         Nome = dto.Nome,
-        Matricula = dto.Matricula,
+        Cpf = dto.Cpf,
         IdTurma = dto.IdTurma,
     };
 
@@ -66,7 +66,7 @@ public class AlunoController : ControllerBase
     {
         IdAluno = entity.IdAluno,
         Nome = entity.Nome,
-        Matricula = entity.Matricula,
+        Cpf = entity.Cpf,
         IdTurma = entity.IdTurma,
     };
 }

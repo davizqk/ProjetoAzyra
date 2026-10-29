@@ -4172,11 +4172,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\54470890855\\Downloads\\Azyra.WebAPI_Completa_NET10\\Azyra.WebAPI_Completa\\Azyra.WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
       "projectName": "Azyra.WebAPI",
-      "projectPath": "C:\\Users\\54470890855\\Downloads\\Azyra.WebAPI_Completa_NET10\\Azyra.WebAPI_Completa\\Azyra.WebAPI.csproj",
+      "projectPath": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
       "packagesPath": "C:\\Users\\54470890855\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\54470890855\\Downloads\\Azyra.WebAPI_Completa_NET10\\Azyra.WebAPI_Completa\\obj\\",
+      "outputPath": "C:\\Users\\54470890855\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

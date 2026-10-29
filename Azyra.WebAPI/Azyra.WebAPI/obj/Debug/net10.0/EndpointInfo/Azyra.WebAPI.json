@@ -1724,7 +1724,7 @@
       },
       "AlunoRequestDTO": {
         "required": [
-          "matricula",
+          "cpf",
           "nome"
         ],
         "type": "object",
@@ -1733,7 +1733,7 @@
             "minLength": 1,
             "type": "string"
           },
-          "matricula": {
+          "cpf": {
             "minLength": 1,
             "type": "string"
           },
@@ -1755,7 +1755,7 @@
             "type": "string",
             "nullable": true
           },
-          "matricula": {
+          "cpf": {
             "type": "string",
             "nullable": true
           },

@@ -9,7 +9,7 @@ public partial class Aluno
 
     public string Nome { get; set; } = null!;
 
-    public string Matricula { get; set; } = null!;
+    public string Cpf { get; set; } = null!;
 
     public int IdTurma { get; set; }
 
