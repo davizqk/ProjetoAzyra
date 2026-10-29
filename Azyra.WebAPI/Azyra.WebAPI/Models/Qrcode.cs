@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Azyra.WebAPI.Models;
 
-public partial class Qrcode
+public partial class QRCode
 {
     public int IdQr { get; set; }
 
-    public int? IdTurma { get; set; }
+    public int IdTurma { get; set; }
 
     public string TokenHash { get; set; } = null!;
 
@@ -17,5 +17,5 @@ public partial class Qrcode
 
     public bool Ativo { get; set; }
 
-    public virtual Turma? IdTurmaNavigation { get; set; }
+    public virtual Turma IdTurmaNavigation { get; set; } = null!;
 }

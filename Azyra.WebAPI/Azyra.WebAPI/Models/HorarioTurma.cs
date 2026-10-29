@@ -13,7 +13,7 @@ public partial class HorarioTurma
 
     public int ToleranciaMin { get; set; }
 
-    public int? IdTurma { get; set; }
+    public int IdTurma { get; set; }
 
-    public virtual Turma? IdTurmaNavigation { get; set; }
+    public virtual Turma IdTurmaNavigation { get; set; } = null!;
 }

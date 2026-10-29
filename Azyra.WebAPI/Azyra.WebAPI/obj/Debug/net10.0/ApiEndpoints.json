@@ -1,18 +1,15 @@
-<<<<<<< HEAD
-[]
-=======
 [
   {
-    "ContainingType": "Azyra.WebAPI.Controllers.PeriodosController",
-    "Method": "ObterTodos",
-    "RelativePath": "api/Periodos",
+    "ContainingType": "Azyra.WebAPI.Controllers.AlertaRecorrenciaController",
+    "Method": "GetAll",
+    "RelativePath": "api/AlertaRecorrencia",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTO.PeriodoDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.AlertaRecorrencia.AlertaRecorrenciaResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -23,22 +20,22 @@
     ]
   },
   {
-    "ContainingType": "Azyra.WebAPI.Controllers.PeriodosController",
-    "Method": "Criar",
-    "RelativePath": "api/Periodos",
+    "ContainingType": "Azyra.WebAPI.Controllers.AlertaRecorrenciaController",
+    "Method": "Create",
+    "RelativePath": "api/AlertaRecorrencia",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Azyra.WebAPI.DTO.CriarPeriodoDTO",
+        "Type": "Azyra.WebAPI.DTOs.AlertaRecorrencia.AlertaRecorrenciaRequestDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Azyra.WebAPI.DTO.PeriodoDTO",
+        "Type": "Azyra.WebAPI.DTOs.AlertaRecorrencia.AlertaRecorrenciaResponseDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -49,9 +46,9 @@
     ]
   },
   {
-    "ContainingType": "Azyra.WebAPI.Controllers.PeriodosController",
-    "Method": "ObterPorId",
-    "RelativePath": "api/Periodos/{id}",
+    "ContainingType": "Azyra.WebAPI.Controllers.AlertaRecorrenciaController",
+    "Method": "GetById",
+    "RelativePath": "api/AlertaRecorrencia/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -64,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Azyra.WebAPI.DTO.PeriodoDTO",
+        "Type": "Azyra.WebAPI.DTOs.AlertaRecorrencia.AlertaRecorrenciaResponseDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -75,9 +72,9 @@
     ]
   },
   {
-    "ContainingType": "Azyra.WebAPI.Controllers.PeriodosController",
-    "Method": "Atualizar",
-    "RelativePath": "api/Periodos/{id}",
+    "ContainingType": "Azyra.WebAPI.Controllers.AlertaRecorrenciaController",
+    "Method": "Update",
+    "RelativePath": "api/AlertaRecorrencia/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -89,16 +86,888 @@
       },
       {
         "Name": "dto",
-        "Type": "Azyra.WebAPI.DTO.CriarPeriodoDTO",
+        "Type": "Azyra.WebAPI.DTOs.AlertaRecorrencia.AlertaRecorrenciaRequestDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Azyra.WebAPI.Controllers.PeriodosController",
-    "Method": "Deletar",
-    "RelativePath": "api/Periodos/{id}",
+    "ContainingType": "Azyra.WebAPI.Controllers.AlertaRecorrenciaController",
+    "Method": "Delete",
+    "RelativePath": "api/AlertaRecorrencia/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.AlunoController",
+    "Method": "GetAll",
+    "RelativePath": "api/Aluno",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.Aluno.AlunoResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.AlunoController",
+    "Method": "Create",
+    "RelativePath": "api/Aluno",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Aluno.AlunoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Aluno.AlunoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.AlunoController",
+    "Method": "GetById",
+    "RelativePath": "api/Aluno/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Aluno.AlunoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.AlunoController",
+    "Method": "Update",
+    "RelativePath": "api/Aluno/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Aluno.AlunoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.AlunoController",
+    "Method": "Delete",
+    "RelativePath": "api/Aluno/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HistoricoAtrasoController",
+    "Method": "GetAll",
+    "RelativePath": "api/HistoricoAtraso",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.HistoricoAtraso.HistoricoAtrasoResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HistoricoAtrasoController",
+    "Method": "Create",
+    "RelativePath": "api/HistoricoAtraso",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.HistoricoAtraso.HistoricoAtrasoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.HistoricoAtraso.HistoricoAtrasoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HistoricoAtrasoController",
+    "Method": "GetById",
+    "RelativePath": "api/HistoricoAtraso/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.HistoricoAtraso.HistoricoAtrasoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HistoricoAtrasoController",
+    "Method": "Update",
+    "RelativePath": "api/HistoricoAtraso/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.HistoricoAtraso.HistoricoAtrasoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HistoricoAtrasoController",
+    "Method": "Delete",
+    "RelativePath": "api/HistoricoAtraso/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HorarioTurmaController",
+    "Method": "GetAll",
+    "RelativePath": "api/HorarioTurma",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.HorarioTurma.HorarioTurmaResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HorarioTurmaController",
+    "Method": "Create",
+    "RelativePath": "api/HorarioTurma",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.HorarioTurma.HorarioTurmaRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.HorarioTurma.HorarioTurmaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HorarioTurmaController",
+    "Method": "GetById",
+    "RelativePath": "api/HorarioTurma/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.HorarioTurma.HorarioTurmaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HorarioTurmaController",
+    "Method": "Update",
+    "RelativePath": "api/HorarioTurma/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.HorarioTurma.HorarioTurmaRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.HorarioTurmaController",
+    "Method": "Delete",
+    "RelativePath": "api/HorarioTurma/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.ModeloEnsinoController",
+    "Method": "GetAll",
+    "RelativePath": "api/ModeloEnsino",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.ModeloEnsino.ModeloEnsinoResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.ModeloEnsinoController",
+    "Method": "Create",
+    "RelativePath": "api/ModeloEnsino",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.ModeloEnsino.ModeloEnsinoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.ModeloEnsino.ModeloEnsinoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.ModeloEnsinoController",
+    "Method": "GetById",
+    "RelativePath": "api/ModeloEnsino/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.ModeloEnsino.ModeloEnsinoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.ModeloEnsinoController",
+    "Method": "Update",
+    "RelativePath": "api/ModeloEnsino/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.ModeloEnsino.ModeloEnsinoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.ModeloEnsinoController",
+    "Method": "Delete",
+    "RelativePath": "api/ModeloEnsino/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PerfilAcessoController",
+    "Method": "GetAll",
+    "RelativePath": "api/PerfilAcesso",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.PerfilAcesso.PerfilAcessoResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PerfilAcessoController",
+    "Method": "Create",
+    "RelativePath": "api/PerfilAcesso",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.PerfilAcesso.PerfilAcessoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.PerfilAcesso.PerfilAcessoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PerfilAcessoController",
+    "Method": "GetById",
+    "RelativePath": "api/PerfilAcesso/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.PerfilAcesso.PerfilAcessoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PerfilAcessoController",
+    "Method": "Update",
+    "RelativePath": "api/PerfilAcesso/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.PerfilAcesso.PerfilAcessoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PerfilAcessoController",
+    "Method": "Delete",
+    "RelativePath": "api/PerfilAcesso/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PeriodoController",
+    "Method": "GetAll",
+    "RelativePath": "api/Periodo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.Periodo.PeriodoResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PeriodoController",
+    "Method": "Create",
+    "RelativePath": "api/Periodo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Periodo.PeriodoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Periodo.PeriodoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PeriodoController",
+    "Method": "GetById",
+    "RelativePath": "api/Periodo/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Periodo.PeriodoResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PeriodoController",
+    "Method": "Update",
+    "RelativePath": "api/Periodo/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Periodo.PeriodoRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.PeriodoController",
+    "Method": "Delete",
+    "RelativePath": "api/Periodo/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.QRCodeController",
+    "Method": "GetAll",
+    "RelativePath": "api/QRCode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.QRCode.QRCodeResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.QRCodeController",
+    "Method": "Create",
+    "RelativePath": "api/QRCode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.QRCode.QRCodeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.QRCode.QRCodeResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.QRCodeController",
+    "Method": "GetById",
+    "RelativePath": "api/QRCode/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.QRCode.QRCodeResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.QRCodeController",
+    "Method": "Update",
+    "RelativePath": "api/QRCode/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.QRCode.QRCodeRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.QRCodeController",
+    "Method": "Delete",
+    "RelativePath": "api/QRCode/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.TurmaController",
+    "Method": "GetAll",
+    "RelativePath": "api/Turma",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Azyra.WebAPI.DTOs.Turma.TurmaResponseDTO, Azyra.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.TurmaController",
+    "Method": "Create",
+    "RelativePath": "api/Turma",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Turma.TurmaRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Turma.TurmaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.TurmaController",
+    "Method": "GetById",
+    "RelativePath": "api/Turma/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Azyra.WebAPI.DTOs.Turma.TurmaResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.TurmaController",
+    "Method": "Update",
+    "RelativePath": "api/Turma/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Azyra.WebAPI.DTOs.Turma.TurmaRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Azyra.WebAPI.Controllers.TurmaController",
+    "Method": "Delete",
+    "RelativePath": "api/Turma/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -112,4 +981,3 @@
     "ReturnTypes": []
   }
 ]
->>>>>>> 6c00a7d35e19903058ef3110775d982adb642662

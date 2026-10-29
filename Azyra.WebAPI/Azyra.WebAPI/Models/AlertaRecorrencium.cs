@@ -7,7 +7,7 @@ public partial class AlertaRecorrencium
 {
     public int IdAlerta { get; set; }
 
-    public int? IdAluno { get; set; }
+    public int IdAluno { get; set; }
 
     public DateTime GeradoEm { get; set; }
 
@@ -15,5 +15,5 @@ public partial class AlertaRecorrencium
 
     public string Status { get; set; } = null!;
 
-    public virtual Aluno? IdAlunoNavigation { get; set; }
+    public virtual Aluno IdAlunoNavigation { get; set; } = null!;
 }

@@ -1,0 +1,254 @@
+.pagina-login {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px 20px;
+  background-color: #CEE0F2;
+  color: #1e1e1e;
+}
+
+/* Círculos decorativos no fundo */
+
+.detalhe-login {
+  position: absolute;
+  border: 1px solid rgba(76, 117, 165, 0.16);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.detalhe-login-um {
+  top: -180px;
+  left: -140px;
+  width: 440px;
+  height: 440px;
+}
+
+.detalhe-login-dois {
+  right: -160px;
+  bottom: -200px;
+  width: 500px;
+  height: 500px;
+}
+
+/* Cartão central */
+
+.cartao-login {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 470px;
+  padding: 40px 44px 30px;
+  border: 1px solid #e5edf4;
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 35px rgba(40, 77, 113, 0.1);
+}
+
+/* Logo */
+
+.marca-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.marca-login img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.marca-login span {
+  color: #1d2935;
+  font-size: 29px;
+  font-weight: 700;
+}
+
+/* Título */
+
+.cabecalho-login {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.cabecalho-login h1 {
+  margin: 0 0 6px;
+  color: #345f8e;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.cabecalho-login p {
+  margin: 0;
+  color: #737f8b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Formulário */
+
+.formulario-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-login {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.campo-login label {
+  color: #384655;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.caixa-input-login {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid #dce4eb;
+  border-radius: 8px;
+  background-color: #fafcfe;
+  color: #71849a;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.caixa-input-login:focus-within {
+  border-color: #4c75a5;
+  box-shadow: 0 0 0 3px rgba(76, 117, 165, 0.12);
+}
+
+.caixa-input-login > svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.caixa-input-login input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #263544;
+  font-size: 13px;
+}
+
+.caixa-input-login input::placeholder {
+  color: #a2adb8;
+}
+
+/* Mostrar ou ocultar senha */
+
+.mostrar-senha {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #71849a;
+  cursor: pointer;
+}
+
+.mostrar-senha svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Botão entrar */
+
+.botao-entrar-login {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3d6e9f;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-entrar-login:hover {
+  background-color: #315b85;
+}
+
+/* Esqueceu sua senha */
+
+.esqueceu-senha {
+  align-self: center;
+  margin-top: 17px;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  color: #000000;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.esqueceu-senha:hover {
+  text-decoration: underline;
+}
+
+/* Frase inferior */
+
+.rodape-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eef2f6;
+  color: #9aa8b6;
+  font-size: 11px;
+  text-align: center;
+}
+
+.ponto-login {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #78a4c7;
+}
+
+/* Ajustes para celular */
+
+@media (max-width: 500px) {
+  .cartao-login {
+    padding: 32px 24px 25px;
+  }
+
+  .cabecalho-login h1 {
+    font-size: 22px;
+  }
+
+  .marca-login img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .marca-login span {
+    font-size: 26px;
+  }
+}

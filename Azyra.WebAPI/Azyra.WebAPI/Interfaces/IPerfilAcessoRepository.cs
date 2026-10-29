@@ -1,17 +1,5 @@
-﻿using Azyra.WebAPI.Models;
+using Azyra.WebAPI.Models;
 
-namespace Azyra.WebAPI.Interfaces
-{
-    public interface IPerfilAcessoRepository
-    {
-        Task<List<PerfilAcesso>> ListarTodos();
+namespace Azyra.WebAPI.Interfaces;
 
-        Task<PerfilAcesso?> BuscarPorId(int id);
-
-        Task<PerfilAcesso> Adicionar(PerfilAcesso perfil);
-
-        Task<bool> Atualizar(PerfilAcesso perfil);
-
-        Task<bool> Excluir(int id);
-    }
-}
+public interface IPerfilAcessoRepository : IRepository<PerfilAcesso> { }
