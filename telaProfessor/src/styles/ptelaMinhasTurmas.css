@@ -136,14 +136,46 @@ button {
 /* Rodapé do menu */
 
 .sidebar-footer {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 100%;
-  min-height: 76px;
-  margin-top: auto;
-  padding: 13px 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.55);
+
+  padding: 12px 10px;
+  margin: 0;
+
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  box-shadow: none;
+
+  font: inherit;
+  color: white;
+  text-align: left;
+
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.sidebar-footer:hover {
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 1;
+}
+
+.sidebar-footer:focus-visible {
+  outline: 2px solid white;
+  outline-offset: -3px;
+}
+
+.sidebar-footer-avatar {
+  flex-shrink: 0;
+}
+
+.sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar-footer-avatar {
@@ -875,4 +907,58 @@ button {
     width: 30px;
     height: 30px;
   }
+}
+
+button.sidebar-footer {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: transparent !important;
+  color: white;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 12px 10px;
+
+  font: inherit;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+button.sidebar-footer:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.historico-app {
+  min-height: 100vh;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-nav {
+  flex: 1;
+}
+
+.sidebar-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  width: 100%;
 }

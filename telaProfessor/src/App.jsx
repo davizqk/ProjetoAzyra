@@ -4,8 +4,8 @@ import "./App.css";
 import Login from "./pages/Login.jsx";
 import PTelaMinhasTurmas from "./pages/ptelaMinhasTurmas.jsx";
 import PtelaHistorico from "./pages/ptelaHistorico.jsx";
-import Perfil from "./pages/Perfil.jsx";
-import EditarPerfil from "./pages/EditarPerfil.jsx"; // <--- Importação adicionada aqui!
+import PtelaPerfil from "./pages/ptelaPerfil.jsx";
+import EditarPerfil from "./pages/ptelaEditarPerfil.jsx";
 
 const ROTAS_VALIDAS = [
   "login",
@@ -30,7 +30,6 @@ export default function App() {
 
   const [foto, setFoto] = useState("");
 
-  // Mantém o React sincronizado com os links que usam #rota.
   useEffect(() => {
     function atualizarRota() {
       setTelaAtual(lerRota());
@@ -50,13 +49,11 @@ export default function App() {
       window.location.hash = rota;
     }
 
-    // Também atualiza a tela caso a rota já esteja no endereço.
     setTelaAtual(rota);
   }
 
   function entrar() {
     navegarPara("minhas-turmas");
-    window.location.hash = "minhas-turmas";
   }
 
   function salvarPerfil(dados) {
@@ -100,7 +97,7 @@ export default function App() {
 
     case "perfil":
       conteudo = (
-        <Perfil
+        <PtelaPerfil
           usuario={usuario}
           foto={foto}
           aoEditar={() => navegarPara("editar-perfil")}
@@ -127,9 +124,5 @@ export default function App() {
       conteudo = <Login aoEntrar={entrar} />;
   }
 
-  return (
-    <>
-      {conteudo}
-    </>
-  );
+  return <>{conteudo}</>;
 }

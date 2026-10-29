@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* AJUSTE DE TAMANHO — HISTÓRICO AZYRA */
 
-/* =========================================
-   CONFIGURAÇÕES GERAIS
-========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -14,10 +12,6 @@ body,
   width: 100%;
   min-height: 100%;
   margin: 0;
-}
-
-html {
-  min-width: 320px;
 }
 
 body {
@@ -38,34 +32,15 @@ button {
   cursor: pointer;
 }
 
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-a:focus-visible {
-  outline: 2px solid #4b75a0;
-  outline-offset: 3px;
-}
-
 .historico-app {
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden; /* a janela não rola, só o conteúdo */
   background: #f5f5f5;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-}
-
-/* =========================================
-   MENU LATERAL
-========================================= */
+/* MENU LATERAL */
 
 .sidebar {
   position: fixed;
@@ -77,7 +52,6 @@ a:focus-visible {
 
   width: 266px;
   height: 100vh;
-  min-height: 540px;
 
   padding: 25px 17px 0;
 
@@ -91,17 +65,13 @@ a:focus-visible {
   gap: 14px;
 
   min-height: 48px;
-  margin-bottom: 55px;
+  margin-bottom: 40px;
   padding-left: 7px;
 }
 
 .sidebar-logo {
-  display: block;
-  flex-shrink: 0;
-
   width: 43px;
   height: 43px;
-
   object-fit: contain;
 }
 
@@ -124,17 +94,13 @@ a:focus-visible {
   gap: 15px;
 
   width: 100%;
-  min-height: 61px;
+  min-height: 49px;
   padding: 12px 15px;
 
-  border-radius: 13px;
+  border-radius: 10px;
 
   color: #fff;
   text-decoration: none;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
 }
 
 .sidebar-link:hover:not(.active) {
@@ -142,27 +108,23 @@ a:focus-visible {
 }
 
 .sidebar-link.active {
-  color: #142b40;
+  color: #315f91;
   background: #e4edf5;
 }
 
 .sidebar-icon {
-  display: block;
-  flex-shrink: 0;
-
   width: 27px;
   height: 27px;
-
+  flex-shrink: 0;
   object-fit: contain;
 }
 
-/* O ícone de Minhas Turmas fica branco. */
 .sidebar-icon-turmas {
   filter: brightness(0) invert(1);
 }
 
 .sidebar-link span {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -173,7 +135,7 @@ a:focus-visible {
   gap: 13px;
 
   width: 100%;
-  min-height: 88px;
+  min-height: 68px;
   margin-top: auto;
   padding: 14px 9px;
 
@@ -181,12 +143,8 @@ a:focus-visible {
 }
 
 .sidebar-footer-avatar {
-  display: block;
-  flex-shrink: 0;
-
   width: 36px;
   height: 36px;
-
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -208,25 +166,33 @@ a:focus-visible {
   font-size: 12px;
 }
 
-/* =========================================
-   CONTEÚDO PRINCIPAL
-========================================= */
+/* CONTEÚDO PRINCIPAL (com rolagem) */
 
 .turmas-main {
   width: calc(100% - 266px);
-  min-height: 100vh;
+  height: 100vh;
+
+  overflow-x: hidden;
+  overflow-y: auto; /* rolagem só do conteúdo */
 
   margin-left: 266px;
   padding: 36px 38px 38px;
+}
+
+.turmas-main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.turmas-main::-webkit-scrollbar-thumb {
+  background: #c5d3e3;
+  border-radius: 8px;
 }
 
 .historico-main {
   min-width: 0;
 }
 
-/* =========================================
-   CABEÇALHO
-========================================= */
+/* CABEÇALHO */
 
 .page-header {
   display: flex;
@@ -235,7 +201,7 @@ a:focus-visible {
   gap: 25px;
 
   width: 100%;
-  margin-bottom: 37px;
+  margin-bottom: 35px;
 }
 
 .page-heading {
@@ -246,7 +212,7 @@ a:focus-visible {
   margin: 0 0 7px;
 
   color: #4b75a0;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -254,60 +220,27 @@ a:focus-visible {
 .page-heading p {
   margin: 0;
 
-  color: #4e4e4e;
-  font-size: 16px;
+  color: #666;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.5;
 }
 
-/* =========================================
-   ÁREA DO USUÁRIO
-========================================= */
-
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-
-  flex-shrink: 0;
-  padding-top: 5px;
-}
-
-.notification-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 39px;
-  height: 43px;
-  padding: 4px;
-
-  border: 0;
-  background: transparent;
-}
-
-.notification-button img {
-  display: block;
-
-  width: 26px;
-  height: 26px;
-
-  object-fit: contain;
-}
+/* PERFIL DO USUÁRIO */
 
 .user-profile {
   display: flex;
   align-items: center;
   gap: 12px;
+
+  flex-shrink: 0;
+  padding-top: 5px;
 }
 
 .user-avatar {
-  display: block;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
-
-  width: 52px;
-  height: 52px;
-
   object-fit: contain;
 }
 
@@ -315,219 +248,39 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 4px;
-
-  min-width: 0;
 }
 
 .user-details strong {
   color: #26384a;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   white-space: nowrap;
 }
 
 .user-details span {
   color: #777;
-  font-size: 13px;
+  font-size: 12px;
 }
 
-.profile-dropdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 29px;
-  height: 36px;
-  margin-left: 4px;
-  padding: 5px;
-
-  border: 0;
-  background: transparent;
-}
-
-.profile-dropdown img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
-
-/* =========================================
-   FILTROS DO HISTÓRICO
-========================================= */
+/* FILTROS */
 
 .historico-filters {
   display: grid;
 
   grid-template-columns:
-    minmax(340px, 0.95fr)
+    minmax(280px, 1fr)
     minmax(260px, 1fr)
-    minmax(300px, 1fr);
+    minmax(260px, 1fr);
 
   align-items: end;
-  gap: 30px;
+  gap: 32px;
 
   width: 100%;
-  max-width: none;
-
-  margin: 0 0 34px;
+  margin: 0 0 36px;
+  padding: 0 18px;
 }
 
-/* =========================================
-   FILTRO DE DATAS
-   Ícone à esquerda, datas coladas com "•"
-   no meio, tudo alinhado à esquerda.
-========================================= */
-
-.date-range {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  width: 100%;
-  min-width: 0;
-  height: 56px;
-  padding: 0 16px;
-
-  border: 1px solid #d9d9d9;
-  border-radius: 12px;
-
-  background: #f5f5f5;
-
-  transition: border-color 0.2s ease;
-}
-
-.date-range:focus-within {
-  border-color: #4b75a0;
-}
-
-.date-input-group {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  width: auto;
-  min-width: 0;
-  height: 100%;
-}
-
-.date-calendar-icon {
-  display: block;
-  flex-shrink: 0;
-
-  width: 19px;
-  height: 19px;
-
-  object-fit: contain;
-}
-
-.date-input-group input {
-  display: block;
-
-  width: 100px; /* largura só do texto da data */
-  height: 100%;
-  padding: 0;
-
-  border: 0;
-  outline: none;
-
-  color: #334b62;
-  background: transparent;
-
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-
-  cursor: pointer;
-}
-
-/* Remove o ícone nativo e mantém o clique funcionando */
-.date-input-group input::-webkit-calendar-picker-indicator {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-  margin: 0;
-
-  opacity: 0;
-  cursor: pointer;
-}
-
-.date-input-group input::-webkit-date-and-time-value {
-  text-align: left;
-}
-
-.date-separator {
-  flex-shrink: 0;
-
-  color: #4e4e4e;
-  font-size: 14px;
-  line-height: 1;
-}
-
-/* =========================================
-   FILTRO DE TURMAS
-========================================= */
-
-.history-select-field {
-  display: block;
-  width: 100%;
-  min-width: 0;
-}
-
-.select-wrapper {
-  position: relative;
-  width: 100%;
-  height: 56px;
-}
-
-.select-wrapper select {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-  padding: 0 46px 0 16px;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  border: 1px solid #d9d9d9;
-  border-radius: 12px;
-  outline: none;
-
-  color: #334b62;
-  background: #f7f7f7;
-
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-
-  cursor: pointer;
-}
-
-.select-wrapper select:focus {
-  border-color: #4b75a0;
-}
-
-.select-wrapper img {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-
-  width: 16px;
-  height: 16px;
-
-  object-fit: contain;
-  transform: translateY(-50%);
-
-  pointer-events: none;
-}
-
-/* =========================================
-   PESQUISA DE ESTUDANTES
-========================================= */
+/* BUSCA */
 
 .search-box {
   display: flex;
@@ -536,15 +289,13 @@ a:focus-visible {
 
   width: 100%;
   min-width: 0;
-  height: 56px;
+  height: 43px;
   padding: 0 16px;
 
   border: 1px solid #d9d9d9;
-  border-radius: 12px;
+  border-radius: 10px;
 
   background: #f7f7f7;
-
-  transition: border-color 0.2s ease;
 }
 
 .search-box:focus-within {
@@ -552,12 +303,9 @@ a:focus-visible {
 }
 
 .search-box img {
-  display: block;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
-
-  width: 19px;
-  height: 19px;
-
   object-fit: contain;
 }
 
@@ -578,20 +326,81 @@ a:focus-visible {
 }
 
 .search-box input::placeholder {
-  color: #777;
+  color: #555;
   opacity: 1;
 }
 
-/* =========================================
-   TABELA
-========================================= */
+/* SELECTS */
+
+.history-select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.history-select-field > span {
+  margin-left: 3px;
+  color: #555;
+  font-size: 13px;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  height: 43px;
+}
+
+.select-wrapper select {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 42px 0 16px;
+
+  appearance: none;
+
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+
+  color: #555;
+  background: #f7f7f7;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.select-wrapper select:focus {
+  border-color: #4b75a0;
+  outline: none;
+}
+
+.select-wrapper img {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+
+  width: 15px;
+  height: 15px;
+
+  object-fit: contain;
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+/* TABELA */
 
 .history-table-card {
   width: 100%;
   overflow: hidden;
 
   border: 1px solid #d9dfe3;
-  border-radius: 16px;
+  border-radius: 17px;
 
   background: #f7f7f7;
 }
@@ -607,31 +416,31 @@ a:focus-visible {
   table-layout: fixed;
 }
 
-/* Cabeçalho */
+/* CABEÇALHO DA TABELA */
 
 .historico-table thead {
   background: #dfedf3;
 }
 
-.historico-table thead tr {
-  height: 63px;
+.historico-table thead tr,
+.historico-table th {
+  height: 64px;
 }
 
 .historico-table th {
-  height: 63px;
   padding: 15px 12px;
 
   color: #4b75a0;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 
   text-align: center;
   white-space: nowrap;
 }
 
-/* Linhas */
+/* LINHAS */
 
 .historico-table tbody tr {
   height: 49px;
@@ -644,12 +453,12 @@ a:focus-visible {
 
 .historico-table td {
   height: 49px;
-  padding: 12px 12px;
+  padding: 12px;
 
   color: #35475a;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
 
   text-align: center;
@@ -669,36 +478,34 @@ a:focus-visible {
   white-space: normal;
 }
 
-/* Distribuição das colunas */
+/* LARGURA DAS COLUNAS */
 
 .historico-table th:nth-child(1),
 .historico-table td:nth-child(1) {
-  width: 16%;
+  width: 17%;
 }
 
 .historico-table th:nth-child(2),
 .historico-table td:nth-child(2) {
-  width: 18%;
+  width: 22%;
 }
 
 .historico-table th:nth-child(3),
 .historico-table td:nth-child(3) {
-  width: 16%;
+  width: 19%;
 }
 
 .historico-table th:nth-child(4),
 .historico-table td:nth-child(4) {
-  width: 25%;
+  width: 16%;
 }
 
 .historico-table th:nth-child(5),
 .historico-table td:nth-child(5) {
-  width: 25%;
+  width: 26%;
 }
 
-/* =========================================
-   RODAPÉ DA TABELA
-========================================= */
+/* RODAPÉ */
 
 .table-footer {
   display: flex;
@@ -706,8 +513,8 @@ a:focus-visible {
   justify-content: space-between;
   gap: 16px;
 
-  min-height: 49px;
-  padding: 7px 14px 7px 19px;
+  min-height: 58px;
+  padding: 8px 18px 8px 23px;
 
   border-top: 1px solid #dedede;
 
@@ -716,18 +523,16 @@ a:focus-visible {
 
 .table-footer > span {
   color: #707070;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 
-/* =========================================
-   PAGINAÇÃO
-========================================= */
+/* PAGINAÇÃO */
 
 .pagination {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .pagination-arrow,
@@ -738,9 +543,8 @@ a:focus-visible {
   justify-content: center;
   flex-shrink: 0;
 
-  min-width: 35px;
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   padding: 0;
 
   border: 1px solid #d7dce0;
@@ -754,11 +558,8 @@ a:focus-visible {
 }
 
 .pagination-arrow img {
-  display: block;
-
-  width: 14px;
-  height: 14px;
-
+  width: 15px;
+  height: 15px;
   object-fit: contain;
 }
 
@@ -779,64 +580,11 @@ a:focus-visible {
   font-weight: 600;
 }
 
-.pagination-number {
-  background: #f7f7f7;
-}
-
-/* =========================================
-   TELAS GRANDES
-========================================= */
-
-@media (min-width: 1600px) {
-  .sidebar {
-    width: 266px;
-  }
-
-  .turmas-main {
-    width: calc(100% - 266px);
-    margin-left: 266px;
-    padding-right: 42px;
-    padding-left: 42px;
-  }
-
-  .page-heading h1 {
-    font-size: 34px;
-  }
-
-  .page-heading p {
-    font-size: 17px;
-  }
-
-  .historico-filters {
-    gap: 30px;
-  }
-
-  .date-range,
-  .select-wrapper,
-  .search-box {
-    height: 57px;
-  }
-
-  .historico-table thead tr,
-  .historico-table th {
-    height: 64px;
-  }
-
-  .historico-table tbody tr,
-  .historico-table td {
-    height: 49px;
-  }
-}
-
-/* =========================================
-   NOTEBOOKS E TELAS MÉDIAS
-========================================= */
+/* NOTEBOOKS */
 
 @media (max-width: 1250px) {
   .sidebar {
     width: 220px;
-    padding-right: 13px;
-    padding-left: 13px;
   }
 
   .turmas-main {
@@ -845,122 +593,43 @@ a:focus-visible {
     padding: 30px 25px;
   }
 
-  .sidebar-brand {
-    margin-bottom: 40px;
-  }
-
-  .page-header {
-    gap: 18px;
-    margin-bottom: 32px;
-  }
-
   .page-heading h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .page-heading p {
-    font-size: 15px;
-  }
-
-  .user-actions {
-    gap: 12px;
-  }
-
-  .user-avatar {
-    width: 43px;
-    height: 43px;
-  }
-
-  .user-details strong {
-    font-size: 12px;
-  }
-
-  .user-details span {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .historico-filters {
     grid-template-columns:
-      minmax(260px, 1fr)
-      minmax(200px, 0.9fr)
-      minmax(220px, 1fr);
-    gap: 15px;
-  }
-
-  .date-range {
-    gap: 8px;
-    padding: 0 12px;
-  }
-
-  .date-calendar-icon {
-    width: 17px;
-    height: 17px;
-  }
-
-  .date-input-group {
-    gap: 7px;
-  }
-
-  .date-input-group input {
-    width: 92px;
-    font-size: 13px;
-  }
-
-  .date-separator {
-    font-size: 13px;
+      minmax(220px, 1fr)
+      minmax(180px, 1fr)
+      minmax(180px, 1fr);
+    gap: 16px;
+    padding: 0 8px;
   }
 
   .historico-table th {
+    font-size: 13px;
     padding-right: 6px;
     padding-left: 6px;
-    font-size: 12px;
   }
 
   .historico-table td {
+    font-size: 12px;
     padding-right: 6px;
     padding-left: 6px;
-    font-size: 12px;
   }
 }
 
-/* =========================================
-   TABLETS
-========================================= */
+/* TABLETS */
 
 @media (max-width: 900px) {
   .sidebar {
     width: 180px;
     padding-right: 10px;
     padding-left: 10px;
-  }
-
-  .sidebar-brand {
-    gap: 9px;
-    margin-bottom: 28px;
-  }
-
-  .sidebar-logo {
-    width: 36px;
-    height: 36px;
-  }
-
-  .sidebar-brand span {
-    font-size: 20px;
-  }
-
-  .sidebar-link {
-    gap: 9px;
-    min-height: 49px;
-    padding: 9px;
-  }
-
-  .sidebar-link span {
-    font-size: 13px;
-  }
-
-  .sidebar-icon {
-    width: 22px;
-    height: 22px;
   }
 
   .turmas-main {
@@ -971,29 +640,11 @@ a:focus-visible {
 
   .page-header {
     flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
-
-  .page-heading h1 {
-    font-size: 26px;
-  }
-
-  .page-heading p {
-    font-size: 14px;
-  }
-
-  .user-actions {
-    margin-left: auto;
   }
 
   .historico-filters {
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-
-  .date-range {
-    grid-column: 1 / -1;
-    max-width: 100%;
+    gap: 16px;
   }
 
   .history-search-box {
@@ -1005,22 +656,20 @@ a:focus-visible {
   }
 }
 
-/* =========================================
-   CELULARES
-========================================= */
+/* CELULARES (sidebar vira topo; a janela volta a rolar) */
 
 @media (max-width: 600px) {
   .historico-app {
     display: block;
+    height: auto;
+    overflow: visible;
   }
 
   .sidebar {
     position: relative;
-
     width: 100%;
     height: auto;
     min-height: 0;
-
     padding: 12px;
   }
 
@@ -1047,7 +696,6 @@ a:focus-visible {
   .sidebar-link {
     justify-content: center;
     gap: 5px;
-
     min-height: 43px;
     padding: 7px 5px;
   }
@@ -1067,75 +715,42 @@ a:focus-visible {
 
   .turmas-main {
     width: 100%;
+    height: auto;
     min-height: calc(100vh - 110px);
-
+    overflow: visible;
     margin-left: 0;
     padding: 23px 14px;
   }
 
   .page-header {
     flex-direction: column;
-    gap: 18px;
-
-    margin-bottom: 26px;
+    gap: 12px;
+    margin-bottom: 24px;
   }
 
   .page-heading h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .page-heading p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
-  .user-actions {
+  .user-profile {
     align-self: flex-end;
-    margin-top: -5px;
-  }
-
-  .user-avatar {
-    width: 38px;
-    height: 38px;
-  }
-
-  .user-details strong {
-    font-size: 12px;
-  }
-
-  .user-details span {
-    font-size: 11px;
+    padding-top: 0;
   }
 
   .historico-filters {
     grid-template-columns: 1fr;
     gap: 14px;
-
     margin-bottom: 23px;
+    padding: 0;
   }
 
-  .date-range,
-  .history-select-field,
-  .history-search-box {
-    grid-column: auto;
-    width: 100%;
-  }
-
-  .date-range {
-    height: 50px;
-  }
-
-  .date-input-group input {
-    width: 88px;
-    font-size: 12px;
-  }
-
-  .date-separator {
-    font-size: 12px;
-  }
-
-  .select-wrapper,
-  .search-box {
-    height: 49px;
+  .search-box,
+  .select-wrapper {
+    height: 45px;
   }
 
   .history-table-card {
@@ -1152,7 +767,7 @@ a:focus-visible {
   }
 
   .historico-table th {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .historico-table tbody tr,
@@ -1161,7 +776,7 @@ a:focus-visible {
   }
 
   .historico-table td {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .table-footer {
@@ -1170,7 +785,7 @@ a:focus-visible {
   }
 
   .table-footer > span {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .pagination {
@@ -1180,7 +795,6 @@ a:focus-visible {
   .pagination-arrow,
   .pagination-current,
   .pagination-number {
-    min-width: 29px;
     width: 29px;
     height: 29px;
     font-size: 11px;
