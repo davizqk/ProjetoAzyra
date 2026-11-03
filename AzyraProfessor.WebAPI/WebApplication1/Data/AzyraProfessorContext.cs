@@ -14,9 +14,9 @@ public partial class AzyraProfessorContext : DbContext
 
     public virtual DbSet<Aluno> Alunos { get; set; }
 
+    public virtual DbSet<Professor> Professores { get; set; }
     public virtual DbSet<HistoricoAtraso> HistoricoAtrasos { get; set; }
 
-    public virtual DbSet<Professor> Professors { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,10 +62,13 @@ public partial class AzyraProfessorContext : DbContext
 
             entity.ToTable("Professor");
 
-            entity.HasIndex(e => e.Email, "UQ__Professo__A9D1053459E75651").IsUnique();
+            entity.Property(e => e.IdProfessor)
+            .ValueGeneratedOnAdd();
 
-            entity.Property(e => e.Email)
-                .HasMaxLength(150)
+            entity.HasIndex(e => e.Cpf).IsUnique();
+
+            entity.Property(e => e.Cpf)
+                .HasMaxLength(11)
                 .IsUnicode(false);
             entity.Property(e => e.Nome)
                 .HasMaxLength(120)
