@@ -1,4 +1,3 @@
-
 CREATE DATABASE AzyraProfessor;
 GO
 
@@ -25,11 +24,11 @@ GO
 
 CREATE TABLE HistoricoAtraso
 (
-    IdHistorico   INT PRIMARY KEY IDENTITY(1,1),
-    IdAluno       INT        NOT NULL,
-    DataAtraso    DATETIME   NOT NULL,
-    MinutosAtraso INT        NOT NULL,
-    Justificativa VARCHAR    (255),
+    IdHistorico           INT PRIMARY KEY IDENTITY(1,1),
+    IdAluno               INT        NOT NULL,
+    DataAtraso            DATETIME   NOT NULL,
+    MinutosAtraso         INT        NOT NULL,
+    Justificativa         VARCHAR    (255),
     FOREIGN KEY (IdAluno) REFERENCES Aluno(IdAluno)
 );
 GO
