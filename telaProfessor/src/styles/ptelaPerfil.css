@@ -1,7 +1,5 @@
-
 /* ========================================
    TELA DE PERFIL
-   A sidebar mantém o padrão do Histórico
 ======================================== */
 
 .perfil-app {
@@ -18,19 +16,11 @@
 
 /* ========================================
    SIDEBAR
-   Não alterar dimensões, espaçamentos ou rodapé
+   Mantém as dimensões originais
 ======================================== */
 
 .perfil-app .sidebar {
   flex-shrink: 0;
-}
-
-.perfil-app .sidebar-brand {
-  /* Mantém o tamanho e o posicionamento do Histórico */
-}
-
-.perfil-app .sidebar-nav {
-  /* Usa o espaçamento original do Histórico */
 }
 
 .perfil-app .sidebar-link {
@@ -39,32 +29,26 @@
   text-align: left;
   text-decoration: none;
   cursor: pointer;
-
-  /* Corrige a aparência padrão dos links */
   border: none;
   outline: none;
   box-shadow: none;
 }
 
-/* Links não selecionados */
 .perfil-app .sidebar-link:not(.active) {
   background: transparent;
   color: #ffffff;
   border-radius: 10px;
 }
 
-/* Ícones dos links não selecionados */
 .perfil-app .sidebar-link:not(.active) .sidebar-icon {
   opacity: 1;
 }
 
-/* Hover discreto, sem borda cinza */
 .perfil-app .sidebar-link:not(.active):hover {
   background: rgba(255, 255, 255, 0.10);
   color: #ffffff;
 }
 
-/* Item selecionado: use a mesma classe active do Histórico */
 .perfil-app .sidebar-link.active {
   background: #e5edf6;
   color: #173958;
@@ -72,7 +56,6 @@
   box-shadow: none;
 }
 
-/* Evita que o foco do navegador desenhe bordas inesperadas */
 .perfil-app .sidebar-link:focus {
   outline: none;
 }
@@ -82,7 +65,6 @@
   outline-offset: 2px;
 }
 
-/* Rodapé: preservar o padrão original do Histórico */
 .perfil-app .sidebar-footer {
   width: 100%;
   flex-shrink: 0;
@@ -103,21 +85,26 @@
 .perfil-main {
   flex: 1;
   min-width: 0;
-  padding: 40px 44px;
+  padding: 28px 44px;
   box-sizing: border-box;
+  background: #f5f5f5;
 }
 
 .perfil-main .page-header {
-  margin-bottom: 38px;
+  margin-bottom: 22px;
 }
 
 .perfil-main .page-header h1 {
   margin: 0;
   color: #4e77a3;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .perfil-main .page-header p {
-  margin-top: 8px;
+  margin: 6px 0 0;
+  color: #555f6b;
+  font-size: 17px;
 }
 
 /* ========================================
@@ -126,27 +113,30 @@
 
 .perfil-card {
   width: 100%;
-  padding: 36px;
+  padding: 26px 32px;
   background: #ffffff;
   border: 1px solid #dedede;
-  border-radius: 20px;
+  border-radius: 10px;
 }
+
+/* ========================================
+   INFORMAÇÕES DO USUÁRIO
+======================================== */
 
 .perfil-info {
   display: flex;
   align-items: center;
-  gap: 40px;
-  margin-bottom: 36px;
+  gap: 30px;
+  margin-bottom: 26px;
 }
 
 .perfil-avatar {
   display: block;
-  width: 150px;
-  height: 150px;
-  min-width: 150px;
+  width: 125px;
+  height: 125px;
+  min-width: 125px;
   border-radius: 50%;
   object-fit: cover;
-  background: #8fa2bd;
 }
 
 .perfil-dados {
@@ -156,30 +146,38 @@
 .perfil-dados h2 {
   margin: 0 0 4px;
   color: #4e77a3;
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .perfil-cargo {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #4e77a3;
-  font-size: 20px;
+  font-size: 18px;
 }
+
+/* ========================================
+   EMAIL, TELEFONE E LOCALIZAÇÃO
+======================================== */
 
 .perfil-dado {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 8px 0;
+  gap: 10px;
+  margin: 7px 0;
   color: #173958;
-  font-size: 17px;
+  font-size: 16px;
+  line-height: 1.3;
   overflow-wrap: anywhere;
 }
 
-.perfil-dado span {
-  width: 22px;
+.perfil-dado img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
   flex-shrink: 0;
-  text-align: center;
+  object-fit: contain;
 }
 
 /* ========================================
@@ -189,35 +187,38 @@
 .perfil-estatisticas {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 48px;
+  gap: 26px;
 }
 
 .perfil-stat {
   min-width: 0;
-  min-height: 174px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 24px 16px;
+  gap: 7px;
+  padding: 16px;
+  background: #ffffff;
   border: 1px solid #dedede;
+  border-radius: 8px;
   color: #4e77a3;
   text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .perfil-stat strong {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
 }
 
 .perfil-stat span {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .perfil-stat-icone {
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   object-fit: contain;
 }
 
@@ -227,26 +228,27 @@
 
 .perfil-botao {
   width: 100%;
-  min-height: 70px;
-  margin-top: 36px;
+  min-height: 58px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 18px;
+  padding: 12px;
   border: none;
-  border-radius: 9px;
+  border-radius: 8px;
   background: #4e77a3;
   color: #ffffff;
   font-family: inherit;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .perfil-botao img {
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
   object-fit: contain;
 }
 
@@ -258,9 +260,9 @@
    RESPONSIVIDADE
 ======================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .perfil-main {
-    padding: 28px 24px;
+    padding: 24px 28px;
   }
 
   .perfil-card {
@@ -276,28 +278,82 @@
   }
 }
 
+@media (max-width: 768px) {
+  .perfil-main {
+    padding: 22px 18px;
+  }
+
+  .perfil-avatar {
+    width: 105px;
+    height: 105px;
+    min-width: 105px;
+  }
+
+  .perfil-dados h2 {
+    font-size: 22px;
+  }
+
+  .perfil-cargo {
+    font-size: 17px;
+  }
+
+  .perfil-estatisticas {
+    gap: 12px;
+  }
+
+  .perfil-stat {
+    min-height: 105px;
+  }
+}
+
 @media (max-width: 600px) {
   .perfil-main {
+    padding: 20px 16px;
+  }
+
+  .perfil-main .page-header h1 {
+    font-size: 27px;
+  }
+
+  .perfil-main .page-header p {
+    font-size: 15px;
+  }
+
+  .perfil-card {
     padding: 20px 16px;
   }
 
   .perfil-info {
     flex-direction: column;
     align-items: flex-start;
+    gap: 18px;
   }
 
   .perfil-avatar {
-    width: 110px;
-    height: 110px;
-    min-width: 110px;
+    width: 95px;
+    height: 95px;
+    min-width: 95px;
+  }
+
+  .perfil-dados h2 {
+    font-size: 21px;
+  }
+
+  .perfil-dado {
+    font-size: 15px;
   }
 
   .perfil-estatisticas {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .perfil-stat {
-    min-height: 110px;
+    min-height: 90px;
+  }
+
+  .perfil-botao {
+    min-height: 52px;
+    font-size: 16px;
   }
 }
