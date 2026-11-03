@@ -5,22 +5,42 @@ USE Azyra;
 GO
 
 CREATE TABLE ModeloEnsino (
+<<<<<<< HEAD
+    IdModelo       INT PRIMARY KEY IDENTITY(1,1),
+    Nome           VARCHAR(30) NOT NULL,
+    Descricao      VARCHAR(200)
+=======
     IdModelo INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(30) NOT NULL,
     Descricao VARCHAR(200) NULL
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE Periodo (
+<<<<<<< HEAD
+    IdPeriodo      INT PRIMARY KEY IDENTITY(1,1),
+    Nome           VARCHAR(30) NOT NULL,
+    HoraInicio TIME NOT NULL,
+    HoraFim TIME NOT NULL
+=======
     IdPeriodo INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(30) NOT NULL,
     HoraInicio TIME NOT NULL,
     HoraFim TIME NOT NULL,
     CONSTRAINT CK_Periodo_Horarios CHECK (HoraFim > HoraInicio)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE Turma (
+<<<<<<< HEAD
+    IdTurma INT PRIMARY KEY IDENTITY(1,1),
+    Nome VARCHAR(80) NOT NULL,
+    AnoLetivo INT NOT NULL,
+    IdModelo INT FOREIGN KEY REFERENCES ModeloEnsino(IdModelo),
+    IdPeriodo INT FOREIGN KEY REFERENCES Periodo(IdPeriodo)
+=======
     IdTurma INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(80) NOT NULL,
     AnoLetivo INT NOT NULL,
@@ -30,16 +50,23 @@ CREATE TABLE Turma (
         FOREIGN KEY (IdModelo) REFERENCES ModeloEnsino(IdModelo),
     CONSTRAINT FK_Turma_Periodo
         FOREIGN KEY (IdPeriodo) REFERENCES Periodo(IdPeriodo)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE Aluno (
+<<<<<<< HEAD
+    IdAluno INT PRIMARY KEY IDENTITY(1,1),
+    CPF CHAR(11) NOT NULL UNIQUE,
+    IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma)
+=======
     IdAluno INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(120) NOT NULL,
     CPF VARCHAR(11) NULL,
     IdTurma INT NOT NULL,
     CONSTRAINT FK_Aluno_Turma
         FOREIGN KEY (IdTurma) REFERENCES Turma(IdTurma)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
@@ -51,6 +78,13 @@ CREATE UNIQUE INDEX UX_Aluno_CPF
 GO
 
 CREATE TABLE HorarioTurma (
+<<<<<<< HEAD
+    IdHorario INT PRIMARY KEY IDENTITY(1,1),
+    DiaSemana INT NOT NULL,
+    HoraEntrada TIME NOT NULL,
+    ToleranciaMin INT NOT NULL,
+    IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma)
+=======
     IdHorario INT IDENTITY(1,1) PRIMARY KEY,
     DiaSemana INT NOT NULL,
     HoraEntrada TIME NOT NULL,
@@ -61,10 +95,17 @@ CREATE TABLE HorarioTurma (
     CONSTRAINT FK_HorarioTurma_Turma
         FOREIGN KEY (IdTurma) REFERENCES Turma(IdTurma),
     CONSTRAINT UQ_HorarioTurma_Turma_Dia UNIQUE (IdTurma, DiaSemana)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE HistoricoAtraso (
+<<<<<<< HEAD
+    IdHistorico INT PRIMARY KEY IDENTITY(1,1),
+    Data DATE NOT NULL,
+    Atrasado BIT NOT NULL,
+    ConsecutivoAtual INT NOT NULL DEFAULT 0
+=======
     IdHistorico INT IDENTITY(1,1) PRIMARY KEY,
     IdAluno INT NOT NULL,
     Data DATE NOT NULL,
@@ -75,10 +116,18 @@ CREATE TABLE HistoricoAtraso (
         FOREIGN KEY (IdAluno) REFERENCES Aluno(IdAluno),
     CONSTRAINT CK_HistoricoAtraso_Consecutivo CHECK (ConsecutivoAtual >= 0),
     CONSTRAINT UQ_HistoricoAtraso_Aluno_Data UNIQUE (IdAluno, Data)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE AlertaRecorrencia (
+<<<<<<< HEAD
+    IdAlerta INT PRIMARY KEY IDENTITY(1,1),
+    IdAluno INT FOREIGN KEY REFERENCES Aluno(IdAluno),
+    GeradoEm DATETIME NOT NULL DEFAULT GETDATE(),
+    QuantidadeDetectada INT NOT NULL,
+    Status VARCHAR(20) NOT NULL DEFAULT 'Pendente'
+=======
     IdAlerta INT IDENTITY(1,1) PRIMARY KEY,
     IdAluno INT NOT NULL,
     GeradoEm DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
@@ -89,10 +138,19 @@ CREATE TABLE AlertaRecorrencia (
     CONSTRAINT CK_AlertaRecorrencia_Quantidade CHECK (QuantidadeDetectada >= 0),
     CONSTRAINT CK_AlertaRecorrencia_Status
         CHECK (Status IN ('Pendente', 'Em acompanhamento', 'Resolvido'))
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE QRCode (
+<<<<<<< HEAD
+    IdQR INT PRIMARY KEY IDENTITY(1,1),
+    IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma),
+    TokenHash VARCHAR(255) NOT NULL UNIQUE,
+    GeradoEm DATETIME NOT NULL DEFAULT GETDATE(),
+    ExpiraEm DATETIME NOT NULL,
+    Ativo BIT NOT NULL DEFAULT 1
+=======
     IdQR INT IDENTITY(1,1) PRIMARY KEY,
     IdTurma INT NOT NULL,
     TokenHash VARCHAR(255) NOT NULL UNIQUE,
@@ -102,13 +160,20 @@ CREATE TABLE QRCode (
     CONSTRAINT FK_QRCode_Turma
         FOREIGN KEY (IdTurma) REFERENCES Turma(IdTurma),
     CONSTRAINT CK_QRCode_Expiracao CHECK (ExpiraEm > GeradoEm)
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 
 CREATE TABLE PerfilAcesso (
+<<<<<<< HEAD
+    IdPerfil INT PRIMARY KEY IDENTITY(1,1),
+    Nome VARCHAR(40) NOT NULL,
+    Permissoes VARCHAR(500)
+=======
     IdPerfil INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(40) NOT NULL,
     Permissoes VARCHAR(500) NULL
+>>>>>>> ebbf6e14df91727fb856c0aa7d57738fb6c04072
 );
 GO
 

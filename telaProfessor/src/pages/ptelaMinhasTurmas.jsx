@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import '../styles/ptelaMinhasTurmas.css';
 
 import logo from '../assets/logo-footer.png';
 import iconeTurmas from '../assets/minhasturmas-footer.png';
 import iconeHistorico from '../assets/historico-footer.png';
 import iconePerfil from '../assets/perfil-footer.png';
-
-import sino from '../assets/sino-minhasturmas.png';
 import perfilUsuario from '../assets/perfil-minhasturmas.png';
 import setaBaixo from '../assets/setabaixo.png';
 import lupa from '../assets/lupa-minhasturmas.png';
-import quadrado from '../assets/quadrado.png';
 import setaEsquerda from '../assets/seta-esquerda.png';
 import setaDireita from '../assets/seta-direita.png';
 
 const turmasIniciais = [
-  { turma: '1º ano C', modelo: 'Comunidade', data: '02/09/2026', periodo: 'Manhã', horario: '08:15' },
+  { turma: 'Jogos Digitais', modelo: 'Comunidade', data: '02/09/2026', periodo: 'Manhã', horario: '08:15' },
   { turma: '1º ano C', modelo: 'Comunidade', data: '02/09/2026', periodo: 'Manhã', horario: '08:40' },
   { turma: '1º ano C', modelo: 'Comunidade', data: '11/09/2026', periodo: 'Manhã', horario: '08:23' },
   { turma: '3º ano A', modelo: 'Comunidade', data: '19/09/2026', periodo: 'Integral', horario: '08:10' },
@@ -25,134 +22,118 @@ const turmasIniciais = [
   { turma: '1º ano C', modelo: 'Comunidade', data: '29/09/2026', periodo: 'Tarde', horario: '08:20' },
 ];
 
-export default function PtelaMinhasTurmas() {
+export default function PtelaMinhasTurmas({ aoNavegar, telaAtual }) {
   const [busca, setBusca] = useState('');
   const [modelo, setModelo] = useState('Todos');
   const [periodo, setPeriodo] = useState('Todos');
   const [pagina, setPagina] = useState(1);
-
   const itensPorPagina = 6;
 
-  const turmasFiltradas = turmasIniciais.filter((item) => {
-    const correspondeBusca = item.turma.toLowerCase().includes(busca.toLowerCase());
-    const correspondeModelo = modelo === 'Todos' || item.modelo === modelo;
-    const correspondePeriodo = periodo === 'Todos' || item.periodo === periodo;
-
-    return correspondeBusca && correspondeModelo && correspondePeriodo;
-  });
+  const turmasFiltradas = useMemo(
+    () =>
+      turmasIniciais.filter((item) => {
+        const correspondeBusca = item.turma.toLowerCase().includes(busca.trim().toLowerCase());
+        const correspondeModelo = modelo === 'Todos' || item.modelo === modelo;
+        const correspondePeriodo = periodo === 'Todos' || item.periodo === periodo;
+        return correspondeBusca && correspondeModelo && correspondePeriodo;
+      }),
+    [busca, modelo, periodo]
+  );
 
   const totalPaginas = Math.max(1, Math.ceil(turmasFiltradas.length / itensPorPagina));
-
   const paginaAtual = Math.min(pagina, totalPaginas);
-
   const turmasExibidas = turmasFiltradas.slice(
     (paginaAtual - 1) * itensPorPagina,
     paginaAtual * itensPorPagina
   );
 
-  function alterarBusca(valor) {
-    setBusca(valor);
-    setPagina(1);
-  }
-
-  function alterarModelo(valor) {
-    setModelo(valor);
-    setPagina(1);
-  }
-
-  function alterarPeriodo(valor) {
-    setPeriodo(valor);
+  function atualizarFiltro(setter, valor) {
+    setter(valor);
     setPagina(1);
   }
 
   return (
-    <div className="turmas-app">
+    <div className="historico-app">
       <aside className="sidebar">
         <div className="sidebar-brand">
           <img src={logo} alt="Logo Azyra" className="sidebar-logo" />
           <span>Azyra</span>
         </div>
 
-        <nav className="sidebar-nav">
-          <a href="#minhas-turmas" className="sidebar-link active">
+        <nav className="sidebar-nav" aria-label="Navegação principal">
+          <a href="#minhas-turmas" className="sidebar-link active" aria-current="page">
             <img src={iconeTurmas} alt="" className="sidebar-icon" />
             <span>Minhas Turmas</span>
           </a>
-
           <a href="#historico" className="sidebar-link">
             <img src={iconeHistorico} alt="" className="sidebar-icon" />
             <span>Histórico</span>
           </a>
-
-          <a href="#perfil" className="sidebar-link">
-            <img src={iconePerfil} alt="" className="sidebar-icon" />
-            <span>Perfil</span>
-          </a>
         </nav>
 
-        <div className="sidebar-footer">
-          <img src={iconePerfil} alt="Usuário" className="sidebar-footer-avatar" />
-          <div className="sidebar-footer-text">
-            <strong>Jucelino</strong>
-            <span>coordenador</span>
-          </div>
-        </div>
+        <button
+  type="button"
+  className="sidebar-footer"
+  onClick={() => aoNavegar("perfil")}
+  aria-label="Abrir perfil do coordenador"
+>
+  <img
+    src={perfilUsuario}
+    alt=""
+    className="sidebar-footer-avatar"
+  />
+
+  <div className="sidebar-footer-text">
+    <strong>Jucelino</strong>
+    <span>coordenador</span>
+  </div>
+</button>
       </aside>
 
-      <main className="turmas-main" id="minhas-turmas">
+      <main className="turmas-main historico-main" id="minhas-turmas">
         <header className="page-header">
           <div className="page-heading">
             <h1>Minhas Turmas</h1>
             <p>Confira as turmas que você ministra e seus horários</p>
           </div>
-
-          <div className="user-actions">
-            <button type="button" className="notification-button" aria-label="Notificações">
-              <img src={sino} alt="" />
-            </button>
-
-            <div className="user-profile">
-              <img src={perfilUsuario} alt="Foto de perfil" className="user-avatar" />
-
-              <div className="user-details">
-                <strong>Jucelino Pinheiro</strong>
-                <span>Professor</span>
-              </div>
-
-              <button type="button" className="profile-dropdown" aria-label="Abrir menu do perfil">
-           
-              </button>
-            </div>
-          </div>
         </header>
 
-        <section className="filters" aria-label="Filtros das turmas">
-          <label className="search-box">
+        <section className="filters historico-filters" aria-label="Filtros das turmas">
+          <label className="search-box history-search-box">
             <img src={lupa} alt="" />
             <input
               type="search"
-              placeholder="Todas as turmas"
+              placeholder="Insira a turma"
               value={busca}
-              onChange={(event) => alterarBusca(event.target.value)}
+              onChange={(event) => atualizarFiltro(setBusca, event.target.value)}
               aria-label="Pesquisar turma"
             />
           </label>
 
-          <label className="filter-field">
+          <label className="history-select-field">
             <span>Modelo de ensino</span>
             <div className="select-wrapper">
-              <select value={modelo} onChange={(event) => alterarModelo(event.target.value)}>
+              <select
+                value={modelo}
+                onChange={(event) => atualizarFiltro(setModelo, event.target.value)}
+                aria-label="Filtrar por modelo de ensino"
+              >
                 <option value="Todos">Todos</option>
                 <option value="Comunidade">Comunidade</option>
+                <option value="Comunidade">SEDUC</option> 
               </select>
               <img src={setaBaixo} alt="" />
             </div>
           </label>
 
-          <label className="filter-field">
+          <label className="history-select-field">
             <span>Período</span>
             <div className="select-wrapper">
-              <select value={periodo} onChange={(event) => alterarPeriodo(event.target.value)}>
+              <select
+                value={periodo}
+                onChange={(event) => atualizarFiltro(setPeriodo, event.target.value)}
+                aria-label="Filtrar por período"
+              >
                 <option value="Todos">Todos</option>
                 <option value="Manhã">Manhã</option>
                 <option value="Tarde">Tarde</option>
@@ -163,9 +144,9 @@ export default function PtelaMinhasTurmas() {
           </label>
         </section>
 
-        <section className="table-card" aria-label="Lista de turmas">
+        <section className="table-card history-table-card" aria-label="Lista de turmas">
           <div className="table-scroll">
-            <table className="turmas-table">
+            <table className="turmas-table historico-table">
               <thead>
                 <tr>
                   <th>Turma</th>
@@ -175,11 +156,10 @@ export default function PtelaMinhasTurmas() {
                   <th>Horário de Entrada</th>
                 </tr>
               </thead>
-
               <tbody>
                 {turmasExibidas.length > 0 ? (
                   turmasExibidas.map((item, index) => (
-                    <tr key={`${item.turma}-${item.data}-${index}`}>
+                    <tr key={`${item.turma}-${item.data}-${item.horario}-${index}`}>
                       <td>{item.turma}</td>
                       <td>{item.modelo}</td>
                       <td>{item.data}</td>
@@ -189,9 +169,7 @@ export default function PtelaMinhasTurmas() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className="empty-table">
-                      Nenhuma turma encontrada.
-                    </td>
+                    <td colSpan="5" className="empty-table">Nenhuma turma encontrada.</td>
                   </tr>
                 )}
               </tbody>
@@ -199,11 +177,9 @@ export default function PtelaMinhasTurmas() {
           </div>
 
           <footer className="table-footer">
-            <span>
-              Mostrando {turmasExibidas.length} de {turmasFiltradas.length} turmas
-            </span>
+            <span>Mostrando {turmasExibidas.length} de {turmasFiltradas.length} turmas</span>
 
-            <div className="pagination">
+            <div className="pagination" aria-label="Paginação">
               <button
                 type="button"
                 className="pagination-arrow"
@@ -214,9 +190,17 @@ export default function PtelaMinhasTurmas() {
                 <img src={setaEsquerda} alt="" />
               </button>
 
-              <button type="button" className="pagination-current" aria-current="page">
-                {paginaAtual}
-              </button>
+              {Array.from({ length: totalPaginas }, (_, indice) => indice + 1).map((numero) => (
+                <button
+                  key={numero}
+                  type="button"
+                  className={numero === paginaAtual ? 'pagination-current' : 'pagination-number'}
+                  onClick={() => setPagina(numero)}
+                  aria-current={numero === paginaAtual ? 'page' : undefined}
+                >
+                  {numero}
+                </button>
+              ))}
 
               <button
                 type="button"
@@ -227,8 +211,6 @@ export default function PtelaMinhasTurmas() {
               >
                 <img src={setaDireita} alt="" />
               </button>
-
-              <img src={quadrado} alt="" className="pagination-decoration" />
             </div>
           </footer>
         </section>
