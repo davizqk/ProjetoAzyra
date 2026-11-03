@@ -36,11 +36,18 @@ GO
 CREATE TABLE Aluno (
     IdAluno INT IDENTITY(1,1) PRIMARY KEY,
     Nome VARCHAR(120) NOT NULL,
-    Matricula VARCHAR(30) NOT NULL UNIQUE,
+    CPF VARCHAR(11) NULL,
     IdTurma INT NOT NULL,
     CONSTRAINT FK_Aluno_Turma
         FOREIGN KEY (IdTurma) REFERENCES Turma(IdTurma)
 );
+GO
+
+-- CPF armazenado como texto para preservar zeros à esquerda.
+-- Permite cadastrar alunos antes de informar o CPF, mas evita duplicatas preenchidas.
+CREATE UNIQUE INDEX UX_Aluno_CPF
+    ON Aluno(CPF)
+    WHERE CPF IS NOT NULL;
 GO
 
 CREATE TABLE HorarioTurma (
@@ -61,6 +68,7 @@ CREATE TABLE HistoricoAtraso (
     IdHistorico INT IDENTITY(1,1) PRIMARY KEY,
     IdAluno INT NOT NULL,
     Data DATE NOT NULL,
+    HoraChegada TIME(0) NOT NULL,
     Atrasado BIT NOT NULL,
     ConsecutivoAtual INT NOT NULL DEFAULT 0,
     CONSTRAINT FK_HistoricoAtraso_Aluno
