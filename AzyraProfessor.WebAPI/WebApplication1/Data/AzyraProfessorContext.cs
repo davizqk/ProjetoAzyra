@@ -13,9 +13,10 @@ public partial class AzyraProfessorContext : DbContext
     }
 
     public virtual DbSet<Aluno> Alunos { get; set; }
-
     public virtual DbSet<Professor> Professores { get; set; }
     public virtual DbSet<HistoricoAtraso> HistoricoAtrasos { get; set; }
+
+    public virtual DbSet<RegistroChegada> RegistroChegadas { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

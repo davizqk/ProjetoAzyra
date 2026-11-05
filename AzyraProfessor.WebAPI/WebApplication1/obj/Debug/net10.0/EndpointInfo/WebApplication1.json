@@ -5,6 +5,75 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/HistoricoAtrasos": {
+      "get": {
+        "tags": [
+          "HistoricoAtrasos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricoAtraso"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricoAtraso"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricoAtraso"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/HistoricoAtrasos/verificar-regras/{idAluno}/{tipoEscola}": {
+      "get": {
+        "tags": [
+          "HistoricoAtrasos"
+        ],
+        "parameters": [
+          {
+            "name": "idAluno",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "tipoEscola",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Professor": {
       "get": {
         "tags": [
@@ -167,6 +236,114 @@
             "description": "OK"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Professor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RegistroChegada": {
+      "get": {
+        "tags": [
+          "RegistroChegada"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistroChegada"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistroChegada"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistroChegada"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "RegistroChegada"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroChegada"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroChegada"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroChegada"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/WeatherForecast": {
@@ -211,6 +388,64 @@
   },
   "components": {
     "schemas": {
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "idAluno": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "matricula": {
+            "type": "string",
+            "nullable": true
+          },
+          "turma": {
+            "type": "string",
+            "nullable": true
+          },
+          "historicoAtrasos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricoAtraso"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HistoricoAtraso": {
+        "type": "object",
+        "properties": {
+          "idHistorico": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idAluno": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataAtraso": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minutosAtraso": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "justificativa": {
+            "type": "string",
+            "nullable": true
+          },
+          "idAlunoNavigation": {
+            "$ref": "#/components/schemas/Aluno"
+          }
+        },
+        "additionalProperties": false
+      },
       "ProfessorRequestDTO": {
         "type": "object",
         "properties": {
@@ -247,6 +482,34 @@
         },
         "additionalProperties": false
       },
+      "RegistroChegada": {
+        "type": "object",
+        "properties": {
+          "idRegistro": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "idAluno": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataHoraChegada": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estaAtrasado": {
+            "type": "boolean"
+          },
+          "minutosAtraso": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "aluno": {
+            "$ref": "#/components/schemas/Aluno"
+          }
+        },
+        "additionalProperties": false
+      },
       "WeatherForecast": {
         "type": "object",
         "properties": {
@@ -274,7 +537,13 @@
   },
   "tags": [
     {
+      "name": "HistoricoAtrasos"
+    },
+    {
       "name": "Professor"
+    },
+    {
+      "name": "RegistroChegada"
     },
     {
       "name": "WeatherForecast"

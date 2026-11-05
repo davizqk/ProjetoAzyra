@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 
@@ -9,7 +8,11 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AzyraProfessorContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure();
+        }
     ));
 
 builder.Services.AddEndpointsApiExplorer();

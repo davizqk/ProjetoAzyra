@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj",
-        "packagesPath": "C:\\Users\\58115162825\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\58115162825\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\obj\\",
+        "projectPath": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\WebApplication1.csproj",
+        "packagesPath": "C:\\Users\\55286872840\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\58115162825\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\55286872840\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -100,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
