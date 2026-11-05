@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 namespace Azyra.WebAPI.Models;
@@ -14,6 +15,8 @@ public partial class HistoricoAtraso
     public bool Atrasado { get; set; }
 
     public int ConsecutivoAtual { get; set; }
+
+    public TimeOnly? HoraChegada { get; set; }
 
     public virtual Aluno IdAlunoNavigation { get; set; } = null!;
 }
