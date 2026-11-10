@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 import iconPerfil from '../../assets/icone-perfil.png';
 import '../styles/telaDados.css';
-import { apiRequest } from '../services/api';
 
 export default function TelaDados() {
   const [cpf, setCpf] = useState('');
-  const [carregando, setCarregando] = useState(false);
+  const [justificativa, setJustificativa] = useState('');
   const [erro, setErro] = useState('');
 
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ export default function TelaDados() {
       .replace(/\.(\d{3})(\d)/, '.$1-$2');
   }
 
-  async function continuar(event) {
+  function continuar(event) {
     event.preventDefault();
 
     const cpfNumeros = cpf.replace(/\D/g, '');
@@ -32,20 +31,16 @@ export default function TelaDados() {
       return;
     }
 
-    setCarregando(true);
     setErro('');
 
-    try {
-      const aluno = await apiRequest(`/Aluno/cpf/${cpfNumeros}`);
+    sessionStorage.setItem(
+      'azyraAluno',
+      JSON.stringify({ cpf })
+    );
 
-      sessionStorage.setItem('azyraAluno', JSON.stringify(aluno));
+    sessionStorage.setItem('azyraJustificativa', justificativa);
 
-      navigate('/atraso');
-    } catch (error) {
-      setErro(error.message);
-    } finally {
-      setCarregando(false);
-    }
+    navigate('/atraso');
   }
 
   return (
@@ -57,16 +52,15 @@ export default function TelaDados() {
       <section className="conteudo-dados">
         <h2 className="instrucao-dados">
           Confirme suas informações para
-          <br className="quebra-dados" />
-          {' '}registrar sua chegada.
+          registrar sua chegada.
         </h2>
 
         <form onSubmit={continuar}>
-          <section className="cartao-perfil">
+          <div className="cartao-perfil">
             <img
               className="icone-perfil"
               src={iconPerfil}
-              alt="Ícone de perfil"
+              alt="Perfil"
             />
 
             <label className="label-cpf" htmlFor="cpf">
@@ -78,30 +72,33 @@ export default function TelaDados() {
               className="campo-cpf"
               type="text"
               inputMode="numeric"
-              autoComplete="off"
               placeholder="000.000.000-00"
               value={cpf}
               onChange={(event) =>
                 setCpf(formatarCPF(event.target.value))
               }
             />
+          </div>
 
-            {erro && (
-              <p role="alert" className="erro-api">
-                {erro}
-              </p>
-            )}
+          {erro && (
+            <p className="erro-api">{erro}</p>
+          )}
 
-            <button
-              className="botao-continuar"
-              type="submit"
-              disabled={carregando}
-            >
-              {carregando
-                ? 'Consultando...'
-                : 'Confirmar e continuar'}
-            </button>
-          </section>
+          <textarea
+            className="campo-justificativa"
+            placeholder="Justifique seu atraso"
+            value={justificativa}
+            onChange={(event) =>
+              setJustificativa(event.target.value)
+            }
+          />
+
+          <button
+            className="botao-continuar"
+            type="submit"
+          >
+            Entrar
+          </button>
         </form>
       </section>
     </main>

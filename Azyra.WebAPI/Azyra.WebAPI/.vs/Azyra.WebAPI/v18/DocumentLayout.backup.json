@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\data\\azyracontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:data\\azyracontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\controllers\\alunocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:controllers\\alunocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\dtos\\aluno\\alunoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:dtos\\aluno\\alunoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\dtos\\aluno\\alunorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,6 +21,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\models\\aluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:models\\aluno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\data\\azyracontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:data\\azyracontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\dtos\\aluno\\alunoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|solutionrelative:dtos\\aluno\\alunoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A2FBB7D-3A6B-4E62-99B8-8A0FDE8E02F1}|Azyra.WebAPI.csproj|c:\\users\\53581685833\\desktop\\projetoazyra\\azyra.webapi\\azyra.webapi\\azyra.webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -70,11 +78,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-10T11:32:41.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-10T11:32:25.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Azyra.WebAPI.csproj",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Azyra.WebAPI.csproj",
               "RelativeDocumentMoniker": "Azyra.WebAPI.csproj",
@@ -82,12 +116,11 @@
               "RelativeToolTip": "Azyra.WebAPI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-11-05T16:05:53.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T16:05:53.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "AlunoResponseDTO.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\DTOs\\Aluno\\AlunoResponseDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\Aluno\\AlunoResponseDTO.cs",
@@ -95,18 +128,17 @@
               "RelativeToolTip": "DTOs\\Aluno\\AlunoResponseDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-05T16:05:53.867Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T16:05:53.867Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "AlunoRequestDTO.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\DTOs\\Aluno\\AlunoRequestDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\Aluno\\AlunoRequestDTO.cs",
               "ToolTip": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\DTOs\\Aluno\\AlunoRequestDTO.cs",
               "RelativeToolTip": "DTOs\\Aluno\\AlunoRequestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-05T16:05:53.872Z",
               "EditorCaption": ""
@@ -119,27 +151,27 @@
               "RelativeDocumentMoniker": "Controllers\\AlunoController.cs",
               "ToolTip": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Controllers\\AlunoController.cs",
               "RelativeToolTip": "Controllers\\AlunoController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAswNUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALMAAAAAAAAAAAAQwNUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-05T16:05:53.874Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "Aluno.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Models\\Aluno.cs",
               "RelativeDocumentMoniker": "Models\\Aluno.cs",
               "ToolTip": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Models\\Aluno.cs",
               "RelativeToolTip": "Models\\Aluno.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAzwAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-05T16:05:53.876Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -147,12 +179,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-11-05T16:05:53.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T16:05:53.878Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "AzyraContext.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Data\\AzyraContext.cs",
               "RelativeDocumentMoniker": "Data\\AzyraContext.cs",
@@ -160,12 +191,11 @@
               "RelativeToolTip": "Data\\AzyraContext.cs",
               "ViewState": "AgIAAJoAAAAAAAAAAAAAwLsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-05T16:05:53.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T16:05:53.882Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "HorarioTurmaController.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Controllers\\HorarioTurmaController.cs",
               "RelativeDocumentMoniker": "Controllers\\HorarioTurmaController.cs",
@@ -177,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "HistoricoAtrasoRequestDTO.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\DTOs\\HistoricoAtraso\\HistoricoAtrasoRequestDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\HistoricoAtraso\\HistoricoAtrasoRequestDTO.cs",
@@ -189,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "HistoricoAtrasoController.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Controllers\\HistoricoAtrasoController.cs",
               "RelativeDocumentMoniker": "Controllers\\HistoricoAtrasoController.cs",
@@ -201,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Turma.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Models\\Turma.cs",
               "RelativeDocumentMoniker": "Models\\Turma.cs",
@@ -213,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "QRCodeController.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Controllers\\QRCodeController.cs",
               "RelativeDocumentMoniker": "Controllers\\QRCodeController.cs",
@@ -225,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "PeriodoController.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Controllers\\PeriodoController.cs",
               "RelativeDocumentMoniker": "Controllers\\PeriodoController.cs",
@@ -237,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Qrcode.cs",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\Models\\Qrcode.cs",
               "RelativeDocumentMoniker": "Models\\Qrcode.cs",
@@ -249,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\53581685833\\Desktop\\ProjetoAzyra\\Azyra.WebAPI\\Azyra.WebAPI\\README.md",
               "RelativeDocumentMoniker": "README.md",

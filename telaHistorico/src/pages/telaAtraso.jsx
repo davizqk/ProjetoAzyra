@@ -8,14 +8,9 @@ import alerta from '../../assets/icone-alerta.png';
 import aviso from '../../assets/icone-aviso.png';
 import relogio from '../../assets/icone-relogio.png';
 
-import { apiRequest } from '../services/api';
-
 export default function TelaAtraso() {
   const navigate = useNavigate();
-
-  const [registro, setRegistro] = useState(null);
-  const [erro, setErro] = useState('');
-  const [carregando, setCarregando] = useState(true);
+  const [aluno, setAluno] = useState(null);
 
   useEffect(() => {
     const alunoSalvo = sessionStorage.getItem('azyraAluno');
@@ -25,142 +20,106 @@ export default function TelaAtraso() {
       return;
     }
 
-    const aluno = JSON.parse(alunoSalvo);
-
-    if (!aluno.idAluno) {
+    try {
+      setAluno(JSON.parse(alunoSalvo));
+    } catch {
       navigate('/dados', { replace: true });
-      return;
     }
-
-    async function registrarChegada() {
-      try {
-        const dados = await apiRequest(
-          '/HistoricoAtraso/registrar-chegada',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              idAluno: aluno.idAluno,
-            }),
-          }
-        );
-
-        setRegistro(dados);
-
-        sessionStorage.setItem(
-          'azyraUltimaChegada',
-          JSON.stringify(dados)
-        );
-      } catch (error) {
-        setErro(error.message);
-      } finally {
-        setCarregando(false);
-      }
-    }
-
-    registrarChegada();
   }, [navigate]);
 
   function voltar() {
-    navigate('/historico');
+    navigate('/dados');
   }
 
-  const aluno = JSON.parse(
-    sessionStorage.getItem('azyraAluno') || 'null'
-  );
-
-  const horaChegada = registro?.horaChegada
-    ? String(registro.horaChegada).substring(0, 5)
-    : '--:--';
-
-  const dataChegada = registro?.data
-    ? new Date(registro.data).toLocaleDateString('pt-BR')
-    : '--/--/----';
-
-  if (carregando) {
-    return (
-      <main className="tela-atraso">
-        <section className="conteudo-atraso">
-          <p>Registrando sua chegada...</p>
-        </section>
-      </main>
-    );
+  if (!aluno) {
+    return null;
   }
+
+  const agora = new Date();
+
+  const horaChegada = agora.toLocaleTimeString('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const dataChegada = agora.toLocaleDateString('pt-BR');
+
+  const cpf = aluno.cpf || aluno.CPF || 'Não informado';
+
+  const turma =
+    aluno.nomeTurma ||
+    aluno.turma ||
+    'Não informada';
 
   return (
     <main className="tela-atraso">
+
       <section className="conteudo-atraso">
+
         <header className="cabecalho-atraso">
           <img
             className="icone-alerta"
             src={aviso}
-            alt="Aviso"
+            alt="Alerta de atraso"
           />
 
-          <h1>
-            {erro
-              ? 'Não foi possível registrar sua chegada.'
-              : registro?.atrasado
-                ? 'Você chegou atrasado(a)!'
-                : 'Sua chegada foi registrada!'}
-          </h1>
+          <h1>Você chegou atrasado(a)!</h1>
 
           <p className="subtitulo-atraso">
-            {erro ||
-              (registro?.atrasado
-                ? 'Seu registro foi salvo, mas o horário da sua turma já passou.'
-                : 'Seu registro foi salvo dentro do horário da sua turma.')}
+            Seu registro foi salvo, mas o horário
+            <br className="quebra-desktop" />
+            {' '}da sua turma já havia sido encerrado.
           </p>
         </header>
 
-        {!erro && registro && (
-          <>
-            <section className="card-chegada">
-              <img
-                className="icone-relogio"
-                src={relogio}
-                alt="Relógio"
-              />
+        <section className="card-chegada">
 
-              <div className="texto-chegada">
-                <span className="label-chegada">
-                  Horário da chegada
-                </span>
+          <img
+            className="icone-relogio"
+            src={relogio}
+            alt="Relógio"
+          />
 
-                <strong className="hora-chegada">
-                  {horaChegada}
-                </strong>
+          <div className="texto-chegada">
+            <span className="label-chegada">
+              Horário da chegada
+            </span>
 
-                <span className="data-chegada">
-                  {dataChegada}
-                </span>
-              </div>
-            </section>
+            <strong className="hora-chegada">
+              {horaChegada}
+            </strong>
 
-            <section className="card-turma">
-              <img
-                className="icone-aviso"
-                src={alerta}
-                alt="Informação"
-              />
+            <span className="data-chegada">
+              {dataChegada}
+            </span>
+          </div>
 
-              <div className="texto-turma">
-                <p>
-                  <strong>Turma:</strong>
-                  <span>
-                    {registro.nomeTurma || aluno?.nomeTurma || 'Não informada'}
-                  </span>
-                </p>
+        </section>
 
-                <p>
-                  <strong>Horário de início:</strong>
-                  <span>
-                    {aluno?.horaInicio || 'Não informado'}
-                  </span>
-                </p>
-              </div>
-            </section>
-          </>
-        )}
+        <section className="card-turma">
+
+          <img
+            className="icone-aviso"
+            src={alerta}
+            alt="Informação"
+          />
+
+          <div className="texto-turma">
+
+            <p>
+              <strong>Turma:</strong>
+              <span>{turma}</span>
+            </p>
+
+            <p>
+              <strong>CPF:</strong>
+              <span>{cpf}</span>
+            </p>
+
+          </div>
+
+        </section>
+
       </section>
 
       <footer className="rodape-atraso">
@@ -172,6 +131,7 @@ export default function TelaAtraso() {
           Voltar
         </button>
       </footer>
+
     </main>
   );
 }

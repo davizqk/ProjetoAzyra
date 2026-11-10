@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
 namespace Azyra.WebAPI.Models;
@@ -18,5 +19,4 @@ public partial class Aluno
     public virtual ICollection<HistoricoAtraso> HistoricoAtrasos { get; set; } = new List<HistoricoAtraso>();
 
     public virtual Turma IdTurmaNavigation { get; set; } = null!;
-    public string CPF { get; set; } = string.Empty;
 }

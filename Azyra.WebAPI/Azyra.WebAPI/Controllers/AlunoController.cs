@@ -89,7 +89,7 @@ public class AlunoController : ControllerBase
             .Include(a => a.IdTurmaNavigation)
                 .ThenInclude(t => t.HorarioTurmas)
             .FirstOrDefaultAsync(
-                a => a.CPF == cpfNumeros,
+                a => a.Cpf == cpfNumeros,
                 cancellationToken
             );
 
@@ -177,8 +177,8 @@ public class AlunoController : ControllerBase
         {
             Nome = dto.Nome,
 
-            CPF = new string(
-                dto.CPF.Where(char.IsDigit).ToArray()
+            Cpf = new string(
+                dto.Cpf.Where(char.IsDigit).ToArray()
             ),
 
             IdTurma = dto.IdTurma
@@ -198,7 +198,7 @@ public class AlunoController : ControllerBase
         {
             IdAluno = aluno.IdAluno,
             Nome = aluno.Nome,
-            Cpf = aluno.CPF,
+            Cpf = aluno.Cpf,
             IdTurma = aluno.IdTurma,
 
             NomeTurma = turma?.Nome ?? "",

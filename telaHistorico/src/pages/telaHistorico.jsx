@@ -5,14 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import seta from '../../assets/seta.png';
 import '../styles/telaHistorico.css';
 
-import { apiRequest } from '../services/api';
-
 export default function TelaHistorico() {
   const navigate = useNavigate();
 
   const [registros, setRegistros] = useState([]);
-  const [carregando, setCarregando] = useState(true);
-  const [erro, setErro] = useState('');
 
   useEffect(() => {
     const alunoSalvo = sessionStorage.getItem('azyraAluno');
@@ -24,21 +20,15 @@ export default function TelaHistorico() {
 
     const aluno = JSON.parse(alunoSalvo);
 
-    async function buscarHistorico() {
-      try {
-        const dados = await apiRequest(
-          `/HistoricoAtraso/aluno/${aluno.idAluno}`
-        );
+    const historicoSalvo = JSON.parse(
+      localStorage.getItem('azyraHistorico') || '[]'
+    );
 
-        setRegistros(dados);
-      } catch (error) {
-        setErro(error.message);
-      } finally {
-        setCarregando(false);
-      }
-    }
+    const registrosAluno = historicoSalvo.filter(
+      (registro) => registro.cpf === aluno.cpf
+    );
 
-    buscarHistorico();
+    setRegistros(registrosAluno);
   }, [navigate]);
 
   return (
@@ -78,13 +68,9 @@ export default function TelaHistorico() {
 
         <section
           className="lista-registros"
-          aria-label="Últimos registros de atraso"
+          aria-label="Últimos registros de chegada"
         >
-          {carregando && <p>Carregando registros...</p>}
-
-          {erro && <p role="alert">{erro}</p>}
-
-          {!carregando && !erro && registros.length === 0 && (
+          {registros.length === 0 && (
             <p>Você ainda não possui registros.</p>
           )}
 
@@ -99,18 +85,16 @@ export default function TelaHistorico() {
                 </span>
 
                 <span className="turma-registro">
-                  {registro.nomeTurma || 'Sua turma'}
+                  Sua turma
                 </span>
               </div>
 
               <span className="horario-registro">
-                {registro.horaChegada
-                  ? String(registro.horaChegada).substring(0, 5)
-                  : '--:--'}
+                {registro.horaChegada || '--:--'}
               </span>
 
               <span className="status-atraso">
-                {registro.atrasado ? 'Atraso' : 'No horário'}
+                Registrado
               </span>
 
               <img
