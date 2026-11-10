@@ -1,0 +1,13 @@
+# Visual Studio
+.vs/
+**/.vs/
+
+# Arquivos temporários
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Node
+node_modules/
+dist/

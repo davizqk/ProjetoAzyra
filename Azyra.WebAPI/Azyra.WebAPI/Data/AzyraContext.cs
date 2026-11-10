@@ -74,6 +74,8 @@ public partial class AzyraContext : DbContext
             entity.HasKey(e => e.IdHistorico).HasName("PK__Historic__9CC7EBF3F53C1365");
 
             entity.ToTable("HistoricoAtraso");
+            entity.Property(e => e.HoraChegada)
+            .HasColumnType("time");
 
             entity.HasIndex(e => new { e.IdAluno, e.Data }, "UQ_HistoricoAtraso_Aluno_Data").IsUnique();
 

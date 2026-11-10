@@ -1,7 +1,10 @@
+
 using Azyra.WebAPI.Interfaces;
 using Azyra.WebAPI.DTOs.Aluno;
 using Azyra.WebAPI.Models;
+using Azyra.WebAPI.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Azyra.WebAPI.Controllers;
 
@@ -10,63 +13,201 @@ namespace Azyra.WebAPI.Controllers;
 public class AlunoController : ControllerBase
 {
     private readonly IAlunoRepository _repository;
-    public AlunoController(IAlunoRepository repository) => _repository = repository;
+    private readonly AzyraContext _context;
 
+    public AlunoController(
+        IAlunoRepository repository,
+        AzyraContext context)
+    {
+        _repository = repository;
+        _context = context;
+    }
+
+    // Listar todos os alunos
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<AlunoResponseDTO>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<AlunoResponseDTO>>> GetAll(CancellationToken cancellationToken)
+    public async Task<ActionResult<IEnumerable<AlunoResponseDTO>>> GetAll(
+        CancellationToken cancellationToken)
     {
-        var items = await _repository.GetAllAsync(cancellationToken);
-        return Ok(items.Select(ToResponse));
+        var alunos = await _context.Alunos
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.IdPeriodoNavigation)
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.HorarioTurmas)
+            .ToListAsync(cancellationToken);
+
+        return Ok(alunos.Select(ToResponse));
     }
 
+    // Buscar aluno pelo ID
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<AlunoResponseDTO>> GetById(int id, CancellationToken cancellationToken)
+    public async Task<ActionResult<AlunoResponseDTO>> GetById(
+        int id,
+        CancellationToken cancellationToken)
     {
-        var item = await _repository.GetByIdAsync(id, cancellationToken);
-        if (item is null) return NotFound();
-        return Ok(ToResponse(item));
+        var aluno = await _context.Alunos
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.IdPeriodoNavigation)
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.HorarioTurmas)
+            .FirstOrDefaultAsync(
+                a => a.IdAluno == id,
+                cancellationToken
+            );
+
+        if (aluno == null)
+        {
+            return NotFound(new
+            {
+                mensagem = "Aluno não encontrado."
+            });
+        }
+
+        return Ok(ToResponse(aluno));
     }
 
+    // Buscar aluno pelo CPF
+    [HttpGet("cpf/{cpf}")]
+    public async Task<ActionResult<AlunoResponseDTO>> GetByCpf(
+        string cpf,
+        CancellationToken cancellationToken)
+    {
+        var cpfNumeros = new string(
+            cpf.Where(char.IsDigit).ToArray()
+        );
+
+        if (cpfNumeros.Length != 11)
+        {
+            return BadRequest(new
+            {
+                mensagem = "CPF inválido."
+            });
+        }
+
+        var aluno = await _context.Alunos
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.IdPeriodoNavigation)
+            .Include(a => a.IdTurmaNavigation)
+                .ThenInclude(t => t.HorarioTurmas)
+            .FirstOrDefaultAsync(
+                a => a.CPF == cpfNumeros,
+                cancellationToken
+            );
+
+        if (aluno == null)
+        {
+            return NotFound(new
+            {
+                mensagem = "Aluno não encontrado. Confira o CPF."
+            });
+        }
+
+        return Ok(ToResponse(aluno));
+    }
+
+    // Cadastrar aluno
     [HttpPost]
-    public async Task<ActionResult<AlunoResponseDTO>> Create([FromBody] AlunoRequestDTO dto, CancellationToken cancellationToken)
+    public async Task<ActionResult<AlunoResponseDTO>> Create(
+        [FromBody] AlunoRequestDTO dto,
+        CancellationToken cancellationToken)
     {
         var entity = ToEntity(dto);
-        var created = await _repository.AddAsync(entity, cancellationToken);
-        var id = created.IdAluno;
-        return CreatedAtAction(nameof(GetById), new { id }, ToResponse(created));
+
+        var created = await _repository.AddAsync(
+            entity,
+            cancellationToken
+        );
+
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = created.IdAluno },
+            ToResponse(created)
+        );
     }
 
+    // Atualizar aluno
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, [FromBody] AlunoRequestDTO dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(
+        int id,
+        [FromBody] AlunoRequestDTO dto,
+        CancellationToken cancellationToken)
     {
-        var current = await _repository.GetByIdAsync(id, cancellationToken);
-        if (current is null) return NotFound();
+        var current = await _repository.GetByIdAsync(
+            id,
+            cancellationToken
+        );
+
+        if (current == null)
+        {
+            return NotFound(new
+            {
+                mensagem = "Aluno não encontrado."
+            });
+        }
+
         var entity = ToEntity(dto);
         entity.IdAluno = id;
-        var updated = await _repository.UpdateAsync(id, entity, cancellationToken);
+
+        var updated = await _repository.UpdateAsync(
+            id,
+            entity,
+            cancellationToken
+        );
+
         return updated ? NoContent() : NotFound();
     }
 
+    // Excluir aluno
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete(
+        int id,
+        CancellationToken cancellationToken)
     {
-        var deleted = await _repository.DeleteAsync(id, cancellationToken);
+        var deleted = await _repository.DeleteAsync(
+            id,
+            cancellationToken
+        );
+
         return deleted ? NoContent() : NotFound();
     }
 
-    private static Aluno ToEntity(AlunoRequestDTO dto) => new()
+    // Converter DTO em entidade
+    private static Aluno ToEntity(AlunoRequestDTO dto)
     {
-        Nome = dto.Nome,
-        Cpf = dto.Cpf,
-        IdTurma = dto.IdTurma,
-    };
+        return new Aluno
+        {
+            Nome = dto.Nome,
 
-    private static AlunoResponseDTO ToResponse(Aluno entity) => new()
+            CPF = new string(
+                dto.CPF.Where(char.IsDigit).ToArray()
+            ),
+
+            IdTurma = dto.IdTurma
+        };
+    }
+
+    // Converter entidade em DTO
+    private static AlunoResponseDTO ToResponse(Aluno aluno)
     {
-        IdAluno = entity.IdAluno,
-        Nome = entity.Nome,
-        Cpf = entity.Cpf,
-        IdTurma = entity.IdTurma,
-    };
+        var turma = aluno.IdTurmaNavigation;
+
+        var horario = turma?.HorarioTurmas
+            .OrderBy(h => h.DiaSemana)
+            .FirstOrDefault();
+
+        return new AlunoResponseDTO
+        {
+            IdAluno = aluno.IdAluno,
+            Nome = aluno.Nome,
+            Cpf = aluno.CPF,
+            IdTurma = aluno.IdTurma,
+
+            NomeTurma = turma?.Nome ?? "",
+
+            NomePeriodo = turma?.IdPeriodoNavigation?.Nome ?? "",
+
+            HoraInicio = horario?.HoraEntrada.ToString("HH:mm") ?? "",
+
+            ToleranciaMin = horario?.ToleranciaMin ?? 0
+        };
+    }
 }

@@ -1,11 +1,16 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import iconPerfil from '../assets/icone-perfil.png';
+import iconPerfil from '../../assets/icone-perfil.png';
 import '../styles/telaDados.css';
+import { apiRequest } from '../services/api';
 
 export default function TelaDados() {
   const [cpf, setCpf] = useState('');
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState('');
+
   const navigate = useNavigate();
 
   function formatarCPF(valor) {
@@ -17,17 +22,30 @@ export default function TelaDados() {
       .replace(/\.(\d{3})(\d)/, '.$1-$2');
   }
 
-  function continuar(event) {
+  async function continuar(event) {
     event.preventDefault();
 
-    const numeros = cpf.replace(/\D/g, '');
+    const cpfNumeros = cpf.replace(/\D/g, '');
 
-    if (numeros.length !== 11) {
-      alert('Digite um CPF com 11 números.');
+    if (cpfNumeros.length !== 11) {
+      setErro('Digite um CPF com 11 números.');
       return;
     }
 
-    navigate('/atraso');
+    setCarregando(true);
+    setErro('');
+
+    try {
+      const aluno = await apiRequest(`/Aluno/cpf/${cpfNumeros}`);
+
+      sessionStorage.setItem('azyraAluno', JSON.stringify(aluno));
+
+      navigate('/atraso');
+    } catch (error) {
+      setErro(error.message);
+    } finally {
+      setCarregando(false);
+    }
   }
 
   return (
@@ -66,15 +84,22 @@ export default function TelaDados() {
               onChange={(event) =>
                 setCpf(formatarCPF(event.target.value))
               }
-              aria-describedby="ajuda-cpf"
             />
 
-            <span id="ajuda-cpf" className="sr-only">
-              Digite seu CPF com onze números.
-            </span>
+            {erro && (
+              <p role="alert" className="erro-api">
+                {erro}
+              </p>
+            )}
 
-            <button className="botao-continuar" type="submit">
-              Confirmar e continuar
+            <button
+              className="botao-continuar"
+              type="submit"
+              disabled={carregando}
+            >
+              {carregando
+                ? 'Consultando...'
+                : 'Confirmar e continuar'}
             </button>
           </section>
         </form>

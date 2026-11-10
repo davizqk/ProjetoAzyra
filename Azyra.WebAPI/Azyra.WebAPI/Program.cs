@@ -1,3 +1,4 @@
+
 using Azyra.WebAPI.Data;
 using Azyra.WebAPI.Interfaces;
 using Azyra.WebAPI.Repositories;
@@ -6,11 +7,24 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("Azyra")
-    ?? throw new InvalidOperationException("A connection string named 'Azyra' was not found.");
+    ?? throw new InvalidOperationException(
+        "A connection string named 'Azyra' was not found."
+    );
 
 builder.Services.AddDbContext<AzyraContext>(options =>
     options.UseSqlServer(connectionString));
@@ -34,6 +48,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("Frontend");
+
 app.UseHttpsRedirection();
+
 app.MapControllers();
+
 app.Run();
