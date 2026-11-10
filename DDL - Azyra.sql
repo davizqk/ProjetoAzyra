@@ -71,17 +71,6 @@ CREATE TABLE SistemaAtrasos
 );
 GO
 
-CREATE TABLE QRCoreSystem
-(
-    IdQR INT PRIMARY KEY IDENTITY(1,1),
-    IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma),
-    TokenHash VARCHAR(255) NOT NULL UNIQUE,
-    GeradoEm DATETIME NOT NULL DEFAULT GETDATE(),
-    ExpiraEm DATETIME NOT NULL,
-    Ativo BIT NOT NULL DEFAULT 1
-);
-GO
-
 CREATE TABLE GestaoPerfis
 (
     IdPerfil INT PRIMARY KEY IDENTITY(1,1),
@@ -106,7 +95,6 @@ SELECT * FROM Classe;
 SELECT * FROM Estudante;
 SELECT * FROM HorarioClasse;
 SELECT * FROM SistemaAtrasos;
-SELECT * FROM QRCoreSystem;
 SELECT * FROM GestaoPerfis;
 SELECT * FROM Educador;
 SELECT * FROM RegistroChegada;
