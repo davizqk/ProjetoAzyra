@@ -4,7 +4,7 @@ GO
 USE Azyra;
 GO
 
-CREATE TABLE ModeloEnsino
+CREATE TABLE Ensino
 (
     IdModelo INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(30) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE ModeloEnsino
 );
 GO
 
-CREATE TABLE Periodo
+CREATE TABLE Turno
 (
     IdPeriodo INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(30) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Periodo
 );
 GO
 
-CREATE TABLE Turma
+CREATE TABLE Classe
 (
     IdTurma INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(80) NOT NULL,
@@ -31,20 +31,21 @@ CREATE TABLE Turma
 );
 GO
 
-CREATE TABLE Professor
+CREATE TABLE Educador 
 (
     IdProfessor INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(120) NOT NULL,
     Cpf VARCHAR(11) NOT NULL UNIQUE,
+    Email VARCHAR (150) NOT NULL UNIQUE,
     Senha VARCHAR(255) NOT NULL
 );
 GO
 
-CREATE TABLE Aluno
+CREATE TABLE Estudante
 (
     IdAluno INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(120) NOT NULL,
-    Matricula VARCHAR(30) NOT NULL UNIQUE,
+    Cpf VARCHAR(11) NOT NULL UNIQUE,
     IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma)
 );
 GO
@@ -61,11 +62,12 @@ GO
 
 CREATE TABLE HistoricoAtraso
 (
-    IdHistorico INT PRIMARY KEY IDENTITY(1,1),
-    IdAluno INT FOREIGN KEY REFERENCES Aluno(IdAluno),
-    Data DATE NOT NULL,
-    Atrasado BIT NOT NULL,
-    ConsecutivoAtual INT NOT NULL DEFAULT 0
+    IdHistorico           INT PRIMARY KEY IDENTITY(1,1),
+    IdAluno               INT        NOT NULL,
+    DataAtraso            DATETIME   NOT NULL,
+    MinutosAtraso         INT        NOT NULL,
+    Justificativa         VARCHAR    (255),
+    FOREIGN KEY (IdAluno) REFERENCES Aluno(IdAluno)
 );
 GO
 
@@ -98,13 +100,13 @@ CREATE TABLE RegistroChegada
 );
 GO
 
-SELECT * FROM ModeloEnsino;
-SELECT * FROM Periodo;
-SELECT * FROM Turma;
-SELECT * FROM Aluno;
+SELECT * FROM Ensino;
+SELECT * FROM Turno;
+SELECT * FROM Classe;
+SELECT * FROM Estudante;
 SELECT * FROM HorarioTurma;
 SELECT * FROM HistoricoAtraso;
 SELECT * FROM QRCode;
 SELECT * FROM PerfilAcesso;
-SELECT * FROM Professor;
+SELECT * FROM Educador;
 SELECT * FROM RegistroChegada;

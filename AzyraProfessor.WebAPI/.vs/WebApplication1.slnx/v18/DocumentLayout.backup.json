@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\controllers\\registrochegadacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\registrochegadacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\controllers\\historicoatrasoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\historicoatrasoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\controllers\\historicoatrasoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\historicoatrasoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\controllers\\registrochegadacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\registrochegadacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1139E486-A36B-6B58-4965-3753D45010A4}|WebApplication1\\WebApplication1.csproj|c:\\users\\55286872840\\desktop\\projetoazyra\\azyraprofessor.webapi\\webapplication1\\data\\azyraprofessorcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -52,14 +52,13 @@
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
               "ToolTip": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\Program.cs",
               "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAmwCMAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-05T17:44:26.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T17:44:26.198Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "HistoricoAtrasosController.cs",
               "DocumentMoniker": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\Controllers\\HistoricoAtrasosController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\HistoricoAtrasosController.cs",
@@ -72,16 +71,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "RegistroChegadaController.cs",
               "DocumentMoniker": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\Controllers\\RegistroChegadaController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\RegistroChegadaController.cs",
               "ToolTip": "C:\\Users\\55286872840\\Desktop\\ProjetoAzyra\\AzyraProfessor.WebAPI\\WebApplication1\\Controllers\\RegistroChegadaController.cs",
               "RelativeToolTip": "WebApplication1\\Controllers\\RegistroChegadaController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAMwCIAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAWwCIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-05T17:38:37.628Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T17:38:37.628Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "WebApplication1\\Models\\RegistroChegada.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwBcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-05T17:36:20.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-05T17:36:20.613Z"
             },
             {
               "$type": "Document",
@@ -106,8 +103,7 @@
               "RelativeToolTip": "WebApplication1\\Controllers\\ProfessorController.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAAAIwHIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-03T14:26:05.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T14:26:05.298Z"
             },
             {
               "$type": "Document",
@@ -130,8 +126,7 @@
               "RelativeToolTip": "WebApplication1\\Data\\AzyraProfessorContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-03T14:10:08.235Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-03T14:10:08.235Z"
             },
             {
               "$type": "Document",
