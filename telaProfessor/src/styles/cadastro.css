@@ -1,0 +1,140 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.cadastro-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #cbdff2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cadastro-card {
+  width: 100%;
+  max-width: 460px;
+  min-height: 610px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 42px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cadastro-logo {
+  width: 52px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.cadastro-card h1 {
+  width: 100%;
+  margin: 0;
+  color: #4b75a5;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cadastro-subtitulo {
+  width: 100%;
+  margin: 8px 0 35px;
+  color: #555555;
+  font-size: 12px;
+  text-align: center;
+}
+
+.cadastro-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.cadastro-campo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.cadastro-campo label {
+  color: #555555;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.cadastro-campo input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.cadastro-campo input:focus {
+  border-color: #4b75a5;
+}
+
+.cadastro-botao {
+  width: 100%;
+  height: 46px;
+  margin-top: 8px;
+  background-color: #4b75a5;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cadastro-botao:hover {
+  background-color: #3d6696;
+}
+
+.cadastro-login {
+  margin-top: 18px;
+  color: #222222;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.cadastro-login a {
+  color: #3675bd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cadastro-login a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .cadastro-card {
+    min-height: auto;
+    padding: 35px 25px;
+  }
+
+  .cadastro-card h1 {
+    font-size: 21px;
+  }
+
+  .cadastro-subtitulo {
+    font-size: 10px;
+  }
+}

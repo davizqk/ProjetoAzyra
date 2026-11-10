@@ -35,21 +35,11 @@ function Login({ aoEntrar }) {
             <label htmlFor="email-login">E-mail</label>
 
             <div className="caixa-input-login">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                aria-hidden="true"
-              >
-                <rect x="3" y="5" width="18" height="14" rx="1" />
-                <path d="m4 7 8 6 8-6" />
-              </svg>
-
+              
               <input
                 id="email-login"
                 type="email"
-                placeholder="seu@email.com"
+                placeholder=""
                 value={email}
                 onChange={(evento) => setEmail(evento.target.value)}
                 autoComplete="email"
@@ -62,21 +52,12 @@ function Login({ aoEntrar }) {
             <label htmlFor="senha-login">Senha</label>
 
             <div className="caixa-input-login">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                aria-hidden="true"
-              >
-                <rect x="5" y="10" width="14" height="11" rx="2" />
-                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-              </svg>
+             
 
               <input
                 id="senha-login"
                 type={mostrarSenha ? "text" : "password"}
-                placeholder="Digite sua senha"
+                placeholder=""
                 value={senha}
                 onChange={(evento) => setSenha(evento.target.value)}
                 autoComplete="current-password"
