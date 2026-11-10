@@ -50,7 +50,7 @@ CREATE TABLE Estudante
 );
 GO
 
-CREATE TABLE HorarioTurma
+CREATE TABLE HorarioClasse
 (
     IdHorario INT PRIMARY KEY IDENTITY(1,1),
     DiaSemana INT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE HorarioTurma
 );
 GO
 
-CREATE TABLE HistoricoAtraso
+CREATE TABLE SistemaAtrasos
 (
     IdHistorico           INT PRIMARY KEY IDENTITY(1,1),
     IdAluno               INT        NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE HistoricoAtraso
 );
 GO
 
-CREATE TABLE QRCode
+CREATE TABLE QRCoreSystem
 (
     IdQR INT PRIMARY KEY IDENTITY(1,1),
     IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma),
@@ -82,7 +82,7 @@ CREATE TABLE QRCode
 );
 GO
 
-CREATE TABLE PerfilAcesso
+CREATE TABLE GestaoPerfis
 (
     IdPerfil INT PRIMARY KEY IDENTITY(1,1),
     Nome VARCHAR(40) NOT NULL,
@@ -104,9 +104,9 @@ SELECT * FROM Ensino;
 SELECT * FROM Turno;
 SELECT * FROM Classe;
 SELECT * FROM Estudante;
-SELECT * FROM HorarioTurma;
-SELECT * FROM HistoricoAtraso;
-SELECT * FROM QRCode;
-SELECT * FROM PerfilAcesso;
+SELECT * FROM HorarioClasse;
+SELECT * FROM SistemaAtrasos;
+SELECT * FROM QRCoreSystem;
+SELECT * FROM GestaoPerfis;
 SELECT * FROM Educador;
 SELECT * FROM RegistroChegada;

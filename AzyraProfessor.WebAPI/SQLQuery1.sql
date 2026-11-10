@@ -1,5 +1,4 @@
-﻿
-SELECT
+﻿SELECT
     COLUMNPROPERTY(
         OBJECT_ID('dbo.Professor'),
         'IdProfessor',
