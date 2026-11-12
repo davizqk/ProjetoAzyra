@@ -1,12 +1,21 @@
 
-import '../style/telaInicio.css';
+import { useNavigate } from 'react-router-dom';
+
+import logo from '../../assets/logo (2).png';
 
 import alerta from '../../assets/icon-inicio-alerta.png';
 import notificacao from '../../assets/icon-inicio-notificacao.png';
 import pessoas from '../../assets/icon-inicio-pessoas.png';
 import relogio from '../../assets/icon-inicio-relogio.png';
 
+import footerAlerta from '../../assets/icon-inicio-footer-alerta.png';
+import footerPessoas from '../../assets/icon-inicio-footer-pessoas.png';
+import footerTurmas from '../../assets/icon-inicio-footer-turmas.png';
+
+import '../styles/telaInicio.css';
+
 export default function TelaInicio() {
+  const navigate = useNavigate();
 
   const alertas = [
     {
@@ -26,13 +35,6 @@ export default function TelaInicio() {
     }
   ];
 
-  const menu = [
-    'Início',
-    'Cadastrar Alunos',
-    'Turmas',
-    'Recorrências'
-  ];
-
   return (
     <div className="dashboard">
 
@@ -40,42 +42,75 @@ export default function TelaInicio() {
       <aside className="sidebar">
 
         <div className="logo">
-          <div className="logo-icon">A</div>
+          <img src={logo} alt="Logo Azyra" />
           <span>Azyra</span>
         </div>
 
         <nav className="menu">
 
-          {menu.map((item, index) => (
-            <button
-              key={item}
-              className={`menu-item ${index === 0 ? 'ativo' : ''}`}
-            >
-              {index === 0 && <span className="icone-home">⌂</span>}
+          {/* INÍCIO */}
+          <button
+            type="button"
+            className="menu-item ativo"
+            onClick={() => navigate('/inicio')}
+          >
+            <span className="icone-home">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 10.5L12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z" />
+              </svg>
+            </span>
+            <span>Início</span>
+          </button>
 
-              {index === 1 && (
-                <img src={pessoas} alt="" />
-              )}
+          {/* CADASTRAR ALUNOS */}
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => navigate('/alunos')}
+          >
+            <img
+              src={pessoas}
+              alt=""
+              className="icone-menu"
+            />
+            <span>Cadastrar Alunos</span>
+          </button>
 
-              {index === 2 && (
-                <img src={pessoas} alt="" />
-              )}
+          {/* TURMAS */}
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => alert('A tela Turmas ainda não foi criada.')}
+          >
+            <img
+              src={footerTurmas}
+              alt=""
+              className="icone-menu"
+            />
+            <span>Turmas</span>
+          </button>
 
-              {index === 3 && (
-                <img src={alerta} alt="" />
-              )}
-
-              <span>{item}</span>
-            </button>
-          ))}
+          {/* RECORRÊNCIAS */}
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => alert('A tela Recorrências ainda não foi criada.')}
+          >
+            <img
+              src={footerAlerta}
+              alt=""
+              className="icone-menu"
+            />
+            <span>Recorrências</span>
+          </button>
 
         </nav>
 
-        {/* PERFIL */}
-        <div className="perfil">
+        {/* PERFIL NO RODAPÉ */}
+        <footer className="footer-sidebar">
 
           <div className="perfil-icon">
-            J
+            <img src={footerPessoas} alt="Perfil" />
           </div>
 
           <div className="perfil-info">
@@ -83,14 +118,13 @@ export default function TelaInicio() {
             <span>Coordenador</span>
           </div>
 
-        </div>
+        </footer>
 
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
       <main className="conteudo">
 
-        {/* CABEÇALHO */}
         <header className="cabecalho">
           <h1>Início</h1>
           <p>Visão geral de frequência e atrasos</p>
@@ -100,36 +134,30 @@ export default function TelaInicio() {
         <section className="indicadores">
 
           <div className="card-indicador">
-
             <img src={pessoas} alt="Alunos" />
 
-            <div>
+            <div className="info-indicador">
               <strong>248</strong>
               <span>Alunos</span>
             </div>
-
           </div>
 
           <div className="card-indicador">
+            <img src={relogio} alt="Atrasos" />
 
-            <img src={relogio} alt="Relógio" />
-
-            <div>
+            <div className="info-indicador">
               <strong>32</strong>
               <span>Atrasos hoje</span>
             </div>
-
           </div>
 
           <div className="card-indicador">
-
             <img src={alerta} alt="Recorrências" />
 
-            <div>
+            <div className="info-indicador">
               <strong>12</strong>
               <span>Recorrências</span>
             </div>
-
           </div>
 
         </section>
@@ -138,30 +166,23 @@ export default function TelaInicio() {
         <section className="area-alertas">
 
           <div className="titulo-alertas">
-
-            <img
-              src={notificacao}
-              alt="Notificações"
-            />
-
+            <img src={notificacao} alt="Notificações" />
             <h2>Alertas Recentes</h2>
-
           </div>
 
           <div className="lista-alertas">
 
             {alertas.map((item, index) => (
-
               <div className="item-alerta" key={index}>
 
                 <img
                   src={alerta}
                   alt="Alerta"
+                  className="icone-alerta"
                 />
 
                 <p>
-                  Aluno(a) <strong>{item.nome}</strong>{' '}
-                  {item.mensagem}
+                  Aluno(a) <strong>{item.nome}</strong> {item.mensagem}
                 </p>
 
                 <span className="horario">
@@ -169,7 +190,6 @@ export default function TelaInicio() {
                 </span>
 
               </div>
-
             ))}
 
           </div>
