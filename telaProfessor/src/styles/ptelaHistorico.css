@@ -1,4 +1,3 @@
-/* AJUSTE DE TAMANHO — HISTÓRICO AZYRA */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -6,797 +5,676 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  color: #183451;
-  background: #f5f5f5;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
 .historico-app {
   display: flex;
   width: 100%;
-  height: 100vh;
-  overflow: hidden; /* a janela não rola, só o conteúdo */
+  min-height: 100vh;
   background: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  color: #183451;
 }
 
-/* MENU LATERAL */
-
-.sidebar {
+/* SIDEBAR - MANTIDA */
+.historico-app .sidebar {
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 10;
-
   display: flex;
   flex-direction: column;
-
   width: 266px;
   height: 100vh;
-
   padding: 25px 17px 0;
-
   color: #fff;
   background: #4b75a0;
 }
 
-.sidebar-brand {
+.historico-app .sidebar-brand {
   display: flex;
   align-items: center;
   gap: 14px;
-
   min-height: 48px;
   margin-bottom: 40px;
   padding-left: 7px;
 }
 
-.sidebar-logo {
+.historico-app .sidebar-logo {
   width: 43px;
   height: 43px;
   object-fit: contain;
 }
 
-.sidebar-brand span {
+.historico-app .sidebar-brand span {
   color: #fff;
   font-size: 25px;
   font-weight: 700;
 }
 
-.sidebar-nav {
+.historico-app .sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
 }
 
-.sidebar-link {
+.historico-app .sidebar-link {
   display: flex;
   align-items: center;
   gap: 15px;
-
   width: 100%;
   min-height: 49px;
   padding: 12px 15px;
-
   border-radius: 10px;
-
   color: #fff;
   text-decoration: none;
 }
 
-.sidebar-link:hover:not(.active) {
+.historico-app .sidebar-link:hover:not(.active) {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.sidebar-link.active {
+.historico-app .sidebar-link.active {
   color: #315f91;
   background: #e4edf5;
 }
 
-.sidebar-icon {
+.historico-app .sidebar-icon {
   width: 27px;
   height: 27px;
   flex-shrink: 0;
   object-fit: contain;
 }
 
-.sidebar-icon-turmas {
+.historico-app .sidebar-icon-turmas {
   filter: brightness(0) invert(1);
 }
 
-.sidebar-link span {
+.historico-app .sidebar-link span {
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
 }
 
-.sidebar-footer {
+/* FOOTER - NÃO ALTERAR */
+.historico-app .sidebar .sidebar-footer {
   display: flex;
   align-items: center;
   gap: 13px;
-
   width: 100%;
   min-height: 68px;
   margin-top: auto;
   padding: 14px 9px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
 }
 
-.sidebar-footer-avatar {
+.historico-app .sidebar .sidebar-footer:focus,
+.historico-app .sidebar .sidebar-footer:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.historico-app .sidebar-footer-avatar {
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
-.sidebar-footer-text {
+.historico-app .sidebar-footer-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.sidebar-footer-text strong {
+.historico-app .sidebar-footer-text strong {
   color: #fff;
   font-size: 14px;
   font-weight: 600;
 }
 
-.sidebar-footer-text span {
+.historico-app .sidebar-footer-text span {
   color: #fff;
   font-size: 12px;
 }
 
-/* CONTEÚDO PRINCIPAL (com rolagem) */
-
-.turmas-main {
+/* CONTEÚDO PRINCIPAL */
+.historico-app .historico-main {
   width: calc(100% - 266px);
-  height: 100vh;
-
-  overflow-x: hidden;
-  overflow-y: auto; /* rolagem só do conteúdo */
-
+  min-height: 100vh;
   margin-left: 266px;
-  padding: 36px 38px 38px;
+  padding: 54px 44px;
+  overflow-x: hidden;
 }
 
-.turmas-main::-webkit-scrollbar {
-  width: 8px;
-}
-
-.turmas-main::-webkit-scrollbar-thumb {
-  background: #c5d3e3;
-  border-radius: 8px;
-}
-
-.historico-main {
-  min-width: 0;
-}
-
-/* CABEÇALHO */
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 25px;
-
+/* TÍTULO - UM POUCO MAIOR */
+.historico-app .page-header {
   width: 100%;
-  margin-bottom: 35px;
+  margin-bottom: 27px;
 }
 
-.page-heading {
-  min-width: 0;
-}
-
-.page-heading h1 {
+.historico-app .page-heading h1 {
   margin: 0 0 7px;
-
   color: #4b75a0;
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
-.page-heading p {
+.historico-app .page-heading p {
   margin: 0;
-
-  color: #666;
-  font-size: 19px;
+  color: #555;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
 }
 
-/* PERFIL DO USUÁRIO */
+/* PESQUISA */
+.historico-app .historico-filters {
+  width: 100%;
+  margin: 0 0 20px;
+}
 
-.user-profile {
+.historico-app .history-search-box {
   display: flex;
   align-items: center;
-  gap: 12px;
-
-  flex-shrink: 0;
-  padding-top: 5px;
-}
-
-.user-avatar {
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  object-fit: contain;
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.user-details strong {
-  color: #26384a;
-  font-size: 13px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.user-details span {
-  color: #777;
-  font-size: 12px;
-}
-
-/* FILTROS */
-
-.historico-filters {
-  display: grid;
-
-  grid-template-columns:
-    minmax(280px, 1fr)
-    minmax(260px, 1fr)
-    minmax(260px, 1fr);
-
-  align-items: end;
-  gap: 32px;
-
+  gap: 11px;
   width: 100%;
-  margin: 0 0 36px;
-  padding: 0 18px;
-}
-
-/* BUSCA */
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  width: 100%;
-  min-width: 0;
-  height: 43px;
-  padding: 0 16px;
-
+  height: 47px;
+  padding: 0 15px;
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
-
+  border-radius: 9px;
   background: #f7f7f7;
 }
 
-.search-box:focus-within {
+.historico-app .history-search-box:focus-within {
   border-color: #4b75a0;
 }
 
-.search-box img {
+.historico-app .history-search-box img {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
   object-fit: contain;
 }
 
-.search-box input {
+.historico-app .history-search-box input {
   width: 100%;
-  min-width: 0;
   height: 100%;
   padding: 0;
-
-  border: 0;
+  border: none;
   outline: none;
-
-  color: #26384a;
   background: transparent;
-
+  color: #26384a;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
-.search-box input::placeholder {
-  color: #555;
+.historico-app .history-search-box input::placeholder {
+  color: #777;
   opacity: 1;
 }
 
-/* SELECTS */
-
-.history-select-field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  width: 100%;
-  min-width: 0;
-}
-
-.history-select-field > span {
-  margin-left: 3px;
-  color: #555;
-  font-size: 13px;
-}
-
-.select-wrapper {
-  position: relative;
-  width: 100%;
-  height: 43px;
-}
-
-.select-wrapper select {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-  padding: 0 42px 0 16px;
-
-  appearance: none;
-
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
-
-  color: #555;
-  background: #f7f7f7;
-
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-
-  cursor: pointer;
-}
-
-.select-wrapper select:focus {
-  border-color: #4b75a0;
-  outline: none;
-}
-
-.select-wrapper img {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-
-  width: 15px;
-  height: 15px;
-
-  object-fit: contain;
-  transform: translateY(-50%);
-
-  pointer-events: none;
-}
-
-/* TABELA */
-
-.history-table-card {
+/* CARTÃO DA TABELA */
+.historico-app .history-table-card {
   width: 100%;
   overflow: hidden;
-
   border: 1px solid #d9dfe3;
-  border-radius: 17px;
-
+  border-radius: 13px;
   background: #f7f7f7;
 }
 
-.table-scroll {
+.historico-app .table-scroll {
   width: 100%;
   overflow-x: auto;
 }
 
-.historico-table {
+.historico-app .historico-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  margin: 0;
 }
 
 /* CABEÇALHO DA TABELA */
-
-.historico-table thead {
+.historico-app .historico-table thead {
   background: #dfedf3;
 }
 
-.historico-table thead tr,
-.historico-table th {
-  height: 64px;
-}
-
-.historico-table th {
-  padding: 15px 12px;
-
+.historico-app .historico-table th {
+  height: 48px;
+  padding: 13px 15px;
   color: #4b75a0;
-
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* LINHAS */
-
-.historico-table tbody tr {
-  height: 49px;
-  border-bottom: 1px solid #dedede;
-}
-
-.historico-table tbody tr:last-child {
-  border-bottom: none;
-}
-
-.historico-table td {
-  height: 49px;
-  padding: 12px;
-
-  color: #35475a;
-
+  background: #dfedf3;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 400;
-
+  font-weight: 700;
   text-align: center;
   vertical-align: middle;
 }
 
-.historico-table tbody tr:hover {
-  background: #f0f5f8;
-}
-
-.historico-table .empty-table {
-  height: 100px;
-  padding: 20px;
-
-  color: #777;
-  text-align: center;
-  white-space: normal;
-}
-
 /* LARGURA DAS COLUNAS */
-
-.historico-table th:nth-child(1),
-.historico-table td:nth-child(1) {
-  width: 17%;
-}
-
-.historico-table th:nth-child(2),
-.historico-table td:nth-child(2) {
+.historico-app .historico-table th:nth-child(1),
+.historico-app .historico-table td:nth-child(1) {
   width: 22%;
 }
 
-.historico-table th:nth-child(3),
-.historico-table td:nth-child(3) {
-  width: 19%;
+.historico-app .historico-table th:nth-child(2),
+.historico-app .historico-table td:nth-child(2) {
+  width: 20%;
 }
 
-.historico-table th:nth-child(4),
-.historico-table td:nth-child(4) {
+.historico-app .historico-table th:nth-child(3),
+.historico-app .historico-table td:nth-child(3) {
+  width: 22%;
+}
+
+.historico-app .historico-table th:nth-child(4),
+.historico-app .historico-table td:nth-child(4) {
   width: 16%;
 }
 
-.historico-table th:nth-child(5),
-.historico-table td:nth-child(5) {
-  width: 26%;
+.historico-app .historico-table th:nth-child(5),
+.historico-app .historico-table td:nth-child(5) {
+  width: 20%;
 }
 
-/* RODAPÉ */
+/* LINHAS DA TABELA */
+.historico-app .historico-table tbody tr {
+  height: 46px;
+  border-bottom: 1px solid #dedede;
+}
 
-.table-footer {
+.historico-app .historico-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.historico-app .historico-table td {
+  height: 46px;
+  padding: 11px 13px;
+  color: #444;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #dedede;
+}
+
+.historico-app .historico-table td:last-child {
+  border-right: none;
+}
+
+.historico-app .historico-table tbody tr:hover {
+  background: #f0f5f8;
+}
+
+.historico-app .empty-table {
+  height: 65px;
+  padding: 20px;
+  text-align: center;
+  color: #777;
+}
+
+/* RODAPÉ DA TABELA */
+.historico-app .table-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-
-  min-height: 58px;
-  padding: 8px 18px 8px 23px;
-
+  min-height: 43px;
+  padding: 7px 15px;
   border-top: 1px solid #dedede;
-
   background: #f7f7f7;
 }
 
-.table-footer > span {
-  color: #707070;
-  font-size: 14px;
+.historico-app .table-footer > span {
+  color: #777;
+  font-size: 12px;
   font-weight: 400;
 }
 
 /* PAGINAÇÃO */
-
-.pagination {
+.historico-app .pagination {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.pagination-arrow,
-.pagination-current,
-.pagination-number {
+.historico-app .pagination-arrow,
+.historico-app .pagination-number,
+.historico-app .pagination-current {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-
-  width: 32px;
-  height: 32px;
+  width: 29px;
+  height: 29px;
   padding: 0;
-
   border: 1px solid #d7dce0;
-  border-radius: 5px;
-
+  border-radius: 4px;
   background: #f7f7f7;
-  color: #40566d;
-
+  color: #315f91;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-.pagination-arrow img {
+.historico-app .pagination-current {
+  border-color: #4b75a0;
+  background: #4b75a0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.historico-app .pagination-arrow img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.historico-app .pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .historico-app .sidebar {
+    width: 210px;
+  }
+
+  .historico-app .historico-main {
+    width: calc(100% - 210px);
+    margin-left: 210px;
+    padding: 38px 25px;
+  }
+
+  .historico-app .page-heading h1 {
+    font-size: 32px;
+  }
+
+  .historico-app .historico-table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .historico-app {
+    min-height: 100vh;
+    overflow: auto;
+  }
+
+  .historico-app .sidebar {
+    width: 75px;
+    padding: 20px 9px;
+  }
+
+  .historico-app .sidebar-brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .historico-app .sidebar-brand span,
+  .historico-app .sidebar-link span,
+  .historico-app .sidebar-footer-text {
+    display: none;
+  }
+
+  .historico-app .sidebar-link {
+    justify-content: center;
+    padding: 10px 5px;
+  }
+
+  .historico-app .sidebar-footer {
+    justify-content: center;
+    padding: 10px 0 !important;
+  }
+
+  .historico-app .historico-main {
+    width: calc(100% - 75px);
+    margin-left: 75px;
+    padding: 28px 15px;
+  }
+
+  .historico-app .page-heading h1 {
+    font-size: 27px;
+  }
+
+  .historico-app .page-heading p {
+    font-size: 14px;
+  }
+}
+
+/* AJUSTE DO CONTEÚDO DA TELA HISTÓRICO */
+/* Sidebar e footer permanecem intactos */
+
+.historico-app .historico-main {
+  padding: 42px 36px;
+  width: calc(100% - 266px);
+  margin-left: 266px;
+}
+
+/* TÍTULO */
+.historico-app .page-header {
+  margin-bottom: 22px;
+}
+
+.historico-app .page-heading h1 {
+  font-size: 32px;
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.historico-app .page-heading p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* CAMPO DE PESQUISA */
+.historico-app .historico-filters {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.historico-app .history-search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  background: #f7f7f7;
+}
+
+.historico-app .history-search-box img {
   width: 15px;
   height: 15px;
   object-fit: contain;
 }
 
-.pagination-arrow:hover:not(:disabled),
-.pagination-number:hover {
-  background: #e8eff5;
+.historico-app .history-search-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
 }
 
-.pagination-arrow:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+/* TABELA */
+.historico-app .history-table-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3;
+  border-radius: 12px;
+  background: #f7f7f7;
 }
 
-.pagination-current {
-  border-color: #4b75a0;
+.historico-app .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.historico-app .historico-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.historico-app .historico-table thead {
+  background: #dfedf3;
+}
+
+.historico-app .historico-table th {
+  height: 43px;
+  padding: 10px 12px;
+  background: #dfedf3;
+  color: #4b75a0;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.historico-app .historico-table td {
+  height: 39px;
+  padding: 9px 12px;
+  color: #444;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+  border-right: 1px solid #dedede;
+}
+
+.historico-app .historico-table th:first-child,
+.historico-app .historico-table td:first-child {
+  width: 50%;
+  text-align: left;
+  padding-left: 18px;
+}
+
+.historico-app .historico-table th:nth-child(2),
+.historico-app .historico-table td:nth-child(2) {
+  width: 15%;
+}
+
+.historico-app .historico-table th:nth-child(3),
+.historico-app .historico-table td:nth-child(3) {
+  width: 15%;
+}
+
+.historico-app .historico-table th:nth-child(4),
+.historico-app .historico-table td:nth-child(4) {
+  width: 20%;
+}
+
+/* RODAPÉ DA TABELA E PAGINAÇÃO */
+.historico-app .table-footer {
+  min-height: 38px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dedede;
+}
+
+.historico-app .table-footer > span {
+  font-size: 10px;
+  color: #777;
+}
+
+.historico-app .pagination {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.historico-app .pagination-arrow,
+.historico-app .pagination-number,
+.historico-app .pagination-current {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #d7dce0;
+  border-radius: 4px;
+  background: #f7f7f7;
+  color: #315f91;
+  font-size: 11px;
+}
+
+.historico-app .pagination-current {
   background: #4b75a0;
+  border-color: #4b75a0;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* NOTEBOOKS */
-
-@media (max-width: 1250px) {
-  .sidebar {
-    width: 220px;
-  }
-
-  .turmas-main {
-    width: calc(100% - 220px);
-    margin-left: 220px;
-    padding: 30px 25px;
-  }
-
-  .page-heading h1 {
-    font-size: 30px;
-  }
-
-  .page-heading p {
-    font-size: 16px;
-  }
-
-  .historico-filters {
-    grid-template-columns:
-      minmax(220px, 1fr)
-      minmax(180px, 1fr)
-      minmax(180px, 1fr);
-    gap: 16px;
-    padding: 0 8px;
-  }
-
-  .historico-table th {
-    font-size: 13px;
-    padding-right: 6px;
-    padding-left: 6px;
-  }
-
-  .historico-table td {
-    font-size: 12px;
-    padding-right: 6px;
-    padding-left: 6px;
-  }
+.historico-app .pagination-arrow img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
 }
 
-/* TABLETS */
+/* ==========================================
+   AJUSTE FINAL - TABELA DO HISTÓRICO
+   Texto centralizado e em negrito
+========================================== */
 
-@media (max-width: 900px) {
-  .sidebar {
-    width: 180px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .turmas-main {
-    width: calc(100% - 180px);
-    margin-left: 180px;
-    padding: 25px 18px;
-  }
-
-  .page-header {
-    flex-wrap: wrap;
-  }
-
-  .historico-filters {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .history-search-box {
-    grid-column: 1 / -1;
-  }
-
-  .historico-table {
-    min-width: 700px;
-  }
+/* Cabeçalho */
+.historico-app .history-table-card .historico-table thead th {
+  text-align: center !important;
+  font-weight: 700 !important;
+  color: #4b75a0 !important;
+  background: #dfedf3 !important;
 }
 
-/* CELULARES (sidebar vira topo; a janela volta a rolar) */
+/* Informações dos alunos */
+.historico-app .history-table-card .historico-table tbody td {
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #26384a !important;
+  padding: 10px 8px !important;
+}
 
-@media (max-width: 600px) {
-  .historico-app {
-    display: block;
-    height: auto;
-    overflow: visible;
-  }
+/* Divisórias verticais */
+.historico-app .history-table-card .historico-table th,
+.historico-app .history-table-card .historico-table td {
+  border-right: 1px solid #dedede !important;
+}
 
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: 12px;
-  }
+/* Remove a divisória da última coluna */
+.historico-app .history-table-card .historico-table th:last-child,
+.historico-app .history-table-card .historico-table td:last-child {
+  border-right: none !important;
+}
 
-  .sidebar-brand {
-    min-height: 38px;
-    margin-bottom: 12px;
-  }
+/* Divisórias horizontais entre os registros */
+.historico-app .history-table-card .historico-table tbody tr {
+  border-bottom: 1px solid #dedede !important;
+}
 
-  .sidebar-logo {
-    width: 32px;
-    height: 32px;
-  }
+/* Mantém a última linha sem borda extra */
+.historico-app .history-table-card .historico-table tbody tr:last-child {
+  border-bottom: none !important;
+}
 
-  .sidebar-brand span {
-    font-size: 18px;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 5px;
-  }
-
-  .sidebar-link {
-    justify-content: center;
-    gap: 5px;
-    min-height: 43px;
-    padding: 7px 5px;
-  }
-
-  .sidebar-link span {
-    font-size: 10px;
-  }
-
-  .sidebar-icon {
-    width: 17px;
-    height: 17px;
-  }
-
-  .sidebar-footer {
-    display: none;
-  }
-
-  .turmas-main {
-    width: 100%;
-    height: auto;
-    min-height: calc(100vh - 110px);
-    overflow: visible;
-    margin-left: 0;
-    padding: 23px 14px;
-  }
-
-  .page-header {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .page-heading h1 {
-    font-size: 26px;
-  }
-
-  .page-heading p {
-    font-size: 14px;
-  }
-
-  .user-profile {
-    align-self: flex-end;
-    padding-top: 0;
-  }
-
-  .historico-filters {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 23px;
-    padding: 0;
-  }
-
-  .search-box,
-  .select-wrapper {
-    height: 45px;
-  }
-
-  .history-table-card {
-    border-radius: 10px;
-  }
-
-  .historico-table {
-    min-width: 680px;
-  }
-
-  .historico-table thead tr,
-  .historico-table th {
-    height: 49px;
-  }
-
-  .historico-table th {
-    font-size: 12px;
-  }
-
-  .historico-table tbody tr,
-  .historico-table td {
-    height: 44px;
-  }
-
-  .historico-table td {
-    font-size: 12px;
-  }
-
-  .table-footer {
-    flex-wrap: wrap;
-    padding: 10px;
-  }
-
-  .table-footer > span {
-    font-size: 11px;
-  }
-
-  .pagination {
-    gap: 4px;
-  }
-
-  .pagination-arrow,
-  .pagination-current,
-  .pagination-number {
-    width: 29px;
-    height: 29px;
-    font-size: 11px;
-  }
+/* Coluna Estudante alinhada à esquerda */
+.historico-app .history-table-card .historico-table th:first-child,
+.historico-app .history-table-card .historico-table td:first-child {
+  text-align: left !important;
+  padding-left: 20px !important;
 }

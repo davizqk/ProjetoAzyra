@@ -1,0 +1,436 @@
+/* =========================================
+   TELA ALUNOS - AZYRA
+   (sidebar e footer vêm de historico-app + turmas-app)
+========================================= */
+
+.alunos-app {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.alunos-app .alunos-main {
+  width: calc(100% - 265px);
+  min-height: 100vh;
+  margin-left: 265px;
+  padding: 38px 30px;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* TÍTULO */
+
+.alunos-app .alunos-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.alunos-app .alunos-voltar {
+  width: 27px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #4b75a0;
+  font-family: Arial, sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.alunos-app .alunos-titulo h1 {
+  margin: 0 0 4px;
+  color: #4b75a0;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.alunos-app .alunos-titulo p {
+  margin: 0;
+  color: #555;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+/* =========================================
+   CARTÕES DE RESUMO
+========================================= */
+
+.alunos-app .alunos-resumo {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 22px;
+}
+
+.alunos-app .alunos-resumo-card {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 16px 22px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  background: #f8f8f8;
+  box-sizing: border-box;
+}
+
+.alunos-app .alunos-resumo-card > img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.alunos-app .alunos-resumo-card strong {
+  color: #4b75a0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.alunos-app .alunos-horario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.alunos-app .alunos-horario strong {
+  font-size: 17px;
+}
+
+.alunos-app .alunos-horario span {
+  color: #4b75a0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================================
+   PESQUISA
+========================================= */
+
+.alunos-app .alunos-search-section {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.alunos-app .alunos-search-box {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: #f8f8f8;
+  box-sizing: border-box;
+}
+
+.alunos-app .alunos-search-box img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.alunos-app .alunos-search-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #26384a;
+}
+
+.alunos-app .alunos-search-box input::placeholder {
+  color: #777;
+}
+
+/* =========================================
+   CARTÃO E TABELA
+========================================= */
+
+.alunos-app .alunos-table-card {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3 !important;
+  border-radius: 12px !important;
+  background: #f8f8f8 !important;
+}
+
+.alunos-app .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.alunos-app .alunos-table {
+  display: table !important;
+  width: 100% !important;
+  min-width: 650px;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 0 !important;
+  background: #f8f8f8 !important;
+}
+
+/* LARGURA DAS COLUNAS */
+
+.alunos-app .alunos-table th:nth-child(1),
+.alunos-app .alunos-table td:nth-child(1) {
+  width: 31%;
+}
+
+.alunos-app .alunos-table th:nth-child(2),
+.alunos-app .alunos-table td:nth-child(2) {
+  width: 22%;
+}
+
+.alunos-app .alunos-table th:nth-child(3),
+.alunos-app .alunos-table td:nth-child(3) {
+  width: 22%;
+}
+
+.alunos-app .alunos-table th:nth-child(4),
+.alunos-app .alunos-table td:nth-child(4),
+.alunos-app .alunos-table td:nth-child(5) {
+  width: 12.5%;
+}
+
+/* CABEÇALHO AZUL */
+
+.alunos-app .alunos-table thead {
+  display: table-header-group !important;
+  background: #dfedf3 !important;
+}
+
+.alunos-app .alunos-table thead tr {
+  background: #dfedf3 !important;
+}
+
+.alunos-app .alunos-table th {
+  height: 45px !important;
+  padding: 10px 12px !important;
+  background: #dfedf3 !important;
+  color: #4b75a0 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.alunos-app .alunos-table th:first-child {
+  text-align: left !important;
+  padding-left: 20px !important;
+}
+
+/* LINHAS E DIVISÓRIAS */
+
+.alunos-app .alunos-table tbody {
+  display: table-row-group !important;
+}
+
+.alunos-app .alunos-table tbody tr {
+  display: table-row !important;
+  height: 50px !important;
+  background: #f8f8f8 !important;
+  border-bottom: 1px solid #dedede !important;
+}
+
+.alunos-app .alunos-table tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+.alunos-app .alunos-table td {
+  height: 50px !important;
+  padding: 10px 12px !important;
+  background: transparent !important;
+  color: #26384a !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border: none !important;
+  border-right: 1px solid #dedede !important;
+}
+
+.alunos-app .alunos-table td:last-child {
+  border-right: none !important;
+}
+
+.alunos-app .alunos-table td.aluno-nome {
+  padding-left: 20px !important;
+  text-align: left !important;
+  font-weight: 500 !important;
+}
+
+.alunos-app .alunos-table tbody tr:hover {
+  background: #f0f5f8 !important;
+}
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+.alunos-app .aluno-acao {
+  text-align: center !important;
+  padding: 5px !important;
+}
+
+.alunos-app .aluno-editar,
+.alunos-app .aluno-excluir {
+  width: 32px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.alunos-app .aluno-editar:hover {
+  background: #e3edf5;
+}
+
+.alunos-app .aluno-excluir:hover {
+  background: #fdeaea;
+}
+
+.alunos-app .aluno-editar img,
+.alunos-app .aluno-excluir img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+/* TABELA VAZIA */
+
+.alunos-app .alunos-table .empty-table {
+  height: 65px !important;
+  text-align: center !important;
+  color: #777 !important;
+}
+
+/* =========================================
+   RODAPÉ DA TABELA
+========================================= */
+
+.alunos-app .alunos-table-card > .table-footer {
+  min-height: 40px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dedede;
+  background: #f8f8f8;
+  box-sizing: border-box;
+}
+
+.alunos-app .alunos-table-card > .table-footer > span {
+  color: #777;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* PAGINAÇÃO */
+
+.alunos-app .pagination {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.alunos-app .pagination-arrow,
+.alunos-app .pagination-current,
+.alunos-app .pagination-number {
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7dce0;
+  border-radius: 5px;
+  background: #f8f8f8;
+  color: #315f91;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.alunos-app .pagination-current {
+  background: #4b75a0;
+  border-color: #4b75a0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.alunos-app .pagination-arrow img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
+.alunos-app .pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 900px) {
+  .alunos-app .alunos-main {
+    padding: 28px 20px;
+  }
+
+  .alunos-app .alunos-resumo {
+    gap: 18px;
+  }
+
+  .alunos-app .alunos-resumo-card {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 650px) {
+  .alunos-app .alunos-main {
+    width: calc(100% - 75px);
+    margin-left: 75px;
+    padding: 25px 15px;
+  }
+
+  .alunos-app .alunos-resumo {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .alunos-app .alunos-resumo-card {
+    min-height: 90px;
+  }
+
+  .alunos-app .alunos-titulo h1 {
+    font-size: 28px;
+  }
+}
