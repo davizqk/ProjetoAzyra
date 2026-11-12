@@ -1,6 +1,8 @@
+
 import { useState, useEffect } from "react";
 import "./App.css";
 
+import Cadastro from "./pages/cadastro.jsx";
 import Login from "./pages/Login.jsx";
 import PTelaMinhasTurmas from "./pages/ptelaMinhasTurmas.jsx";
 import PtelaHistorico from "./pages/ptelaHistorico.jsx";
@@ -8,6 +10,7 @@ import PtelaPerfil from "./pages/ptelaPerfil.jsx";
 import EditarPerfil from "./pages/ptelaEditarPerfil.jsx";
 
 const ROTAS_VALIDAS = [
+  "cadastro",
   "login",
   "minhas-turmas",
   "historico",
@@ -17,7 +20,8 @@ const ROTAS_VALIDAS = [
 
 function lerRota() {
   const rota = window.location.hash.replace("#", "");
-  return ROTAS_VALIDAS.includes(rota) ? rota : "login";
+
+  return ROTAS_VALIDAS.includes(rota) ? rota : "cadastro";
 }
 
 export default function App() {
@@ -56,6 +60,10 @@ export default function App() {
     navegarPara("minhas-turmas");
   }
 
+  function cadastrar() {
+    navegarPara("minhas-turmas");
+  }
+
   function salvarPerfil(dados) {
     setUsuario((anterior) => ({
       ...anterior,
@@ -73,6 +81,15 @@ export default function App() {
   let conteudo;
 
   switch (telaAtual) {
+    case "cadastro":
+      conteudo = (
+        <Cadastro
+          aoCadastrar={cadastrar}
+          aoEntrar={() => navegarPara("login")}
+        />
+      );
+      break;
+
     case "login":
       conteudo = <Login aoEntrar={entrar} />;
       break;
@@ -121,7 +138,12 @@ export default function App() {
       break;
 
     default:
-      conteudo = <Login aoEntrar={entrar} />;
+      conteudo = (
+        <Cadastro
+          aoCadastrar={cadastrar}
+          aoEntrar={() => navegarPara("login")}
+        />
+      );
   }
 
   return <>{conteudo}</>;

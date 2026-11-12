@@ -513,6 +513,7 @@ CREATE TABLE AlertasRecorrencia (
 );
 GO
 
+<<<<<<< HEAD
 CREATE INDEX IX_Alertas_Status
 ON AlertasRecorrencia (Status, DataIdentificacao);
 
@@ -542,3 +543,53 @@ SELECT * FROM Periodos;
 PRINT 'Banco ControleAtrasos criado com sucesso!';
 GO
 
+=======
+CREATE TABLE HorarioClasse
+(
+    IdHorario INT PRIMARY KEY IDENTITY(1,1),
+    DiaSemana INT NOT NULL,
+    HoraEntrada TIME NOT NULL,
+    ToleranciaMin INT NOT NULL DEFAULT 0,
+    IdTurma INT FOREIGN KEY REFERENCES Turma(IdTurma)
+);
+GO
+
+CREATE TABLE SistemaAtrasos
+(
+    IdHistorico           INT PRIMARY KEY IDENTITY(1,1),
+    IdAluno               INT        NOT NULL,
+    DataAtraso            DATETIME   NOT NULL,
+    MinutosAtraso         INT        NOT NULL,
+    Justificativa         VARCHAR    (255),
+    FOREIGN KEY (IdAluno) REFERENCES Aluno(IdAluno)
+);
+GO
+
+CREATE TABLE GestaoPerfis
+(
+    IdPerfil INT PRIMARY KEY IDENTITY(1,1),
+    Nome VARCHAR(40) NOT NULL,
+    Permissoes VARCHAR(500)
+);
+GO
+
+CREATE TABLE RegistroChegada
+(
+    IdRegistro INT PRIMARY KEY IDENTITY(1,1),
+    IdAluno INT FOREIGN KEY REFERENCES Aluno(IdAluno),
+    DataChegada DATE NOT NULL,
+    HoraChegada TIME NOT NULL,
+    Atrasado BIT NOT NULL
+);
+GO
+
+SELECT * FROM Ensino;
+SELECT * FROM Turno;
+SELECT * FROM Classe;
+SELECT * FROM Estudante;
+SELECT * FROM HorarioClasse;
+SELECT * FROM SistemaAtrasos;
+SELECT * FROM GestaoPerfis;
+SELECT * FROM Educador;
+SELECT * FROM RegistroChegada;
+>>>>>>> a196d3b23ea039b859602402174fae7663be5ed8
