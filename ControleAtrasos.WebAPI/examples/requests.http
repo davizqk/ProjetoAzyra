@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:5080
+@token = COLE_AQUI_O_JWT_DO_LOGIN
+
+### Ping publico
+GET {{baseUrl}}/api/saude
+
+### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{ "email": "admin@teste.local", "senha": "SENHA_CRIADA_NO_BOOTSTRAP" }
+
+### Modelos (autenticado)
+GET {{baseUrl}}/api/admin/modelos
+Authorization: Bearer {{token}}
+
+### Turmas (autenticado)
+GET {{baseUrl}}/api/admin/turmas
+Authorization: Bearer {{token}}
+
+### Exemplo de criacao de turma
+POST {{baseUrl}}/api/admin/turmas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "nome": "1A", "idModelo": 1, "idPeriodo": 1, "anoLetivo": 2026 }
+
+### Atrasos por turma
+GET {{baseUrl}}/api/turmas/1/atrasos?pagina=1&tamanho=10
+Authorization: Bearer {{token}}
+
+### Identificar aluno (CPF de teste cadastrado no banco)
+POST {{baseUrl}}/api/registro/identificar
+Content-Type: application/json
+
+{ "cpf": "INSIRA_UM_CPF_VALIDO_DE_TESTE" }
+
+### Confirmar registro (token temporario devolvido pela identificacao)
+POST {{baseUrl}}/api/registro/confirmar
+Content-Type: application/json
+
+{ "tokenConfirmacao": "INSIRA_TOKEN_RECEBIDO" }

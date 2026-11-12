@@ -1,20 +1,89 @@
+
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import '../styles/telaAtraso.css';
 
-import alerta from '../assets/icone-alerta.png';
-import aviso from '../assets/icone-aviso.png';
-import relogio from '../assets/icone-relogio.png';
+import alerta from '../../assets/icone-alerta.png';
+import aviso from '../../assets/icone-aviso.png';
+import relogio from '../../assets/icone-relogio.png';
+
+import { apiRequest } from '../services/api';
 
 export default function TelaAtraso() {
   const navigate = useNavigate();
 
-  const horaChegada = '07:32';
-  const dataChegada = '03/10/2026';
-  const turma = '3º ano A (Integral)';
-  const horarioInicio = '08:00';
+  const [registro, setRegistro] = useState(null);
+  const [erro, setErro] = useState('');
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    const alunoSalvo = sessionStorage.getItem('azyraAluno');
+
+    if (!alunoSalvo) {
+      navigate('/dados', { replace: true });
+      return;
+    }
+
+    const aluno = JSON.parse(alunoSalvo);
+
+    if (!aluno.idAluno) {
+      navigate('/dados', { replace: true });
+      return;
+    }
+
+    async function registrarChegada() {
+      try {
+        const dados = await apiRequest(
+          '/HistoricoAtraso/registrar-chegada',
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              idAluno: aluno.idAluno,
+            }),
+          }
+        );
+
+        setRegistro(dados);
+
+        sessionStorage.setItem(
+          'azyraUltimaChegada',
+          JSON.stringify(dados)
+        );
+      } catch (error) {
+        setErro(error.message);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    registrarChegada();
+  }, [navigate]);
 
   function voltar() {
     navigate('/historico');
+  }
+
+  const aluno = JSON.parse(
+    sessionStorage.getItem('azyraAluno') || 'null'
+  );
+
+  const horaChegada = registro?.horaChegada
+    ? String(registro.horaChegada).substring(0, 5)
+    : '--:--';
+
+  const dataChegada = registro?.data
+    ? new Date(registro.data).toLocaleDateString('pt-BR')
+    : '--/--/----';
+
+  if (carregando) {
+    return (
+      <main className="tela-atraso">
+        <section className="conteudo-atraso">
+          <p>Registrando sua chegada...</p>
+        </section>
+      </main>
+    );
   }
 
   return (
@@ -24,59 +93,74 @@ export default function TelaAtraso() {
           <img
             className="icone-alerta"
             src={aviso}
-            alt="Alerta de atraso"
+            alt="Aviso"
           />
 
-          <h1>Você chegou atrasado(a)!</h1>
+          <h1>
+            {erro
+              ? 'Não foi possível registrar sua chegada.'
+              : registro?.atrasado
+                ? 'Você chegou atrasado(a)!'
+                : 'Sua chegada foi registrada!'}
+          </h1>
 
           <p className="subtitulo-atraso">
-            Seu registro foi salvo, mas o horário
-            <br className="quebra-desktop" />
-            {' '}da sua turma já havia sido encerrado.
+            {erro ||
+              (registro?.atrasado
+                ? 'Seu registro foi salvo, mas o horário da sua turma já passou.'
+                : 'Seu registro foi salvo dentro do horário da sua turma.')}
           </p>
         </header>
 
-        <section className="card-chegada">
-          <img
-            className="icone-relogio"
-            src={relogio}
-            alt="Relógio"
-          />
+        {!erro && registro && (
+          <>
+            <section className="card-chegada">
+              <img
+                className="icone-relogio"
+                src={relogio}
+                alt="Relógio"
+              />
 
-          <div className="texto-chegada">
-            <span className="label-chegada">
-              Horário da chegada
-            </span>
+              <div className="texto-chegada">
+                <span className="label-chegada">
+                  Horário da chegada
+                </span>
 
-            <strong className="hora-chegada">
-              {horaChegada}
-            </strong>
+                <strong className="hora-chegada">
+                  {horaChegada}
+                </strong>
 
-            <span className="data-chegada">
-              {dataChegada}
-            </span>
-          </div>
-        </section>
+                <span className="data-chegada">
+                  {dataChegada}
+                </span>
+              </div>
+            </section>
 
-        <section className="card-turma">
-          <img
-            className="icone-aviso"
-            src={alerta}
-            alt="Informação"
-          />
+            <section className="card-turma">
+              <img
+                className="icone-aviso"
+                src={alerta}
+                alt="Informação"
+              />
 
-          <div className="texto-turma">
-            <p>
-              <strong>Turma:</strong>
-              <span>{turma}</span>
-            </p>
+              <div className="texto-turma">
+                <p>
+                  <strong>Turma:</strong>
+                  <span>
+                    {registro.nomeTurma || aluno?.nomeTurma || 'Não informada'}
+                  </span>
+                </p>
 
-            <p>
-              <strong>Horário de início:</strong>
-              <span>{horarioInicio}</span>
-            </p>
-          </div>
-        </section>
+                <p>
+                  <strong>Horário de início:</strong>
+                  <span>
+                    {aluno?.horaInicio || 'Não informado'}
+                  </span>
+                </p>
+              </div>
+            </section>
+          </>
+        )}
       </section>
 
       <footer className="rodape-atraso">

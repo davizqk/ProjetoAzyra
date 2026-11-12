@@ -1,42 +1,45 @@
+
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import seta from '../assets/seta.png';
+
+import seta from '../../assets/seta.png';
 import '../styles/telaHistorico.css';
 
-const registros = [
-  {
-    id: 1,
-    data: '03/10/2026',
-    horario: '8:05',
-    turma: '1º ano A (Manhã)',
-  },
-  {
-    id: 2,
-    data: '23/09/2026',
-    horario: '8:30',
-    turma: '1º ano A (Manhã)',
-  },
-  {
-    id: 3,
-    data: '11/09/2026',
-    horario: '8:15',
-    turma: '1º ano A (Manhã)',
-  },
-  {
-    id: 4,
-    data: '22/08/2026',
-    horario: '8:45',
-    turma: '1º ano A (Manhã)',
-  },
-  {
-    id: 5,
-    data: '02/08/2026',
-    horario: '8:10',
-    turma: '1º ano A (Manhã)',
-  },
-];
+import { apiRequest } from '../services/api';
 
 export default function TelaHistorico() {
   const navigate = useNavigate();
+
+  const [registros, setRegistros] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState('');
+
+  useEffect(() => {
+    const alunoSalvo = sessionStorage.getItem('azyraAluno');
+
+    if (!alunoSalvo) {
+      navigate('/dados', { replace: true });
+      return;
+    }
+
+    const aluno = JSON.parse(alunoSalvo);
+
+    async function buscarHistorico() {
+      try {
+        const dados = await apiRequest(
+          `/HistoricoAtraso/aluno/${aluno.idAluno}`
+        );
+
+        setRegistros(dados);
+      } catch (error) {
+        setErro(error.message);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    buscarHistorico();
+  }, [navigate]);
 
   return (
     <main className="pagina-historico">
@@ -77,27 +80,37 @@ export default function TelaHistorico() {
           className="lista-registros"
           aria-label="Últimos registros de atraso"
         >
+          {carregando && <p>Carregando registros...</p>}
+
+          {erro && <p role="alert">{erro}</p>}
+
+          {!carregando && !erro && registros.length === 0 && (
+            <p>Você ainda não possui registros.</p>
+          )}
+
           {registros.map((registro) => (
             <article
               className="card-registro"
-              key={registro.id}
+              key={registro.idHistorico}
             >
               <div className="info-registro">
                 <span className="data-registro">
-                  {registro.data}
+                  {new Date(registro.data).toLocaleDateString('pt-BR')}
                 </span>
 
                 <span className="turma-registro">
-                  {registro.turma}
+                  {registro.nomeTurma || 'Sua turma'}
                 </span>
               </div>
 
               <span className="horario-registro">
-                {registro.horario}
+                {registro.horaChegada
+                  ? String(registro.horaChegada).substring(0, 5)
+                  : '--:--'}
               </span>
 
               <span className="status-atraso">
-                Atraso
+                {registro.atrasado ? 'Atraso' : 'No horário'}
               </span>
 
               <img
