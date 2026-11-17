@@ -1,12 +1,11 @@
+
 import React, { useMemo, useState } from 'react';
 import '../styles/ptelaHistorico.css';
 
 import logo from '../assets/logo-footer.png';
 import iconeTurmas from '../assets/minhasturmas-footer.png';
 import iconeHistorico from '../assets/historico-footer-preenchido.png';
-import iconePerfil from '../assets/perfil-footer.png';
 import perfilUsuario from '../assets/perfil-minhasturmas.png';
-import setaBaixo from '../assets/setabaixo.png';
 import lupa from '../assets/lupa-minhasturmas.png';
 import setaEsquerda from '../assets/seta-esquerda.png';
 import setaDireita from '../assets/seta-direita.png';
@@ -24,25 +23,34 @@ const registrosIniciais = [
 
 export default function PtelaHistorico({ aoNavegar, telaAtual }) {
   const [busca, setBusca] = useState('');
-  const [modeloSelecionado, setModeloSelecionado] = useState('Todos');
-  const [periodoSelecionado, setPeriodoSelecionado] = useState('Todos');
   const [pagina, setPagina] = useState(1);
+
   const itensPorPagina = 8;
 
-  const registrosFiltrados = useMemo(() => registrosIniciais.filter((registro) => {
-    const correspondeBusca = `${registro.estudante} ${registro.turma} ${registro.modelo}`
-      .toLowerCase().includes(busca.trim().toLowerCase());
-    const correspondeModelo = modeloSelecionado === 'Todos' || registro.modelo === modeloSelecionado;
-    const correspondePeriodo = periodoSelecionado === 'Todos' || registro.data === periodoSelecionado;
-    return correspondeBusca && correspondeModelo && correspondePeriodo;
-  }), [busca, modeloSelecionado, periodoSelecionado]);
+  const registrosFiltrados = useMemo(() => {
+    return registrosIniciais.filter((registro) => {
+      const correspondeBusca = `${registro.estudante} ${registro.turma} ${registro.modelo}`
+        .toLowerCase()
+        .includes(busca.trim().toLowerCase());
 
-  const totalPaginas = Math.max(1, Math.ceil(registrosFiltrados.length / itensPorPagina));
+      return correspondeBusca;
+    });
+  }, [busca]);
+
+  const totalPaginas = Math.max(
+    1,
+    Math.ceil(registrosFiltrados.length / itensPorPagina)
+  );
+
   const paginaAtual = Math.min(pagina, totalPaginas);
-  const registrosExibidos = registrosFiltrados.slice((paginaAtual - 1) * itensPorPagina, paginaAtual * itensPorPagina);
 
-  function atualizarFiltro(setter, valor) {
-    setter(valor);
+  const registrosExibidos = registrosFiltrados.slice(
+    (paginaAtual - 1) * itensPorPagina,
+    paginaAtual * itensPorPagina
+  );
+
+  function atualizarBusca(valor) {
+    setBusca(valor);
     setPagina(1);
   }
 
@@ -50,40 +58,56 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
     <div className="historico-app">
       <aside className="sidebar">
         <div className="sidebar-brand">
-          <img src={logo} alt="Logo Azyra" className="sidebar-logo" />
+          <img
+            src={logo}
+            alt="Logo Azyra"
+            className="sidebar-logo"
+          />
           <span>Azyra</span>
         </div>
 
         <nav className="sidebar-nav" aria-label="Navegação principal">
           <a href="#minhas-turmas" className="sidebar-link">
-            <img src={iconeTurmas} alt="" className="sidebar-icon sidebar-icon-turmas" />
-            <span>Minhas Turmas</span>
+            <img
+              src={iconeTurmas}
+              alt=""
+              className="sidebar-icon sidebar-icon-turmas"
+            />
+            <span>Turmas</span>
           </a>
-          <a href="#historico" className="sidebar-link active" aria-current="page">
-            <img src={iconeHistorico} alt="" className="sidebar-icon" />
+
+          <a
+            href="#historico"
+            className="sidebar-link active"
+            aria-current="page"
+          >
+            <img
+              src={iconeHistorico}
+              alt=""
+              className="sidebar-icon"
+            />
             <span>Histórico</span>
           </a>
         </nav>
 
-        
-<button
-  type="button"
-  className="sidebar-footer"
-  onClick={() => aoNavegar("perfil")}
-  aria-label="Abrir perfil do coordenador"
->
-  <img
-    src={perfilUsuario}
-    alt=""
-    className="sidebar-footer-avatar"
-  />
+        {/* FOOTER ORIGINAL - MANTIDO SEM ALTERAÇÕES */}
+        <button
+          type="button"
+          className="sidebar-footer"
+          onClick={() => aoNavegar("perfil")}
+          aria-label="Abrir perfil do coordenador"
+        >
+          <img
+            src={perfilUsuario}
+            alt=""
+            className="sidebar-footer-avatar"
+          />
 
-  <div className="sidebar-footer-text">
-    <strong>Jucelino</strong>
-    <span>coordenador</span>
-  </div>
-</button>
-
+          <div className="sidebar-footer-text">
+            <strong>Jucelino</strong>
+            <span>coordenador</span>
+          </div>
+        </button>
       </aside>
 
       <main className="turmas-main historico-main" id="historico">
@@ -94,20 +118,27 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
           </div>
         </header>
 
-        <section className="filters historico-filters" aria-label="Filtros do histórico">
+        <section
+          className="filters historico-filters"
+          aria-label="Filtros do histórico"
+        >
           <label className="search-box history-search-box">
             <img src={lupa} alt="" />
+
             <input
               type="search"
               placeholder="Nome do estudante"
               value={busca}
-              onChange={(event) => atualizarFiltro(setBusca, event.target.value)}
-              aria-label="Buscar turma ou estudante"
+              onChange={(event) => atualizarBusca(event.target.value)}
+              aria-label="Buscar estudante, turma ou modelo"
             />
           </label>
         </section>
 
-        <section className="table-card history-table-card" aria-label="Histórico de turmas">
+        <section
+          className="table-card history-table-card"
+          aria-label="Histórico de turmas"
+        >
           <div className="table-scroll">
             <table className="turmas-table historico-table">
               <thead>
@@ -119,18 +150,23 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
                   <th>Horário de Entrada</th>
                 </tr>
               </thead>
+
               <tbody>
-                {registrosExibidos.length > 0 ? registrosExibidos.map((registro) => (
-                  <tr key={registro.id}>
-                    <td>{registro.estudante}</td>
-                    <td>{registro.modelo}</td>
-                    <td>{registro.turma}</td>
-                    <td>{registro.data}</td>
-                    <td>{registro.horario}</td>
-                  </tr>
-                )) : (
+                {registrosExibidos.length > 0 ? (
+                  registrosExibidos.map((registro) => (
+                    <tr key={registro.id}>
+                      <td>{registro.estudante}</td>
+                      <td>{registro.modelo}</td>
+                      <td>{registro.turma}</td>
+                      <td>{registro.data}</td>
+                      <td>{registro.horario}</td>
+                    </tr>
+                  ))
+                ) : (
                   <tr>
-                    <td colSpan="5" className="empty-table">Nenhum registro encontrado para os filtros selecionados.</td>
+                    <td colSpan="5" className="empty-table">
+                      Nenhum registro encontrado.
+                    </td>
                   </tr>
                 )}
               </tbody>
@@ -138,23 +174,49 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
           </div>
 
           <footer className="table-footer">
-            <span>Mostrando {registrosExibidos.length} de {registrosFiltrados.length} turmas</span>
+            <span>
+              Mostrando {registrosExibidos.length} de {registrosFiltrados.length} registros
+            </span>
+
             <div className="pagination" aria-label="Paginação">
-              <button type="button" className="pagination-arrow" onClick={() => setPagina((atual) => Math.max(1, atual - 1))} disabled={paginaAtual === 1} aria-label="Página anterior">
+              <button
+                type="button"
+                className="pagination-arrow"
+                onClick={() => setPagina((atual) => Math.max(1, atual - 1))}
+                disabled={paginaAtual === 1}
+                aria-label="Página anterior"
+              >
                 <img src={setaEsquerda} alt="" />
               </button>
-              {Array.from({ length: totalPaginas }, (_, indice) => indice + 1).map((numero) => (
+
+              {Array.from(
+                { length: totalPaginas },
+                (_, indice) => indice + 1
+              ).map((numero) => (
                 <button
                   key={numero}
                   type="button"
-                  className={numero === paginaAtual ? 'pagination-current' : 'pagination-number'}
+                  className={
+                    numero === paginaAtual
+                      ? 'pagination-current'
+                      : 'pagination-number'
+                  }
                   onClick={() => setPagina(numero)}
                   aria-current={numero === paginaAtual ? 'page' : undefined}
                 >
                   {numero}
                 </button>
               ))}
-              <button type="button" className="pagination-arrow" onClick={() => setPagina((atual) => Math.min(totalPaginas, atual + 1))} disabled={paginaAtual === totalPaginas} aria-label="Próxima página">
+
+              <button
+                type="button"
+                className="pagination-arrow"
+                onClick={() =>
+                  setPagina((atual) => Math.min(totalPaginas, atual + 1))
+                }
+                disabled={paginaAtual === totalPaginas}
+                aria-label="Próxima página"
+              >
                 <img src={setaDireita} alt="" />
               </button>
             </div>

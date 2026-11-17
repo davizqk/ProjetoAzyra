@@ -73,7 +73,7 @@ export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
               className="sidebar-icon"
             />
 
-            <span>Minhas Turmas</span>
+            <span>Turmas</span>
           </button>
 
           <button

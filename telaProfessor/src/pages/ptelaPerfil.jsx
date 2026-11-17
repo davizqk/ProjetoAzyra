@@ -64,7 +64,7 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
               alt=""
               className="sidebar-icon"
             />
-            <span>Minhas Turmas</span>
+            <span>Turmas</span>
           </button>
 
           {/* HISTÓRICO */}

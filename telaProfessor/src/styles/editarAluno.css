@@ -1,0 +1,231 @@
+/* =========================================
+   TELA EDITAR ALUNO - AZYRA
+   (sidebar e footer vêm de historico-app + turmas-app)
+========================================= */
+
+.editar-app {
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* ÁREA PRINCIPAL */
+
+.editar-app .editar-main {
+  width: calc(100% - 265px);
+  min-height: 100vh;
+  margin-left: 265px;
+  padding: 32px 30px 24px;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* TÍTULO */
+
+.editar-app .editar-header {
+  margin-bottom: 18px;
+}
+
+.editar-app .editar-header h1 {
+  margin: 0 0 2px;
+  color: #4b75a0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.editar-app .editar-header p {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* CARTÃO DO FORMULÁRIO */
+
+.editar-app .editar-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3;
+  border-radius: 12px;
+  background: #f8f8f8;
+  box-sizing: border-box;
+}
+
+.editar-app .editar-card-header {
+  height: 46px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  background: #4b75a0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.editar-app .editar-card-body {
+  padding: 16px 24px 22px;
+}
+
+/* CAMPOS */
+
+.editar-app .editar-campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.editar-app .editar-campo label,
+.editar-app .editar-rotulo {
+  margin-bottom: 5px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.editar-app .editar-campo input[type="text"],
+.editar-app .editar-campo select {
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: #fff;
+  color: #444;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.editar-app .editar-campo input[type="text"]:focus,
+.editar-app .editar-campo select:focus {
+  border-color: #4b75a0;
+  box-shadow: 0 0 0 2px rgba(75, 117, 160, 0.15);
+}
+
+.editar-app .editar-campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%234b75a0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* OPÇÕES DE MARCAR (MODELO DE ENSINO) */
+
+.editar-app .editar-opcoes {
+  display: flex;
+  gap: 12px;
+}
+
+.editar-app .editar-campo .editar-opcao {
+  flex: 1;
+  height: 40px;
+  margin: 0;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: #fff;
+  color: #444;
+  font-size: 13px;
+  font-weight: 500;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.editar-app .editar-opcao input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #4b75a0;
+  cursor: pointer;
+}
+
+.editar-app .editar-campo .editar-opcao.selecionada {
+  border-color: #4b75a0;
+  background: #e8f0f7;
+  color: #315f91;
+}
+
+/* BOTÕES */
+
+.editar-app .editar-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.editar-app .editar-cancelar,
+.editar-app .editar-salvar {
+  height: 40px;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.editar-app .editar-cancelar {
+  width: 130px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  color: #444;
+}
+
+.editar-app .editar-cancelar:hover {
+  background: #f0f0f0;
+}
+
+.editar-app .editar-salvar {
+  width: 170px;
+  border: 1px solid #4b75a0;
+  background: #4b75a0;
+  color: #fff;
+}
+
+.editar-app .editar-salvar:hover {
+  background: #3f6690;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  .editar-app .editar-main {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .editar-app .editar-main {
+    width: calc(100% - 75px);
+    margin-left: 75px;
+    padding: 25px 15px;
+  }
+
+  .editar-app .editar-header h1 {
+    font-size: 24px;
+  }
+
+  .editar-app .editar-opcoes {
+    flex-direction: column;
+  }
+
+  .editar-app .editar-acoes {
+    flex-direction: column;
+  }
+
+  .editar-app .editar-cancelar,
+  .editar-app .editar-salvar {
+    width: 100%;
+  }
+}
