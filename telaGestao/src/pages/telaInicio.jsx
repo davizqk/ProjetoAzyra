@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logo (2).png';
@@ -80,7 +79,7 @@ export default function TelaInicio() {
           <button
             type="button"
             className="menu-item"
-            onClick={() => alert('A tela Turmas ainda não foi criada.')}
+            onClick={() => navigate('/turmas')}
           >
             <img
               src={footerTurmas}

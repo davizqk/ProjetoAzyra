@@ -98,13 +98,13 @@ export default function TelaCadastrarAluno() {
           </button>
 
           <button
-            type="button"
-            className="menu-item-cadastro"
-            onClick={() => alert('A tela Turmas ainda não foi criada.')}
-          >
-            <img src={footerTurmas} alt="" />
-            <span>Turmas</span>
-          </button>
+  type="button"
+  className="menu-item-cadastro"
+  onClick={() => navigate('/turmas')}
+>
+  <img src={footerTurmas} alt="" />
+  <span>Turmas</span>
+</button>   
 
           <button
             type="button"

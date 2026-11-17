@@ -1,0 +1,231 @@
+
+/* ================================
+   TELA EDITAR TURMA
+================================ */
+
+.conteudo.pagina-editar-turma {
+  flex: 1;
+  min-width: 0;
+  padding: 48px 52px;
+  box-sizing: border-box;
+  background: #F5F5F5;
+}
+
+/* MENU LATERAL */
+
+.dashboard .sidebar {
+  width: 248px;
+  min-width: 248px;
+  flex: 0 0 248px;
+  min-height: 100vh;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.cabecalho-editar {
+  margin-bottom: 24px;
+}
+
+.cabecalho-editar h1 {
+  color: #4871A0;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cabecalho-editar p {
+  color: #424242;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* ================================
+   CARD
+================================ */
+
+.card-editar-turma {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* TÍTULO DO CARD */
+
+.titulo-card-editar {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: #4871A0;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ================================
+   FORMULÁRIO
+================================ */
+
+.form-editar-turma {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+/* CAMPOS */
+
+.campo-editar {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+}
+
+.campo-editar label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+}
+
+/* INPUTS E SELECTS */
+
+.campo-editar input,
+.campo-editar select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #D9D9D9;
+  border-radius: 9px;
+  background: #FFFFFF;
+  color: #424242;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-editar input:focus,
+.campo-editar select:focus {
+  border-color: #4871A0;
+  box-shadow: 0 0 0 2px rgba(72, 113, 160, 0.12);
+}
+
+/* ================================
+   HORÁRIOS
+================================ */
+
+.campos-horarios-editar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+.botoes-editar-turma {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.botao-cancelar-editar,
+.botao-salvar-editar {
+  height: 42px;
+  padding: 0 24px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.botao-cancelar-editar {
+  min-width: 140px;
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  color: #555555;
+}
+
+.botao-cancelar-editar:hover {
+  background: #F5F5F5;
+}
+
+.botao-salvar-editar {
+  min-width: 180px;
+  background: #4871A0;
+  border: 1px solid #4871A0;
+  color: #FFFFFF;
+}
+
+.botao-salvar-editar:hover {
+  background: #3B6190;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 900px) {
+  .conteudo.pagina-editar-turma {
+    padding: 32px 25px;
+  }
+
+  .campos-horarios-editar {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 750px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .dashboard .sidebar {
+    width: 100%;
+    min-width: 100%;
+    min-height: auto;
+    flex: none;
+  }
+
+  .conteudo.pagina-editar-turma {
+    width: 100%;
+    padding: 25px 18px;
+  }
+
+  .cabecalho-editar h1 {
+    font-size: 25px;
+  }
+
+  .form-editar-turma {
+    padding: 18px;
+  }
+
+  .campos-horarios-editar {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .botoes-editar-turma {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .botao-cancelar-editar,
+  .botao-salvar-editar {
+    width: 100%;
+  }
+}
