@@ -1,0 +1,270 @@
+/* TELA TURMAS */
+
+/* CONTEÚDO PRINCIPAL */
+.conteudo.pagina-turmas {
+  flex: 1;
+  min-width: 0;
+  padding: 40px 45px;
+  box-sizing: border-box;
+  background: #F5F5F5;
+}
+
+/* CABEÇALHO */
+.cabecalho-turmas {
+  margin-bottom: 35px;
+}
+
+.cabecalho-turmas h1 {
+  font-size: 27px;
+  font-weight: 600;
+  color: #4871A0;
+  margin-bottom: 6px;
+}
+
+.cabecalho-turmas p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #424242;
+}
+
+/* BUSCA E NOVA TURMA */
+.barra-acoes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.campo-busca {
+  flex: 1;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  background: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 9px;
+  color: #424242;
+}
+
+.campo-busca svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+.campo-busca input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #424242;
+}
+
+.campo-busca input::placeholder {
+  color: #888;
+}
+
+.botao-nova-turma {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 9px;
+  background: #4871A0;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.botao-nova-turma:hover {
+  background: #3B6190;
+}
+
+.botao-nova-turma .mais {
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* TABELA */
+.area-tabela {
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.tabela-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabela-turmas {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+.tabela-turmas thead tr {
+  background: #DCEAF5;
+}
+
+.tabela-turmas th {
+  height: 58px;
+  padding: 16px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4871A0;
+  text-align: center;
+}
+
+.tabela-turmas th:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.tabela-turmas td {
+  height: 76px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #424242;
+  text-align: center;
+  border-top: 1px solid #E3E3E3;
+  border-left: 1px solid #E3E3E3;
+}
+
+.tabela-turmas td:first-child {
+  text-align: left;
+  padding-left: 20px;
+  border-left: none;
+}
+
+.tabela-turmas tbody tr:hover {
+  background: #F9FBFD;
+}
+
+.tabela-turmas .sem-resultado {
+  padding: 30px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* AÇÕES */
+.acoes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.botao-acao {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #4871A0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.botao-acao:hover {
+  transform: scale(1.12);
+}
+
+.botao-acao svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* RODAPÉ DA TABELA */
+.rodape-tabela {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid #E3E3E3;
+  font-size: 13px;
+  color: #777;
+}
+
+.paginacao {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.botao-pagina {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #D9D9D9;
+  border-radius: 6px;
+  background: #F5F5F5;
+  color: #424242;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.botao-pagina.ativa {
+  background: #4871A0;
+  border-color: #4871A0;
+  color: white;
+}
+
+/* TABLETS */
+@media (max-width: 1100px) {
+  .conteudo.pagina-turmas {
+    padding: 35px 28px;
+  }
+
+  .tabela-turmas {
+    min-width: 700px;
+  }
+}
+
+/* CELULARES */
+@media (max-width: 750px) {
+  .conteudo.pagina-turmas {
+    width: 100%;
+    padding: 28px 18px;
+  }
+
+  .barra-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .campo-busca {
+    width: 100%;
+  }
+
+  .botao-nova-turma {
+    width: 100%;
+  }
+
+  .rodape-tabela {
+    flex-direction: column;
+    gap: 14px;
+  }
+}

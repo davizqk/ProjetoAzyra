@@ -1,0 +1,232 @@
+/* ================================
+   TELA NOVA TURMA
+================================ */
+
+.conteudo.pagina-nova-turma {
+  flex: 1;
+  min-width: 0;
+  padding: 48px 52px;
+  box-sizing: border-box;
+  background: #F5F5F5;
+}
+
+/* MENU LATERAL */
+.dashboard .sidebar {
+  width: 248px;
+  min-width: 248px;
+  flex: 0 0 248px;
+  min-height: 100vh;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.cabecalho-nova-turma {
+  margin-bottom: 24px;
+}
+
+.cabecalho-nova-turma h1 {
+  color: #4871A0;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cabecalho-nova-turma p {
+  color: #424242;
+  font-size: 15px;
+}
+
+/* ================================
+   CARD
+================================ */
+
+.card-nova-turma {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* TÍTULO AZUL DO CARD */
+
+.titulo-card-nova {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: #4871A0;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ================================
+   FORMULÁRIO
+================================ */
+
+.form-nova-turma {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+/* CAMPOS */
+
+.campo-nova {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+}
+
+.campo-nova label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+}
+
+/* INPUTS E SELECTS */
+
+.campo-nova input,
+.campo-nova select {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #D9D9D9;
+  border-radius: 9px;
+  background: #FFFFFF;
+  color: #424242;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-nova input::placeholder {
+  color: #999999;
+}
+
+.campo-nova input:focus,
+.campo-nova select:focus {
+  border-color: #4871A0;
+  box-shadow: 0 0 0 2px rgba(72, 113, 160, 0.12);
+}
+
+/* ================================
+   HORÁRIOS
+================================ */
+
+.horarios-nova {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+.botoes-nova {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.cancelar-nova,
+.salvar-nova {
+  height: 42px;
+  padding: 0 24px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancelar-nova {
+  min-width: 140px;
+  background: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  color: #555555;
+}
+
+.cancelar-nova:hover {
+  background: #F5F5F5;
+}
+
+.salvar-nova {
+  min-width: 180px;
+  background: #4871A0;
+  border: 1px solid #4871A0;
+  color: #FFFFFF;
+}
+
+.salvar-nova:hover {
+  background: #3B6190;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 900px) {
+  .conteudo.pagina-nova-turma {
+    padding: 32px 25px;
+  }
+
+  .horarios-nova {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 750px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .dashboard .sidebar {
+    width: 100%;
+    min-width: 100%;
+    min-height: auto;
+    flex: none;
+  }
+
+  .conteudo.pagina-nova-turma {
+    width: 100%;
+    padding: 25px 18px;
+  }
+
+  .cabecalho-nova-turma h1 {
+    font-size: 25px;
+  }
+
+  .form-nova-turma {
+    padding: 18px;
+  }
+
+  .horarios-nova {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .botoes-nova {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .cancelar-nova,
+  .salvar-nova {
+    width: 100%;
+  }
+}
