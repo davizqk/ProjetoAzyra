@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Cadastro from "./pages/telaCadastro";
 import Login from "./pages/telaLogin";
+import Turmas from "./pages/telaTurmas"
+import Inicio from "./pages/telaInicio"
 
 function App() {
   return (
@@ -10,6 +12,9 @@ function App() {
         <Route path="/" element={<Navigate to="/cadastro" replace />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
+         {/* <Route path="/turmas" element={<Turmas />} /> */}
+         {/* <Route path="/inicio" element={<Inicio />} /> */}
+
       </Routes>
     </BrowserRouter>
   );
