@@ -1,17 +1,20 @@
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import logoAzyra from "../assets/logo-login.png";
 import "../styles/telaLogin.css";
 
-function Login({ aoEntrar }) {
+function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   function entrar(evento) {
     evento.preventDefault();
-
-    // Abre o perfil para testar as telas.
-    aoEntrar();
+    navigate("/inicio");
   }
 
   return (
@@ -20,9 +23,9 @@ function Login({ aoEntrar }) {
       <div className="detalhe-login detalhe-login-dois"></div>
 
       <div className="cartao-login">
+
         <div className="marca-login">
           <img src={logoAzyra} alt="Logo da Azyra" />
-          
         </div>
 
         <div className="cabecalho-login">
@@ -30,16 +33,17 @@ function Login({ aoEntrar }) {
           <p>Acesse sua conta para acompanhar suas turmas.</p>
         </div>
 
-        <form className="formulario-login" onSubmit={entrar}>
+        <form
+          className="formulario-login"
+          onSubmit={entrar}
+        >
           <div className="campo-login">
             <label htmlFor="email-login">E-mail</label>
 
             <div className="caixa-input-login">
-              
               <input
                 id="email-login"
                 type="email"
-                placeholder=""
                 value={email}
                 onChange={(evento) => setEmail(evento.target.value)}
                 autoComplete="email"
@@ -52,12 +56,9 @@ function Login({ aoEntrar }) {
             <label htmlFor="senha-login">Senha</label>
 
             <div className="caixa-input-login">
-             
-
               <input
                 id="senha-login"
                 type={mostrarSenha ? "text" : "password"}
-                placeholder=""
                 value={senha}
                 onChange={(evento) => setSenha(evento.target.value)}
                 autoComplete="current-password"
@@ -68,7 +69,9 @@ function Login({ aoEntrar }) {
                 className="mostrar-senha"
                 type="button"
                 onClick={() => setMostrarSenha(!mostrarSenha)}
-                aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
+                aria-label={
+                  mostrarSenha ? "Ocultar senha" : "Mostrar senha"
+                }
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -80,21 +83,29 @@ function Login({ aoEntrar }) {
                   <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z" />
                   <circle cx="12" cy="12" r="3" />
 
-                  {mostrarSenha && <path d="M4 4l16 16" />}
+                  {mostrarSenha && (
+                    <path d="M4 4l16 16" />
+                  )}
                 </svg>
               </button>
             </div>
           </div>
 
-          <button className="botao-entrar-login" type="submit">
+          <button
+            className="botao-entrar-login"
+            type="submit"
+          >
             Entrar
           </button>
 
-          <button className="esqueceu-senha" type="button">
+          <button
+            className="esqueceu-senha"
+            type="button"
+          >
             Esqueceu sua senha?
           </button>
-        </form>
 
+        </form>
       </div>
     </main>
   );

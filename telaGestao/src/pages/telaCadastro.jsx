@@ -1,9 +1,16 @@
 
 import "../styles/telaCadastro.css";
 import logoLogin from "../assets/logo-login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Cadastro({ aoCadastrar }) {
+function Cadastro() {
+  const navigate = useNavigate();
+
+  function cadastrar(e) {
+    e.preventDefault();
+    navigate("/inicio");
+  }
+
   return (
     <main className="cadastro-page">
       <section className="cadastro-card">
@@ -22,13 +29,7 @@ function Cadastro({ aoCadastrar }) {
 
         <form
           className="cadastro-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            if (aoCadastrar) {
-              aoCadastrar();
-            }
-          }}
+          onSubmit={cadastrar}
         >
           <div className="cadastro-campo">
             <label htmlFor="nome">Nome completo</label>
