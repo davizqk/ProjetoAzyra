@@ -46,6 +46,31 @@ public sealed class AdminTurmasController(IAdministracaoService admin, ICadastro
     [HttpPut("horarios/{id:int}")]
     public async Task<ActionResult<HorarioTurma>> AtualizarHorario(int id, [FromBody] AtualizarHorarioRequest req, CancellationToken ct) =>
         Ok(await admin.AtualizarHorarioAsync(id, req, ct));
+    [HttpPost("calendario/gerar")]
+    public async Task<ActionResult<object>> GerarCalendario(
+        [FromBody] GerarCalendarioRequest req, CancellationToken ct)
+    {
+        var inseridos = await admin.GerarCalendarioPeriodoAsync(req, ct);
+        return Ok(new { diasInseridos = inseridos });
+    }
+
+    [HttpGet("turmas/{idTurma:int}/excecoes-calendario")]
+    public Task<IReadOnlyList<ExcecaoCalendarioTurma>> ExcecoesCalendario(
+        int idTurma, [FromQuery] DateTime inicio, [FromQuery] DateTime fim, CancellationToken ct) =>
+        admin.ExcecoesTurmaAsync(idTurma, inicio, fim, ct);
+
+    [HttpPut("turmas/{idTurma:int}/excecoes-calendario/{data:datetime}")]
+    public async Task<ActionResult<ExcecaoCalendarioTurma>> DefinirExcecao(
+        int idTurma, DateTime data, [FromBody] ExcecaoCalendarioTurmaRequest req, CancellationToken ct) =>
+        Ok(await admin.DefinirExcecaoTurmaAsync(idTurma, data, req, ct));
+
+    [HttpDelete("turmas/{idTurma:int}/excecoes-calendario/{data:datetime}")]
+    public async Task<IActionResult> ExcluirExcecao(int idTurma, DateTime data, CancellationToken ct)
+    {
+        await admin.ExcluirExcecaoTurmaAsync(idTurma, data, ct);
+        return NoContent();
+    }
+
     [HttpPut("calendario/{data:datetime}")]
     public async Task<IActionResult> AtualizarCalendario(DateTime data, [FromBody] CalendarioRequest req, CancellationToken ct)
     {

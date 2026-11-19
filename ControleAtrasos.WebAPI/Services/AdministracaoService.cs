@@ -128,6 +128,40 @@ public sealed class AdministracaoService(
         await cadastros.SalvarAsync(ct);
         return horario;
     }
+    public async Task<int> GerarCalendarioPeriodoAsync(GerarCalendarioRequest req, CancellationToken ct)
+    {
+        if (req.Inicio == default || req.Fim < req.Inicio ||
+            (req.Fim.Date - req.Inicio.Date).TotalDays > 366 ||
+            req.DiasSemanaLetivos is null || req.DiasSemanaLetivos.Any(x => x is < 1 or > 7))
+            throw Erro("Datas ou dias da semana inválidos (máximo 366 dias).");
+        return await cadastros.GerarCalendarioPeriodoAsync(
+            req.Inicio.Date, req.Fim.Date, req.DiasSemanaLetivos.Distinct().ToArray(), ct);
+    }
+    public async Task<ExcecaoCalendarioTurma> DefinirExcecaoTurmaAsync(
+        int idTurma, DateTime data, ExcecaoCalendarioTurmaRequest req, CancellationToken ct)
+    {
+        if (await cadastros.TurmaPorIdAsync(idTurma, ct) is null)
+            throw Erro("Turma não encontrada.", 404);
+        if (data == default) throw Erro("Data inválida.");
+        return await cadastros.SalvarExcecaoAsync(new ExcecaoCalendarioTurma {
+            IdTurma = idTurma, DataLetiva = data.Date,
+            TemAula = req.TemAula ?? throw Erro("Informe temAula como true ou false."), Motivo = req.Motivo?.Trim()
+        }, ct);
+    }
+    public async Task<IReadOnlyList<ExcecaoCalendarioTurma>> ExcecoesTurmaAsync(
+        int idTurma, DateTime inicio, DateTime fim, CancellationToken ct)
+    {
+        if (await cadastros.TurmaPorIdAsync(idTurma, ct) is null)
+            throw Erro("Turma não encontrada.", 404);
+        if (inicio == default || fim == default || fim < inicio || (fim - inicio).TotalDays > 366)
+            throw Erro("Intervalo inválido (máximo de 366 dias).");
+        return await cadastros.ExcecoesAsync(idTurma, inicio.Date, fim.Date, ct);
+    }
+    public async Task ExcluirExcecaoTurmaAsync(int idTurma, DateTime data, CancellationToken ct)
+    {
+        if (!await cadastros.ExcluirExcecaoAsync(idTurma, data, ct))
+            throw Erro("Exceção não encontrada.", 404);
+    }
     public Task AtualizarDiaLetivoAsync(DateTime data, CalendarioRequest req, CancellationToken ct) =>
         cadastros.SalvarDiaLetivoAsync(new DiaCalendario {
             DataLetiva = data.Date, DiaLetivo = req.DiaLetivo, Descricao = req.Descricao

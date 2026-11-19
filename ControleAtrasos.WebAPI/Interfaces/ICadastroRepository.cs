@@ -17,6 +17,12 @@ public interface ICadastroRepository
     Task<HorarioTurma?> HorarioPorIdAsync(int idHorario, CancellationToken ct);
     Task SalvarAsync(CancellationToken ct);
     Task SalvarDiaLetivoAsync(DiaCalendario dia, CancellationToken ct);
+    Task<int> GerarCalendarioPeriodoAsync(DateTime inicio, DateTime fim,
+        IReadOnlyCollection<int> diasSemanaLetivos, CancellationToken ct);
+    Task<ExcecaoCalendarioTurma> SalvarExcecaoAsync(ExcecaoCalendarioTurma excecao, CancellationToken ct);
+    Task<IReadOnlyList<ExcecaoCalendarioTurma>> ExcecoesAsync(
+        int idTurma, DateTime inicio, DateTime fim, CancellationToken ct);
+    Task<bool> ExcluirExcecaoAsync(int idTurma, DateTime data, CancellationToken ct);
     Task<IReadOnlyList<HorarioTurma>> HorariosAsync(int? idTurma, CancellationToken ct);
     Task<IReadOnlyList<Matricula>> MatriculasAsync(int? idTurma, CancellationToken ct);
 }

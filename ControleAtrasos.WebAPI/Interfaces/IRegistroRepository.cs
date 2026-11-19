@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace ControleAtrasos.Api.Interfaces;
 public interface IRegistroRepository
 {
-    Task<bool> EhLetivoAsync(DateTime data, CancellationToken ct);
+    Task<bool> EhLetivoParaTurmaAsync(int idTurma, DateTime data, CancellationToken ct);
     Task<HorarioTurma?> HorarioAsync(int idTurma, DateTime data, int diaSemana, CancellationToken ct);
     Task<bool> JaExisteAtrasoAsync(int idMatricula, DateTime data, CancellationToken ct);
     Task CriarSolicitacaoAsync(SolicitacaoRegistro solicitacao, CancellationToken ct);

@@ -54,6 +54,15 @@ CREATE TABLE dbo.CalendarioLetivo (
  DataLetiva date PRIMARY KEY, DiaLetivo bit NOT NULL,
  Descricao nvarchar(255) NULL
 );
+-- Excecoes da turma substituem a data letiva geral para uma data especifica.
+-- Aula extra requer horario de turma valido para a data, inclusive reposicao.
+CREATE TABLE dbo.ExcecoesCalendarioTurma (
+ IdTurma int NOT NULL REFERENCES dbo.Turmas(IdTurma),
+ DataLetiva date NOT NULL,
+ TemAula bit NOT NULL,
+ Motivo nvarchar(255) NULL,
+ CONSTRAINT PK_ExcecoesCalendarioTurma PRIMARY KEY (IdTurma, DataLetiva)
+);
 CREATE TABLE dbo.SolicitacoesRegistro (
  IdSolicitacao int IDENTITY PRIMARY KEY,
  TokenHash varbinary(32) NOT NULL UNIQUE,
@@ -90,7 +99,7 @@ CREATE TABLE dbo.AlertasRecorrencia (
 );
 INSERT INTO dbo.Papeis(Nome) VALUES ('PROFESSOR'), ('AQV'), ('COORDENACAO'), ('ADMIN');
 INSERT INTO dbo.ModelosEnsino(Nome) VALUES ('Comunidade'), ('SEDUC');
-INSERT INTO dbo.Periodos(Nome) VALUES ('Manha'), ('Tarde'), ('Noite');
+INSERT INTO dbo.Periodos(Nome) VALUES ('Manha'), ('Tarde'), ('Noite'), ('Integral');
 INSERT INTO dbo.RegrasRecorrencia(IdModelo, TipoContagem, QuantidadeConsecutiva, ConsiderarDiasLetivos, Ativa)
 SELECT IdModelo, 'DIAS_LETIVOS_CONSECUTIVOS', CASE WHEN Nome = 'Comunidade' THEN 3 ELSE 2 END, 1, 1
 FROM dbo.ModelosEnsino;

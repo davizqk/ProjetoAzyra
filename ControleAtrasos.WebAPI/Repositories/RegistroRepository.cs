@@ -7,8 +7,17 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace ControleAtrasos.Api.Repositories;
 public sealed class RegistroRepository(AppDbContext db) : IRegistroRepository
 {
-    public Task<bool> EhLetivoAsync(DateTime data, CancellationToken ct) =>
-        db.CalendarioLetivo.AnyAsync(x => x.DataLetiva == data.Date && x.DiaLetivo, ct);
+    // Excecao da turma tem prioridade sobre o calendario geral.
+    // Um dia valido tambem precisa de horario vigente (ver RegistroService).
+    public async Task<bool> EhLetivoParaTurmaAsync(int idTurma, DateTime data, CancellationToken ct)
+    {
+        bool? excecao = await db.ExcecoesCalendarioTurma
+            .Where(x => x.IdTurma == idTurma && x.DataLetiva == data.Date)
+            .Select(x => (bool?)x.TemAula).SingleOrDefaultAsync(ct);
+        if (excecao.HasValue) return excecao.Value;
+        return await db.CalendarioLetivo
+            .AnyAsync(x => x.DataLetiva == data.Date && x.DiaLetivo, ct);
+    }
 
     public Task<HorarioTurma?> HorarioAsync(int idTurma, DateTime data, int diaSemana, CancellationToken ct) =>
         db.HorariosTurmas.Where(x => x.IdTurma == idTurma && x.DiaSemana == diaSemana && x.Ativo &&
