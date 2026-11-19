@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logoAzyra from "../assets/logo-footer.png";
-import "../styles/Login.css";
+import "../styles/telaLogin.css";
 
 function Login({ aoEntrar }) {
   const [email, setEmail] = useState("");

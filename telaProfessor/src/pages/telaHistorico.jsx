@@ -1,6 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
-import '../styles/ptelaHistorico.css';
+import '../styles/telaHistorico.css';
 
 import logo from '../assets/logo-footer.png';
 import iconeTurmas from '../assets/minhasturmas-footer.png';

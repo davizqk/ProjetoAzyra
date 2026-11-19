@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import Cadastro from "./pages/cadastro.jsx";
-import Login from "./pages/Login.jsx";
-import PTelaMinhasTurmas from "./pages/ptelaMinhasTurmas.jsx";
-import PtelaHistorico from "./pages/ptelaHistorico.jsx";
-import PtelaPerfil from "./pages/ptelaPerfil.jsx";
-import EditarPerfil from "./pages/ptelaEditarPerfil.jsx";
-import PtelaAlunos from "./pages/ptelaAlunos.jsx";
-import EditarAluno from "./pages/editarAluno.jsx";
+import Cadastro from "./pages/telaCadastro.jsx";
+import Login from "./pages/telaLogin.jsx";
+import PTelaMinhasTurmas from "./pages/telaMinhasTurmas.jsx";
+import PtelaHistorico from "./pages/telaHistorico.jsx";
+import PtelaPerfil from "./pages/telaPerfil.jsx";
+import EditarPerfil from "./pages/telaEditarPerfil.jsx";
+import PtelaAlunos from "./pages/telaAlunos.jsx";
+import EditarAluno from "./pages/telaEditarAluno.jsx";
 
 const ROTAS_VALIDAS = [
   "cadastro",

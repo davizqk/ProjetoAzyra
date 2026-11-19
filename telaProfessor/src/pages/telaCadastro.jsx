@@ -1,5 +1,5 @@
 
-import "../styles/cadastro.css";
+import "../styles/telaCadastro.css";
 import logoFooter from "../assets/logo-footer.png";
 
 function Cadastro({ aoCadastrar, aoEntrar }) {

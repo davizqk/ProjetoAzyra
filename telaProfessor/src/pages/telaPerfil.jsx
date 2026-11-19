@@ -1,6 +1,6 @@
 
-import "../styles/ptelaHistorico.css";
-import "../styles/ptelaPerfil.css";
+import "../styles/telaHistorico.css";
+import "../styles/telaPerfil.css";
 
 import logo from "../assets/logo-footer.png";
 import iconeHistorico from "../assets/historico-footer.png";

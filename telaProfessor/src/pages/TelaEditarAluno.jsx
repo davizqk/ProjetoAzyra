@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/ptelaMinhasTurmas.css";
-import "../styles/editarAluno.css";
+import "../styles/telaMinhasTurmas.css";
+import "../styles/telaEditarAluno.css";
 
 import logo from "../assets/logo-footer.png";
 import iconeTurmas from "../assets/minhasturmas-footer.png";

@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 
-import "../styles/ptelaHistorico.css";
-import "../styles/ptelaPerfil.css";
-import "../styles/ptelaEditarPerfil.css";
+import "../styles/telaHistorico.css";
+import "../styles/telaPerfil.css";
+import "../styles/telaEditarPerfil.css";
 
 import logo from "../assets/logo-footer.png";
 import iconeHistorico from "../assets/historico-footer.png";
