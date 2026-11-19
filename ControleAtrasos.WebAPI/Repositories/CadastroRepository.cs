@@ -43,6 +43,50 @@ public sealed class CadastroRepository(AppDbContext db) : ICadastroRepository
         else { exists.DiaLetivo = dia.DiaLetivo; exists.Descricao = dia.Descricao; }
         await db.SaveChangesAsync(ct);
     }
+    public async Task<int> GerarCalendarioPeriodoAsync(DateTime inicio, DateTime fim,
+        IReadOnlyCollection<int> diasSemanaLetivos, CancellationToken ct)
+    {
+        var existentes = await db.CalendarioLetivo.AsNoTracking()
+            .Where(d => d.DataLetiva >= inicio.Date && d.DataLetiva <= fim.Date)
+            .Select(d => d.DataLetiva).ToListAsync(ct);
+        var datasCadastradas = existentes.Select(d => d.Date).ToHashSet();
+        var novos = new List<DiaCalendario>();
+        for (var dia = inicio.Date; dia <= fim.Date; dia = dia.AddDays(1))
+        {
+            if (datasCadastradas.Contains(dia)) continue; // nao sobrescreve feriados existentes
+            novos.Add(new DiaCalendario {
+                DataLetiva = dia,
+                DiaLetivo = diasSemanaLetivos.Contains(ControleAtrasos.Api.Services.RegrasDiaAula.DiaSemana(dia)),
+                Descricao = "Calendário gerado; revisar feriados e recessos"
+            });
+        }
+        db.CalendarioLetivo.AddRange(novos);
+        await db.SaveChangesAsync(ct);
+        return novos.Count;
+    }
+    public async Task<ExcecaoCalendarioTurma> SalvarExcecaoAsync(
+        ExcecaoCalendarioTurma excecao, CancellationToken ct)
+    {
+        var atual = await db.ExcecoesCalendarioTurma.FindAsync(
+            [excecao.IdTurma, excecao.DataLetiva], ct);
+        if (atual is null) db.ExcecoesCalendarioTurma.Add(excecao);
+        else { atual.TemAula = excecao.TemAula; atual.Motivo = excecao.Motivo; }
+        await db.SaveChangesAsync(ct);
+        return atual ?? excecao;
+    }
+    public async Task<IReadOnlyList<ExcecaoCalendarioTurma>> ExcecoesAsync(
+        int idTurma, DateTime inicio, DateTime fim, CancellationToken ct) =>
+        await db.ExcecoesCalendarioTurma.AsNoTracking()
+            .Where(x => x.IdTurma == idTurma && x.DataLetiva >= inicio.Date && x.DataLetiva <= fim.Date)
+            .OrderBy(x => x.DataLetiva).ToListAsync(ct);
+    public async Task<bool> ExcluirExcecaoAsync(int idTurma, DateTime data, CancellationToken ct)
+    {
+        var excecao = await db.ExcecoesCalendarioTurma.FindAsync([idTurma, data.Date], ct);
+        if (excecao is null) return false;
+        db.ExcecoesCalendarioTurma.Remove(excecao);
+        await db.SaveChangesAsync(ct);
+        return true;
+    }
     public async Task<IReadOnlyList<HorarioTurma>> HorariosAsync(int? idTurma, CancellationToken ct) =>
         await db.HorariosTurmas.AsNoTracking().Where(x => idTurma == null || x.IdTurma == idTurma)
             .OrderBy(x => x.IdTurma).ThenBy(x => x.DiaSemana).ToListAsync(ct);

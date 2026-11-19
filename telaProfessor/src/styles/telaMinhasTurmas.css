@@ -1,0 +1,357 @@
+
+/* ========================================
+   AJUSTE DE TAMANHO - TELA MINHAS TURMAS
+======================================== */
+
+/* SIDEBAR */
+.turmas-app .sidebar {
+  width: 265px;
+  padding: 22px 14px 0;
+}
+
+.turmas-app .sidebar-brand {
+  gap: 13px;
+  margin-bottom: 42px;
+  padding-left: 8px;
+}
+
+.turmas-app .sidebar-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.turmas-app .sidebar-brand span {
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.turmas-app .sidebar-nav {
+  gap: 14px;
+}
+
+.turmas-app .sidebar-link {
+  min-height: 43px;
+  padding: 10px 12px;
+  gap: 12px;
+  border-radius: 9px;
+}
+
+.turmas-app .sidebar-icon {
+  width: 23px;
+  height: 23px;
+}
+
+.turmas-app .sidebar-link span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.turmas-app .sidebar-link.active span {
+  font-weight: 600;
+}
+
+/* PERFIL DO COORDENADOR - PRESERVADO */
+.turmas-app .sidebar-footer {
+  min-height: 65px;
+  gap: 12px;
+  padding: 12px 10px;
+}
+
+.turmas-app .sidebar-footer-avatar {
+  width: 38px;
+  height: 38px;
+}
+
+.turmas-app .sidebar-footer-text strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.turmas-app .sidebar-footer-text span {
+  font-size: 11px;
+}
+
+/* ÁREA PRINCIPAL */
+.turmas-app .turmas-main {
+  width: calc(100% - 265px);
+  margin-left: 265px;
+  padding: 38px 30px;
+  background: #f5f5f5;
+}
+
+/* TÍTULO */
+.turmas-app .page-header {
+  margin-bottom: 25px;
+}
+
+.turmas-app .page-heading h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #4b75a0;
+  margin-bottom: 4px;
+}
+
+.turmas-app .page-heading p {
+  font-size: 17px;
+  color: #555;
+  font-weight: 400;
+}
+
+/* PESQUISA */
+.turmas-app .turmas-search-section {
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.turmas-app .turmas-search-box {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: #f8f8f8;
+}
+
+.turmas-app .turmas-search-box img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.turmas-app .turmas-search-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #26384a;
+}
+
+/* CARTÃO DA TABELA */
+.turmas-app .turmas-table-card {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3 !important;
+  border-radius: 12px !important;
+  background: #f8f8f8 !important;
+}
+
+/* TABELA */
+.turmas-app .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.turmas-app .turmas-table {
+  display: table !important;
+  width: 100% !important;
+  min-width: 650px;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 0 !important;
+  background: #f8f8f8 !important;
+}
+
+/* PROPORÇÃO DAS COLUNAS */
+.turmas-app .turmas-table th:nth-child(1),
+.turmas-app .turmas-table td:nth-child(1) {
+  width: 27% !important;
+}
+
+.turmas-app .turmas-table th:nth-child(2),
+.turmas-app .turmas-table td:nth-child(2) {
+  width: 19% !important;
+}
+
+.turmas-app .turmas-table th:nth-child(3),
+.turmas-app .turmas-table td:nth-child(3) {
+  width: 18% !important;
+}
+
+.turmas-app .turmas-table th:nth-child(4),
+.turmas-app .turmas-table td:nth-child(4) {
+  width: 18% !important;
+}
+
+.turmas-app .turmas-table th:nth-child(5),
+.turmas-app .turmas-table td:nth-child(5) {
+  width: 18% !important;
+}
+
+/* CABEÇALHO AZUL */
+.turmas-app .turmas-table thead {
+  display: table-header-group !important;
+  background: #dfedf3 !important;
+}
+
+.turmas-app .turmas-table thead tr {
+  background: #dfedf3 !important;
+}
+
+.turmas-app .turmas-table th {
+  height: 48px !important;
+  padding: 12px 8px !important;
+  background: #dfedf3 !important;
+  color: #4b75a0 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  white-space: nowrap;
+  border: none !important;
+}
+
+/* CORPO DA TABELA */
+.turmas-app .turmas-table tbody {
+  display: table-row-group !important;
+}
+
+.turmas-app .turmas-table tbody tr {
+  display: table-row !important;
+  height: 44px !important;
+  background: #f8f8f8 !important;
+  border-bottom: 1px solid #dedede !important;
+}
+
+.turmas-app .turmas-table tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+.turmas-app .turmas-table td {
+  height: 44px !important;
+  padding: 10px 8px !important;
+  background: transparent !important;
+  color: #26384a !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border: none !important;
+}
+
+/* DIVISÓRIAS VERTICAIS ENTRE AS COLUNAS */
+.turmas-app .turmas-table tbody td:not(:last-child) {
+  border-right: 1px solid #dedede !important;
+}
+
+/* HOVER DAS LINHAS */
+.turmas-app .turmas-table tbody tr:hover {
+  background: #f0f5f8 !important;
+}
+
+/* BOTÃO DE VISUALIZAR */
+.turmas-app .visualizar-turma {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 30px !important;
+  padding: 5px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.turmas-app .visualizar-turma:hover {
+  background: #e3edf5 !important;
+}
+
+.turmas-app .visualizar-turma img {
+  width: 19px !important;
+  height: 19px !important;
+  object-fit: contain;
+}
+
+/* MENSAGEM DE TABELA VAZIA */
+.turmas-app .turmas-table .empty-table {
+  height: 65px !important;
+  text-align: center !important;
+  color: #777 !important;
+}
+
+/* RODAPÉ DA TABELA */
+.turmas-app .turmas-table-card > .table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 6px 12px;
+  border-top: 1px solid #dedede;
+  background: #f8f8f8;
+}
+
+.turmas-app .turmas-table-card > .table-footer > span {
+  font-size: 11px;
+  font-weight: 500;
+  color: #777;
+}
+
+/* PAGINAÇÃO */
+.turmas-app .pagination {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.turmas-app .pagination-arrow,
+.turmas-app .pagination-current,
+.turmas-app .pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  border: 1px solid #d7dce0;
+  border-radius: 5px;
+  background: #f8f8f8;
+  color: #315f91;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+}
+
+.turmas-app .pagination-current {
+  background: #4b75a0;
+  border-color: #4b75a0;
+  color: white;
+  font-weight: 700;
+}
+
+.turmas-app .pagination-arrow img {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+}
+
+.turmas-app .pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* FOOTER DO COORDENADOR - NÃO ALTERAR */
+.sidebar .sidebar-footer {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar .sidebar-footer:focus,
+.sidebar .sidebar-footer:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+

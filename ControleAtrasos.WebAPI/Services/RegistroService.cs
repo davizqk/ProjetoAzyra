@@ -8,7 +8,7 @@ public sealed class RegistroService(
     IAlunoRepository alunos, IRegistroRepository registros, ISegurancaService seguranca,
     IRecorrenciaService recorrencia) : IRegistroService
 {
-    private static int DiaSemana(DateTime data) => ((int)data.DayOfWeek + 6) % 7 + 1;
+    private static int DiaSemana(DateTime data) => RegrasDiaAula.DiaSemana(data);
     private static void VerificarHorario(HorarioTurma horario, DateTime agora)
     {
         if (agora.TimeOfDay < horario.HorarioEntrada.Add(TimeSpan.FromMinutes(horario.ToleranciaMinutos)))
@@ -23,7 +23,8 @@ public sealed class RegistroService(
         var hoje = DateTime.Now.Date;
         var matricula = await alunos.MatriculaAtivaAsync(aluno.IdAluno, hoje, ct);
         if (matricula is null) throw new RegraNegocioException(400, "Não existe matrícula ativa.");
-        if (!await registros.EhLetivoAsync(hoje, ct)) throw new RegraNegocioException(400, "Data fora do calendário letivo.");
+        if (!await registros.EhLetivoParaTurmaAsync(matricula.IdTurma, hoje, ct))
+            throw new RegraNegocioException(400, "Esta turma não tem aula hoje (calendário e exceções).");
         var horario = await registros.HorarioAsync(matricula.IdTurma, hoje, DiaSemana(hoje), ct);
         if (horario is null) throw new RegraNegocioException(400, "Horário de entrada não cadastrado.");
         var agora = DateTime.Now;
@@ -59,8 +60,8 @@ public sealed class RegistroService(
             horario.DiaSemana != DiaSemana(hoje) || horario.VigenciaInicio > hoje ||
             horario.VigenciaFim < hoje)
             throw new RegraNegocioException(400, "Matrícula ou horário não está mais válido.");
-        if (!await registros.EhLetivoAsync(hoje, ct))
-            throw new RegraNegocioException(400, "Hoje não é dia letivo.");
+        if (!await registros.EhLetivoParaTurmaAsync(matricula.IdTurma, hoje, ct))
+            throw new RegraNegocioException(400, "Esta turma não tem aula hoje (calendário e exceções).");
         VerificarHorario(horario, agora);
         if (await registros.JaExisteAtrasoAsync(matricula.IdMatricula, hoje, ct))
             throw new RegraNegocioException(409, "Atraso já registrado nesta data.");

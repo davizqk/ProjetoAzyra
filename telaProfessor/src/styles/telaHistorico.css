@@ -1,0 +1,680 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.historico-app {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  color: #183451;
+}
+
+/* SIDEBAR - MANTIDA */
+.historico-app .sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 266px;
+  height: 100vh;
+  padding: 25px 17px 0;
+  color: #fff;
+  background: #4b75a0;
+}
+
+.historico-app .sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  margin-bottom: 40px;
+  padding-left: 7px;
+}
+
+.historico-app .sidebar-logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+
+.historico-app .sidebar-brand span {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.historico-app .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.historico-app .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  min-height: 49px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.historico-app .sidebar-link:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.historico-app .sidebar-link.active {
+  color: #315f91;
+  background: #e4edf5;
+}
+
+.historico-app .sidebar-icon {
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.historico-app .sidebar-icon-turmas {
+  filter: brightness(0) invert(1);
+}
+
+.historico-app .sidebar-link span {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* FOOTER - NÃO ALTERAR */
+.historico-app .sidebar .sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 68px;
+  margin-top: auto;
+  padding: 14px 9px;
+  background: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.historico-app .sidebar .sidebar-footer:focus,
+.historico-app .sidebar .sidebar-footer:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.historico-app .sidebar-footer-avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.historico-app .sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.historico-app .sidebar-footer-text strong {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.historico-app .sidebar-footer-text span {
+  color: #fff;
+  font-size: 12px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.historico-app .historico-main {
+  width: calc(100% - 266px);
+  min-height: 100vh;
+  margin-left: 266px;
+  padding: 54px 44px;
+  overflow-x: hidden;
+}
+
+/* TÍTULO - UM POUCO MAIOR */
+.historico-app .page-header {
+  width: 100%;
+  margin-bottom: 27px;
+}
+
+.historico-app .page-heading h1 {
+  margin: 0 0 7px;
+  color: #4b75a0;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.historico-app .page-heading p {
+  margin: 0;
+  color: #555;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* PESQUISA */
+.historico-app .historico-filters {
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+.historico-app .history-search-box {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  height: 47px;
+  padding: 0 15px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  background: #f7f7f7;
+}
+
+.historico-app .history-search-box:focus-within {
+  border-color: #4b75a0;
+}
+
+.historico-app .history-search-box img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.historico-app .history-search-box input {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #26384a;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.historico-app .history-search-box input::placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+/* CARTÃO DA TABELA */
+.historico-app .history-table-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3;
+  border-radius: 13px;
+  background: #f7f7f7;
+}
+
+.historico-app .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.historico-app .historico-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+}
+
+/* CABEÇALHO DA TABELA */
+.historico-app .historico-table thead {
+  background: #dfedf3;
+}
+
+.historico-app .historico-table th {
+  height: 48px;
+  padding: 13px 15px;
+  color: #4b75a0;
+  background: #dfedf3;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* LARGURA DAS COLUNAS */
+.historico-app .historico-table th:nth-child(1),
+.historico-app .historico-table td:nth-child(1) {
+  width: 22%;
+}
+
+.historico-app .historico-table th:nth-child(2),
+.historico-app .historico-table td:nth-child(2) {
+  width: 20%;
+}
+
+.historico-app .historico-table th:nth-child(3),
+.historico-app .historico-table td:nth-child(3) {
+  width: 22%;
+}
+
+.historico-app .historico-table th:nth-child(4),
+.historico-app .historico-table td:nth-child(4) {
+  width: 16%;
+}
+
+.historico-app .historico-table th:nth-child(5),
+.historico-app .historico-table td:nth-child(5) {
+  width: 20%;
+}
+
+/* LINHAS DA TABELA */
+.historico-app .historico-table tbody tr {
+  height: 46px;
+  border-bottom: 1px solid #dedede;
+}
+
+.historico-app .historico-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.historico-app .historico-table td {
+  height: 46px;
+  padding: 11px 13px;
+  color: #444;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #dedede;
+}
+
+.historico-app .historico-table td:last-child {
+  border-right: none;
+}
+
+.historico-app .historico-table tbody tr:hover {
+  background: #f0f5f8;
+}
+
+.historico-app .empty-table {
+  height: 65px;
+  padding: 20px;
+  text-align: center;
+  color: #777;
+}
+
+/* RODAPÉ DA TABELA */
+.historico-app .table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 43px;
+  padding: 7px 15px;
+  border-top: 1px solid #dedede;
+  background: #f7f7f7;
+}
+
+.historico-app .table-footer > span {
+  color: #777;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* PAGINAÇÃO */
+.historico-app .pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.historico-app .pagination-arrow,
+.historico-app .pagination-number,
+.historico-app .pagination-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  border: 1px solid #d7dce0;
+  border-radius: 4px;
+  background: #f7f7f7;
+  color: #315f91;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.historico-app .pagination-current {
+  border-color: #4b75a0;
+  background: #4b75a0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.historico-app .pagination-arrow img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.historico-app .pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+  .historico-app .sidebar {
+    width: 210px;
+  }
+
+  .historico-app .historico-main {
+    width: calc(100% - 210px);
+    margin-left: 210px;
+    padding: 38px 25px;
+  }
+
+  .historico-app .page-heading h1 {
+    font-size: 32px;
+  }
+
+  .historico-app .historico-table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .historico-app {
+    min-height: 100vh;
+    overflow: auto;
+  }
+
+  .historico-app .sidebar {
+    width: 75px;
+    padding: 20px 9px;
+  }
+
+  .historico-app .sidebar-brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .historico-app .sidebar-brand span,
+  .historico-app .sidebar-link span,
+  .historico-app .sidebar-footer-text {
+    display: none;
+  }
+
+  .historico-app .sidebar-link {
+    justify-content: center;
+    padding: 10px 5px;
+  }
+
+  .historico-app .sidebar-footer {
+    justify-content: center;
+    padding: 10px 0 !important;
+  }
+
+  .historico-app .historico-main {
+    width: calc(100% - 75px);
+    margin-left: 75px;
+    padding: 28px 15px;
+  }
+
+  .historico-app .page-heading h1 {
+    font-size: 27px;
+  }
+
+  .historico-app .page-heading p {
+    font-size: 14px;
+  }
+}
+
+/* AJUSTE DO CONTEÚDO DA TELA HISTÓRICO */
+/* Sidebar e footer permanecem intactos */
+
+.historico-app .historico-main {
+  padding: 42px 36px;
+  width: calc(100% - 266px);
+  margin-left: 266px;
+}
+
+/* TÍTULO */
+.historico-app .page-header {
+  margin-bottom: 22px;
+}
+
+.historico-app .page-heading h1 {
+  font-size: 32px;
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.historico-app .page-heading p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* CAMPO DE PESQUISA */
+.historico-app .historico-filters {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.historico-app .history-search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 9px;
+  background: #f7f7f7;
+}
+
+.historico-app .history-search-box img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.historico-app .history-search-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+/* TABELA */
+.historico-app .history-table-card {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d9dfe3;
+  border-radius: 12px;
+  background: #f7f7f7;
+}
+
+.historico-app .table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.historico-app .historico-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.historico-app .historico-table thead {
+  background: #dfedf3;
+}
+
+.historico-app .historico-table th {
+  height: 43px;
+  padding: 10px 12px;
+  background: #dfedf3;
+  color: #4b75a0;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.historico-app .historico-table td {
+  height: 39px;
+  padding: 9px 12px;
+  color: #444;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+  border-right: 1px solid #dedede;
+}
+
+.historico-app .historico-table th:first-child,
+.historico-app .historico-table td:first-child {
+  width: 50%;
+  text-align: left;
+  padding-left: 18px;
+}
+
+.historico-app .historico-table th:nth-child(2),
+.historico-app .historico-table td:nth-child(2) {
+  width: 15%;
+}
+
+.historico-app .historico-table th:nth-child(3),
+.historico-app .historico-table td:nth-child(3) {
+  width: 15%;
+}
+
+.historico-app .historico-table th:nth-child(4),
+.historico-app .historico-table td:nth-child(4) {
+  width: 20%;
+}
+
+/* RODAPÉ DA TABELA E PAGINAÇÃO */
+.historico-app .table-footer {
+  min-height: 38px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dedede;
+}
+
+.historico-app .table-footer > span {
+  font-size: 10px;
+  color: #777;
+}
+
+.historico-app .pagination {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.historico-app .pagination-arrow,
+.historico-app .pagination-number,
+.historico-app .pagination-current {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #d7dce0;
+  border-radius: 4px;
+  background: #f7f7f7;
+  color: #315f91;
+  font-size: 11px;
+}
+
+.historico-app .pagination-current {
+  background: #4b75a0;
+  border-color: #4b75a0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.historico-app .pagination-arrow img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+/* ==========================================
+   AJUSTE FINAL - TABELA DO HISTÓRICO
+   Texto centralizado e em negrito
+========================================== */
+
+/* Cabeçalho */
+.historico-app .history-table-card .historico-table thead th {
+  text-align: center !important;
+  font-weight: 700 !important;
+  color: #4b75a0 !important;
+  background: #dfedf3 !important;
+}
+
+/* Informações dos alunos */
+.historico-app .history-table-card .historico-table tbody td {
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #26384a !important;
+  padding: 10px 8px !important;
+}
+
+/* Divisórias verticais */
+.historico-app .history-table-card .historico-table th,
+.historico-app .history-table-card .historico-table td {
+  border-right: 1px solid #dedede !important;
+}
+
+/* Remove a divisória da última coluna */
+.historico-app .history-table-card .historico-table th:last-child,
+.historico-app .history-table-card .historico-table td:last-child {
+  border-right: none !important;
+}
+
+/* Divisórias horizontais entre os registros */
+.historico-app .history-table-card .historico-table tbody tr {
+  border-bottom: 1px solid #dedede !important;
+}
+
+/* Mantém a última linha sem borda extra */
+.historico-app .history-table-card .historico-table tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+/* Coluna Estudante alinhada à esquerda */
+.historico-app .history-table-card .historico-table th:first-child,
+.historico-app .history-table-card .historico-table td:first-child {
+  text-align: left !important;
+  padding-left: 20px !important;
+}

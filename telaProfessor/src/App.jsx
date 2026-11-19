@@ -1,13 +1,14 @@
-
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import Cadastro from "./pages/cadastro.jsx";
-import Login from "./pages/Login.jsx";
-import PTelaMinhasTurmas from "./pages/ptelaMinhasTurmas.jsx";
-import PtelaHistorico from "./pages/ptelaHistorico.jsx";
-import PtelaPerfil from "./pages/ptelaPerfil.jsx";
-import EditarPerfil from "./pages/ptelaEditarPerfil.jsx";
+import Cadastro from "./pages/telaCadastro.jsx";
+import Login from "./pages/telaLogin.jsx";
+import PTelaMinhasTurmas from "./pages/telaMinhasTurmas.jsx";
+import PtelaHistorico from "./pages/telaHistorico.jsx";
+import PtelaPerfil from "./pages/telaPerfil.jsx";
+import EditarPerfil from "./pages/telaEditarPerfil.jsx";
+import PtelaAlunos from "./pages/telaAlunos.jsx";
+import EditarAluno from "./pages/telaEditarAluno.jsx";
 
 const ROTAS_VALIDAS = [
   "cadastro",
@@ -16,16 +17,20 @@ const ROTAS_VALIDAS = [
   "historico",
   "perfil",
   "editar-perfil",
+  "alunos",
+  "editar-aluno",
 ];
 
 function lerRota() {
   const rota = window.location.hash.replace("#", "");
-
   return ROTAS_VALIDAS.includes(rota) ? rota : "cadastro";
 }
 
 export default function App() {
   const [telaAtual, setTelaAtual] = useState(lerRota);
+
+  const [turmaSelecionada, setTurmaSelecionada] = useState(null);
+  const [alunoSelecionado, setAlunoSelecionado] = useState(null);
 
   const [usuario, setUsuario] = useState({
     nome: "Jucelino Pinheiro",
@@ -46,8 +51,16 @@ export default function App() {
     };
   }, []);
 
-  function navegarPara(rota) {
+  function navegarPara(rota, dados = null) {
     if (!ROTAS_VALIDAS.includes(rota)) return;
+
+    if (rota === "alunos" && dados) {
+      setTurmaSelecionada(dados);
+    }
+
+    if (rota === "editar-aluno" && dados) {
+      setAlunoSelecionado(dados);
+    }
 
     if (window.location.hash !== `#${rota}`) {
       window.location.hash = rota;
@@ -78,6 +91,11 @@ export default function App() {
     navegarPara("perfil");
   }
 
+  function salvarAluno(dados) {
+    setAlunoSelecionado(dados);
+    navegarPara("alunos");
+  }
+
   let conteudo;
 
   switch (telaAtual) {
@@ -97,6 +115,27 @@ export default function App() {
     case "minhas-turmas":
       conteudo = (
         <PTelaMinhasTurmas
+          aoNavegar={navegarPara}
+          telaAtual={telaAtual}
+        />
+      );
+      break;
+
+    case "alunos":
+      conteudo = (
+        <PtelaAlunos
+          turma={turmaSelecionada}
+          aoNavegar={navegarPara}
+          telaAtual={telaAtual}
+        />
+      );
+      break;
+
+    case "editar-aluno":
+      conteudo = (
+        <EditarAluno
+          aluno={alunoSelecionado}
+          aoSalvar={salvarAluno}
           aoNavegar={navegarPara}
           telaAtual={telaAtual}
         />

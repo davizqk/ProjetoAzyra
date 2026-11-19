@@ -68,6 +68,18 @@ public sealed class AtualizarHorarioRequest
     [Range(0, 120)] public int ToleranciaMinutos { get; set; }
     public bool Ativo { get; set; }
 }
+public sealed class GerarCalendarioRequest
+{
+    public DateTime Inicio { get; set; }
+    public DateTime Fim { get; set; }
+    // Segunda-feira = 1 ... domingo = 7; a excecao de turma pode alterar um dia.
+    public int[] DiasSemanaLetivos { get; set; } = [1, 2, 3, 4, 5];
+}
+public sealed class ExcecaoCalendarioTurmaRequest
+{
+    [Required] public bool? TemAula { get; set; }
+    [MaxLength(255)] public string? Motivo { get; set; }
+}
 public sealed class CalendarioRequest
 {
     public bool DiaLetivo { get; set; }

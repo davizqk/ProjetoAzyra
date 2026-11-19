@@ -17,6 +17,7 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
     public DbSet<ProfessorTurma> ProfessorTurmas => Set<ProfessorTurma>();
     public DbSet<HorarioTurma> HorariosTurmas => Set<HorarioTurma>();
     public DbSet<DiaCalendario> CalendarioLetivo => Set<DiaCalendario>();
+    public DbSet<ExcecaoCalendarioTurma> ExcecoesCalendarioTurma => Set<ExcecaoCalendarioTurma>();
     public DbSet<SolicitacaoRegistro> SolicitacoesRegistro => Set<SolicitacaoRegistro>();
     public DbSet<RegistroAtraso> RegistrosAtraso => Set<RegistroAtraso>();
     public DbSet<RegraRecorrencia> RegrasRecorrencia => Set<RegraRecorrencia>();
@@ -47,6 +48,10 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
         m.Entity<HorarioTurma>().Property(x => x.VigenciaFim).HasColumnType("date");
         m.Entity<DiaCalendario>().ToTable("CalendarioLetivo").HasKey(x => x.DataLetiva);
         m.Entity<DiaCalendario>().Property(x => x.DataLetiva).HasColumnType("date");
+        m.Entity<ExcecaoCalendarioTurma>().ToTable("ExcecoesCalendarioTurma")
+            .HasKey(x => new { x.IdTurma, x.DataLetiva });
+        m.Entity<ExcecaoCalendarioTurma>().Property(x => x.DataLetiva).HasColumnType("date");
+        m.Entity<ExcecaoCalendarioTurma>().Property(x => x.Motivo).HasMaxLength(255);
         m.Entity<SolicitacaoRegistro>().ToTable("SolicitacoesRegistro").HasKey(x => x.IdSolicitacao);
         m.Entity<SolicitacaoRegistro>().Property(x => x.TokenHash).HasColumnType("varbinary(32)");
         m.Entity<RegistroAtraso>().ToTable("RegistrosAtraso").HasKey(x => x.IdRegistro);
@@ -57,5 +62,6 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
         m.Entity<AlertaRecorrencia>().ToTable("AlertasRecorrencia").HasKey(x => x.IdAlerta);
         m.Entity<AlertaRecorrencia>().Property(x => x.DataInicioSequencia).HasColumnType("date");
         m.Entity<AlertaRecorrencia>().Property(x => x.DataFimSequencia).HasColumnType("date");
+        m.Entity<HorarioTurma>().Property(x => x.DiaSemana).HasConversion<byte>().HasColumnType("tinyint");
     }
 }

@@ -37,4 +37,10 @@ public interface IAdministracaoService
     Task<HorarioTurma> CriarHorarioAsync(CriarHorarioRequest req, CancellationToken ct);
     Task<HorarioTurma> AtualizarHorarioAsync(int id, AtualizarHorarioRequest req, CancellationToken ct);
     Task AtualizarDiaLetivoAsync(DateTime data, CalendarioRequest req, CancellationToken ct);
+    Task<int> GerarCalendarioPeriodoAsync(GerarCalendarioRequest req, CancellationToken ct);
+    Task<ExcecaoCalendarioTurma> DefinirExcecaoTurmaAsync(
+        int idTurma, DateTime data, ExcecaoCalendarioTurmaRequest req, CancellationToken ct);
+    Task<IReadOnlyList<ExcecaoCalendarioTurma>> ExcecoesTurmaAsync(
+        int idTurma, DateTime inicio, DateTime fim, CancellationToken ct);
+    Task ExcluirExcecaoTurmaAsync(int idTurma, DateTime data, CancellationToken ct);
 }

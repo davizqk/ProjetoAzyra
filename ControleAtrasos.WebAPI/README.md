@@ -56,7 +56,7 @@ dotnet user-secrets set 'ConnectionStrings:Default' 'Server=(localdb)\MSSQLLocal
 
 ## Criar primeiro administrador
 
-O banco deve ter as tabelas e os seeds (`Papeis`, etc.), mas nenhum usuário.
+O banco deve ter as tabelas e o papel `ADMIN`, mas **nenhum administrador ativo**. A existência de professores e outros usuários não bloqueia a criação do primeiro ADMIN.
 No PowerShell, dentro da pasta do projeto:
 
 ```powershell
@@ -116,8 +116,8 @@ Filtros de listagem: `inicio`, `fim`, `pagina`, `tamanho`, `turmaId` conforme Sw
 
 - **Comunidade:** alerta após 3 atrasos em dias letivos consecutivos.
 - **SEDUC:** alerta após 2 atrasos em dias letivos consecutivos.
-- Usa o calendário `CalendarioLetivo` para determinar a sequência, não apenas dias corridos.
-- Ocorre **no registro confirmado**, na mesma transação SQL. Mudanças retroativas no calendário ou horário não geram reprocessamento automático.
+- Usa o calendário `CalendarioLetivo`, as exceções da turma e os horários vigentes para determinar a sequência. Dias sem aula para aquela turma não interrompem os atrasos consecutivos.
+- Ocorre **no registro confirmado**, na mesma transação SQL. Mudanças retroativas no calendário, nas exceções ou no horário não geram reprocessamento automático de alertas já registrados.
 - Um atraso por matrícula/dia, garantido por índice único no SQL.
 - CPF não é salvo em texto: usa HMAC-SHA256 com chave secreta. Senha usa BCrypt.
 - Aluno não faz login. Quem estiver no tablet da coordenação informa o CPF e confirma os dados.
@@ -132,3 +132,214 @@ Filtros de listagem: `inicio`, `fim`, `pagina`, `tamanho`, `turmaId` conforme Sw
 - JWT não é revogado imediatamente quando um funcionário é desativado (expira em até 2 horas). Para produção, incluir verificação ativa/revogação.
 - Rate limiter por IP é uma proteção básica; adicione controles de dispositivo e auditoria antes de publicar na internet.
 - Para eliminar inconsistências de horários simultâneos, evite cadastrar vigências sobrepostas para uma mesma turma/dia.
+
+---
+
+## CORRECOES DE 17/11/2026 (projeto auditado)
+
+### 1. Testar o banco de dados ANTES do cadastro de administrador
+
+A connection string em `appsettings.json` usa `localhost` apenas como **valor de exemplo**.
+Em equipe com banco compartilhado, cada computador deve configurar a instancia SQL real em **User Secrets**.
+Execute **uma vez por PC**:
+
+```powershell
+.\scripts\configurar-banco-compartilhado.ps1
+.\scripts\verificar-banco.ps1
+```
+
+O script pergunta servidor (como `tcp:192.168.1.50,51433`), banco, login e senha SQL.
+O segundo imprime se o banco está acessivel, quantos usuarios e quantos ADMIN ativos existem.
+Nao e preciso rodar Scaffold nem recriar o banco.
+
+O usuario SQL de conexao (`controle_api`) **nao e um administrador da aplicacao**.
+Para criar contas da API, use o proximo passo.
+
+### 2. Garantir que existe o papel ADMIN, sem apagar dados
+
+Se o comando de verificacao indicar `Papel ADMIN: ausente`, execute
+`sql/seed-referencias.sql` no SSMS **conectado ao banco correto**.
+Esse script nao apaga tabelas nem cadastros e inclui os quatro periodos
+`Manha`, `Tarde`, `Noite` e `Integral` quando ausentes.
+
+### 3. Criar o PRIMEIRO administrador (mesmo havendo alunos e funcionarios)
+
+**Execute apenas no computador autorizado a administrar a base, usando um terminal confiavel.**
+O comando foi corrigido: ele bloqueia o bootstrap somente se **ja existir um ADMIN ativo**, 
+nao se existirem usuarios comuns.
+
+```powershell
+.\scripts\criar-admin.ps1
+```
+
+Serao pedidos o e-mail e uma senha com no minimo 12 caracteres (digitada de modo oculto).
+O script executa `dotnet run -- --seed-admin`, sem gravar senha no projeto.
+Se ja existir um ADMIN ativo, ele informa a situacao e NAO altera esse usuario.
+Se o e-mail ja estiver cadastrado, escolha outro; o bootstrap nao muda o papel de uma conta existente.
+
+### 4. Testar o login no Swagger
+
+Execute `dotnet run` e abra o endereco `/swagger` apresentado no terminal.
+No POST `/api/auth/login`, envie por exemplo:
+
+```json
+{ "email": "SEU_EMAIL_ADMIN", "senha": "SUA_SENHA_ADMIN" }
+```
+
+Se a resposta for `200 OK`, copie o token JWT, clique em **Authorize** no Swagger,
+cole so o token (sem aspas e sem escrever `Bearer`) e execute `GET /api/admin/periodos`.
+
+### 5. Criar novos ADMIN depois do primeiro
+
+Use `POST /api/admin/funcionarios` autenticado com um ADMIN existente:
+
+```json
+{
+  "nome": "Administrador 2",
+  "email": "outro-admin@teste.local",
+  "senha": "SENHA_FORTE_UNICA_AQUI",
+  "papeis": ["ADMIN"],
+  "codigoFuncionario": "ADM002"
+}
+```
+
+### 6. Cuidado com as chaves da equipe
+
+O `Security:CpfHmacKey` **tem de ser o mesmo em todas as instancias** que consultam
+alunos no banco compartilhado. O script `configurar-dev.ps1` agora nao substitui
+chaves que ja estejam armazenadas em User Secrets, para evitar perda de compatibilidade.
+Nunca envie chaves nem credenciais no Git, ZIP ou capturas de tela. Distribua-as por canal seguro.
+
+Para producao, prefira **uma unica instancia de API compartilhada**, HTTPS valido,
+controle de permissao e backups. `TrustServerCertificate=True` no script e apenas
+para testes em rede de desenvolvimento confiavel.
+
+### Limites da revisao
+
+O arquivo foi revisado estaticamente. Nao foi possivel executar `dotnet build` e
+validar SQL Server no ambiente de geracao, pois o SDK .NET nao esta disponivel aqui.
+Execute `dotnet restore`, `dotnet build` e depois os scripts em um computador com .NET 10 e acesso autorizado ao banco.
+
+
+---
+
+## ATUALIZAÇÃO: CALENDÁRIO EFETIVO POR TURMA (17/11/2026)
+
+**OBRIGATÓRIO PARA BANCO JÁ EXISTENTE:** no SSMS, conectado ao banco compartilhado,
+execute somente `sql/upgrade-excecoes-calendario-turma.sql`. Ele cria a tabela
+`ExcecoesCalendarioTurma` e **não remove nem altera os dados já cadastrados**.
+Não execute `schema.sql` em um banco existente. Para banco vazio, o `schema.sql`
+já inclui a nova tabela.
+
+A API agora entende:
+
+- Calendário geral (`CalendarioLetivo`): feriados, recessos e datas letivas.
+- Horários de cada turma (`HorariosTurmas`): por exemplo, terça (2) e quinta (4).
+- Exceções por turma (`ExcecoesCalendarioTurma`): cancelamento ou reposição
+  de aula em uma data específica (tem prioridade sobre o calendário geral).
+- Um dia somente conta como dia de aula quando o calendário permitir **e** existir
+  um horário vigente naquela turma/dia. Uma exceção de reposição também precisa
+  de um horário específico (cadastrado em `HorariosTurmas`).
+- Recorrência Comunidade: 3 atrasos em **dias de aula consecutivos da mesma turma**.
+- Recorrência SEDUC: 2 atrasos em **dias de aula consecutivos da mesma turma**.
+- A mesma sequência prolongada gera **um alerta** ao atingir o limite da regra,
+  sem repetir alerta nos dias seguintes até que uma nova sequência se forme.
+
+### 1. Gerar calendário geral do período sem cadastrar todos os dias manualmente
+
+Como ADMIN autenticado no Swagger:
+
+`POST /api/admin/calendario/gerar`
+
+```json
+{
+  "inicio": "2026-11-01",
+  "fim": "2026-12-18",
+  "diasSemanaLetivos": [1, 2, 3, 4, 5]
+}
+```
+
+O endpoint cria os dias úteis como letivos e os demais como não letivos **somente
+para datas ainda não cadastradas**. A resposta informa quantos dias foram
+inseridos. **Revise feriados e recessos** e use
+`PUT /api/admin/calendario/{data}` para corrigir datas, conforme o calendário
+real da escola. Também fornecemos `sql/gerar-calendario-letivo-periodo.sql`
+para cadastro inicial por SQL.
+
+### 2. Turma que só tem aulas terça e quinta
+
+Cadastre duas entradas em `POST /api/admin/horarios` para a mesma turma,
+uma `diaSemana: 2` (terça) e outra `diaSemana: 4` (quinta).
+Em ambas, defina `vigenciaInicio` no início do período e `vigenciaFim`
+como `null` ou a data de término. NÃO cadastre horários para os demais dias.
+
+**Exemplo:** atrasos nos dias 17/11 (terça) e 19/11 (quinta) são consecutivos
+para esta turma; 18/11 (quarta) não interfere, pois a turma não tem aula.
+O próximo dia efetivo é terça 24/11. Na SEDUC o alerta surge no segundo
+atraso (19/11); na Comunidade, no terceiro (24/11), se todos forem registrados.
+
+### 3. Cancelamento de uma aula de uma turma
+
+`PUT /api/admin/turmas/1/excecoes-calendario/2026-11-19`
+
+```json
+{ "temAula": false, "motivo": "Aula cancelada" }
+```
+
+Esse dia deixa de contar para **essa turma**, sem alterar o calendário geral
+nem os horários das outras turmas. Outras turmas continuam funcionando.
+
+### 4. Reposição de aula em um sábado ou feriado
+
+1. Cadastre um **horário válido somente nessa data** em `POST /api/admin/horarios`:
+
+```json
+{
+  "idTurma": 1,
+  "diaSemana": 6,
+  "horarioEntrada": "08:00:00",
+  "toleranciaMinutos": 10,
+  "vigenciaInicio": "2026-11-21",
+  "vigenciaFim": "2026-11-21"
+}
+```
+
+2. Marque a exceção da turma:
+
+`PUT /api/admin/turmas/1/excecoes-calendario/2026-11-21`
+
+```json
+{ "temAula": true, "motivo": "Reposição de aula" }
+```
+
+A exceção permite esse dia mesmo se o calendário geral indicar não letivo;
+a API ainda exige um horário ativo correspondente.
+
+### 5. Listar e remover exceções
+
+- `GET /api/admin/turmas/1/excecoes-calendario?inicio=2026-11-01&fim=2026-11-30`
+- `DELETE /api/admin/turmas/1/excecoes-calendario/2026-11-21`
+
+**Exceções só alteram regras de datas; não apagam atrasos já registrados.**
+Se mudar um calendário retroativamente, alertas já gerados não são
+recalculados automaticamente. Para histórico alterado, faça reprocessamento
+controlado antes de usar indicadores oficiais.
+
+### Testes essenciais
+
+1. Cadastre calendário geral de uma semana e horários de terça/quinta.
+2. Na quarta-feira, a identificação do aluno da turma deve ser recusada.
+3. Na terça ou quinta-feira, após a tolerância, deve ser permitida.
+4. Faça uma exceção `temAula:false` para uma quinta: a identificação deve ser recusada.
+5. Uma reposição `temAula:true` sem horário não deve registrar atraso;
+   ao criar o horário de reposição, poderá registrar.
+6. Verifique alertas com dois atrasos consecutivos (SEDUC) ou três (Comunidade),
+   considerando somente os dias efetivos da turma.
+
+**ATENÇÃO:** os registros de atraso da API usam a data/hora real do servidor,
+portanto os testes de sequência com datas futuras exigem esperar as datas
+correspondentes ou usar um ambiente de integração com relógio controlado.
+Esta entrega não altera o relógio nem insere atrasos retroativos.
+
+O projeto foi revisado estaticamente; compile e teste com .NET 10 e SQL Server
+antes de utilizá-lo com dados reais.
