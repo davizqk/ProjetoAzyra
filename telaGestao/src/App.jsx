@@ -3,51 +3,57 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useNavigate
 } from "react-router-dom";
 
 import Cadastro from "./pages/telaCadastro";
 import Login from "./pages/telaLogin";
 import Inicio from "./pages/telaInicio";
+import CadastrarAluno from "./pages/telaCadastrarAluno";
+import Turmas from "./pages/telaTurmas";
+import Recorrencias from "./pages/telaRecorrencias";
+import EditarTurma from "./pages/telaEditarTurma";
+import NovaTurma from "./pages/telaNovaTurma";
+import Perfil from "./pages/telaPerfil";
+import EditarPerfil from "./pages/telaEditarPerfil";
 
-function App() {
+function Rotas() {
+  const navigate = useNavigate();
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<Navigate to="/cadastro" replace />} />
 
-        {/* Primeira tela do projeto */}
-        <Route
-          path="/"
-          element={<Navigate to="/cadastro" replace />}
-        />
+      <Route
+        path="/cadastro"
+        element={<Cadastro aoCadastrar={() => navigate("/inicio")} />}
+      />
 
-        {/* Cadastro */}
-        <Route
-          path="/cadastro"
-          element={<Cadastro />}
-        />
+      <Route
+        path="/login"
+        element={<Login aoEntrar={() => navigate("/inicio")} />}
+      />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+      <Route path="/inicio" element={<Inicio />} />
+      <Route path="/alunos" element={<CadastrarAluno />} />
+      <Route path="/turmas" element={<Turmas />} />
+      <Route path="/turmas/cadastrar" element={<NovaTurma />} />
+      <Route path="/turmas/editar/:id" element={<EditarTurma />} />
+      <Route path="/recorrencias" element={<Recorrencias />} />
 
-        {/* Página inicial da gestão */}
-        <Route
-          path="/inicio"
-          element={<Inicio />}
-        />
+      <Route path="/perfil" element={<Perfil />} />
+      <Route path="/editar-perfil" element={<EditarPerfil />} />
 
-        {/* Rotas ainda não configuradas */}
-        <Route
-          path="*"
-          element={<Navigate to="/inicio" replace />}
-        />
-
-      </Routes>
-    </BrowserRouter>
+      <Route path="*" element={<Navigate to="/cadastro" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Rotas />
+    </BrowserRouter>
+  );
+}

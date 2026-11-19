@@ -477,3 +477,47 @@ body {
     margin-left: 45px;
   }
 }
+
+/* MANTER A SIDEBAR NO MESMO TAMANHO */
+
+.gestao-layout {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+/* SIDEBAR FIXA NA ALTURA DA TELA */
+
+.gestao-sidebar {
+  height: 100vh;
+  min-height: 0;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* MENU */
+
+.sidebar-menu {
+  flex: 1;
+}
+
+/* PERFIL SEMPRE NO RODAPÉ */
+
+.sidebar-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.gestao-main {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+}

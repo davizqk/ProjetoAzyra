@@ -26,6 +26,7 @@ function TelaInicio() {
           <span>Azyra</span>
         </div>
 
+        {/* MENU LATERAL */}
         <nav className="sidebar-menu">
 
           <Link to="/inicio" className="sidebar-link ativo">
@@ -50,8 +51,8 @@ function TelaInicio() {
 
         </nav>
 
-        {/* RODAPÉ DA SIDEBAR */}
-        <div className="sidebar-footer">
+        {/* FOOTER CLICÁVEL */}
+        <Link to="/perfil" className="sidebar-footer">
 
           <img
             src={perfilIcon}
@@ -61,10 +62,10 @@ function TelaInicio() {
 
           <div className="sidebar-footer-text">
             <span>Jucelino</span>
-            <small>coordenador</small>
+            <small>Coordenador</small>
           </div>
 
-        </div>
+        </Link>
 
       </aside>
 
@@ -112,6 +113,7 @@ function TelaInicio() {
         <section className="alertas-card">
 
           <div className="alertas-titulo">
+
             <svg
               viewBox="0 0 40 40"
               className="alertas-sino"
@@ -121,6 +123,7 @@ function TelaInicio() {
                 d="M20 3.5c-2.3 0-4.1 1.8-4.1 4.1v1.1c-4.8 1.8-7.8 6.3-7.8 11.7v7.1l-3.2 3.2v2h30.2v-2l-3.2-3.2v-7.1c0-5.4-3-9.9-7.8-11.7V7.6c0-2.3-1.8-4.1-4.1-4.1Z"
                 fill="currentColor"
               />
+
               <path
                 d="M15.5 35.2c.7 2 2.4 3.2 4.5 3.2s3.8-1.2 4.5-3.2h-9Z"
                 fill="currentColor"
@@ -128,6 +131,7 @@ function TelaInicio() {
             </svg>
 
             <h2>Alertas Recentes</h2>
+
           </div>
 
           <div className="alerta-item">
