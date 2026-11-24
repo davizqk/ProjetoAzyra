@@ -1,7 +1,7 @@
-
 import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import "../styles/telaInicio.css";
 import "../styles/telaPerfil.css";
 import "../styles/telaEditarPerfil.css";
 
@@ -113,7 +113,12 @@ function TelaEditarPerfil() {
 
         <nav className="sidebar-menu">
 
-          <NavLink to="/inicio" className="sidebar-link">
+          <NavLink
+            to="/inicio"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "ativo" : ""}`
+            }
+          >
             {({ isActive }) => (
               <>
                 <img src={isActive ? casaAtivo : casa} alt="" />
@@ -122,7 +127,12 @@ function TelaEditarPerfil() {
             )}
           </NavLink>
 
-          <NavLink to="/alunos" className="sidebar-link">
+          <NavLink
+            to="/alunos"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "ativo" : ""}`
+            }
+          >
             {({ isActive }) => (
               <>
                 <img
@@ -134,7 +144,12 @@ function TelaEditarPerfil() {
             )}
           </NavLink>
 
-          <NavLink to="/turmas" className="sidebar-link">
+          <NavLink
+            to="/turmas"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "ativo" : ""}`
+            }
+          >
             {({ isActive }) => (
               <>
                 <img
@@ -146,7 +161,12 @@ function TelaEditarPerfil() {
             )}
           </NavLink>
 
-          <NavLink to="/recorrencias" className="sidebar-link">
+          <NavLink
+            to="/recorrencias"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "ativo" : ""}`
+            }
+          >
             {({ isActive }) => (
               <>
                 <img
@@ -210,7 +230,7 @@ function TelaEditarPerfil() {
 
             <button
               type="button"
-              className="botao-alterar-foto"
+              className="editar-perfil-alterar-foto"
               onClick={() => inputFoto.current.click()}
             >
               Alterar foto
