@@ -592,4 +592,4 @@ SELECT * FROM SistemaAtrasos;
 SELECT * FROM GestaoPerfis;
 SELECT * FROM Educador;
 SELECT * FROM RegistroChegada;
->>>>>>> a196d3b23ea039b859602402174fae7663be5ed8
+
