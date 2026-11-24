@@ -125,13 +125,6 @@ export default function TelaRecorrencias() {
             <div className="recorrencias-card-header">
               <h2>Alunos com Recorrência</h2>
 
-              <button
-                type="button"
-                onClick={() => alert("Lista completa de alunos.")}
-              >
-                Ver todos
-                <span>→</span>
-              </button>
             </div>
 
             <div className="lista-alunos-recorrencia">
@@ -180,14 +173,6 @@ export default function TelaRecorrencias() {
                 <h2>Relatórios</h2>
                 <p>Resumo semanal de atrasos</p>
               </div>
-
-              <button
-                type="button"
-                onClick={() => alert("Todos os relatórios.")}
-              >
-                Ver todos
-                <span>→</span>
-              </button>
             </div>
 
             <div className="lista-relatorios">
