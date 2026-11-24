@@ -1,0 +1,494 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ================================
+   CONFIGURAÇÕES DA TELA
+================================ */
+
+.pagina-recorrencias {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 45px 49px;
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================================
+   MENU LATERAL
+   MESMO PADRÃO DA TELA INÍCIO
+================================ */
+
+.gestao-sidebar {
+  width: 228px;
+  min-width: 228px;
+  flex: 0 0 228px;
+  min-height: 100vh;
+  background-color: #4B75A5;
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+}
+
+/* LOGO */
+
+.gestao-sidebar .sidebar-logo {
+  height: 87px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 17px;
+  gap: 11px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.gestao-sidebar .sidebar-logo img {
+  width: 39px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.gestao-sidebar .sidebar-logo span {
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* MENU */
+
+.gestao-sidebar .sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 28px 9px;
+}
+
+/* BOTÕES DO MENU */
+
+.gestao-sidebar .sidebar-link {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100%;
+  height: 34px;
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 0 13px;
+
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+
+  color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  text-align: left;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.gestao-sidebar .sidebar-link img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.gestao-sidebar .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.gestao-sidebar .sidebar-link.ativo {
+  background-color: #E7EFF7;
+  color: #376FAE;
+}
+
+.gestao-sidebar .sidebar-link.ativo:hover {
+  background-color: #E7EFF7;
+}
+
+/* RODAPÉ */
+
+.gestao-sidebar .sidebar-footer {
+  width: 100%;
+  min-height: 61px;
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+  padding: 9px 19px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.gestao-sidebar .sidebar-footer-avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.gestao-sidebar .sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.gestao-sidebar .sidebar-footer-text span {
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.gestao-sidebar .sidebar-footer-text small {
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.recorrencias-header {
+  margin-bottom: 18px;
+}
+
+.recorrencias-header h1 {
+  color: #4B75A5;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.recorrencias-header p {
+  color: #424242;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+/* ================================
+   PAINÉIS
+================================ */
+
+.recorrencias-paineis {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+}
+
+/* ================================
+   ALUNOS COM RECORRÊNCIA
+================================ */
+
+.recorrencias-card {
+  width: 100%;
+  min-width: 0;
+  min-height: 420px;
+  background: #F5F5F5;
+  border: 1px solid #D8D8D8;
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+.recorrencias-card-header {
+  width: 100%;
+  min-height: 66px;
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  background: #E0EDF3;
+}
+
+.recorrencias-card-header h2 {
+  color: #4B75A5;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.recorrencias-card-header button,
+.relatorios-header button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #376FAE;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.recorrencias-card-header button span,
+.relatorios-header button span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* LISTA DE ALUNOS */
+
+.lista-alunos-recorrencia {
+  width: 100%;
+}
+
+.aluno-recorrencia {
+  width: 100%;
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 15px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.aluno-recorrencia:last-child {
+  border-bottom: none;
+}
+
+.aluno-avatar {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.aluno-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+.aluno-recorrencia-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  gap: 2px;
+}
+
+.aluno-recorrencia-info strong {
+  color: #4B75A5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.aluno-recorrencia-info span {
+  color: #424242;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.aluno-alerta {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-right: 17px;
+}
+
+/* ================================
+   RELATÓRIOS
+================================ */
+
+.relatorios-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.relatorios-header {
+  width: 100%;
+  min-height: 66px;
+  padding: 8px 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  background: #E0EDF3;
+  border: 1px solid #D8D8D8;
+  border-radius: 11px 11px 0 0;
+}
+
+.relatorios-header h2 {
+  color: #4B75A5;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.relatorios-header p {
+  color: #424242;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+/* DIAS DA SEMANA */
+
+.lista-relatorios {
+  width: 100%;
+  border: 1px solid #D8D8D8;
+  border-top: none;
+  border-radius: 0 0 11px 11px;
+  overflow: hidden;
+}
+
+.relatorio-item {
+  width: 100%;
+  min-height: 59px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 10px 15px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.relatorio-item:last-child {
+  border-bottom: none;
+}
+
+.relatorio-item strong {
+  color: #4B75A5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.relatorio-item span {
+  color: #424242;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* BOTÃO GERAR RELATÓRIO */
+
+.botao-gerar-relatorio {
+  appearance: none;
+  width: 100%;
+  min-height: 66px;
+  margin-top: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  background: #E0EDF3;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+
+  color: #376FAE;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.botao-gerar-relatorio:hover {
+  background: #CEE0EF;
+}
+
+.botao-gerar-relatorio img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 1100px) {
+  .pagina-recorrencias {
+    padding: 35px 28px;
+  }
+
+  .recorrencias-paineis {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  .recorrencias-paineis {
+    grid-template-columns: 1fr;
+  }
+
+  .recorrencias-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .gestao-sidebar {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+    min-height: auto;
+  }
+
+  .gestao-sidebar .sidebar-logo {
+    height: 65px;
+  }
+
+  .gestao-sidebar .sidebar-menu {
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .gestao-sidebar .sidebar-link {
+    height: 38px;
+  }
+
+  .gestao-sidebar .sidebar-footer {
+    display: none;
+  }
+
+  .pagina-recorrencias {
+    min-height: auto;
+    padding: 28px 18px;
+  }
+
+  .recorrencias-header h1 {
+    font-size: 25px;
+  }
+
+  .recorrencias-header p {
+    font-size: 13px;
+  }
+
+  .recorrencias-paineis {
+    grid-template-columns: 1fr;
+  }
+
+  .aluno-recorrencia {
+    min-height: 68px;
+  }
+}

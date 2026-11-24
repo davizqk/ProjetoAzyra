@@ -1,0 +1,234 @@
+/* CABEÇALHO */
+
+.editar-turma-header {
+  margin-bottom: 35px;
+}
+
+.editar-turma-header h1 {
+  color: #4b75a5;
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.editar-turma-header p {
+  color: #5c5c5c;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 5px 0 0;
+}
+
+/* CONTAINER */
+
+.editar-turma-container {
+  width: 100%;
+  max-width: none;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* TÍTULO AZUL */
+
+.editar-turma-titulo {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 22px;
+  background-color: #4b75a5;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.editar-turma-titulo h2 {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* FORMULÁRIO */
+
+.editar-turma-formulario {
+  padding: 25px 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CAMPOS */
+
+.editar-turma-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.editar-turma-campo label {
+  color: #111111;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.editar-turma-campo input,
+.editar-turma-campo select {
+  width: 100%;
+  height: 43px;
+  padding: 0 13px;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #555555;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.editar-turma-campo input:focus,
+.editar-turma-campo select:focus {
+  border-color: #4b75a5;
+}
+
+/* SELECT */
+
+.editar-turma-campo select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 35px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b75a5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 15px;
+}
+
+/* HORÁRIOS */
+
+.editar-turma-horarios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+
+.editar-turma-campo input[type="time"] {
+  cursor: pointer;
+}
+
+/* BOTÕES */
+
+.editar-turma-acoes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.btn-cancelar-edicao,
+.btn-salvar-edicao {
+  height: 43px;
+  padding: 0 25px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* CANCELAR */
+
+.btn-cancelar-edicao {
+  min-width: 150px;
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #d8d8d8;
+}
+
+.btn-cancelar-edicao:hover {
+  background-color: #f3f3f3;
+}
+
+/* SALVAR */
+
+.btn-salvar-edicao {
+  min-width: 200px;
+  background-color: #4b75a5;
+  color: #ffffff;
+  border: 1px solid #4b75a5;
+}
+
+.btn-salvar-edicao:hover {
+  background-color: #365f8d;
+}
+
+/* TURMA NÃO ENCONTRADA */
+
+.editar-turma-nao-encontrada {
+  padding: 30px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #555555;
+}
+
+.editar-turma-nao-encontrada button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #4b75a5;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 800px) {
+  .editar-turma-formulario {
+    padding: 20px 16px;
+  }
+
+  .editar-turma-horarios {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 560px) {
+  .editar-turma-header h1 {
+    font-size: 30px;
+  }
+
+  .editar-turma-header p {
+    font-size: 15px;
+  }
+
+  .editar-turma-horarios {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .editar-turma-acoes {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .btn-cancelar-edicao,
+  .btn-salvar-edicao {
+    width: 100%;
+  }
+}

@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ================================
+   CONTEÚDO PRINCIPAL
+================================ */
+
+.pagina-editar-perfil {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+
+  padding: 36px 49px;
+  box-sizing: border-box;
+
+  background-color: #F5F5F5;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.editar-perfil-header {
+  margin-bottom: 26px;
+}
+
+.editar-perfil-header h1 {
+  color: #4B75A5;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ================================
+   CARD DE EDIÇÃO
+================================ */
+
+.editar-perfil-card {
+  width: 100%;
+  max-width: 100%;
+  min-height: 380px;
+
+  padding: 30px 30px;
+
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+}
+
+/* ================================
+   FOTO
+================================ */
+
+.editar-foto-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 13px;
+}
+
+.editar-foto {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.botao-alterar-foto {
+  width: 106px;
+  height: 43px;
+
+  background-color: #FFFFFF;
+  border: 1px solid #4B75A5;
+  border-radius: 6px;
+
+  color: #4B75A5;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-alterar-foto:hover {
+  background-color: #F0F5FA;
+}
+
+/* ================================
+   CAMPOS
+================================ */
+
+.editar-campo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 13px;
+}
+
+.editar-campo label {
+  color: #424242;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.editar-campo input {
+  width: 100%;
+  height: 36px;
+
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 7px;
+
+  color: #424242;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.editar-campo input::placeholder {
+  color: #C7C7C7;
+}
+
+.editar-campo input:focus {
+  border-color: #4B75A5;
+}
+
+/* ================================
+   BOTÕES
+================================ */
+
+.editar-perfil-botoes {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  margin-top: 14px;
+}
+
+.botao-cancelar-edicao,
+.botao-salvar-edicao {
+  width: 100%;
+  min-height: 46px;
+
+  border-radius: 7px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.botao-cancelar-edicao {
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  color: #4B75A5;
+}
+
+.botao-cancelar-edicao:hover {
+  background-color: #F0F5FA;
+}
+
+.botao-salvar-edicao {
+  background-color: #4B75A5;
+  border: 1px solid #4B75A5;
+  color: #FFFFFF;
+}
+
+.botao-salvar-edicao:hover {
+  background-color: #376FAE;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 1100px) {
+
+  .pagina-editar-perfil {
+    padding: 35px 28px;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .editar-perfil-card {
+    padding: 28px 18px;
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .pagina-editar-perfil {
+    min-height: auto;
+    padding: 28px 18px;
+  }
+
+  .editar-perfil-header h1 {
+    font-size: 25px;
+  }
+
+  .editar-perfil-botoes {
+    grid-template-columns: 1fr;
+  }
+
+}

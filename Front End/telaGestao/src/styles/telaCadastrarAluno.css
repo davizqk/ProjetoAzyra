@@ -1,0 +1,449 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* ESTRUTURA PRINCIPAL */
+
+.gestao-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* SIDEBAR */
+
+.gestao-sidebar {
+  width: 219px;
+  min-width: 219px;
+  min-height: 100vh;
+
+  background-color: #4b75a5;
+  border-left: 2px solid #1689ed;
+  border-right: 2px solid #1689ed;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #ffffff;
+}
+
+/* LOGO */
+
+.sidebar-logo {
+  height: 87px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 17px;
+  gap: 11px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.sidebar-logo img {
+  width: 39px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.sidebar-logo span {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* MENU */
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 28px 9px;
+}
+
+.sidebar-link {
+  width: 100%;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+  padding: 0 13px;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 400;
+
+  transition: background-color 0.2s;
+}
+
+.sidebar-link img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-link.ativo {
+  background-color: #e7eff7;
+  color: #376fae;
+}
+
+.sidebar-link.ativo:hover {
+  background-color: #e7eff7;
+}
+
+/* FOOTER - IGUAL AO DA TELA INÍCIO */
+
+.sidebar-footer {
+  width: 100%;
+  min-height: 61px;
+
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+  padding: 9px 19px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.sidebar-footer-avatar {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sidebar-footer-text span {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sidebar-footer-text small {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.cadastrar-aluno-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+
+  background-color: #f5f5f5;
+
+  padding: 51px 44px 45px;
+}
+
+/* CABEÇALHO */
+
+.cadastrar-aluno-header {
+  margin-bottom: 17px;
+}
+
+.cadastrar-aluno-header h1 {
+  color: #4b75a5;
+
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.cadastrar-aluno-header p {
+  color: #111111;
+
+  font-size: 16px;
+  font-weight: 400;
+
+  margin-top: 3px;
+}
+
+/* FORMULÁRIO */
+
+.form-cadastrar-aluno {
+  width: 100%;
+}
+
+/* CARTÃO BRANCO */
+
+.cadastrar-aluno-card {
+  width: 100%;
+
+  min-height: 438px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 7px;
+
+  padding: 32px 33px 34px;
+}
+
+/* FOTO DO ALUNO */
+
+.foto-aluno-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-bottom: 13px;
+  margin-left: 4px;
+}
+
+.foto-aluno-preview {
+  width: 80px;
+  height: 80px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.input-foto-escondido {
+  display: none;
+}
+
+.botao-alterar-foto {
+  width: 116px;
+  height: 48px;
+
+  margin-top: 16px;
+
+  background-color: #ffffff;
+  color: #4b75a5;
+
+  border: 1px solid #4b75a5;
+  border-radius: 8px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.botao-alterar-foto:hover {
+  background-color: #edf3f9;
+}
+
+/* CAMPOS */
+
+.campo-cadastrar-aluno {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-bottom: 13px;
+}
+
+.campo-cadastrar-aluno label {
+  color: #444444;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  margin-left: 0;
+}
+
+.campo-cadastrar-aluno input,
+.campo-cadastrar-aluno select {
+  width: 100%;
+  height: 40px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+
+  padding: 0 13px;
+
+  outline: none;
+
+  color: #444444;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.campo-cadastrar-aluno input::placeholder,
+.campo-cadastrar-aluno select:invalid {
+  color: #c5c5c5;
+}
+
+.campo-cadastrar-aluno input:focus,
+.campo-cadastrar-aluno select:focus {
+  border-color: #4b75a5;
+}
+
+/* SETA DO SELECT */
+
+.campo-cadastrar-aluno select {
+  appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b75a5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* BOTÕES INFERIORES */
+
+.botoes-cadastrar-aluno {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 19px;
+
+  margin-top: 22px;
+}
+
+.botao-cancelar-aluno,
+.botao-cadastrar-aluno {
+  width: 100%;
+  height: 50px;
+
+  border-radius: 8px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.botao-cancelar-aluno {
+  background-color: #ffffff;
+  color: #4b75a5;
+
+  border: 1px solid #dddddd;
+}
+
+.botao-cancelar-aluno:hover {
+  background-color: #f0f4f8;
+}
+
+.botao-cadastrar-aluno {
+  background-color: #4b75a5;
+  color: #ffffff;
+
+  border: none;
+}
+
+.botao-cadastrar-aluno:hover {
+  background-color: #3d6696;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  .cadastrar-aluno-main {
+    padding: 35px 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gestao-layout {
+    flex-direction: column;
+  }
+
+  .gestao-sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+  }
+
+  .sidebar-logo {
+    height: 65px;
+  }
+
+  .sidebar-menu {
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .sidebar-link {
+    height: 38px;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  .cadastrar-aluno-main {
+    min-height: auto;
+    padding: 28px 18px;
+  }
+
+  .cadastrar-aluno-header h1 {
+    font-size: 23px;
+  }
+
+  .cadastrar-aluno-header p {
+    font-size: 14px;
+  }
+
+  .cadastrar-aluno-card {
+    padding: 25px 20px;
+    min-height: auto;
+  }
+
+  .botoes-cadastrar-aluno {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
