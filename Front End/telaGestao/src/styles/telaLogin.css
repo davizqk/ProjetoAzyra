@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* CONFIGURAÇÕES GERAIS */
@@ -305,8 +304,6 @@
   align-items: center;
   justify-content: center;
 
-  gap: 12px;
-
   background: linear-gradient(
     135deg,
     #5c87b8,
@@ -332,13 +329,6 @@
     background 0.2s ease;
 }
 
-.botao-entrar-login svg {
-  width: 18px;
-  height: 18px;
-
-  transition: transform 0.2s ease;
-}
-
 .botao-entrar-login:hover {
   background: linear-gradient(
     135deg,
@@ -349,10 +339,6 @@
   transform: translateY(-2px);
 
   box-shadow: 0 8px 20px rgba(75, 117, 165, 0.3);
-}
-
-.botao-entrar-login:hover svg {
-  transform: translateX(4px);
 }
 
 .botao-entrar-login:active {

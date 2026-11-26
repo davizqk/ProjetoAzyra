@@ -336,13 +336,6 @@
     background 0.2s ease;
 }
 
-.cadastro-botao svg {
-  width: 18px;
-  height: 18px;
-
-  transition: transform 0.2s ease;
-}
-
 .cadastro-botao:hover {
   background: linear-gradient(
     135deg,
@@ -353,10 +346,6 @@
   transform: translateY(-2px);
 
   box-shadow: 0 8px 20px rgba(75, 117, 165, 0.3);
-}
-
-.cadastro-botao:hover svg {
-  transform: translateX(4px);
 }
 
 .cadastro-botao:active {
