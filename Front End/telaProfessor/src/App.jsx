@@ -8,7 +8,7 @@ import PtelaHistorico from "./pages/telaHistorico.jsx";
 import PtelaPerfil from "./pages/telaPerfil.jsx";
 import EditarPerfil from "./pages/telaEditarPerfil.jsx";
 import PtelaAlunos from "./pages/telaAlunos.jsx";
-import EditarAluno from "./pages/telaEditarAluno.jsx";
+import EditarAluno from "./pages/TelaEditarAluno.jsx";
 
 const ROTAS_VALIDAS = [
   "cadastro",

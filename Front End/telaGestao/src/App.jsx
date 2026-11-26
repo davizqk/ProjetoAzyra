@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter,
   Routes,
@@ -23,29 +22,47 @@ function Rotas() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/cadastro" replace />} />
+
+      <Route
+        path="/"
+        element={<Navigate to="/cadastro" replace />}
+      />
 
       <Route
         path="/cadastro"
-        element={<Cadastro aoCadastrar={() => navigate("/inicio")} />}
+        element={
+          <Cadastro aoCadastrar={() => navigate("/login")} />
+        }
       />
 
       <Route
         path="/login"
-        element={<Login aoEntrar={() => navigate("/inicio")} />}
+        element={
+          <Login aoEntrar={() => navigate("/inicio")} />
+        }
       />
 
       <Route path="/inicio" element={<Inicio />} />
+
       <Route path="/alunos" element={<CadastrarAluno />} />
+
       <Route path="/turmas" element={<Turmas />} />
+
       <Route path="/turmas/cadastrar" element={<NovaTurma />} />
+
       <Route path="/turmas/editar/:id" element={<EditarTurma />} />
+
       <Route path="/recorrencias" element={<Recorrencias />} />
 
       <Route path="/perfil" element={<Perfil />} />
+
       <Route path="/editar-perfil" element={<EditarPerfil />} />
 
-      <Route path="*" element={<Navigate to="/cadastro" replace />} />
+      <Route
+        path="*"
+        element={<Navigate to="/cadastro" replace />}
+      />
+
     </Routes>
   );
 }

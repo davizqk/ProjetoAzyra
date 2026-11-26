@@ -1,425 +1,359 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 /* ================================
-   CONFIGURAÇÕES DA TELA
+   CONTEÚDO PRINCIPAL
 ================================ */
 
-.pagina-recorrencias {
+.gestao-layout .pagina-recorrencias {
   flex: 1;
+
+  width: calc(100% - var(--sidebar-width, 266px));
   min-width: 0;
-  min-height: 100vh;
-  padding: 45px 49px;
+
+  height: 100vh;
+  height: 100dvh;
+
+  margin-left: var(--sidebar-width, 266px);
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+
   box-sizing: border-box;
-  background-color: #F5F5F5;
-  font-family: 'Poppins', sans-serif;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.pagina-recorrencias * {
+  box-sizing: border-box;
 }
 
 /* ================================
-   MENU LATERAL
-   MESMO PADRÃO DA TELA INÍCIO
+   CABEÇALHO PRINCIPAL
 ================================ */
 
-.gestao-sidebar {
-  width: 228px;
-  min-width: 228px;
-  flex: 0 0 228px;
-  min-height: 100vh;
-  background-color: #4B75A5;
-  display: flex;
-  flex-direction: column;
-  color: #FFFFFF;
+.pagina-recorrencias .recorrencias-header {
+  margin-bottom: 30px;
 }
 
-/* LOGO */
+.pagina-recorrencias .recorrencias-header h1 {
+  color: #4b75a5;
 
-.gestao-sidebar .sidebar-logo {
-  height: 87px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 17px;
-  gap: 11px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  flex-shrink: 0;
-}
-
-.gestao-sidebar .sidebar-logo img {
-  width: 39px;
-  height: 42px;
-  object-fit: contain;
-}
-
-.gestao-sidebar .sidebar-logo span {
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-/* MENU */
-
-.gestao-sidebar .sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  padding: 28px 9px;
-}
-
-/* BOTÕES DO MENU */
-
-.gestao-sidebar .sidebar-link {
-  appearance: none;
-  -webkit-appearance: none;
-
-  width: 100%;
-  height: 34px;
-  min-height: 34px;
-
-  display: flex;
-  align-items: center;
-  gap: 13px;
-
-  padding: 0 13px;
-
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-  box-shadow: none;
-
-  color: #FFFFFF;
-  font-family: 'Poppins', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  text-align: left;
-
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.gestao-sidebar .sidebar-link img {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.gestao-sidebar .sidebar-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.gestao-sidebar .sidebar-link.ativo {
-  background-color: #E7EFF7;
-  color: #376FAE;
-}
-
-.gestao-sidebar .sidebar-link.ativo:hover {
-  background-color: #E7EFF7;
-}
-
-/* RODAPÉ */
-
-.gestao-sidebar .sidebar-footer {
-  width: 100%;
-  min-height: 61px;
-  margin-top: auto;
-
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-  padding: 9px 19px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.gestao-sidebar .sidebar-footer-avatar {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.gestao-sidebar .sidebar-footer-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.gestao-sidebar .sidebar-footer-text span {
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: 500;
-}
-
-.gestao-sidebar .sidebar-footer-text small {
-  color: #FFFFFF;
-  font-size: 10px;
-  font-weight: 400;
-}
-
-/* ================================
-   CABEÇALHO
-================================ */
-
-.recorrencias-header {
-  margin-bottom: 18px;
-}
-
-.recorrencias-header h1 {
-  color: #4B75A5;
-  font-size: 35px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 700;
   line-height: 1.3;
+
+  margin: 0;
 }
 
-.recorrencias-header p {
-  color: #424242;
-  font-size: 14px;
+.pagina-recorrencias .recorrencias-header p {
+  color: #8491a1;
+
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 5px;
+
+  margin: 7px 0 0;
 }
 
 /* ================================
-   PAINÉIS
+   ORGANIZAÇÃO DOS PAINÉIS
 ================================ */
 
-.recorrencias-paineis {
+.pagina-recorrencias .recorrencias-paineis {
   width: 100%;
+
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 13px;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+
   align-items: start;
 }
 
 /* ================================
-   ALUNOS COM RECORRÊNCIA
+   CARTÕES PRINCIPAIS
 ================================ */
 
-.recorrencias-card {
+.pagina-recorrencias .recorrencias-card,
+.pagina-recorrencias .relatorios-card {
   width: 100%;
   min-width: 0;
-  min-height: 420px;
-  background: #F5F5F5;
-  border: 1px solid #D8D8D8;
-  border-radius: 11px;
+
+  height: auto;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
+
   overflow: hidden;
+
+  animation: entradaRecorrencias 0.4s ease-out;
 }
 
-.recorrencias-card-header {
+/* ================================
+   CABEÇALHOS DOS CARTÕES
+================================ */
+
+.pagina-recorrencias .recorrencias-card-header,
+.pagina-recorrencias .relatorios-header {
   width: 100%;
-  min-height: 66px;
-  padding: 0 13px;
+
+  min-height: 92px;
 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 
-  background: #E0EDF3;
-}
-
-.recorrencias-card-header h2 {
-  color: #4B75A5;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.recorrencias-card-header button,
-.relatorios-header button {
-  appearance: none;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-
-  display: flex;
-  align-items: center;
   gap: 5px;
 
-  color: #376FAE;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  padding: 22px 24px;
+
+  background-color: #ffffff;
+
+  border: none;
+  border-bottom: 1px solid #edf0f4;
+  border-radius: 0;
+}
+
+.pagina-recorrencias .recorrencias-card-header h2,
+.pagina-recorrencias .relatorios-header h2 {
+  color: #4b75a5;
+
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+
+  margin: 0;
+}
+
+.pagina-recorrencias .recorrencias-card-header p,
+.pagina-recorrencias .relatorios-header p {
+  color: #8491a1;
+
+  font-size: 12px;
   font-weight: 400;
 
-  cursor: pointer;
-  white-space: nowrap;
+  margin: 0;
 }
 
-.recorrencias-card-header button span,
-.relatorios-header button span {
-  font-size: 20px;
-  line-height: 1;
-}
+/* ================================
+   LISTA DE ALUNOS
+================================ */
 
-/* LISTA DE ALUNOS */
-
-.lista-alunos-recorrencia {
+.pagina-recorrencias .lista-alunos-recorrencia {
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 20px;
 }
 
-.aluno-recorrencia {
+/* ================================
+   CADA ALUNO
+================================ */
+
+.pagina-recorrencias .aluno-recorrencia {
   width: 100%;
-  min-height: 88px;
+
+  min-height: 100px;
 
   display: flex;
   align-items: center;
-  gap: 10px;
 
-  padding: 10px 15px;
-  border-bottom: 1px solid #D8D8D8;
+  gap: 15px;
+
+  padding: 18px 5px;
+
+  border-bottom: 1px solid #edf0f4;
+
+  transition: background-color 0.2s ease;
 }
 
-.aluno-recorrencia:last-child {
+.pagina-recorrencias .aluno-recorrencia:last-child {
   border-bottom: none;
 }
 
-.aluno-avatar {
-  width: 46px;
-  height: 46px;
+.pagina-recorrencias .aluno-recorrencia:hover {
+  background-color: #f7f9fc;
+}
+
+/* ================================
+   AVATAR ORIGINAL DO ALUNO
+================================ */
+
+.pagina-recorrencias .aluno-avatar {
+  width: 54px;
+  height: 54px;
+
   flex-shrink: 0;
 }
 
-.aluno-avatar svg {
+.pagina-recorrencias .aluno-avatar svg {
+  display: block;
+
   width: 100%;
   height: 100%;
 }
 
-.aluno-recorrencia-info {
+/* ================================
+   INFORMAÇÕES DO ALUNO
+================================ */
+
+.pagina-recorrencias .aluno-recorrencia-info {
+  flex: 1;
+
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  flex: 1;
-  gap: 2px;
+
+  gap: 5px;
 }
 
-.aluno-recorrencia-info strong {
-  color: #4B75A5;
-  font-size: 13px;
+.pagina-recorrencias .aluno-recorrencia-info strong {
+  color: #4b75a5;
+
+  font-size: 15px;
   font-weight: 600;
+
+  overflow-wrap: anywhere;
 }
 
-.aluno-recorrencia-info span {
-  color: #424242;
-  font-size: 11px;
+.pagina-recorrencias .aluno-recorrencia-info span {
+  color: #8491a1;
+
+  font-size: 13px;
   font-weight: 400;
-}
 
-.aluno-alerta {
-  width: 21px;
-  height: 21px;
-  object-fit: contain;
-  flex-shrink: 0;
-  margin-right: 17px;
+  overflow-wrap: anywhere;
 }
 
 /* ================================
-   RELATÓRIOS
+   ÍCONES ORIGINAIS DE ALERTA
 ================================ */
 
-.relatorios-card {
-  width: 100%;
-  min-width: 0;
+.pagina-recorrencias .aluno-alerta {
+  width: 24px;
+  height: 24px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+
+  margin-right: 5px;
 }
 
-.relatorios-header {
+/* ================================
+   LISTA DE RELATÓRIOS
+================================ */
+
+.pagina-recorrencias .lista-relatorios {
   width: 100%;
-  min-height: 66px;
-  padding: 8px 13px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 20px;
+
+  border: none;
+  border-radius: 0;
+}
+
+/* ================================
+   DIAS DA SEMANA
+================================ */
+
+.pagina-recorrencias .relatorio-item {
+  width: 100%;
+
+  min-height: 62px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
 
-  background: #E0EDF3;
-  border: 1px solid #D8D8D8;
-  border-radius: 11px 11px 0 0;
+  gap: 12px;
+
+  padding: 12px 5px;
+
+  border-bottom: 1px solid #edf0f4;
+
+  transition: background-color 0.2s ease;
 }
 
-.relatorios-header h2 {
-  color: #4B75A5;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.relatorios-header p {
-  color: #424242;
-  font-size: 11px;
-  font-weight: 400;
-}
-
-/* DIAS DA SEMANA */
-
-.lista-relatorios {
-  width: 100%;
-  border: 1px solid #D8D8D8;
-  border-top: none;
-  border-radius: 0 0 11px 11px;
-  overflow: hidden;
-}
-
-.relatorio-item {
-  width: 100%;
-  min-height: 59px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  padding: 10px 15px;
-  border-bottom: 1px solid #D8D8D8;
-}
-
-.relatorio-item:last-child {
+.pagina-recorrencias .relatorio-item:last-child {
   border-bottom: none;
 }
 
-.relatorio-item strong {
-  color: #4B75A5;
-  font-size: 13px;
+.pagina-recorrencias .relatorio-item:hover {
+  background-color: #f7f9fc;
+}
+
+/* ================================
+   NOME DO DIA
+================================ */
+
+.pagina-recorrencias .relatorio-item strong {
+  color: #4b75a5;
+
+  font-size: 14px;
   font-weight: 600;
 }
 
-.relatorio-item span {
-  color: #424242;
+/* ================================
+   QUANTIDADE DE ATRASOS
+================================ */
+
+.pagina-recorrencias .relatorio-item span {
+  min-width: 88px;
+
+  padding: 7px 13px;
+
+  background-color: #edf3f9;
+
+  border-radius: 8px;
+
+  color: #4b75a5;
+
   font-size: 12px;
   font-weight: 500;
+
+  text-align: center;
+  white-space: nowrap;
+
+  flex-shrink: 0;
+
+  transition: background-color 0.2s ease;
 }
 
-/* BOTÃO GERAR RELATÓRIO */
-
-.botao-gerar-relatorio {
-  appearance: none;
-  width: 100%;
-  min-height: 66px;
-  margin-top: 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-
-  background: #E0EDF3;
-  border: none;
-  border-radius: 10px;
-  box-shadow: none;
-
-  color: #376FAE;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-
-  cursor: pointer;
-  transition: background 0.2s ease;
+.pagina-recorrencias .relatorio-item:hover span {
+  background-color: #e4edf5;
 }
 
-.botao-gerar-relatorio:hover {
-  background: #CEE0EF;
-}
+/* ================================
+   ANIMAÇÃO DE ENTRADA
+================================ */
 
-.botao-gerar-relatorio img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
+@keyframes entradaRecorrencias {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================================
@@ -427,68 +361,145 @@
 ================================ */
 
 @media (max-width: 1100px) {
-  .pagina-recorrencias {
+
+  .gestao-layout .pagina-recorrencias {
     padding: 35px 28px;
   }
 
-  .recorrencias-paineis {
-    gap: 12px;
+  .pagina-recorrencias .recorrencias-paineis {
+    gap: 18px;
   }
+
+  .pagina-recorrencias .recorrencias-card-header,
+  .pagina-recorrencias .relatorios-header {
+    padding: 20px;
+  }
+
+  .pagina-recorrencias .recorrencias-card-header h2,
+  .pagina-recorrencias .relatorios-header h2 {
+    font-size: 17px;
+  }
+
+  .pagina-recorrencias .lista-alunos-recorrencia,
+  .pagina-recorrencias .lista-relatorios {
+    padding: 8px 15px;
+  }
+
 }
 
-@media (max-width: 800px) {
-  .recorrencias-paineis {
+@media (max-width: 1000px) {
+
+  .pagina-recorrencias .recorrencias-paineis {
     grid-template-columns: 1fr;
   }
 
-  .recorrencias-card {
-    min-height: auto;
+  .pagina-recorrencias .aluno-recorrencia {
+    min-height: 90px;
   }
+
 }
 
-@media (max-width: 560px) {
-  .gestao-sidebar {
-    width: 100%;
-    min-width: 0;
-    flex: none;
-    min-height: auto;
+@media (max-width: 600px) {
+
+  .gestao-layout .pagina-recorrencias {
+    padding: 25px 18px;
   }
 
-  .gestao-sidebar .sidebar-logo {
-    height: 65px;
+  .pagina-recorrencias .recorrencias-header {
+    margin-bottom: 22px;
   }
 
-  .gestao-sidebar .sidebar-menu {
-    padding: 10px;
-    gap: 5px;
+  .pagina-recorrencias .recorrencias-header h1 {
+    font-size: 26px;
   }
 
-  .gestao-sidebar .sidebar-link {
-    height: 38px;
-  }
-
-  .gestao-sidebar .sidebar-footer {
-    display: none;
-  }
-
-  .pagina-recorrencias {
-    min-height: auto;
-    padding: 28px 18px;
-  }
-
-  .recorrencias-header h1 {
-    font-size: 25px;
-  }
-
-  .recorrencias-header p {
+  .pagina-recorrencias .recorrencias-header p {
     font-size: 13px;
   }
 
-  .recorrencias-paineis {
-    grid-template-columns: 1fr;
+  .pagina-recorrencias .recorrencias-card,
+  .pagina-recorrencias .relatorios-card {
+    border-radius: 14px;
   }
 
-  .aluno-recorrencia {
-    min-height: 68px;
+  .pagina-recorrencias .recorrencias-card-header,
+  .pagina-recorrencias .relatorios-header {
+    min-height: 75px;
+
+    padding: 18px;
   }
+
+  .pagina-recorrencias .recorrencias-card-header h2,
+  .pagina-recorrencias .relatorios-header h2 {
+    font-size: 16px;
+  }
+
+  .pagina-recorrencias .recorrencias-card-header p,
+  .pagina-recorrencias .relatorios-header p {
+    font-size: 11px;
+  }
+
+  .pagina-recorrencias .aluno-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pagina-recorrencias .aluno-recorrencia {
+    min-height: 85px;
+
+    gap: 10px;
+
+    padding: 15px 2px;
+  }
+
+  .pagina-recorrencias .aluno-recorrencia-info strong {
+    font-size: 13px;
+  }
+
+  .pagina-recorrencias .aluno-recorrencia-info span {
+    font-size: 11px;
+  }
+
+  .pagina-recorrencias .aluno-alerta {
+    width: 20px;
+    height: 20px;
+
+    margin-right: 0;
+  }
+
+  .pagina-recorrencias .relatorio-item {
+    min-height: 58px;
+
+    gap: 8px;
+  }
+
+  .pagina-recorrencias .relatorio-item strong {
+    font-size: 12px;
+  }
+
+  .pagina-recorrencias .relatorio-item span {
+    min-width: 65px;
+
+    font-size: 11px;
+
+    padding: 6px 8px;
+  }
+
+}
+
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pagina-recorrencias .recorrencias-card,
+  .pagina-recorrencias .relatorios-card {
+    animation: none;
+  }
+
+  .pagina-recorrencias * {
+    transition: none;
+  }
+
 }

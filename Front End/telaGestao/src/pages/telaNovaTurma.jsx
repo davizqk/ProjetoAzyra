@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -81,7 +80,8 @@ function TelaNovaTurma() {
     horarioTermino: "",
   });
 
-  // ALTERAR CAMPOS DO FORMULÁRIO
+  // ALTERAR CAMPOS
+
   function alterarCampo(e) {
     const { name, value } = e.target;
 
@@ -91,7 +91,8 @@ function TelaNovaTurma() {
     }));
   }
 
-  // CADASTRAR NOVA TURMA
+  // CADASTRAR TURMA
+
   function cadastrarTurma(e) {
     e.preventDefault();
 
@@ -139,6 +140,7 @@ function TelaNovaTurma() {
 
       alert("Turma cadastrada com sucesso!");
       navigate("/turmas");
+
     } catch (erro) {
       console.error("Erro ao cadastrar turma:", erro);
       alert("Não foi possível cadastrar a turma.");
@@ -147,14 +149,18 @@ function TelaNovaTurma() {
 
   return (
     <div className="gestao-layout">
+
       {/* SIDEBAR */}
+
       <aside className="gestao-sidebar">
+
         <div className="sidebar-logo">
           <img src={logoFooter} alt="Logo Azyra" />
           <span>Azyra</span>
         </div>
 
         <nav className="sidebar-menu">
+
           <Link to="/inicio" className="sidebar-link">
             <img src={casaIcon} alt="" />
             <span>Início</span>
@@ -174,10 +180,13 @@ function TelaNovaTurma() {
             <img src={recorrenciasIcon} alt="" />
             <span>Recorrências</span>
           </Link>
+
         </nav>
 
-        {/* RODAPÉ CLICÁVEL */}
+        {/* RODAPÉ */}
+
         <Link to="/perfil" className="sidebar-footer">
+
           <img
             src={perfilIcon}
             alt="Perfil"
@@ -188,95 +197,130 @@ function TelaNovaTurma() {
             <span>Jucelino</span>
             <small>Coordenador</small>
           </div>
+
         </Link>
+
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
-      <main className="gestao-main">
-        {/* CABEÇALHO */}
-        <header className="nova-turma-header">
-          <h1>Nova Turma</h1>
-          <p>Cadastre uma nova turma na unidade</p>
-        </header>
+
+      <main className="gestao-main pagina-nova-turma">
 
         {/* FORMULÁRIO */}
-        <section className="nova-turma-container">
-          <div className="nova-turma-titulo">
-            <h2>Dados da turma</h2>
-          </div>
 
-          <form
-            className="nova-turma-formulario"
-            onSubmit={cadastrarTurma}
-          >
-            {/* NOME DA TURMA */}
-            <div className="nova-turma-campo">
-              <label htmlFor="nome">Nome da Turma</label>
-              <input
-                id="nome"
-                type="text"
-                name="nome"
-                placeholder="Digite o nome da turma"
-                value={formulario.nome}
-                onChange={alterarCampo}
-                required
-              />
+        <form
+          className="nova-turma-formulario"
+          onSubmit={cadastrarTurma}
+        >
+
+          <section className="nova-turma-container">
+
+            {/* TÍTULO DO CARD */}
+
+            <div className="nova-turma-titulo">
+              <h2>Nova Turma</h2>
+              <p>Preencha as informações da turma.</p>
             </div>
 
-            {/* PROFESSOR RESPONSÁVEL */}
-            <div className="nova-turma-campo">
-              <label htmlFor="professor">
-                Professor Responsável
-              </label>
-              <input
-                id="professor"
-                type="text"
-                name="professor"
-                placeholder="Digite o nome do professor"
-                value={formulario.professor}
-                onChange={alterarCampo}
-                required
-              />
-            </div>
+            <div className="nova-turma-campos">
 
-            {/* MODELO DE ENSINO */}
-            <div className="nova-turma-campo">
-              <label htmlFor="modelo">Modelo de Ensino</label>
-              <select
-                id="modelo"
-                name="modelo"
-                value={formulario.modelo}
-                onChange={alterarCampo}
-                required
-              >
-                <option value="SEDUC">SEDUC</option>
-                <option value="Comunidade">Comunidade</option>
-              </select>
-            </div>
+              {/* NOME DA TURMA */}
 
-            {/* PERÍODO */}
-            <div className="nova-turma-campo">
-              <label htmlFor="periodo">Período</label>
-              <select
-                id="periodo"
-                name="periodo"
-                value={formulario.periodo}
-                onChange={alterarCampo}
-                required
-              >
-                <option value="Integral">Integral</option>
-                <option value="Manhã">Manhã</option>
-                <option value="Tarde">Tarde</option>
-                <option value="Noite">Noite</option>
-              </select>
-            </div>
-
-            {/* HORÁRIOS */}
-            <div className="nova-turma-horarios">
               <div className="nova-turma-campo">
+
+                <label htmlFor="nome">
+                  Nome da Turma
+                </label>
+
+                <input
+                  id="nome"
+                  type="text"
+                  name="nome"
+                  placeholder="Digite o nome da turma"
+                  value={formulario.nome}
+                  onChange={alterarCampo}
+                  required
+                />
+
+              </div>
+
+              {/* PROFESSOR RESPONSÁVEL */}
+
+              <div className="nova-turma-campo">
+
+                <label htmlFor="professor">
+                  Professor Responsável
+                </label>
+
+                <input
+                  id="professor"
+                  type="text"
+                  name="professor"
+                  placeholder="Digite o nome do professor"
+                  value={formulario.professor}
+                  onChange={alterarCampo}
+                  required
+                />
+
+              </div>
+
+              {/* MODELO DE ENSINO */}
+
+              <div className="nova-turma-campo">
+
+                <label htmlFor="modelo">
+                  Modelo de Ensino
+                </label>
+
+                <select
+                  id="modelo"
+                  name="modelo"
+                  value={formulario.modelo}
+                  onChange={alterarCampo}
+                  required
+                >
+                  <option value="SEDUC">
+                    SEDUC
+                  </option>
+
+                  <option value="Comunidade">
+                    Comunidade
+                  </option>
+                </select>
+
+              </div>
+
+              {/* PERÍODO */}
+
+              <div className="nova-turma-campo">
+
+                <label htmlFor="periodo">
+                  Período
+                </label>
+
+                <select
+                  id="periodo"
+                  name="periodo"
+                  value={formulario.periodo}
+                  onChange={alterarCampo}
+                  required
+                >
+                  <option value="Integral">Integral</option>
+                  <option value="Manhã">Manhã</option>
+                  <option value="Tarde">Tarde</option>
+                  <option value="Noite">Noite</option>
+                </select>
+
+              </div>
+
+              {/* HORÁRIO DE INÍCIO */}
+
+              <div className="nova-turma-campo">
+
                 <label htmlFor="horarioInicio">
                   Horário de Início
                 </label>
+
                 <input
                   id="horarioInicio"
                   type="time"
@@ -285,12 +329,17 @@ function TelaNovaTurma() {
                   onChange={alterarCampo}
                   required
                 />
+
               </div>
 
+              {/* HORÁRIO DE TÉRMINO */}
+
               <div className="nova-turma-campo">
+
                 <label htmlFor="horarioTermino">
                   Horário de Término
                 </label>
+
                 <input
                   id="horarioTermino"
                   type="time"
@@ -299,29 +348,38 @@ function TelaNovaTurma() {
                   onChange={alterarCampo}
                   required
                 />
+
               </div>
+
             </div>
 
-            {/* BOTÕES */}
-            <div className="nova-turma-acoes">
-              <button
-                type="button"
-                className="btn-cancelar-nova-turma"
-                onClick={() => navigate("/turmas")}
-              >
-                Cancelar
-              </button>
+          </section>
 
-              <button
-                type="submit"
-                className="btn-salvar-nova-turma"
-              >
-                Cadastrar Turma
-              </button>
-            </div>
-          </form>
-        </section>
+          {/* BOTÕES */}
+
+          <div className="nova-turma-acoes">
+
+            <button
+              type="button"
+              className="btn-cancelar-nova-turma"
+              onClick={() => navigate("/turmas")}
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="submit"
+              className="btn-salvar-nova-turma"
+            >
+              Cadastrar Turma
+            </button>
+
+          </div>
+
+        </form>
+
       </main>
+
     </div>
   );
 }

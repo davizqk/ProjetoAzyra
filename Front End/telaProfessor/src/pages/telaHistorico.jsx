@@ -1,40 +1,88 @@
 
-import React, { useMemo, useState } from 'react';
-import '../styles/telaHistorico.css';
+import React, { useMemo, useState } from "react";
 
-import logo from '../assets/logo-footer.png';
-import iconeTurmas from '../assets/minhasturmas-footer.png';
-import iconeHistorico from '../assets/historico-footer-preenchido.png';
-import perfilUsuario from '../assets/perfil-minhasturmas.png';
-import lupa from '../assets/lupa-minhasturmas.png';
-import setaEsquerda from '../assets/seta-esquerda.png';
-import setaDireita from '../assets/seta-direita.png';
+import "../styles/telaMinhasTurmas.css";
+import "../styles/telaHistorico.css";
+
+import logo from "../assets/logo-footer.png";
+import iconeTurmas from "../assets/minhasturmas-footer.png";
+import iconeHistorico from "../assets/historico-footer-preenchido.png";
+import perfilUsuario from "../assets/perfil-minhasturmas.png";
+import lupa from "../assets/lupa-minhasturmas.png";
+import setaEsquerda from "../assets/seta-esquerda.png";
+import setaDireita from "../assets/seta-direita.png";
 
 const registrosIniciais = [
-  { id: 1, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:15' },
-  { id: 2, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:40' },
-  { id: 3, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:23' },
-  { id: 4, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:10' },
-  { id: 5, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:35' },
-  { id: 6, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:25' },
-  { id: 7, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:10' },
-  { id: 8, estudante: 'Pedro', modelo: 'Comunidade', turma: 'Jogos Digitais', data: '02/09/2026', horario: '08:20' },
+  {
+    id: 1,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:15",
+  },
+  {
+    id: 2,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:40",
+  },
+  {
+    id: 3,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:23",
+  },
+  {
+    id: 4,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:10",
+  },
+  {
+    id: 5,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:35",
+  },
+  {
+    id: 6,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:25",
+  },
+  {
+    id: 7,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:10",
+  },
+  {
+    id: 8,
+    estudante: "Pedro",
+    turma: "Jogos Digitais",
+    data: "02/09/2026",
+    horario: "08:20",
+  },
 ];
 
-export default function PtelaHistorico({ aoNavegar, telaAtual }) {
-  const [busca, setBusca] = useState('');
+export default function PtelaHistorico({ aoNavegar }) {
+  const [busca, setBusca] = useState("");
   const [pagina, setPagina] = useState(1);
 
   const itensPorPagina = 8;
 
   const registrosFiltrados = useMemo(() => {
-    return registrosIniciais.filter((registro) => {
-      const correspondeBusca = `${registro.estudante} ${registro.turma} ${registro.modelo}`
+    return registrosIniciais.filter((registro) =>
+      `${registro.estudante} ${registro.turma}`
         .toLowerCase()
-        .includes(busca.trim().toLowerCase());
-
-      return correspondeBusca;
-    });
+        .includes(busca.trim().toLowerCase())
+    );
   }, [busca]);
 
   const totalPaginas = Math.max(
@@ -55,24 +103,41 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
   }
 
   return (
-    <div className="historico-app">
+    <div className="historico-app turmas-app historico-professor-app">
+
+      {/* SIDEBAR ORIGINAL */}
+
       <aside className="sidebar">
+
         <div className="sidebar-brand">
           <img
             src={logo}
             alt="Logo Azyra"
             className="sidebar-logo"
           />
+
           <span>Azyra</span>
         </div>
 
-        <nav className="sidebar-nav" aria-label="Navegação principal">
-          <a href="#minhas-turmas" className="sidebar-link">
+        <nav
+          className="sidebar-nav"
+          aria-label="Navegação principal"
+        >
+
+          <a
+            href="#minhas-turmas"
+            className="sidebar-link"
+            onClick={(event) => {
+              event.preventDefault();
+              aoNavegar?.("minhas-turmas");
+            }}
+          >
             <img
               src={iconeTurmas}
               alt=""
               className="sidebar-icon sidebar-icon-turmas"
             />
+
             <span>Turmas</span>
           </a>
 
@@ -80,23 +145,31 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
             href="#historico"
             className="sidebar-link active"
             aria-current="page"
+            onClick={(event) => {
+              event.preventDefault();
+              aoNavegar?.("historico");
+            }}
           >
             <img
               src={iconeHistorico}
               alt=""
               className="sidebar-icon"
             />
+
             <span>Histórico</span>
           </a>
+
         </nav>
 
-        {/* FOOTER ORIGINAL - MANTIDO SEM ALTERAÇÕES */}
+        {/* PERFIL ORIGINAL */}
+
         <button
           type="button"
           className="sidebar-footer"
-          onClick={() => aoNavegar("perfil")}
+          onClick={() => aoNavegar?.("perfil")}
           aria-label="Abrir perfil do coordenador"
         >
+
           <img
             src={perfilUsuario}
             alt=""
@@ -105,46 +178,69 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
 
           <div className="sidebar-footer-text">
             <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <span>Coordenador</span>
           </div>
+
         </button>
+
       </aside>
 
-      <main className="turmas-main historico-main" id="historico">
-        <header className="page-header">
-          <div className="page-heading">
-            <h1>Histórico</h1>
-            <p>Confira as turmas que você ministra e seus horários</p>
-          </div>
+      {/* CONTEÚDO PRINCIPAL */}
+
+      <main className="historico-professor-main">
+
+        {/* CABEÇALHO */}
+
+        <header className="historico-professor-header">
+
+          <h1>Histórico</h1>
+
+          <p>
+            Acompanhe os registros de entrada dos alunos
+            das suas turmas.
+          </p>
+
         </header>
 
+        {/* PESQUISA */}
+
         <section
-          className="filters historico-filters"
+          className="historico-professor-filtros"
           aria-label="Filtros do histórico"
         >
-          <label className="search-box history-search-box">
+
+          <label className="historico-professor-pesquisa">
+
             <img src={lupa} alt="" />
 
             <input
               type="search"
-              placeholder="Nome do estudante"
+              placeholder="Buscar por estudante..."
               value={busca}
-              onChange={(event) => atualizarBusca(event.target.value)}
-              aria-label="Buscar estudante, turma ou modelo"
+              onChange={(event) =>
+                atualizarBusca(event.target.value)
+              }
+              aria-label="Buscar estudante ou turma"
             />
+
           </label>
+
         </section>
 
+        {/* TABELA */}
+
         <section
-          className="table-card history-table-card"
-          aria-label="Histórico de turmas"
+          className="historico-professor-card"
+          aria-label="Histórico de entrada dos alunos"
         >
-          <div className="table-scroll">
-            <table className="turmas-table historico-table">
+
+          <div className="historico-professor-scroll">
+
+            <table className="historico-professor-tabela">
+
               <thead>
                 <tr>
                   <th>Estudante</th>
-                  <th>Modelo de Ensino</th>
                   <th>Turma</th>
                   <th>Data</th>
                   <th>Horário de Entrada</th>
@@ -152,37 +248,69 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
               </thead>
 
               <tbody>
+
                 {registrosExibidos.length > 0 ? (
+
                   registrosExibidos.map((registro) => (
+
                     <tr key={registro.id}>
-                      <td>{registro.estudante}</td>
-                      <td>{registro.modelo}</td>
+
+                      <td className="historico-estudante">
+                        {registro.estudante}
+                      </td>
+
                       <td>{registro.turma}</td>
+
                       <td>{registro.data}</td>
-                      <td>{registro.horario}</td>
+
+                      <td className="historico-horario">
+                        {registro.horario}
+                      </td>
+
                     </tr>
+
                   ))
+
                 ) : (
+
                   <tr>
-                    <td colSpan="5" className="empty-table">
+                    <td
+                      colSpan={4}
+                      className="historico-vazio"
+                    >
                       Nenhum registro encontrado.
                     </td>
                   </tr>
+
                 )}
+
               </tbody>
+
             </table>
+
           </div>
 
-          <footer className="table-footer">
+          {/* RODAPÉ DA TABELA */}
+
+          <footer className="historico-professor-rodape">
+
             <span>
-              Mostrando {registrosExibidos.length} de {registrosFiltrados.length} registros
+              Mostrando {registrosExibidos.length} de{" "}
+              {registrosFiltrados.length} registros
             </span>
 
-            <div className="pagination" aria-label="Paginação">
+            <div
+              className="historico-professor-paginacao"
+              aria-label="Paginação"
+            >
+
               <button
                 type="button"
-                className="pagination-arrow"
-                onClick={() => setPagina((atual) => Math.max(1, atual - 1))}
+                onClick={() =>
+                  setPagina((atual) =>
+                    Math.max(1, atual - 1)
+                  )
+                }
                 disabled={paginaAtual === 1}
                 aria-label="Página anterior"
               >
@@ -193,36 +321,48 @@ export default function PtelaHistorico({ aoNavegar, telaAtual }) {
                 { length: totalPaginas },
                 (_, indice) => indice + 1
               ).map((numero) => (
+
                 <button
                   key={numero}
                   type="button"
                   className={
                     numero === paginaAtual
-                      ? 'pagination-current'
-                      : 'pagination-number'
+                      ? "historico-pagina-atual"
+                      : ""
                   }
                   onClick={() => setPagina(numero)}
-                  aria-current={numero === paginaAtual ? 'page' : undefined}
+                  aria-current={
+                    numero === paginaAtual
+                      ? "page"
+                      : undefined
+                  }
                 >
                   {numero}
                 </button>
+
               ))}
 
               <button
                 type="button"
-                className="pagination-arrow"
                 onClick={() =>
-                  setPagina((atual) => Math.min(totalPaginas, atual + 1))
+                  setPagina((atual) =>
+                    Math.min(totalPaginas, atual + 1)
+                  )
                 }
                 disabled={paginaAtual === totalPaginas}
                 aria-label="Próxima página"
               >
                 <img src={setaDireita} alt="" />
               </button>
+
             </div>
+
           </footer>
+
         </section>
+
       </main>
+
     </div>
   );
 }

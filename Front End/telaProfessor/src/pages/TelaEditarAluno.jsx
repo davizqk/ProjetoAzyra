@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import "../styles/telaMinhasTurmas.css";
 import "../styles/telaEditarAluno.css";
 
@@ -24,36 +25,37 @@ const opcoesPeriodo = ["Integral", "Manhã", "Tarde"];
 
 const opcoesModelo = ["SEDUC", "Comunidade"];
 
-const alunoPadrao = {
-  nome: "Eloysa Marques dos Santos",
-  cpf: "012.345.678.09",
-  turma: "Desenvolvimento de Sistemas",
-  periodo: "Integral",
-  modelo: "SEDUC",
-};
-
-export default function EditarAluno({ aoNavegar, aluno, aoSalvar }) {
+export default function EditarAluno({
+  aoNavegar,
+  aluno,
+  aoSalvar,
+}) {
   const [dados, setDados] = useState({
-    nome: aluno?.nome ?? alunoPadrao.nome,
-    cpf: aluno?.cpf ?? alunoPadrao.cpf,
-    turma: opcoesTurma.includes(aluno?.turma)
-      ? aluno.turma
-      : alunoPadrao.turma,
-    periodo: opcoesPeriodo.includes(aluno?.periodo)
-      ? aluno.periodo
-      : alunoPadrao.periodo,
-    modelo: opcoesModelo.includes(aluno?.modelo)
-      ? aluno.modelo
-      : alunoPadrao.modelo,
+    nome: aluno?.nome ?? "",
+    cpf: aluno?.cpf ?? "",
+    turma:
+      aluno?.turma === "Dev - SEDUC"
+        ? "Desenvolvimento de Sistemas"
+        : aluno?.turma ?? "",
+    periodo: aluno?.periodo ?? "Integral",
+    modelo: aluno?.modelo ?? "SEDUC",
   });
 
   function atualizarCampo(campo, valor) {
-    setDados((atual) => ({ ...atual, [campo]: valor }));
+    setDados((atual) => ({
+      ...atual,
+      [campo]: valor,
+    }));
   }
 
   function salvar(event) {
     event.preventDefault();
-    aoSalvar?.({ ...aluno, ...dados });
+
+    aoSalvar?.({
+      ...aluno,
+      ...dados,
+    });
+
     aoNavegar?.("alunos");
   }
 
@@ -62,14 +64,27 @@ export default function EditarAluno({ aoNavegar, aluno, aoSalvar }) {
   }
 
   return (
-    <div className="historico-app turmas-app editar-app">
+    <div className="historico-app turmas-app editar-aluno-app">
+
+      {/* SIDEBAR ORIGINAL */}
+
       <aside className="sidebar">
+
         <div className="sidebar-brand">
-          <img src={logo} alt="Logo Azyra" className="sidebar-logo" />
+          <img
+            src={logo}
+            alt="Logo Azyra"
+            className="sidebar-logo"
+          />
+
           <span>Azyra</span>
         </div>
 
-        <nav className="sidebar-nav" aria-label="Navegação principal">
+        <nav
+          className="sidebar-nav"
+          aria-label="Navegação principal"
+        >
+
           <a
             href="#minhas-turmas"
             className="sidebar-link active"
@@ -79,7 +94,12 @@ export default function EditarAluno({ aoNavegar, aluno, aoSalvar }) {
               aoNavegar?.("minhas-turmas");
             }}
           >
-            <img src={iconeTurmas} alt="" className="sidebar-icon" />
+            <img
+              src={iconeTurmas}
+              alt=""
+              className="sidebar-icon"
+            />
+
             <span>Turmas</span>
           </a>
 
@@ -91,17 +111,24 @@ export default function EditarAluno({ aoNavegar, aluno, aoSalvar }) {
               aoNavegar?.("historico");
             }}
           >
-            <img src={iconeHistorico} alt="" className="sidebar-icon" />
+            <img
+              src={iconeHistorico}
+              alt=""
+              className="sidebar-icon"
+            />
+
             <span>Histórico</span>
           </a>
+
         </nav>
 
         <button
           type="button"
           className="sidebar-footer"
           onClick={() => aoNavegar?.("perfil")}
-          aria-label="Abrir perfil do coordenador"
+          aria-label="Abrir perfil"
         >
+
           <img
             src={perfilUsuario}
             alt=""
@@ -110,124 +137,222 @@ export default function EditarAluno({ aoNavegar, aluno, aoSalvar }) {
 
           <div className="sidebar-footer-text">
             <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <span>Coordenador</span>
           </div>
+
         </button>
+
       </aside>
 
-      <main className="editar-main">
-        <header className="editar-header">
-          <h1>Editar Aluno</h1>
-          <p>Atualize as informações do aluno</p>
-        </header>
+      {/* CONTEÚDO PRINCIPAL */}
 
-        <form className="editar-card" onSubmit={salvar}>
-          <div className="editar-card-header">Dados do aluno</div>
+      <main className="editar-aluno-main">
 
-          <div className="editar-card-body">
-            <div className="editar-campo">
-              <label htmlFor="nome-aluno">Nome do aluno</label>
-              <input
-                id="nome-aluno"
-                type="text"
-                value={dados.nome}
-                onChange={(event) => atualizarCampo("nome", event.target.value)}
-                required
-              />
+        <form
+          className="editar-aluno-form"
+          onSubmit={salvar}
+        >
+
+          {/* CARD BRANCO */}
+
+          <section className="editar-aluno-card">
+
+            {/* TÍTULO DENTRO DO CARD */}
+
+            <div className="editar-aluno-cabecalho">
+
+              <h1>Editar Aluno</h1>
+
+              <p>Atualize as informações do aluno.</p>
+
             </div>
 
-            <div className="editar-campo">
-              <label htmlFor="cpf-aluno">CPF</label>
-              <input
-                id="cpf-aluno"
-                type="text"
-                value={dados.cpf}
-                maxLength={14}
-                onChange={(event) => atualizarCampo("cpf", event.target.value)}
-                required
-              />
-            </div>
+            {/* CAMPOS */}
 
-            <div className="editar-campo">
-              <label htmlFor="turma-aluno">Turma</label>
-              <select
-                id="turma-aluno"
-                value={dados.turma}
-                onChange={(event) => atualizarCampo("turma", event.target.value)}
-              >
-                {opcoesTurma.map((turma) => (
-                  <option key={turma} value={turma}>
-                    {turma}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <div className="editar-aluno-grid">
 
-            <div className="editar-campo">
-              <label htmlFor="periodo-aluno">Período</label>
-              <select
-                id="periodo-aluno"
-                value={dados.periodo}
-                onChange={(event) =>
-                  atualizarCampo("periodo", event.target.value)
-                }
-              >
-                {opcoesPeriodo.map((periodo) => (
-                  <option key={periodo} value={periodo}>
-                    {periodo}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="editar-aluno-campo">
 
-            <div
-              className="editar-campo"
-              role="radiogroup"
-              aria-labelledby="modelo-aluno-titulo"
-            >
-              <span id="modelo-aluno-titulo" className="editar-rotulo">
-                Modelo de Ensino
-              </span>
+                <label htmlFor="nome-aluno">
+                  Nome do Aluno
+                </label>
 
-              <div className="editar-opcoes">
-                {opcoesModelo.map((modelo) => (
-                  <label
-                    key={modelo}
-                    className={
-                      dados.modelo === modelo
-                        ? "editar-opcao selecionada"
-                        : "editar-opcao"
-                    }
-                  >
-                    <input
-                      type="radio"
-                      name="modelo-ensino"
-                      value={modelo}
-                      checked={dados.modelo === modelo}
-                      onChange={() => atualizarCampo("modelo", modelo)}
-                    />
-                    <span>{modelo}</span>
-                  </label>
-                ))}
+                <input
+                  id="nome-aluno"
+                  type="text"
+                  value={dados.nome}
+                  onChange={(event) =>
+                    atualizarCampo(
+                      "nome",
+                      event.target.value
+                    )
+                  }
+                  required
+                />
+
               </div>
+
+              <div className="editar-aluno-campo">
+
+                <label htmlFor="cpf-aluno">
+                  CPF
+                </label>
+
+                <input
+                  id="cpf-aluno"
+                  type="text"
+                  maxLength={14}
+                  value={dados.cpf}
+                  onChange={(event) =>
+                    atualizarCampo(
+                      "cpf",
+                      event.target.value
+                    )
+                  }
+                  required
+                />
+
+              </div>
+
+              <div className="editar-aluno-campo">
+
+                <label htmlFor="turma-aluno">
+                  Turma
+                </label>
+
+                <select
+                  id="turma-aluno"
+                  value={dados.turma}
+                  onChange={(event) =>
+                    atualizarCampo(
+                      "turma",
+                      event.target.value
+                    )
+                  }
+                  required
+                >
+
+                  <option value="" disabled>
+                    Selecione a turma
+                  </option>
+
+                  {opcoesTurma.map((turma) => (
+                    <option key={turma} value={turma}>
+                      {turma}
+                    </option>
+                  ))}
+
+                </select>
+
+              </div>
+
+              <div className="editar-aluno-campo">
+
+                <label htmlFor="periodo-aluno">
+                  Período
+                </label>
+
+                <select
+                  id="periodo-aluno"
+                  value={dados.periodo}
+                  onChange={(event) =>
+                    atualizarCampo(
+                      "periodo",
+                      event.target.value
+                    )
+                  }
+                >
+
+                  {opcoesPeriodo.map((periodo) => (
+                    <option
+                      key={periodo}
+                      value={periodo}
+                    >
+                      {periodo}
+                    </option>
+                  ))}
+
+                </select>
+
+              </div>
+
+              {/* MODELO DE ENSINO */}
+
+              <div className="editar-aluno-modelo">
+
+                <span
+                  className="editar-aluno-rotulo"
+                  id="modelo-aluno-titulo"
+                >
+                  Modelo de Ensino
+                </span>
+
+                <div
+                  className="editar-aluno-opcoes"
+                  role="radiogroup"
+                  aria-labelledby="modelo-aluno-titulo"
+                >
+
+                  {opcoesModelo.map((modelo) => (
+
+                    <label
+                      key={modelo}
+                      className={`editar-aluno-opcao ${
+                        dados.modelo === modelo
+                          ? "selecionada"
+                          : ""
+                      }`}
+                    >
+
+                      <input
+                        type="radio"
+                        name="modelo-ensino"
+                        value={modelo}
+                        checked={dados.modelo === modelo}
+                        onChange={() =>
+                          atualizarCampo("modelo", modelo)
+                        }
+                      />
+
+                      <span>{modelo}</span>
+
+                    </label>
+
+                  ))}
+
+                </div>
+
+              </div>
+
             </div>
 
-            <div className="editar-acoes">
-              <button
-                type="button"
-                className="editar-cancelar"
-                onClick={cancelar}
-              >
-                Cancelar
-              </button>
+          </section>
 
-              <button type="submit" className="editar-salvar">
-                Salvar Alterações
-              </button>
-            </div>
+          {/* BOTÕES FORA DO CARD */}
+
+          <div className="editar-aluno-acoes">
+
+            <button
+              type="button"
+              className="editar-aluno-cancelar"
+              onClick={cancelar}
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="submit"
+              className="editar-aluno-salvar"
+            >
+              Salvar Alterações
+            </button>
+
           </div>
+
         </form>
+
       </main>
+
     </div>
   );
 }

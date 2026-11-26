@@ -1,10 +1,28 @@
-/* ========================================
-   TELA DE PERFIL
-======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-.perfil-app {
+/* ================================
+   ESTRUTURA PRINCIPAL
+================================ */
+
+.historico-app.perfil-app {
+  --perfil-sidebar-width: 266px;
+
+  display: flex;
+
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+
+  min-height: 0;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -14,346 +32,734 @@
   box-sizing: border-box;
 }
 
-/* ========================================
+/* ================================
    SIDEBAR
-   Mantém as dimensões originais
-======================================== */
+================================ */
 
-.perfil-app .sidebar {
+.perfil-app > .sidebar {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: var(--perfil-sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 16px 18px;
+
+  background-color: #496f96;
+
+  flex-shrink: 0;
+
+  z-index: 100;
+}
+
+/* LOGO */
+
+.perfil-app .sidebar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 0 12px;
+  margin-bottom: 44px;
+}
+
+.perfil-app .sidebar-brand .sidebar-logo {
+  display: block;
+
+  width: 44px;
+  height: 44px;
+
+  object-fit: contain;
+
   flex-shrink: 0;
 }
 
-.perfil-app .sidebar-link {
-  width: 100%;
-  font-family: inherit;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
-
-.perfil-app .sidebar-link:not(.active) {
-  background: transparent;
+.perfil-app .sidebar-brand span {
   color: #ffffff;
-  border-radius: 10px;
-}
 
-.perfil-app .sidebar-link:not(.active) .sidebar-icon {
-  opacity: 1;
-}
-
-.perfil-app .sidebar-link:not(.active):hover {
-  background: rgba(255, 255, 255, 0.10);
-  color: #ffffff;
-}
-
-.perfil-app .sidebar-link.active {
-  background: #e5edf6;
-  color: #173958;
-  border: none;
-  box-shadow: none;
-}
-
-.perfil-app .sidebar-link:focus {
-  outline: none;
-}
-
-.perfil-app .sidebar-link:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 2px;
-}
-
-.perfil-app .sidebar-footer {
-  width: 100%;
-  flex-shrink: 0;
-  font-family: inherit;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 0;
-}
-
-.perfil-app .sidebar-footer:hover {
-  background: transparent;
-}
-
-/* ========================================
-   CONTEÚDO PRINCIPAL
-======================================== */
-
-.perfil-main {
-  flex: 1;
-  min-width: 0;
-  padding: 28px 44px;
-  box-sizing: border-box;
-  background: #f5f5f5;
-}
-
-.perfil-main .page-header {
-  margin-bottom: 22px;
-}
-
-.perfil-main .page-header h1 {
-  margin: 0;
-  color: #4e77a3;
-  font-size: 32px;
+  font-size: 25px;
   font-weight: 700;
 }
 
-.perfil-main .page-header p {
-  margin: 6px 0 0;
-  color: #555f6b;
-  font-size: 17px;
-}
+/* NAVEGAÇÃO */
 
-/* ========================================
-   CARD DE INFORMAÇÕES
-======================================== */
+.perfil-app .sidebar-nav {
+  display: flex;
+  flex-direction: column;
 
-.perfil-card {
   width: 100%;
-  padding: 26px 32px;
-  background: #ffffff;
-  border: 1px solid #dedede;
-  border-radius: 10px;
+
+  gap: 12px;
 }
 
-/* ========================================
-   INFORMAÇÕES DO USUÁRIO
-======================================== */
+.perfil-app .sidebar-nav .sidebar-link {
+  appearance: none;
 
-.perfil-info {
   display: flex;
   align-items: center;
-  gap: 30px;
+
+  width: 100%;
+  min-height: 52px;
+
+  padding: 12px 16px;
+
+  gap: 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.perfil-app .sidebar-nav .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.perfil-app .sidebar-nav .sidebar-icon {
+  display: block;
+
+  width: 26px;
+  height: 26px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+}
+
+/* RODAPÉ DA SIDEBAR */
+
+.perfil-app .sidebar-footer {
+  appearance: none;
+
+  position: static;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  gap: 12px;
+
+  margin: auto 0 0;
+  padding: 8px 10px 0;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.perfil-app .sidebar-footer-avatar {
+  display: block;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+}
+
+.perfil-app .sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.perfil-app .sidebar-footer-text strong {
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 1.3;
+}
+
+.perfil-app .sidebar-footer-text span {
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.3;
+}
+
+/* ================================
+   CONTEÚDO PRINCIPAL
+   MESMO PADRÃO DA GESTÃO
+================================ */
+
+.perfil-app .pagina-perfil {
+  flex: 1;
+
+  width: calc(100% - var(--perfil-sidebar-width));
+  min-width: 0;
+
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+
+  margin: 0 0 0 var(--perfil-sidebar-width);
+  padding: 40px 36px;
+
+  box-sizing: border-box;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.perfil-app .pagina-perfil .perfil-header {
   margin-bottom: 26px;
 }
 
-.perfil-avatar {
-  display: block;
-  width: 125px;
-  height: 125px;
-  min-width: 125px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+.perfil-app .pagina-perfil .perfil-header h1 {
+  color: #4b75a5;
 
-.perfil-dados {
-  min-width: 0;
-}
-
-.perfil-dados h2 {
-  margin: 0 0 4px;
-  color: #4e77a3;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
+  line-height: 1.3;
+
+  letter-spacing: -0.5px;
+
+  margin: 0;
 }
 
-.perfil-cargo {
-  margin: 0 0 10px;
-  color: #4e77a3;
-  font-size: 18px;
+.perfil-app .pagina-perfil .perfil-header p {
+  color: #738397;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  margin: 7px 0 0;
 }
 
-/* ========================================
-   EMAIL, TELEFONE E LOCALIZAÇÃO
-======================================== */
+/* ================================
+   CARD PRINCIPAL
+================================ */
 
-.perfil-dado {
+.perfil-app .pagina-perfil .perfil-card {
+  width: 100%;
+  max-width: 100%;
+
+  padding: 34px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
+
+  animation: entradaPerfilProfessor 0.4s ease-out;
+}
+
+/* ================================
+   INFORMAÇÕES DO PERFIL
+================================ */
+
+.perfil-app .pagina-perfil .perfil-informacoes {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 7px 0;
-  color: #173958;
-  font-size: 16px;
+
+  gap: 28px;
+}
+
+/* CONTAINER DA FOTO */
+
+.perfil-app .pagina-perfil .perfil-foto-container {
+  width: 140px;
+  height: 140px;
+
+  padding: 5px;
+
+  background-color: #edf2f8;
+
+  border: 1px solid #e3eaf3;
+  border-radius: 50%;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+}
+
+/* FOTO DO PERFIL */
+
+.perfil-app .pagina-perfil .perfil-foto {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+/* DADOS DO PERFIL */
+
+.perfil-app .pagina-perfil .perfil-dados {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 14px;
+}
+
+/* NOME E CARGO */
+
+.perfil-app .pagina-perfil .perfil-nome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 7px;
+}
+
+.perfil-app .pagina-perfil .perfil-nome strong {
+  color: #29496e;
+
+  font-size: 27px;
+  font-weight: 700;
   line-height: 1.3;
+
   overflow-wrap: anywhere;
 }
 
-.perfil-dado img {
-  display: block;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+.perfil-app .pagina-perfil .perfil-nome .perfil-cargo {
+  display: inline-flex;
+  align-items: center;
+
+  margin: 0;
+  padding: 5px 13px;
+
+  background-color: #eaf1fa;
+  color: #4b75a5;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ================================
+   CONTATOS
+================================ */
+
+.perfil-app .pagina-perfil .perfil-contato {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.perfil-app .pagina-perfil .perfil-contato-item {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.perfil-app .pagina-perfil .perfil-contato-item svg {
+  width: 19px;
+  height: 19px;
+
   flex-shrink: 0;
-  object-fit: contain;
 }
 
-/* ========================================
-   ESTATÍSTICAS
-======================================== */
+.perfil-app .pagina-perfil .perfil-contato-item span {
+  color: #53677e;
 
-.perfil-estatisticas {
+  font-size: 14px;
+  font-weight: 400;
+
+  overflow-wrap: anywhere;
+}
+
+/* ================================
+   DIVISOR
+================================ */
+
+.perfil-app .pagina-perfil .perfil-divisor {
+  width: 100%;
+  height: 1px;
+
+  background-color: #e9edf3;
+
+  margin: 30px 0;
+}
+
+/* ================================
+   INDICADORES
+================================ */
+
+.perfil-app .pagina-perfil .perfil-indicadores {
+  width: 100%;
+
   display: grid;
+
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 26px;
+
+  gap: 24px;
 }
 
-.perfil-stat {
-  min-width: 0;
-  min-height: 120px;
+/* CARTÕES DOS INDICADORES */
+
+.perfil-app .pagina-perfil .perfil-indicador {
+  min-height: 135px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 16px;
-  background: #ffffff;
-  border: 1px solid #dedede;
-  border-radius: 8px;
-  color: #4e77a3;
-  text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  gap: 10px;
+  padding: 20px 15px;
+
+  background-color: #f7f9fc;
+
+  border: 1px solid #e5ecf4;
+  border-radius: 13px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.perfil-stat strong {
-  font-size: 28px;
+.perfil-app .pagina-perfil .perfil-indicador:hover {
+  transform: translateY(-3px);
+
+  border-color: #b8cce3;
+
+  box-shadow: 0 6px 18px rgba(75, 117, 165, 0.08);
+}
+
+/* NÚMEROS */
+
+.perfil-app .pagina-perfil .perfil-indicador strong {
+  color: #4b75a5;
+
+  font-size: 32px;
   font-weight: 700;
+  line-height: 1.3;
 }
 
-.perfil-stat span {
-  font-size: 17px;
+/* TEXTOS */
+
+.perfil-app .pagina-perfil .perfil-indicador span {
+  color: #53677e;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  text-align: center;
 }
 
-.perfil-stat-icone {
-  width: 27px;
-  height: 27px;
+/* ================================
+   SEMESTRE
+================================ */
+
+.perfil-app .pagina-perfil .perfil-semestre img {
+  display: block;
+
+  width: 32px;
+  height: 32px;
+
   object-fit: contain;
+
+  margin: 0;
 }
 
-/* ========================================
+/* ================================
    BOTÃO EDITAR PERFIL
-======================================== */
+================================ */
 
-.perfil-botao {
+.perfil-app .pagina-perfil .botao-editar-perfil {
+  appearance: none;
+
   width: 100%;
-  min-height: 58px;
-  margin-top: 20px;
+  min-height: 52px;
+
+  margin-top: 22px;
+  padding: 12px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #5c87b8,
+    #4b75a5
+  );
+
   border: none;
-  border-radius: 8px;
-  background: #4e77a3;
+  border-radius: 11px;
+
   color: #ffffff;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 700;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
   cursor: pointer;
-  transition: background 0.2s ease;
+
+  box-shadow: 0 5px 15px rgba(75, 117, 165, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.perfil-botao img {
-  width: 21px;
-  height: 21px;
-  object-fit: contain;
+.perfil-app .pagina-perfil .botao-editar-perfil:hover {
+  background: linear-gradient(
+    135deg,
+    #4b75a5,
+    #3d6696
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(75, 117, 165, 0.2);
 }
 
-.perfil-botao:hover {
-  background: #3e668f;
+.perfil-app .pagina-perfil .botao-editar-perfil:active {
+  transform: translateY(0);
 }
 
-/* ========================================
-   RESPONSIVIDADE
-======================================== */
+.perfil-app .pagina-perfil .botao-editar-perfil:focus-visible {
+  outline: 2px solid #4b75a5;
+  outline-offset: 4px;
+}
 
-@media (max-width: 1100px) {
-  .perfil-main {
-    padding: 24px 28px;
+.perfil-app .sidebar button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ================================
+   ANIMAÇÃO
+================================ */
+
+@keyframes entradaPerfilProfessor {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  .perfil-card {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 1100px) {
+
+  .perfil-app .pagina-perfil {
+    padding: 35px 28px;
+  }
+
+  .perfil-app .pagina-perfil .perfil-card {
+    padding: 28px;
+  }
+
+  .perfil-app .pagina-perfil .perfil-indicadores {
+    gap: 18px;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .historico-app.perfil-app {
+    --perfil-sidebar-width: 75px;
+  }
+
+  .perfil-app > .sidebar {
+    padding: 24px 10px 18px;
+  }
+
+  .perfil-app .sidebar-brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .perfil-app .sidebar-brand span,
+  .perfil-app .sidebar-link span,
+  .perfil-app .sidebar-footer-text {
+    display: none;
+  }
+
+  .perfil-app .sidebar-nav .sidebar-link {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .perfil-app .sidebar-footer {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .perfil-app .pagina-perfil .perfil-card {
     padding: 24px;
   }
 
-  .perfil-estatisticas {
-    gap: 18px;
+  .perfil-app .pagina-perfil .perfil-informacoes {
+    gap: 20px;
   }
 
-  .perfil-info {
-    gap: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .perfil-main {
-    padding: 22px 18px;
+  .perfil-app .pagina-perfil .perfil-foto-container {
+    width: 110px;
+    height: 110px;
   }
 
-  .perfil-avatar {
-    width: 105px;
-    height: 105px;
-    min-width: 105px;
+  .perfil-app .pagina-perfil .perfil-nome strong {
+    font-size: 23px;
   }
 
-  .perfil-dados h2 {
-    font-size: 22px;
+  .perfil-app .pagina-perfil .perfil-contato-item span {
+    font-size: 12px;
   }
 
-  .perfil-cargo {
-    font-size: 17px;
-  }
-
-  .perfil-estatisticas {
+  .perfil-app .pagina-perfil .perfil-indicadores {
     gap: 12px;
   }
 
-  .perfil-stat {
-    min-height: 105px;
-  }
-}
-
-@media (max-width: 600px) {
-  .perfil-main {
-    padding: 20px 16px;
+  .perfil-app .pagina-perfil .perfil-indicador {
+    min-height: 115px;
+    padding: 15px 10px;
   }
 
-  .perfil-main .page-header h1 {
+  .perfil-app .pagina-perfil .perfil-indicador strong {
     font-size: 27px;
   }
 
-  .perfil-main .page-header p {
-    font-size: 15px;
+  .perfil-app .pagina-perfil .perfil-indicador span {
+    font-size: 13px;
   }
 
-  .perfil-card {
-    padding: 20px 16px;
+}
+
+@media (max-width: 600px) {
+
+  .perfil-app .pagina-perfil {
+    padding: 25px 18px;
   }
 
-  .perfil-info {
+  .perfil-app .pagina-perfil .perfil-header h1 {
+    font-size: 25px;
+  }
+
+  .perfil-app .pagina-perfil .perfil-header p {
+    font-size: 12px;
+  }
+
+  .perfil-app .pagina-perfil .perfil-card {
+    padding: 22px 18px;
+
+    border-radius: 15px;
+  }
+
+  .perfil-app .pagina-perfil .perfil-informacoes {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+
+    text-align: center;
+
     gap: 18px;
   }
 
-  .perfil-avatar {
-    width: 95px;
-    height: 95px;
-    min-width: 95px;
+  .perfil-app .pagina-perfil .perfil-foto-container {
+    width: 105px;
+    height: 105px;
   }
 
-  .perfil-dados h2 {
-    font-size: 21px;
+  .perfil-app .pagina-perfil .perfil-nome {
+    align-items: center;
   }
 
-  .perfil-dado {
-    font-size: 15px;
+  .perfil-app .pagina-perfil .perfil-contato-item {
+    justify-content: center;
   }
 
-  .perfil-estatisticas {
+  .perfil-app .pagina-perfil .perfil-divisor {
+    margin: 24px 0;
+  }
+
+  .perfil-app .pagina-perfil .perfil-indicadores {
     grid-template-columns: 1fr;
+
     gap: 12px;
   }
 
-  .perfil-stat {
-    min-height: 90px;
+  .perfil-app .pagina-perfil .perfil-indicador {
+    min-height: 100px;
   }
 
-  .perfil-botao {
-    min-height: 52px;
-    font-size: 16px;
+  .perfil-app .pagina-perfil .botao-editar-perfil {
+    min-height: 48px;
+
+    font-size: 14px;
   }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .perfil-app .pagina-perfil .perfil-card {
+    animation: none;
+  }
+
+  .perfil-app * {
+    transition: none;
+  }
+
 }

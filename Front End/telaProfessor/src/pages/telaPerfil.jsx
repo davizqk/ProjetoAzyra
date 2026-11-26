@@ -1,40 +1,85 @@
-
-import "../styles/telaHistorico.css";
+import React from "react";
 import "../styles/telaPerfil.css";
 
+// IMAGENS ORIGINAIS
 import logo from "../assets/logo-footer.png";
 import iconeHistorico from "../assets/historico-footer.png";
 import perfilUsuario from "../assets/perfil-minhasturmas.png";
 import iconeChapeu from "../assets/icon-chapeu.png";
 import iconeMinhasTurmasWhite from "../assets/minhasturmaswhite-footer.png";
 
-// Ícones dos dados do perfil
-import iconeEmail from "../assets/iconeemail.png";
-import iconeTelefone from "../assets/iconetelefone.png";
-import iconeLocalizacao from "../assets/iconelocalizacao.png";
+// ÍCONES DE CONTATO - PADRÃO GESTÃO
+function Icone({ tipo }) {
+  const propriedades = {
+    width: 19,
+    height: 19,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "#4B75A5",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": true,
+  };
 
-export default function PtelaPerfil({ aoNavegar, telaAtual }) {
-  const usuario = {
-    nome: "Jucelino Pinheiro",
+  return (
+    <svg {...propriedades}>
+      {tipo === "email" && (
+        <>
+          <rect
+            x="3"
+            y="5"
+            width="18"
+            height="14"
+            rx="2"
+          />
+          <path d="m3 7 9 6 9-6" />
+        </>
+      )}
+
+      {tipo === "localizacao" && (
+        <>
+          <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+          <circle cx="12" cy="10" r="2.5" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+export default function PtelaPerfil({
+  aoNavegar,
+  aoEditar,
+  usuario,
+  foto,
+}) {
+  const dados = {
+    nome: usuario?.nome || "Jucelino Pinheiro",
+    email: usuario?.email || "jucelino@senai.br",
     cargo: "Coordenador",
-    email: "jucelino@senai.br",
-    telefone: "(11) 98765-4321",
     local: "Senai 134",
     turmas: 3,
     alunos: 40,
     semestre: "4º semestre",
   };
 
-  const navegar = (tela) => {
-    if (typeof aoNavegar === "function") {
-      aoNavegar(tela);
+  function navegar(tela) {
+    aoNavegar?.(tela);
+  }
+
+  function editarPerfil() {
+    if (aoEditar) {
+      aoEditar();
+    } else {
+      navegar("editar-perfil");
     }
-  };
+  }
 
   return (
     <div className="historico-app perfil-app">
 
       {/* SIDEBAR */}
+
       <aside className="sidebar">
 
         <div className="sidebar-brand">
@@ -43,6 +88,7 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
             alt="Logo Azyra"
             className="sidebar-logo"
           />
+
           <span>Azyra</span>
         </div>
 
@@ -51,12 +97,9 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
           aria-label="Navegação principal"
         >
 
-          {/* MINHAS TURMAS */}
           <button
             type="button"
-            className={`sidebar-link ${
-              telaAtual === "minhas-turmas" ? "active" : ""
-            }`}
+            className="sidebar-link"
             onClick={() => navegar("minhas-turmas")}
           >
             <img
@@ -64,15 +107,13 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
               alt=""
               className="sidebar-icon"
             />
+
             <span>Turmas</span>
           </button>
 
-          {/* HISTÓRICO */}
           <button
             type="button"
-            className={`sidebar-link ${
-              telaAtual === "historico" ? "active" : ""
-            }`}
+            className="sidebar-link"
             onClick={() => navegar("historico")}
           >
             <img
@@ -80,18 +121,22 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
               alt=""
               className="sidebar-icon"
             />
+
             <span>Histórico</span>
           </button>
 
         </nav>
 
         {/* RODAPÉ DA SIDEBAR */}
+
         <button
           type="button"
           className="sidebar-footer"
           onClick={() => navegar("perfil")}
           aria-label="Abrir perfil"
+          aria-current="page"
         >
+
           <img
             src={perfilUsuario}
             alt=""
@@ -99,85 +144,117 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
           />
 
           <div className="sidebar-footer-text">
-            <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <strong>{dados.nome.split(" ")[0]}</strong>
+            <span>Coordenador</span>
           </div>
+
         </button>
 
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
-      <main className="turmas-main historico-main perfil-main">
+
+      <main className="pagina-perfil">
 
         {/* CABEÇALHO */}
-        <header className="page-header">
-          <div className="page-heading">
-            <h1>Perfil</h1>
-            <p>Visualize e edite suas informações</p>
-          </div>
+
+        <header className="perfil-header">
+          <h1>Perfil</h1>
+
+          <p>Visualize e edite suas informações</p>
         </header>
 
-        {/* CARD DE PERFIL */}
+        {/* CARD PRINCIPAL */}
+
         <section className="perfil-card">
 
-          {/* INFORMAÇÕES DO USUÁRIO */}
-          <div className="perfil-info">
+          <div className="perfil-informacoes">
 
-            <img
-              src={perfilUsuario}
-              alt="Foto de perfil"
-              className="perfil-avatar"
-            />
+            {/* FOTO DO PERFIL */}
+
+            <div className="perfil-foto-container">
+
+              <img
+                src={foto || perfilUsuario}
+                alt="Foto do perfil"
+                className="perfil-foto"
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = perfilUsuario;
+                }}
+              />
+
+            </div>
+
+            {/* DADOS DO PERFIL */}
 
             <div className="perfil-dados">
 
-              <h2>{usuario.nome}</h2>
+              <div className="perfil-nome">
 
-              <p className="perfil-cargo">
-                {usuario.cargo}
-              </p>
+                <strong>{dados.nome}</strong>
 
-              {/* EMAIL */}
-              <p className="perfil-dado">
-                <img src={iconeEmail} alt="" />
-                {usuario.email}
-              </p>
+                <span className="perfil-cargo">
+                  {dados.cargo}
+                </span>
 
-              {/* TELEFONE */}
-              <p className="perfil-dado">
-                <img src={iconeTelefone} alt="" />
-                {usuario.telefone}
-              </p>
+              </div>
 
-              {/* LOCALIZAÇÃO */}
-              <p className="perfil-dado">
-                <img src={iconeLocalizacao} alt="" />
-                {usuario.local}
-              </p>
+              {/* CONTATOS */}
+
+              <div className="perfil-contato">
+
+                <div className="perfil-contato-item">
+                  <Icone tipo="email" />
+
+                  <span>{dados.email}</span>
+                </div>
+
+                <div className="perfil-contato-item">
+                  <Icone tipo="localizacao" />
+
+                  <span>{dados.local}</span>
+                </div>
+
+              </div>
 
             </div>
+
           </div>
 
-          {/* ESTATÍSTICAS */}
-          <div className="perfil-estatisticas">
+          {/* DIVISOR */}
 
-            <div className="perfil-stat">
-              <strong>{usuario.turmas}</strong>
+          <div className="perfil-divisor"></div>
+
+          {/* INDICADORES */}
+
+          <div className="perfil-indicadores">
+
+            <div className="perfil-indicador">
+
+              <strong>{dados.turmas}</strong>
+
               <span>Turmas</span>
+
             </div>
 
-            <div className="perfil-stat">
-              <strong>{usuario.alunos}</strong>
+            <div className="perfil-indicador">
+
+              <strong>{dados.alunos}</strong>
+
               <span>Alunos</span>
+
             </div>
 
-            <div className="perfil-stat">
+            <div className="perfil-indicador perfil-semestre">
+
               <img
                 src={iconeChapeu}
-                alt=""
-                className="perfil-stat-icone"
+                alt="Semestre"
               />
-              <span>{usuario.semestre}</span>
+
+              <span>{dados.semestre}</span>
+
             </div>
 
           </div>
@@ -185,15 +262,17 @@ export default function PtelaPerfil({ aoNavegar, telaAtual }) {
         </section>
 
         {/* BOTÃO EDITAR PERFIL */}
+
         <button
           type="button"
-          className="perfil-botao"
-          onClick={() => navegar("editar-perfil")}
+          className="botao-editar-perfil"
+          onClick={editarPerfil}
         >
-          <span>Editar Perfil</span>
+          Editar Perfil
         </button>
 
       </main>
+
     </div>
   );
 }

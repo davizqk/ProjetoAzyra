@@ -16,10 +16,30 @@ import iconeEditar from "../assets/lapis-editar.png";
 import iconeExcluir from "../assets/lixeira-aluno.png";
 
 const alunosIniciais = [
-  { id: 1, nome: "Eloysa Marques dos Santos", cpf: "012.345.678.09", turma: "Dev - SEDUC" },
-  { id: 2, nome: "Livia Caires Lançoni", cpf: "012.345.678.09", turma: "Dev - SEDUC" },
-  { id: 3, nome: "Amy Lee Rebeka De Souza Santos", cpf: "012.345.678.09", turma: "Dev - SEDUC" },
-  { id: 4, nome: "Davi Muniz", cpf: "012.345.678.09", turma: "Dev - SEDUC" },
+  {
+    id: 1,
+    nome: "Eloysa Marques dos Santos",
+    cpf: "012.345.678.09",
+    turma: "Dev - SEDUC",
+  },
+  {
+    id: 2,
+    nome: "Livia Caires Lançoni",
+    cpf: "012.345.678.09",
+    turma: "Dev - SEDUC",
+  },
+  {
+    id: 3,
+    nome: "Amy Lee Rebeka De Souza Santos",
+    cpf: "012.345.678.09",
+    turma: "Dev - SEDUC",
+  },
+  {
+    id: 4,
+    nome: "Davi Muniz",
+    cpf: "012.345.678.09",
+    turma: "Dev - SEDUC",
+  },
 ];
 
 export default function PtelaAlunos({ aoNavegar }) {
@@ -31,7 +51,9 @@ export default function PtelaAlunos({ aoNavegar }) {
 
   const alunosFiltrados = useMemo(() => {
     return alunos.filter((item) =>
-      item.nome.toLowerCase().includes(busca.trim().toLowerCase())
+      item.nome
+        .toLowerCase()
+        .includes(busca.trim().toLowerCase())
     );
   }, [alunos, busca]);
 
@@ -53,7 +75,16 @@ export default function PtelaAlunos({ aoNavegar }) {
   }
 
   function excluirAluno(id) {
-    setAlunos((atual) => atual.filter((item) => item.id !== id));
+    const confirmar = window.confirm(
+      "Deseja realmente excluir este aluno?"
+    );
+
+    if (confirmar) {
+      setAlunos((atual) =>
+        atual.filter((item) => item.id !== id)
+      );
+      setPagina(1);
+    }
   }
 
   function editarAluno(aluno) {
@@ -62,23 +93,38 @@ export default function PtelaAlunos({ aoNavegar }) {
 
   return (
     <div className="historico-app turmas-app alunos-app">
+
+      {/* SIDEBAR */}
+
       <aside className="sidebar">
+
         <div className="sidebar-brand">
-          <img src={logo} alt="Logo Azyra" className="sidebar-logo" />
+          <img
+            src={logo}
+            alt="Logo Azyra"
+            className="sidebar-logo"
+          />
           <span>Azyra</span>
         </div>
 
-        <nav className="sidebar-nav" aria-label="Navegação principal">
+        <nav
+          className="sidebar-nav"
+          aria-label="Navegação principal"
+        >
+
           <a
             href="#minhas-turmas"
             className="sidebar-link active"
-            aria-current="page"
             onClick={(event) => {
               event.preventDefault();
               aoNavegar?.("minhas-turmas");
             }}
           >
-            <img src={iconeTurmas} alt="" className="sidebar-icon" />
+            <img
+              src={iconeTurmas}
+              alt=""
+              className="sidebar-icon"
+            />
             <span>Turmas</span>
           </a>
 
@@ -90,16 +136,23 @@ export default function PtelaAlunos({ aoNavegar }) {
               aoNavegar?.("historico");
             }}
           >
-            <img src={iconeHistorico} alt="" className="sidebar-icon" />
+            <img
+              src={iconeHistorico}
+              alt=""
+              className="sidebar-icon"
+            />
             <span>Histórico</span>
           </a>
+
         </nav>
+
+        {/* PERFIL */}
 
         <button
           type="button"
           className="sidebar-footer"
           onClick={() => aoNavegar?.("perfil")}
-          aria-label="Abrir perfil do coordenador"
+          aria-label="Abrir perfil"
         >
           <img
             src={perfilUsuario}
@@ -109,157 +162,267 @@ export default function PtelaAlunos({ aoNavegar }) {
 
           <div className="sidebar-footer-text">
             <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <span>Coordenador</span>
           </div>
         </button>
+
       </aside>
 
-      <main className="alunos-main">
+      {/* CONTEÚDO PRINCIPAL */}
+
+      <main className="alunos-main pagina-turmas">
+
+        {/* CABEÇALHO */}
+
         <header className="alunos-header">
+
           <button
             type="button"
             className="alunos-voltar"
             onClick={() => aoNavegar?.("minhas-turmas")}
             aria-label="Voltar para turmas"
+            title="Voltar para turmas"
           >
-            ‹
+            <img src={setaEsquerda} alt="" />
           </button>
 
           <div className="alunos-titulo">
             <h1>Alunos</h1>
-            <p>Gerencie os alunos da turma</p>
+            <p>Gerencie os alunos da turma.</p>
           </div>
+
         </header>
 
+        {/* CARDS DE RESUMO */}
+
         <section className="alunos-resumo">
+
           <div className="alunos-resumo-card">
-            <img src={iconeAlunos} alt="" />
-            <strong>25 Alunos</strong>
+
+            <div className="alunos-resumo-icone">
+              <img src={iconeAlunos} alt="" />
+            </div>
+
+            <div className="alunos-resumo-info">
+              <span>Total de alunos</span>
+              <strong>{alunos.length} Alunos</strong>
+            </div>
+
           </div>
 
           <div className="alunos-resumo-card">
-            <img src={iconeRelogio} alt="" />
-            <div className="alunos-horario">
-              <span>8:00</span>
-              <strong>Horário Entrada</strong>
+
+            <div className="alunos-resumo-icone">
+              <img src={iconeRelogio} alt="" />
             </div>
+
+            <div className="alunos-resumo-info">
+              <span>Horário de entrada</span>
+              <strong>08:00</strong>
+            </div>
+
           </div>
+
         </section>
 
-        <section className="alunos-search-section">
-          <label className="alunos-search-box">
-            <img src={lupa} alt="" />
+        {/* PESQUISA */}
+
+        <section className="turmas-acoes">
+
+          <label className="turmas-pesquisa">
+
+            <img
+              src={lupa}
+              alt=""
+              className="turmas-icone-pesquisa"
+            />
+
             <input
               type="search"
               placeholder="Buscar por aluno..."
               value={busca}
-              onChange={(event) => atualizarBusca(event.target.value)}
+              onChange={(event) =>
+                atualizarBusca(event.target.value)
+              }
               aria-label="Buscar por aluno"
             />
+
           </label>
+
         </section>
 
-        <section className="alunos-table-card" aria-label="Lista de alunos">
-          <div className="table-scroll">
+        {/* TABELA */}
+
+        <section
+          className="turmas-tabela-container alunos-table-card"
+          aria-label="Lista de alunos"
+        >
+
+          <div className="turmas-tabela-scroll">
+
             <table className="alunos-table">
+
               <thead>
                 <tr>
                   <th>Nome</th>
                   <th>CPF</th>
                   <th>Turma</th>
-                  <th colSpan="2">Ações</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
 
               <tbody>
+
                 {alunosExibidos.length > 0 ? (
+
                   alunosExibidos.map((item) => (
+
                     <tr key={item.id}>
-                      <td className="aluno-nome">{item.nome}</td>
-                      <td>{item.cpf}</td>
-                      <td>{item.turma}</td>
-                      <td className="aluno-acao">
-                        <button
-                          type="button"
-                          className="aluno-editar"
-                          onClick={() => editarAluno(item)}
-                          aria-label={`Editar ${item.nome}`}
-                        >
-                          <img src={iconeEditar} alt="" />
-                        </button>
+
+                      <td className="aluno-nome">
+                        {item.nome}
                       </td>
-                      <td className="aluno-acao">
-                        <button
-                          type="button"
-                          className="aluno-excluir"
-                          onClick={() => excluirAluno(item.id)}
-                          aria-label={`Excluir ${item.nome}`}
-                        >
-                          <img src={iconeExcluir} alt="" />
-                        </button>
+
+                      <td className="aluno-cpf">
+                        {item.cpf}
                       </td>
+
+                      <td>
+                        <span
+                          className={`turma-modelo ${
+                            item.turma.includes("SEDUC")
+                              ? "modelo-seduc"
+                              : "modelo-comunidade"
+                          }`}
+                        >
+                          {item.turma}
+                        </span>
+                      </td>
+
+                      <td>
+
+                        <div className="aluno-acoes">
+
+                          <button
+                            type="button"
+                            className="aluno-editar"
+                            onClick={() => editarAluno(item)}
+                            aria-label={`Editar ${item.nome}`}
+                            title="Editar aluno"
+                          >
+                            <img src={iconeEditar} alt="" />
+                          </button>
+
+                          <button
+                            type="button"
+                            className="aluno-excluir"
+                            onClick={() => excluirAluno(item.id)}
+                            aria-label={`Excluir ${item.nome}`}
+                            title="Excluir aluno"
+                          >
+                            <img src={iconeExcluir} alt="" />
+                          </button>
+
+                        </div>
+
+                      </td>
+
                     </tr>
+
                   ))
+
                 ) : (
+
                   <tr>
-                    <td colSpan="5" className="empty-table">
+                    <td
+                      colSpan="4"
+                      className="alunos-vazio"
+                    >
                       Nenhum aluno encontrado.
                     </td>
                   </tr>
+
                 )}
+
               </tbody>
+
             </table>
+
           </div>
 
-          <footer className="table-footer">
+          {/* PAGINAÇÃO */}
+
+          <footer className="turmas-paginacao">
+
             <span>
-              Mostrando {alunosExibidos.length} de {alunosFiltrados.length} alunos
+              Mostrando {alunosExibidos.length} de{" "}
+              {alunosFiltrados.length} alunos
             </span>
 
-            <div className="pagination" aria-label="Paginação">
+            <div
+              className="turmas-paginacao-botoes"
+              aria-label="Paginação"
+            >
+
               <button
                 type="button"
-                className="pagination-arrow"
-                onClick={() => setPagina((atual) => Math.max(1, atual - 1))}
+                onClick={() =>
+                  setPagina((atual) =>
+                    Math.max(1, atual - 1)
+                  )
+                }
                 disabled={paginaAtual === 1}
                 aria-label="Página anterior"
               >
                 <img src={setaEsquerda} alt="" />
               </button>
 
-              {Array.from({ length: totalPaginas }, (_, i) => i + 1).map(
-                (numero) => (
-                  <button
-                    key={numero}
-                    type="button"
-                    className={
-                      numero === paginaAtual
-                        ? "pagination-current"
-                        : "pagination-number"
-                    }
-                    onClick={() => setPagina(numero)}
-                    aria-current={numero === paginaAtual ? "page" : undefined}
-                  >
-                    {numero}
-                  </button>
-                )
-              )}
+              {Array.from(
+                { length: totalPaginas },
+                (_, indice) => indice + 1
+              ).map((numero) => (
+
+                <button
+                  key={numero}
+                  type="button"
+                  className={
+                    numero === paginaAtual
+                      ? "pagina-atual"
+                      : "pagina-numero"
+                  }
+                  onClick={() => setPagina(numero)}
+                  aria-current={
+                    numero === paginaAtual
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  {numero}
+                </button>
+
+              ))}
 
               <button
                 type="button"
-                className="pagination-arrow"
                 onClick={() =>
-                  setPagina((atual) => Math.min(totalPaginas, atual + 1))
+                  setPagina((atual) =>
+                    Math.min(totalPaginas, atual + 1)
+                  )
                 }
                 disabled={paginaAtual === totalPaginas}
                 aria-label="Próxima página"
               >
                 <img src={setaDireita} alt="" />
               </button>
+
             </div>
+
           </footer>
+
         </section>
+
       </main>
+
     </div>
   );
 }

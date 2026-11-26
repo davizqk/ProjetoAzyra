@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
@@ -76,7 +75,7 @@ function TelaEditarTurma() {
   const [turmas] = useState(carregarTurmas);
 
   const turmaSelecionada = turmas.find(
-    (turma) => turma.id === Number(id)
+    (turma) => Number(turma.id) === Number(id)
   );
 
   const [formulario, setFormulario] = useState(() =>
@@ -93,6 +92,7 @@ function TelaEditarTurma() {
   );
 
   // ALTERAR CAMPOS
+
   function alterarCampo(e) {
     const { name, value } = e.target;
 
@@ -103,8 +103,18 @@ function TelaEditarTurma() {
   }
 
   // SALVAR ALTERAÇÕES
+
   function salvarAlteracoes(e) {
     e.preventDefault();
+
+    if (!turmaSelecionada) {
+      return;
+    }
+
+    if (!formulario.nome.trim()) {
+      alert("Digite o nome da turma.");
+      return;
+    }
 
     if (!formulario.professor.trim()) {
       alert("Digite o nome do professor responsável.");
@@ -121,7 +131,7 @@ function TelaEditarTurma() {
     }
 
     const turmasAtualizadas = turmas.map((turma) =>
-      turma.id === Number(id)
+      Number(turma.id) === Number(id)
         ? {
             ...formulario,
             id: turma.id,
@@ -139,6 +149,7 @@ function TelaEditarTurma() {
 
       alert("Turma atualizada com sucesso!");
       navigate("/turmas");
+
     } catch (erro) {
       console.error("Erro ao salvar turma:", erro);
       alert("Não foi possível salvar as alterações.");
@@ -147,14 +158,18 @@ function TelaEditarTurma() {
 
   return (
     <div className="gestao-layout">
+
       {/* SIDEBAR */}
+
       <aside className="gestao-sidebar">
+
         <div className="sidebar-logo">
           <img src={logoFooter} alt="Logo Azyra" />
           <span>Azyra</span>
         </div>
 
         <nav className="sidebar-menu">
+
           <Link to="/inicio" className="sidebar-link">
             <img src={casaIcon} alt="" />
             <span>Início</span>
@@ -174,10 +189,13 @@ function TelaEditarTurma() {
             <img src={recorrenciasIcon} alt="" />
             <span>Recorrências</span>
           </Link>
+
         </nav>
 
-        {/* PERFIL CLICÁVEL */}
+        {/* RODAPÉ */}
+
         <Link to="/perfil" className="sidebar-footer">
+
           <img
             src={perfilIcon}
             alt="Perfil"
@@ -188,96 +206,134 @@ function TelaEditarTurma() {
             <span>Jucelino</span>
             <small>Coordenador</small>
           </div>
+
         </Link>
+
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
-      <main className="gestao-main">
-        {/* CABEÇALHO */}
-        <header className="editar-turma-header">
-          <h1>Editar Turma</h1>
-          <p>Atualize as informações da turma</p>
-        </header>
 
-        {/* FORMULÁRIO */}
-        <section className="editar-turma-container">
-          <div className="editar-turma-titulo">
-            <h2>Dados da turma</h2>
-          </div>
+      <main className="gestao-main pagina-editar-turma">
 
-          {turmaSelecionada ? (
-            <form
-              className="editar-turma-formulario"
-              onSubmit={salvarAlteracoes}
-            >
-              {/* NOME DA TURMA */}
-              <div className="editar-turma-campo">
-                <label htmlFor="nome">Nome da Turma</label>
-                <input
-                  id="nome"
-                  type="text"
-                  name="nome"
-                  placeholder="Digite o nome da turma"
-                  value={formulario.nome}
-                  onChange={alterarCampo}
-                  required
-                />
+        {turmaSelecionada ? (
+
+          <form
+            className="editar-turma-formulario"
+            onSubmit={salvarAlteracoes}
+          >
+
+            {/* CARD PRINCIPAL */}
+
+            <section className="editar-turma-container">
+
+              {/* TÍTULO DO CARD */}
+
+              <div className="editar-turma-titulo">
+                <h2>Editar Turma</h2>
+                <p>Atualize as informações da turma.</p>
               </div>
 
-              {/* PROFESSOR RESPONSÁVEL */}
-              <div className="editar-turma-campo">
-                <label htmlFor="professor">
-                  Professor Responsável
-                </label>
-                <input
-                  id="professor"
-                  type="text"
-                  name="professor"
-                  placeholder="Digite o nome do professor"
-                  value={formulario.professor}
-                  onChange={alterarCampo}
-                  required
-                />
-              </div>
+              {/* CAMPOS */}
 
-              {/* MODELO DE ENSINO */}
-              <div className="editar-turma-campo">
-                <label htmlFor="modelo">Modelo de Ensino</label>
-                <select
-                  id="modelo"
-                  name="modelo"
-                  value={formulario.modelo}
-                  onChange={alterarCampo}
-                  required
-                >
-                  <option value="SEDUC">SEDUC</option>
-                  <option value="Comunidade">Comunidade</option>
-                </select>
-              </div>
+              <div className="editar-turma-campos">
 
-              {/* PERÍODO */}
-              <div className="editar-turma-campo">
-                <label htmlFor="periodo">Período</label>
-                <select
-                  id="periodo"
-                  name="periodo"
-                  value={formulario.periodo}
-                  onChange={alterarCampo}
-                  required
-                >
-                  <option value="Integral">Integral</option>
-                  <option value="Manhã">Manhã</option>
-                  <option value="Tarde">Tarde</option>
-                  <option value="Noite">Noite</option>
-                </select>
-              </div>
+                {/* NOME DA TURMA */}
 
-              {/* HORÁRIOS */}
-              <div className="editar-turma-horarios">
                 <div className="editar-turma-campo">
+
+                  <label htmlFor="nome">
+                    Nome da Turma
+                  </label>
+
+                  <input
+                    id="nome"
+                    type="text"
+                    name="nome"
+                    placeholder="Digite o nome da turma"
+                    value={formulario.nome}
+                    onChange={alterarCampo}
+                    required
+                  />
+
+                </div>
+
+                {/* PROFESSOR RESPONSÁVEL */}
+
+                <div className="editar-turma-campo">
+
+                  <label htmlFor="professor">
+                    Professor Responsável
+                  </label>
+
+                  <input
+                    id="professor"
+                    type="text"
+                    name="professor"
+                    placeholder="Digite o nome do professor"
+                    value={formulario.professor}
+                    onChange={alterarCampo}
+                    required
+                  />
+
+                </div>
+
+                {/* MODELO DE ENSINO */}
+
+                <div className="editar-turma-campo">
+
+                  <label htmlFor="modelo">
+                    Modelo de Ensino
+                  </label>
+
+                  <select
+                    id="modelo"
+                    name="modelo"
+                    value={formulario.modelo}
+                    onChange={alterarCampo}
+                    required
+                  >
+                    <option value="SEDUC">
+                      SEDUC
+                    </option>
+
+                    <option value="Comunidade">
+                      Comunidade
+                    </option>
+                  </select>
+
+                </div>
+
+                {/* PERÍODO */}
+
+                <div className="editar-turma-campo">
+
+                  <label htmlFor="periodo">
+                    Período
+                  </label>
+
+                  <select
+                    id="periodo"
+                    name="periodo"
+                    value={formulario.periodo}
+                    onChange={alterarCampo}
+                    required
+                  >
+                    <option value="Integral">Integral</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                  </select>
+
+                </div>
+
+                {/* HORÁRIO DE INÍCIO */}
+
+                <div className="editar-turma-campo">
+
                   <label htmlFor="horarioInicio">
                     Horário de Início
                   </label>
+
                   <input
                     id="horarioInicio"
                     type="time"
@@ -286,12 +342,17 @@ function TelaEditarTurma() {
                     onChange={alterarCampo}
                     required
                   />
+
                 </div>
 
+                {/* HORÁRIO DE TÉRMINO */}
+
                 <div className="editar-turma-campo">
+
                   <label htmlFor="horarioTermino">
                     Horário de Término
                   </label>
+
                   <input
                     id="horarioTermino"
                     type="time"
@@ -300,29 +361,46 @@ function TelaEditarTurma() {
                     onChange={alterarCampo}
                     required
                   />
+
                 </div>
+
               </div>
 
-              {/* BOTÕES */}
-              <div className="editar-turma-acoes">
-                <button
-                  type="button"
-                  className="btn-cancelar-edicao"
-                  onClick={() => navigate("/turmas")}
-                >
-                  Cancelar
-                </button>
+            </section>
 
-                <button
-                  type="submit"
-                  className="btn-salvar-edicao"
-                >
-                  Salvar Alterações
-                </button>
-              </div>
-            </form>
-          ) : (
+            {/* BOTÕES */}
+
+            <div className="editar-turma-acoes">
+
+              <button
+                type="button"
+                className="btn-cancelar-edicao"
+                onClick={() => navigate("/turmas")}
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="submit"
+                className="btn-salvar-edicao"
+              >
+                Salvar Alterações
+              </button>
+
+            </div>
+
+          </form>
+
+        ) : (
+
+          <section className="editar-turma-container">
+
+            <div className="editar-turma-titulo">
+              <h2>Editar Turma</h2>
+            </div>
+
             <div className="editar-turma-nao-encontrada">
+
               <p>Turma não encontrada.</p>
 
               <button
@@ -331,10 +409,15 @@ function TelaEditarTurma() {
               >
                 Voltar para Turmas
               </button>
+
             </div>
-          )}
-        </section>
+
+          </section>
+
+        )}
+
       </main>
+
     </div>
   );
 }
