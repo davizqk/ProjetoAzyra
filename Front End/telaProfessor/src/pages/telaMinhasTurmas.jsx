@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState } from "react";
 import "../styles/telaMinhasTurmas.css";
 
@@ -92,7 +91,9 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
 
   const turmasFiltradas = useMemo(() => {
     return turmasIniciais.filter((item) =>
-      item.turma.toLowerCase().includes(busca.trim().toLowerCase())
+      item.turma
+        .toLowerCase()
+        .includes(busca.trim().toLowerCase())
     );
   }, [busca]);
 
@@ -113,13 +114,16 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
     setPagina(1);
   }
 
- function visualizarTurma(turma) {
-  aoNavegar?.("alunos", turma);
-}
+  function visualizarTurma(turma) {
+    aoNavegar?.("alunos", turma);
+  }
 
   return (
     <div className="historico-app turmas-app">
+
+      {/* SIDEBAR */}
       <aside className="sidebar">
+
         <div className="sidebar-brand">
           <img
             src={logo}
@@ -129,7 +133,11 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
           <span>Azyra</span>
         </div>
 
-        <nav className="sidebar-nav" aria-label="Navegação principal">
+        <nav
+          className="sidebar-nav"
+          aria-label="Navegação principal"
+        >
+
           <a
             href="#minhas-turmas"
             className="sidebar-link active"
@@ -158,13 +166,15 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
             />
             <span>Histórico</span>
           </a>
+
         </nav>
 
+        {/* PERFIL */}
         <button
           type="button"
           className="sidebar-footer"
           onClick={() => aoNavegar?.("perfil")}
-          aria-label="Abrir perfil do coordenador"
+          aria-label="Abrir perfil"
         >
           <img
             src={perfilUsuario}
@@ -174,39 +184,59 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
 
           <div className="sidebar-footer-text">
             <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <span>Coordenador</span>
           </div>
         </button>
+
       </aside>
 
-      <main className="turmas-main" id="minhas-turmas">
-        <header className="page-header">
-          <div className="page-heading">
-            <h1>Turmas</h1>
-            <p>Gerencie as turmas da unidade</p>
-          </div>
+      {/* CONTEÚDO PRINCIPAL */}
+      <main
+        className="turmas-main pagina-turmas"
+        id="minhas-turmas"
+      >
+
+        {/* CABEÇALHO */}
+        <header className="turmas-header">
+          <h1>Turmas</h1>
+          <p>Acompanhe e gerencie suas turmas.</p>
         </header>
 
-        <section className="turmas-search-section">
-          <label className="search-box turmas-search-box">
-            <img src={lupa} alt="" />
+        {/* PESQUISA */}
+        <section className="turmas-acoes">
+
+          <label className="turmas-pesquisa">
+
+            <img
+              src={lupa}
+              alt=""
+              className="turmas-icone-pesquisa"
+            />
 
             <input
               type="search"
               placeholder="Buscar por turma..."
               value={busca}
-              onChange={(event) => atualizarBusca(event.target.value)}
+              onChange={(event) =>
+                atualizarBusca(event.target.value)
+              }
               aria-label="Buscar por turma"
             />
+
           </label>
+
         </section>
 
+        {/* TABELA */}
         <section
-          className="table-card turmas-table-card"
+          className="turmas-tabela-container"
           aria-label="Lista de turmas"
         >
-          <div className="table-scroll">
-            <table className="turmas-table">
+
+          <div className="turmas-tabela-scroll">
+
+            <table className="turmas-tabela">
+
               <thead>
                 <tr>
                   <th>Turma</th>
@@ -218,17 +248,37 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
               </thead>
 
               <tbody>
+
                 {turmasExibidas.length > 0 ? (
+
                   turmasExibidas.map((item) => (
+
                     <tr key={item.id}>
-                      <td>{item.turma}</td>
-                      <td>{item.modelo}</td>
+
+                      <td className="turma-nome">
+                        {item.turma}
+                      </td>
+
+                      <td>
+                        <span
+                          className={`turma-modelo ${
+                            item.modelo === "SEDUC"
+                              ? "modelo-seduc"
+                              : "modelo-comunidade"
+                          }`}
+                        >
+                          {item.modelo}
+                        </span>
+                      </td>
+
                       <td>{item.periodo}</td>
+
                       <td>{item.horario}</td>
+
                       <td>
                         <button
                           type="button"
-                          className="visualizar-turma"
+                          className="btn-visualizar-turma"
                           onClick={() => visualizarTurma(item)}
                           aria-label={`Visualizar ${item.turma}`}
                           title={`Visualizar ${item.turma}`}
@@ -239,31 +289,49 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
                           />
                         </button>
                       </td>
+
                     </tr>
+
                   ))
+
                 ) : (
+
                   <tr>
-                    <td colSpan="5" className="empty-table">
+                    <td
+                      colSpan="5"
+                      className="turmas-vazio"
+                    >
                       Nenhuma turma encontrada.
                     </td>
                   </tr>
+
                 )}
+
               </tbody>
+
             </table>
+
           </div>
 
-          <footer className="table-footer">
+          {/* PAGINAÇÃO */}
+          <footer className="turmas-paginacao">
+
             <span>
               Mostrando {turmasExibidas.length} de{" "}
               {turmasFiltradas.length} turmas
             </span>
 
-            <div className="pagination" aria-label="Paginação">
+            <div
+              className="turmas-paginacao-botoes"
+              aria-label="Paginação"
+            >
+
               <button
                 type="button"
-                className="pagination-arrow"
                 onClick={() =>
-                  setPagina((atual) => Math.max(1, atual - 1))
+                  setPagina((atual) =>
+                    Math.max(1, atual - 1)
+                  )
                 }
                 disabled={paginaAtual === 1}
                 aria-label="Página anterior"
@@ -275,26 +343,29 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
                 { length: totalPaginas },
                 (_, indice) => indice + 1
               ).map((numero) => (
+
                 <button
                   key={numero}
                   type="button"
                   className={
                     numero === paginaAtual
-                      ? "pagination-current"
-                      : "pagination-number"
+                      ? "pagina-atual"
+                      : "pagina-numero"
                   }
                   onClick={() => setPagina(numero)}
                   aria-current={
-                    numero === paginaAtual ? "page" : undefined
+                    numero === paginaAtual
+                      ? "page"
+                      : undefined
                   }
                 >
                   {numero}
                 </button>
+
               ))}
 
               <button
                 type="button"
-                className="pagination-arrow"
                 onClick={() =>
                   setPagina((atual) =>
                     Math.min(totalPaginas, atual + 1)
@@ -305,10 +376,15 @@ export default function PtelaMinhasTurmas({ aoNavegar }) {
               >
                 <img src={setaDireita} alt="" />
               </button>
+
             </div>
+
           </footer>
+
         </section>
+
       </main>
+
     </div>
   );
 }

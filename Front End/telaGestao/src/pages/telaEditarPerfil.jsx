@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -51,11 +52,12 @@ function TelaEditarPerfil() {
   const navigate = useNavigate();
   const inputFoto = useRef(null);
 
-  const dadosAtuais = obterDadosPerfil();
+  const [dadosAtuais] = useState(obterDadosPerfil);
 
   const [nome, setNome] = useState(dadosAtuais.nome);
   const [email, setEmail] = useState(dadosAtuais.email);
   const [foto, setFoto] = useState(dadosAtuais.foto || "");
+  const [carregandoFoto, setCarregandoFoto] = useState(false);
 
   // ALTERAR FOTO
   function alterarFoto(event) {
@@ -70,8 +72,16 @@ function TelaEditarPerfil() {
 
     const leitor = new FileReader();
 
-    leitor.onloadend = () => {
+    setCarregandoFoto(true);
+
+    leitor.onload = () => {
       setFoto(leitor.result);
+      setCarregandoFoto(false);
+    };
+
+    leitor.onerror = () => {
+      setCarregandoFoto(false);
+      alert("Não foi possível carregar a imagem.");
     };
 
     leitor.readAsDataURL(arquivo);
@@ -81,18 +91,32 @@ function TelaEditarPerfil() {
   function salvarEdicao(event) {
     event.preventDefault();
 
+    if (!nome.trim()) {
+      alert("Informe seu nome completo.");
+      return;
+    }
+
+    if (carregandoFoto) return;
+
     const novosDados = {
-      nome,
-      email,
+      ...dadosAtuais,
+      nome: nome.trim(),
+      email: email.trim(),
       foto
     };
 
-    localStorage.setItem(
-      "azyraPerfil",
-      JSON.stringify(novosDados)
-    );
+    try {
+      localStorage.setItem(
+        "azyraPerfil",
+        JSON.stringify(novosDados)
+      );
 
-    navigate("/perfil");
+      navigate("/perfil");
+    } catch {
+      alert(
+        "Não foi possível salvar as alterações. Tente utilizar uma imagem menor."
+      );
+    }
   }
 
   // CANCELAR
@@ -104,6 +128,7 @@ function TelaEditarPerfil() {
     <div className="gestao-layout">
 
       {/* SIDEBAR */}
+
       <aside className="gestao-sidebar">
 
         <div className="sidebar-logo">
@@ -180,7 +205,8 @@ function TelaEditarPerfil() {
 
         </nav>
 
-        {/* RODAPÉ */}
+        {/* RODAPÉ DA SIDEBAR */}
+
         <NavLink to="/perfil" className="sidebar-footer">
 
           <img
@@ -199,11 +225,20 @@ function TelaEditarPerfil() {
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
+
       <main className="pagina-editar-perfil">
 
         <header className="editar-perfil-header">
+
           <h1>Editar Perfil</h1>
+
+          <p>
+            Atualize suas informações pessoais.
+          </p>
+
         </header>
+
+        {/* CARD DE EDIÇÃO */}
 
         <form
           id="form-editar-perfil"
@@ -211,52 +246,76 @@ function TelaEditarPerfil() {
           onSubmit={salvarEdicao}
         >
 
-          {/* FOTO */}
+          {/* FOTO DO PERFIL */}
+
           <div className="editar-foto-container">
 
-            <img
-              src={foto || iconePerfil}
-              alt="Foto do perfil"
-              className="editar-foto"
-            />
+            <div className="editar-foto-moldura">
 
-            <input
-              type="file"
-              accept="image/*"
-              ref={inputFoto}
-              onChange={alterarFoto}
-              hidden
-            />
+              <img
+                src={foto || iconePerfil}
+                alt="Foto do perfil"
+                className="editar-foto"
+              />
 
-            <button
-              type="button"
-              className="editar-perfil-alterar-foto"
-              onClick={() => inputFoto.current.click()}
-            >
-              Alterar foto
-            </button>
+            </div>
+
+            <div className="editar-foto-informacoes">
+
+              <h2>Foto de perfil</h2>
+
+              <p>Personalize sua foto de perfil.</p>
+
+              <input
+                type="file"
+                accept="image/*"
+                ref={inputFoto}
+                onChange={alterarFoto}
+                hidden
+              />
+
+              <button
+                type="button"
+                className="editar-perfil-alterar-foto"
+                onClick={() => inputFoto.current.click()}
+                disabled={carregandoFoto}
+              >
+                {carregandoFoto
+                  ? "Carregando..."
+                  : "Alterar foto"}
+              </button>
+
+            </div>
 
           </div>
 
-          {/* NOME */}
+          {/* DIVISOR */}
+
+          <div className="editar-perfil-divisor"></div>
+
+          {/* NOME COMPLETO */}
+
           <div className="editar-campo">
 
             <label htmlFor="nomeCompleto">
-              Nome Completo
+              Nome completo
             </label>
 
             <input
               type="text"
               id="nomeCompleto"
+              name="nome"
               placeholder="Digite seu nome completo"
               value={nome}
               onChange={(event) => setNome(event.target.value)}
+              autoComplete="name"
               required
             />
 
           </div>
 
           {/* E-MAIL */}
+
           <div className="editar-campo">
 
             <label htmlFor="email">
@@ -266,9 +325,11 @@ function TelaEditarPerfil() {
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="Digite seu e-mail"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              autoComplete="email"
               required
             />
 
@@ -276,7 +337,8 @@ function TelaEditarPerfil() {
 
         </form>
 
-        {/* BOTÕES */}
+        {/* BOTÕES INFERIORES */}
+
         <div className="editar-perfil-botoes">
 
           <button
@@ -291,6 +353,7 @@ function TelaEditarPerfil() {
             type="submit"
             form="form-editar-perfil"
             className="botao-salvar-edicao"
+            disabled={carregandoFoto}
           >
             Salvar
           </button>

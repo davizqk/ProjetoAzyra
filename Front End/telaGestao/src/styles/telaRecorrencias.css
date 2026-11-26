@@ -1,7 +1,10 @@
-/* CONTEÚDO PRINCIPAL */
+/* ================================
+   CONTEÚDO PRINCIPAL
+================================ */
 
 .gestao-layout .pagina-recorrencias {
   flex: 1;
+
   width: calc(100% - var(--sidebar-width, 266px));
   min-width: 0;
 
@@ -11,378 +14,492 @@
   margin-left: var(--sidebar-width, 266px);
   padding: 40px 36px;
 
-  box-sizing: border-box;
-  background-color: #f5f5f5;
+  background-color: #f4f6f9;
+
   font-family: 'Poppins', sans-serif;
+
+  box-sizing: border-box;
 
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* CABEÇALHO */
-
-.recorrencias-header {
-  margin-bottom: 24px;
+.pagina-recorrencias * {
+  box-sizing: border-box;
 }
 
-.recorrencias-header h1 {
-  color: #4b75a0;
-  font-size: 32px;
+/* ================================
+   CABEÇALHO PRINCIPAL
+================================ */
+
+.pagina-recorrencias .recorrencias-header {
+  margin-bottom: 30px;
+}
+
+.pagina-recorrencias .recorrencias-header h1 {
+  color: #4b75a5;
+
+  font-size: 34px;
   font-weight: 700;
   line-height: 1.3;
+
   margin: 0;
 }
 
-.recorrencias-header p {
-  color: #4b5968;
-  font-size: 17px;
+.pagina-recorrencias .recorrencias-header p {
+  color: #8491a1;
+
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 6px;
+
+  margin: 7px 0 0;
 }
 
-/* PAINÉIS */
+/* ================================
+   ORGANIZAÇÃO DOS PAINÉIS
+================================ */
 
-.recorrencias-paineis {
+.pagina-recorrencias .recorrencias-paineis {
   width: 100%;
 
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 24px;
+
   align-items: start;
 }
 
-/* CARTÕES PRINCIPAIS */
+/* ================================
+   CARTÕES PRINCIPAIS
+================================ */
 
-.recorrencias-card,
-.relatorios-card {
+.pagina-recorrencias .recorrencias-card,
+.pagina-recorrencias .relatorios-card {
   width: 100%;
   min-width: 0;
+
+  height: auto;
+  min-height: 0;
 
   display: flex;
   flex-direction: column;
 
   background-color: #ffffff;
 
-  border: 1px solid #dcdcdc;
-  border-radius: 11px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
 
   overflow: hidden;
+
+  animation: entradaRecorrencias 0.4s ease-out;
 }
 
-/* ALTURA AUTOMÁTICA DOS ALUNOS */
+/* ================================
+   CABEÇALHOS DOS CARTÕES
+================================ */
 
-.recorrencias-card {
-  height: auto;
-  min-height: 0;
-  align-self: start;
-}
-
-/* ALTURA DOS RELATÓRIOS */
-
-.relatorios-card {
-  min-height: 420px;
-}
-
-/* CABEÇALHOS DOS CARTÕES */
-
-.recorrencias-card-header,
-.relatorios-header {
+.pagina-recorrencias .recorrencias-card-header,
+.pagina-recorrencias .relatorios-header {
   width: 100%;
-  min-height: 76px;
+
+  min-height: 92px;
 
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 
-  padding: 16px 22px;
+  gap: 5px;
 
-  background-color: #e4edf5;
+  padding: 22px 24px;
+
+  background-color: #ffffff;
 
   border: none;
-  border-bottom: 1px solid #dce5ee;
+  border-bottom: 1px solid #edf0f4;
   border-radius: 0;
-
-  box-sizing: border-box;
 }
 
-.recorrencias-card-header h2,
-.relatorios-header h2 {
-  color: #4b75a0;
+.pagina-recorrencias .recorrencias-card-header h2,
+.pagina-recorrencias .relatorios-header h2 {
+  color: #4b75a5;
+
   font-size: 19px;
   font-weight: 600;
   line-height: 1.4;
+
   margin: 0;
 }
 
-.relatorios-header p {
-  color: #4b5968;
+.pagina-recorrencias .recorrencias-card-header p,
+.pagina-recorrencias .relatorios-header p {
+  color: #8491a1;
+
   font-size: 12px;
   font-weight: 400;
-  margin-top: 3px;
+
+  margin: 0;
 }
 
-/* LISTA DE ALUNOS */
+/* ================================
+   LISTA DE ALUNOS
+================================ */
 
-.lista-alunos-recorrencia {
+.pagina-recorrencias .lista-alunos-recorrencia {
   width: 100%;
-  flex: none;
 
   display: flex;
   flex-direction: column;
 
-  padding: 0 20px;
-  box-sizing: border-box;
+  padding: 8px 20px;
 }
 
-/* CADA ALUNO */
+/* ================================
+   CADA ALUNO
+================================ */
 
-.aluno-recorrencia {
+.pagina-recorrencias .aluno-recorrencia {
   width: 100%;
+
   min-height: 100px;
 
   display: flex;
   align-items: center;
 
   gap: 15px;
-  padding: 18px 2px;
 
-  border-bottom: 1px solid #e5e5e5;
+  padding: 18px 5px;
 
-  box-sizing: border-box;
-  transition: background-color 0.2s;
+  border-bottom: 1px solid #edf0f4;
+
+  transition: background-color 0.2s ease;
 }
 
-.aluno-recorrencia:last-child {
+.pagina-recorrencias .aluno-recorrencia:last-child {
   border-bottom: none;
 }
 
-.aluno-recorrencia:hover {
-  background-color: #f8fafc;
+.pagina-recorrencias .aluno-recorrencia:hover {
+  background-color: #f7f9fc;
 }
 
-/* FOTO DO ALUNO */
+/* ================================
+   AVATAR ORIGINAL DO ALUNO
+================================ */
 
-.aluno-avatar {
+.pagina-recorrencias .aluno-avatar {
   width: 54px;
   height: 54px;
 
   flex-shrink: 0;
 }
 
-.aluno-avatar svg {
+.pagina-recorrencias .aluno-avatar svg {
+  display: block;
+
   width: 100%;
   height: 100%;
 }
 
-/* INFORMAÇÕES DO ALUNO */
+/* ================================
+   INFORMAÇÕES DO ALUNO
+================================ */
 
-.aluno-recorrencia-info {
+.pagina-recorrencias .aluno-recorrencia-info {
+  flex: 1;
+
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 
-  min-width: 0;
-  flex: 1;
-
-  gap: 4px;
+  gap: 5px;
 }
 
-.aluno-recorrencia-info strong {
-  color: #4b75a0;
+.pagina-recorrencias .aluno-recorrencia-info strong {
+  color: #4b75a5;
+
   font-size: 15px;
   font-weight: 600;
+
+  overflow-wrap: anywhere;
 }
 
-.aluno-recorrencia-info span {
-  color: #4b5968;
+.pagina-recorrencias .aluno-recorrencia-info span {
+  color: #8491a1;
+
   font-size: 13px;
   font-weight: 400;
+
+  overflow-wrap: anywhere;
 }
 
-/* ÍCONE DE ALERTA */
+/* ================================
+   ÍCONES ORIGINAIS DE ALERTA
+================================ */
 
-.aluno-alerta {
+.pagina-recorrencias .aluno-alerta {
   width: 24px;
   height: 24px;
 
   object-fit: contain;
+
   flex-shrink: 0;
 
-  margin-right: 6px;
+  margin-right: 5px;
 }
 
-/* LISTA DE RELATÓRIOS */
+/* ================================
+   LISTA DE RELATÓRIOS
+================================ */
 
-.lista-relatorios {
+.pagina-recorrencias .lista-relatorios {
   width: 100%;
-  flex: 1;
 
   display: flex;
   flex-direction: column;
 
-  padding: 0 20px;
+  padding: 8px 20px;
 
   border: none;
   border-radius: 0;
-
-  box-sizing: border-box;
 }
 
-/* DIAS DA SEMANA */
+/* ================================
+   DIAS DA SEMANA
+================================ */
 
-.relatorio-item {
+.pagina-recorrencias .relatorio-item {
   width: 100%;
+
   min-height: 62px;
-  flex: 1;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   gap: 12px;
-  padding: 12px 2px;
 
-  border-bottom: 1px solid #e5e5e5;
+  padding: 12px 5px;
 
-  box-sizing: border-box;
-  transition: background-color 0.2s;
+  border-bottom: 1px solid #edf0f4;
+
+  transition: background-color 0.2s ease;
 }
 
-.relatorio-item:last-child {
+.pagina-recorrencias .relatorio-item:last-child {
   border-bottom: none;
 }
 
-.relatorio-item:hover {
-  background-color: #f8fafc;
+.pagina-recorrencias .relatorio-item:hover {
+  background-color: #f7f9fc;
 }
 
-/* NOME DO DIA */
+/* ================================
+   NOME DO DIA
+================================ */
 
-.relatorio-item strong {
-  color: #4b75a0;
+.pagina-recorrencias .relatorio-item strong {
+  color: #4b75a5;
+
   font-size: 14px;
   font-weight: 600;
 }
 
-/* QUANTIDADE DE ATRASOS */
+/* ================================
+   QUANTIDADE DE ATRASOS
+================================ */
 
-.relatorio-item span {
+.pagina-recorrencias .relatorio-item span {
   min-width: 88px;
 
-  padding: 6px 12px;
+  padding: 7px 13px;
 
   background-color: #edf3f9;
-  border-radius: 6px;
 
-  color: #4b75a0;
+  border-radius: 8px;
+
+  color: #4b75a5;
+
   font-size: 12px;
   font-weight: 500;
 
   text-align: center;
   white-space: nowrap;
+
+  flex-shrink: 0;
+
+  transition: background-color 0.2s ease;
 }
 
-/* RESPONSIVIDADE */
+.pagina-recorrencias .relatorio-item:hover span {
+  background-color: #e4edf5;
+}
+
+/* ================================
+   ANIMAÇÃO DE ENTRADA
+================================ */
+
+@keyframes entradaRecorrencias {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
 
 @media (max-width: 1100px) {
+
   .gestao-layout .pagina-recorrencias {
     padding: 35px 28px;
   }
 
-  .recorrencias-paineis {
-    gap: 16px;
+  .pagina-recorrencias .recorrencias-paineis {
+    gap: 18px;
   }
 
-  .recorrencias-card-header,
-  .relatorios-header {
-    padding: 15px 18px;
+  .pagina-recorrencias .recorrencias-card-header,
+  .pagina-recorrencias .relatorios-header {
+    padding: 20px;
   }
 
-  .recorrencias-card-header h2,
-  .relatorios-header h2 {
+  .pagina-recorrencias .recorrencias-card-header h2,
+  .pagina-recorrencias .relatorios-header h2 {
     font-size: 17px;
   }
 
-  .lista-alunos-recorrencia,
-  .lista-relatorios {
-    padding: 0 15px;
+  .pagina-recorrencias .lista-alunos-recorrencia,
+  .pagina-recorrencias .lista-relatorios {
+    padding: 8px 15px;
   }
+
 }
 
-@media (max-width: 900px) {
-  .gestao-layout .pagina-recorrencias {
-    width: calc(100% - var(--sidebar-width, 210px));
-    margin-left: var(--sidebar-width, 210px);
-  }
-}
+@media (max-width: 1000px) {
 
-@media (max-width: 800px) {
-  .recorrencias-paineis {
+  .pagina-recorrencias .recorrencias-paineis {
     grid-template-columns: 1fr;
   }
 
-  .recorrencias-card,
-  .relatorios-card {
-    min-height: auto;
-  }
-
-  .aluno-recorrencia {
+  .pagina-recorrencias .aluno-recorrencia {
     min-height: 90px;
   }
+
 }
 
 @media (max-width: 600px) {
+
   .gestao-layout .pagina-recorrencias {
-    width: calc(100% - var(--sidebar-width, 75px));
-    margin-left: var(--sidebar-width, 75px);
-    padding: 28px 15px;
+    padding: 25px 18px;
   }
 
-  .recorrencias-header h1 {
-    font-size: 25px;
+  .pagina-recorrencias .recorrencias-header {
+    margin-bottom: 22px;
   }
 
-  .recorrencias-header p {
+  .pagina-recorrencias .recorrencias-header h1 {
+    font-size: 26px;
+  }
+
+  .pagina-recorrencias .recorrencias-header p {
     font-size: 13px;
   }
 
-  .recorrencias-card-header h2,
-  .relatorios-header h2 {
+  .pagina-recorrencias .recorrencias-card,
+  .pagina-recorrencias .relatorios-card {
+    border-radius: 14px;
+  }
+
+  .pagina-recorrencias .recorrencias-card-header,
+  .pagina-recorrencias .relatorios-header {
+    min-height: 75px;
+
+    padding: 18px;
+  }
+
+  .pagina-recorrencias .recorrencias-card-header h2,
+  .pagina-recorrencias .relatorios-header h2 {
     font-size: 16px;
   }
 
-  .aluno-avatar {
+  .pagina-recorrencias .recorrencias-card-header p,
+  .pagina-recorrencias .relatorios-header p {
+    font-size: 11px;
+  }
+
+  .pagina-recorrencias .aluno-avatar {
     width: 40px;
     height: 40px;
   }
 
-  .aluno-recorrencia {
+  .pagina-recorrencias .aluno-recorrencia {
+    min-height: 85px;
+
     gap: 10px;
+
+    padding: 15px 2px;
   }
 
-  .aluno-recorrencia-info strong {
+  .pagina-recorrencias .aluno-recorrencia-info strong {
     font-size: 13px;
   }
 
-  .aluno-recorrencia-info span {
+  .pagina-recorrencias .aluno-recorrencia-info span {
     font-size: 11px;
   }
 
-  .aluno-alerta {
+  .pagina-recorrencias .aluno-alerta {
     width: 20px;
     height: 20px;
+
     margin-right: 0;
   }
 
-  .relatorio-item strong {
+  .pagina-recorrencias .relatorio-item {
+    min-height: 58px;
+
+    gap: 8px;
+  }
+
+  .pagina-recorrencias .relatorio-item strong {
     font-size: 12px;
   }
 
-  .relatorio-item span {
+  .pagina-recorrencias .relatorio-item span {
     min-width: 65px;
+
     font-size: 11px;
-    padding: 5px 8px;
+
+    padding: 6px 8px;
   }
+
+}
+
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pagina-recorrencias .recorrencias-card,
+  .pagina-recorrencias .relatorios-card {
+    animation: none;
+  }
+
+  .pagina-recorrencias * {
+    transition: none;
+  }
+
 }

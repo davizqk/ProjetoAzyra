@@ -1,99 +1,186 @@
-/* CONTEÚDO PRINCIPAL */
+/* ================================
+   CONTEÚDO PRINCIPAL
+================================ */
 
 .gestao-layout .cadastrar-aluno-main {
   flex: 1;
+
   width: calc(100% - var(--sidebar-width, 266px));
   min-width: 0;
+
   height: 100vh;
   height: 100dvh;
 
   margin-left: var(--sidebar-width, 266px);
-  padding: 51px 44px 45px;
+  padding: 40px 36px;
 
-  background-color: #f5f5f5;
+  background-color: #f4f6f9;
+  font-family: 'Poppins', sans-serif;
 
   overflow-y: auto;
   overflow-x: hidden;
+
   box-sizing: border-box;
 }
 
-/* CABEÇALHO */
-
-.cadastrar-aluno-header {
-  margin-bottom: 17px;
+.cadastrar-aluno-main * {
+  box-sizing: border-box;
 }
 
-.cadastrar-aluno-header h1 {
+/* ================================
+   CABEÇALHO
+================================ */
+
+.cadastrar-aluno-main .cadastrar-aluno-header {
+  margin-bottom: 26px;
+}
+
+.cadastrar-aluno-main .cadastrar-aluno-header h1 {
   color: #4b75a5;
-  font-size: 35px;
-  font-weight: 600;
-  line-height: 1.4;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  letter-spacing: -0.5px;
+
+  margin: 0;
 }
 
-.cadastrar-aluno-header p {
-  color: #5c5c5c;
-  font-size: 16px;
+.cadastrar-aluno-main .cadastrar-aluno-header p {
+  color: #738397;
+
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 3px;
+
+  margin: 7px 0 0;
 }
 
-/* FORMULÁRIO */
+/* ================================
+   FORMULÁRIO
+================================ */
 
-.form-cadastrar-aluno {
+.cadastrar-aluno-main .form-cadastrar-aluno {
   width: 100%;
 }
 
-/* CARTÃO BRANCO */
+/* ================================
+   CARD PRINCIPAL
+================================ */
 
-.cadastrar-aluno-card {
+.cadastrar-aluno-main .cadastrar-aluno-card {
   width: 100%;
-  min-height: 438px;
+  max-width: 100%;
+
+  padding: 30px 34px;
 
   background-color: #ffffff;
 
-  border: 1px solid #dddddd;
-  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
 
-  padding: 32px 33px 34px;
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.035);
+  animation: entradaCadastrarAluno 0.4s ease-out;
 }
 
-/* FOTO DO ALUNO */
+/* ================================
+   FOTO DO ALUNO
+================================ */
 
-.foto-aluno-area {
+.cadastrar-aluno-main .foto-aluno-area {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 
-  margin-bottom: 13px;
-  margin-left: 4px;
+  gap: 28px;
+
+  margin: 0;
 }
 
-.foto-aluno-preview {
-  width: 80px;
-  height: 80px;
+/* MOLDURA DA FOTO */
+
+.cadastrar-aluno-main .foto-aluno-moldura {
+  width: 120px;
+  height: 120px;
+
+  padding: 5px;
+
+  background-color: #edf2f8;
+
+  border: 1px solid #e3eaf3;
+  border-radius: 50%;
+
+  flex-shrink: 0;
+}
+
+/* FOTO ORIGINAL */
+
+.cadastrar-aluno-main .foto-aluno-preview {
+  display: block;
+
+  width: 100%;
+  height: 100%;
 
   object-fit: cover;
   border-radius: 50%;
 }
 
-.input-foto-escondido {
+/* INFORMAÇÕES DA FOTO */
+
+.cadastrar-aluno-main .foto-aluno-informacoes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 8px;
+  min-width: 0;
+}
+
+.cadastrar-aluno-main .foto-aluno-informacoes h2 {
+  color: #29496e;
+
+  font-size: 19px;
+  font-weight: 600;
+
+  margin: 0;
+}
+
+.cadastrar-aluno-main .foto-aluno-informacoes p {
+  color: #738397;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  margin: 0;
+}
+
+.cadastrar-aluno-main .input-foto-escondido {
   display: none;
 }
 
-/* BOTÃO ALTERAR FOTO */
+/* ================================
+   BOTÃO ALTERAR FOTO
+================================ */
 
 .cadastrar-aluno-main .botao-alterar-foto {
-  width: 116px;
-  height: 48px;
+  appearance: none;
 
-  margin-top: 16px;
+  width: auto;
+  min-width: 130px;
+  min-height: 40px;
 
-  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 5px;
+  padding: 10px 18px;
+
+  background-color: #f7f9fc;
   color: #4b75a5;
 
-  border: 1px solid #4b75a5;
+  border: 1px solid #c5d5e7;
   border-radius: 9px;
 
   font-family: 'Poppins', sans-serif;
@@ -102,162 +189,302 @@
 
   cursor: pointer;
 
-  transition: background-color 0.2s,
-              border-color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .cadastrar-aluno-main .botao-alterar-foto:hover {
-  background-color: #edf3f9;
-  border-color: #365f8d;
+  background-color: #eaf1fa;
+  border-color: #4b75a5;
+
+  transform: translateY(-2px);
 }
 
-/* CAMPOS */
+/* ================================
+   DIVISOR
+================================ */
 
-.campo-cadastrar-aluno {
+.cadastrar-aluno-main .cadastrar-aluno-divisor {
   width: 100%;
+  height: 1px;
 
+  background-color: #e9edf3;
+
+  margin: 26px 0;
+}
+
+/* ================================
+   CAMPOS DO FORMULÁRIO
+================================ */
+
+.cadastrar-aluno-main .campo-cadastrar-aluno {
   display: flex;
   flex-direction: column;
 
-  gap: 5px;
-  margin-bottom: 13px;
+  width: 100%;
+
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
-.campo-cadastrar-aluno label {
-  color: #444444;
+.cadastrar-aluno-main .campo-cadastrar-aluno:last-child {
+  margin-bottom: 0;
+}
+
+/* LABELS */
+
+.cadastrar-aluno-main .campo-cadastrar-aluno label {
+  color: #34465d;
+
   font-size: 14px;
   font-weight: 500;
-  margin-left: 0;
+
+  margin: 0;
 }
 
-.campo-cadastrar-aluno input,
-.campo-cadastrar-aluno select {
+/* INPUTS E SELECT */
+
+.cadastrar-aluno-main .campo-cadastrar-aluno input,
+.cadastrar-aluno-main .campo-cadastrar-aluno select {
   width: 100%;
-  height: 40px;
+  height: 50px;
 
-  background-color: #ffffff;
+  padding: 0 16px;
 
-  border: 1px solid #dddddd;
-  border-radius: 9px;
+  background-color: #f8fafd;
 
-  padding: 0 13px;
-  outline: none;
+  border: 1px solid #dce4ee;
+  border-radius: 11px;
 
-  color: #444444;
+  color: #34465d;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
 
-  transition: border-color 0.2s,
-              box-shadow 0.2s;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 /* PLACEHOLDERS */
 
-.campo-cadastrar-aluno input::placeholder,
-.campo-cadastrar-aluno select:invalid {
-  color: #999999;
+.cadastrar-aluno-main .campo-cadastrar-aluno input::placeholder,
+.cadastrar-aluno-main .campo-cadastrar-aluno select:invalid {
+  color: #98a5b5;
 }
 
-/* EFEITO AO PASSAR O MOUSE */
+/* HOVER */
 
-.campo-cadastrar-aluno input:hover,
-.campo-cadastrar-aluno select:hover {
-  border-color: #b5c5d6;
+.cadastrar-aluno-main .campo-cadastrar-aluno input:hover,
+.cadastrar-aluno-main .campo-cadastrar-aluno select:hover {
+  border-color: #b5c8df;
 }
 
-/* EFEITO AO SELECIONAR O CAMPO */
+/* FOCUS */
 
-.campo-cadastrar-aluno input:focus,
-.campo-cadastrar-aluno select:focus {
+.cadastrar-aluno-main .campo-cadastrar-aluno input:focus,
+.cadastrar-aluno-main .campo-cadastrar-aluno select:focus {
+  background-color: #ffffff;
+
   border-color: #4b75a5;
-  box-shadow: 0 0 0 3px rgba(75, 117, 165, 0.08);
+
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.1);
 }
 
-/* SETA DO SELECT */
+/* ================================
+   SELECT DE TURMAS
+================================ */
 
-.campo-cadastrar-aluno select {
+.cadastrar-aluno-main .campo-cadastrar-aluno select {
   appearance: none;
 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b75a5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
   background-repeat: no-repeat;
-  background-position: right 13px center;
+  background-position: right 16px center;
 
   padding-right: 40px;
+
   cursor: pointer;
 }
 
-/* BOTÕES INFERIORES */
+.cadastrar-aluno-main .campo-cadastrar-aluno select option {
+  background-color: #ffffff;
+  color: #34465d;
+}
 
-.botoes-cadastrar-aluno {
+/* ================================
+   BOTÕES INFERIORES
+================================ */
+
+.cadastrar-aluno-main .botoes-cadastrar-aluno {
   width: 100%;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  gap: 19px;
+  gap: 24px;
   margin-top: 22px;
 }
 
-.botao-cancelar-aluno,
-.botao-cadastrar-aluno {
-  width: 100%;
-  height: 50px;
+/* CONFIGURAÇÕES DOS BOTÕES */
 
-  border-radius: 9px;
+.cadastrar-aluno-main .botao-cancelar-aluno,
+.cadastrar-aluno-main .botao-cadastrar-aluno {
+  appearance: none;
+
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px;
+
+  border-radius: 11px;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
 
   cursor: pointer;
 
-  transition: background-color 0.2s,
-              border-color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* BOTÃO CANCELAR */
+/* ================================
+   BOTÃO CANCELAR
+================================ */
 
-.botao-cancelar-aluno {
+.cadastrar-aluno-main .botao-cancelar-aluno {
   background-color: #ffffff;
   color: #4b75a5;
 
-  border: 1px solid #dddddd;
+  border: 1px solid #dce4ee;
 }
 
-.botao-cancelar-aluno:hover {
-  background-color: #edf3f9;
-  border-color: #b5c5d6;
+.cadastrar-aluno-main .botao-cancelar-aluno:hover {
+  background-color: #eaf1fa;
+  border-color: #b5c8df;
+
+  transform: translateY(-2px);
 }
 
-/* BOTÃO CADASTRAR */
+/* ================================
+   BOTÃO CADASTRAR
+================================ */
 
-.botao-cadastrar-aluno {
-  background-color: #4b75a5;
+.cadastrar-aluno-main .botao-cadastrar-aluno {
+  background: linear-gradient(
+    135deg,
+    #5c87b8,
+    #4b75a5
+  );
+
   color: #ffffff;
 
-  border: none;
+  border: 1px solid transparent;
+
+  box-shadow: 0 5px 15px rgba(75, 117, 165, 0.15);
 }
 
-.botao-cadastrar-aluno:hover {
-  background-color: #365f8d;
+.cadastrar-aluno-main .botao-cadastrar-aluno:hover {
+  background: linear-gradient(
+    135deg,
+    #4b75a5,
+    #3d6696
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(75, 117, 165, 0.2);
 }
 
-/* ACESSIBILIDADE */
+/* BOTÕES PRESSIONADOS */
+
+.cadastrar-aluno-main .botao-cancelar-aluno:active,
+.cadastrar-aluno-main .botao-cadastrar-aluno:active,
+.cadastrar-aluno-main .botao-alterar-foto:active {
+  transform: translateY(0);
+}
+
+/* ================================
+   ACESSIBILIDADE
+================================ */
 
 .cadastrar-aluno-main button:focus-visible {
   outline: 2px solid #4b75a5;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
-/* RESPONSIVIDADE */
+/* ================================
+   ANIMAÇÃO DE ENTRADA
+================================ */
 
-@media (max-width: 900px) {
+@keyframes entradaCadastrarAluno {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 1100px) {
 
   .gestao-layout .cadastrar-aluno-main {
-    padding: 35px 25px;
+    padding: 35px 28px;
+  }
+
+  .cadastrar-aluno-main .cadastrar-aluno-card {
+    padding: 28px;
+  }
+
+  .cadastrar-aluno-main .botoes-cadastrar-aluno {
+    gap: 18px;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .cadastrar-aluno-main .cadastrar-aluno-card {
+    padding: 24px;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-area {
+    gap: 20px;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-moldura {
+    width: 105px;
+    height: 105px;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-informacoes h2 {
+    font-size: 17px;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-informacoes p {
+    font-size: 12px;
   }
 
 }
@@ -265,25 +492,82 @@
 @media (max-width: 600px) {
 
   .gestao-layout .cadastrar-aluno-main {
-    padding: 28px 18px;
+    padding: 25px 18px;
   }
 
-  .cadastrar-aluno-header h1 {
-    font-size: 23px;
+  .cadastrar-aluno-main .cadastrar-aluno-header h1 {
+    font-size: 25px;
   }
 
-  .cadastrar-aluno-header p {
+  .cadastrar-aluno-main .cadastrar-aluno-header p {
+    font-size: 12px;
+  }
+
+  .cadastrar-aluno-main .cadastrar-aluno-card {
+    padding: 22px 18px;
+
+    border-radius: 15px;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-area {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+
+    text-align: center;
+  }
+
+  .cadastrar-aluno-main .foto-aluno-informacoes {
+    align-items: center;
+  }
+
+  .cadastrar-aluno-main .cadastrar-aluno-divisor {
+    margin: 24px 0;
+  }
+
+  .cadastrar-aluno-main .campo-cadastrar-aluno label {
+    font-size: 13px;
+  }
+
+  .cadastrar-aluno-main .campo-cadastrar-aluno input,
+  .cadastrar-aluno-main .campo-cadastrar-aluno select {
+    height: 48px;
+    font-size: 13px;
+  }
+
+  .cadastrar-aluno-main .botoes-cadastrar-aluno {
+    gap: 12px;
+  }
+
+  .cadastrar-aluno-main .botao-cancelar-aluno,
+  .cadastrar-aluno-main .botao-cadastrar-aluno {
+    min-height: 48px;
     font-size: 14px;
   }
 
-  .cadastrar-aluno-card {
-    padding: 25px 20px;
-    min-height: auto;
+}
+
+@media (max-width: 360px) {
+
+  .cadastrar-aluno-main .botoes-cadastrar-aluno {
+    grid-template-columns: 1fr;
   }
 
-  .botoes-cadastrar-aluno {
-    grid-template-columns: 1fr;
-    gap: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cadastrar-aluno-main .cadastrar-aluno-card {
+    animation: none;
+  }
+
+  .cadastrar-aluno-main * {
+    transition: none;
+  }
+
+  .cadastrar-aluno-main button:hover {
+    transform: none;
   }
 
 }

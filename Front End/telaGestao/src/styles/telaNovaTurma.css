@@ -1,214 +1,462 @@
-/* CABEÇALHO */
+/* ================================
+   CONTEÚDO PRINCIPAL
+================================ */
 
-.nova-turma-header {
-  margin-bottom: 35px;
-}
+.gestao-layout .pagina-nova-turma {
+  flex: 1;
 
-.nova-turma-header h1 {
-  color: #4b75a5;
+  width: calc(100% - var(--sidebar-width, 266px));
+  min-width: 0;
+
+  height: 100vh;
+  height: 100dvh;
+
+  margin-left: var(--sidebar-width, 266px);
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
   font-family: 'Poppins', sans-serif;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.nova-turma-header p {
-  color: #5c5c5c;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 5px 0 0;
+.pagina-nova-turma * {
+  box-sizing: border-box;
 }
 
-/* CONTAINER */
+/* ================================
+   FORMULÁRIO
+================================ */
 
-.nova-turma-container {
+.pagina-nova-turma .nova-turma-formulario {
   width: 100%;
-  max-width: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   CARD PRINCIPAL
+================================ */
+
+.pagina-nova-turma .nova-turma-container {
+  width: 100%;
+  max-width: 100%;
+
   background-color: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-radius: 12px;
+
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
+
   overflow: hidden;
-  box-sizing: border-box;
+
+  animation: entradaNovaTurma 0.4s ease-out;
 }
 
-/* TÍTULO AZUL */
+/* ================================
+   TÍTULO DO CARD
+================================ */
 
-.nova-turma-titulo {
+.pagina-nova-turma .nova-turma-titulo {
   width: 100%;
-  min-height: 50px;
+
   display: flex;
-  align-items: center;
-  padding: 0 22px;
-  background-color: #4b75a5;
-  border-radius: 10px;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  padding: 25px 30px;
+
+  background-color: #ffffff;
+
+  border-bottom: 1px solid #edf0f4;
+  border-radius: 0;
 }
 
-.nova-turma-titulo h2 {
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+.pagina-nova-turma .nova-turma-titulo h2 {
+  color: #4b75a5;
+
+  font-size: 19px;
   font-weight: 600;
+
   margin: 0;
 }
 
-/* FORMULÁRIO */
+.pagina-nova-turma .nova-turma-titulo p {
+  color: #8491a1;
 
-.nova-turma-formulario {
-  padding: 25px 25px 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  font-size: 13px;
+  font-weight: 400;
+
+  margin: 0;
 }
 
-/* CAMPOS */
+/* ================================
+   ORGANIZAÇÃO DOS CAMPOS
+================================ */
 
-.nova-turma-campo {
+.pagina-nova-turma .nova-turma-campos {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 28px;
+  row-gap: 26px;
+
+  padding: 30px 30px 38px;
+}
+
+/* ================================
+   CAMPOS
+================================ */
+
+.pagina-nova-turma .nova-turma-campo {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+
+  gap: 9px;
+
+  width: 100%;
   min-width: 0;
 }
 
-.nova-turma-campo label {
-  color: #111111;
+.pagina-nova-turma .nova-turma-campo label {
+  color: #34465d;
+
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
+
+  margin: 0;
 }
 
-.nova-turma-campo input,
-.nova-turma-campo select {
+/* INPUTS E SELECTS */
+
+.pagina-nova-turma .nova-turma-campo input,
+.pagina-nova-turma .nova-turma-campo select {
+  appearance: none;
+
   width: 100%;
-  height: 43px;
-  padding: 0 13px;
-  border: 1px solid #dedede;
-  border-radius: 8px;
+  min-width: 0;
+  height: 50px;
+
+  padding: 0 15px;
+
   background-color: #ffffff;
-  color: #555555;
+
+  border: 1px solid #dce4ee;
+  border-radius: 10px;
+
+  color: #34465d;
+
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
+
   outline: none;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.nova-turma-campo input:focus,
-.nova-turma-campo select:focus {
+/* PLACEHOLDERS */
+
+.pagina-nova-turma .nova-turma-campo input::placeholder {
+  color: #98a5b5;
+}
+
+/* HOVER */
+
+.pagina-nova-turma .nova-turma-campo input:hover,
+.pagina-nova-turma .nova-turma-campo select:hover {
+  border-color: #b5c8df;
+}
+
+/* FOCO */
+
+.pagina-nova-turma .nova-turma-campo input:focus,
+.pagina-nova-turma .nova-turma-campo select:focus {
   border-color: #4b75a5;
+
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.09);
 }
 
-/* SELECT */
+/* ================================
+   SELECT
+================================ */
 
-.nova-turma-campo select {
-  cursor: pointer;
+.pagina-nova-turma .nova-turma-campo select {
   appearance: none;
   -webkit-appearance: none;
-  padding-right: 35px;
+
+  padding-right: 40px;
 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234b75a5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
   background-repeat: no-repeat;
-  background-position: right 13px center;
+  background-position: right 15px center;
   background-size: 15px;
-}
 
-/* HORÁRIOS */
-
-.nova-turma-horarios {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-}
-
-.nova-turma-campo input[type="time"] {
   cursor: pointer;
 }
 
-/* BOTÕES */
+/* ================================
+   HORÁRIOS
+================================ */
 
-.nova-turma-acoes {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-  margin-top: 15px;
+.pagina-nova-turma .nova-turma-campo input[type="time"] {
+  appearance: auto;
+
+  cursor: pointer;
+
+  font-variant-numeric: tabular-nums;
 }
 
-.btn-cancelar-nova-turma,
-.btn-salvar-nova-turma {
-  height: 43px;
-  padding: 0 25px;
-  border-radius: 8px;
+.pagina-nova-turma
+.nova-turma-campo
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.pagina-nova-turma
+.nova-turma-campo
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* ================================
+   BOTÕES INFERIORES
+================================ */
+
+.pagina-nova-turma .nova-turma-acoes {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  margin: 0;
+}
+
+.pagina-nova-turma .btn-cancelar-nova-turma,
+.pagina-nova-turma .btn-salvar-nova-turma {
+  appearance: none;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 20px;
+
+  border-radius: 11px;
+
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+
   cursor: pointer;
-  transition: 0.2s;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-/* CANCELAR */
+/* ================================
+   BOTÃO CANCELAR
+================================ */
 
-.btn-cancelar-nova-turma {
-  min-width: 150px;
+.pagina-nova-turma .btn-cancelar-nova-turma {
   background-color: #ffffff;
-  color: #555555;
-  border: 1px solid #d8d8d8;
+
+  color: #4b75a5;
+
+  border: 1px solid #dce4ee;
 }
 
-.btn-cancelar-nova-turma:hover {
-  background-color: #f3f3f3;
+.pagina-nova-turma .btn-cancelar-nova-turma:hover {
+  background-color: #edf3f9;
+
+  border-color: #b5c8df;
 }
 
-/* CADASTRAR */
+/* ================================
+   BOTÃO CADASTRAR
+================================ */
 
-.btn-salvar-nova-turma {
-  min-width: 200px;
-  background-color: #4b75a5;
+.pagina-nova-turma .btn-salvar-nova-turma {
+  background: linear-gradient(
+    135deg,
+    #5c87b8,
+    #4b75a5
+  );
+
   color: #ffffff;
+
   border: 1px solid #4b75a5;
+
+  box-shadow: 0 5px 15px rgba(75, 117, 165, 0.15);
 }
 
-.btn-salvar-nova-turma:hover {
-  background-color: #365f8d;
+.pagina-nova-turma .btn-salvar-nova-turma:hover {
+  background: linear-gradient(
+    135deg,
+    #4b75a5,
+    #3d6696
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(75, 117, 165, 0.2);
 }
 
-/* RESPONSIVIDADE */
+.pagina-nova-turma .btn-salvar-nova-turma:active {
+  transform: translateY(0);
+}
 
-@media (max-width: 800px) {
-  .nova-turma-formulario {
-    padding: 20px 16px;
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+.pagina-nova-turma button:focus-visible {
+  outline: 2px solid #4b75a5;
+  outline-offset: 3px;
+}
+
+/* ================================
+   ANIMAÇÃO
+================================ */
+
+@keyframes entradaNovaTurma {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  .nova-turma-horarios {
-    gap: 15px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 560px) {
-  .nova-turma-header h1 {
-    font-size: 30px;
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 1100px) {
+
+  .gestao-layout .pagina-nova-turma {
+    padding: 35px 28px;
   }
 
-  .nova-turma-header p {
-    font-size: 15px;
+  .pagina-nova-turma .nova-turma-campos {
+    column-gap: 20px;
+    row-gap: 22px;
   }
 
-  .nova-turma-horarios {
+}
+
+@media (max-width: 900px) {
+
+  .pagina-nova-turma .nova-turma-campos {
     grid-template-columns: 1fr;
+
+    padding: 25px;
+  }
+
+  .pagina-nova-turma .nova-turma-titulo {
+    padding: 22px 25px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .gestao-layout .pagina-nova-turma {
+    padding: 25px 18px;
+  }
+
+  .pagina-nova-turma .nova-turma-container {
+    border-radius: 14px;
+  }
+
+  .pagina-nova-turma .nova-turma-titulo {
+    padding: 20px;
+  }
+
+  .pagina-nova-turma .nova-turma-titulo h2 {
+    font-size: 17px;
+  }
+
+  .pagina-nova-turma .nova-turma-titulo p {
+    font-size: 12px;
+  }
+
+  .pagina-nova-turma .nova-turma-campos {
+    padding: 20px;
+
     gap: 20px;
   }
 
-  .nova-turma-acoes {
-    flex-direction: column-reverse;
-    align-items: stretch;
+  .pagina-nova-turma .nova-turma-campo label {
+    font-size: 13px;
   }
 
-  .btn-cancelar-nova-turma,
-  .btn-salvar-nova-turma {
-    width: 100%;
+  .pagina-nova-turma .nova-turma-campo input,
+  .pagina-nova-turma .nova-turma-campo select {
+    height: 46px;
+    font-size: 13px;
   }
+
+  .pagina-nova-turma .nova-turma-acoes {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pagina-nova-turma .btn-cancelar-nova-turma,
+  .pagina-nova-turma .btn-salvar-nova-turma {
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pagina-nova-turma .nova-turma-container {
+    animation: none;
+  }
+
+  .pagina-nova-turma * {
+    transition: none;
+  }
+
+  .pagina-nova-turma button:hover {
+    transform: none;
+  }
+
 }

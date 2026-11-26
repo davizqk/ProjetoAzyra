@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/telaPerfil.css";
@@ -20,7 +21,7 @@ import turmasAtivo from "../assets/turmas-preenchido-footer.png";
 import recorrencias from "../assets/recorrencias-footer.png";
 import recorrenciasAtivo from "../assets/recorrencias-preenchido-footer.png";
 
-// ÍCONES DE CONTATO
+// ÍCONES ORIGINAIS DE CONTATO
 function Icone({ tipo }) {
   const propriedades = {
     width: 19,
@@ -30,20 +31,18 @@ function Icone({ tipo }) {
     stroke: "#4B75A5",
     strokeWidth: 1.8,
     strokeLinecap: "round",
-    strokeLinejoin: "round"
+    strokeLinejoin: "round",
+    "aria-hidden": true
   };
 
   return (
     <svg {...propriedades}>
+
       {tipo === "email" && (
         <>
           <rect x="3" y="5" width="18" height="14" rx="2" />
           <path d="m3 7 9 6 9-6" />
         </>
-      )}
-
-      {tipo === "telefone" && (
-        <path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z" />
       )}
 
       {tipo === "localizacao" && (
@@ -52,6 +51,7 @@ function Icone({ tipo }) {
           <circle cx="12" cy="10" r="2.5" />
         </>
       )}
+
     </svg>
   );
 }
@@ -87,6 +87,7 @@ function TelaPerfil() {
     <div className="gestao-layout">
 
       {/* SIDEBAR */}
+
       <aside className="gestao-sidebar">
 
         <div className="sidebar-logo">
@@ -143,7 +144,8 @@ function TelaPerfil() {
 
         </nav>
 
-        {/* RODAPÉ */}
+        {/* RODAPÉ DA SIDEBAR */}
+
         <NavLink to="/perfil" className="sidebar-footer">
 
           <img
@@ -162,6 +164,7 @@ function TelaPerfil() {
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
+
       <main className="pagina-perfil">
 
         <header className="perfil-header">
@@ -170,21 +173,31 @@ function TelaPerfil() {
         </header>
 
         {/* CARD DO PERFIL */}
+
         <section className="perfil-card">
 
           <div className="perfil-informacoes">
 
-            <img
-              src={dados.foto || iconePerfil}
-              alt="Foto do perfil"
-              className="perfil-foto"
-            />
+            <div className="perfil-foto-container">
+
+              <img
+                src={dados.foto || iconePerfil}
+                alt="Foto do perfil"
+                className="perfil-foto"
+              />
+
+            </div>
 
             <div className="perfil-dados">
 
               <div className="perfil-nome">
+
                 <strong>{dados.nome}</strong>
-                <span>Coordenador</span>
+
+                <span className="perfil-cargo">
+                  Coordenador
+                </span>
+
               </div>
 
               <div className="perfil-contato">
@@ -195,11 +208,6 @@ function TelaPerfil() {
                 </div>
 
                 <div className="perfil-contato-item">
-                  <Icone tipo="telefone" />
-                  <span>(11) 98765-4321</span>
-                </div>
-
-                <div className="perfil-contato-item">
                   <Icone tipo="localizacao" />
                   <span>Senai 134</span>
                 </div>
@@ -207,9 +215,15 @@ function TelaPerfil() {
               </div>
 
             </div>
+
           </div>
 
+          {/* DIVISOR */}
+
+          <div className="perfil-divisor"></div>
+
           {/* INDICADORES */}
+
           <div className="perfil-indicadores">
 
             <div className="perfil-indicador">
@@ -232,6 +246,7 @@ function TelaPerfil() {
         </section>
 
         {/* BOTÃO EDITAR PERFIL */}
+
         <button
           type="button"
           className="botao-editar-perfil"

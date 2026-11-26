@@ -1,357 +1,211 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-* {
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+.historico-app.turmas-app.historico-professor-app {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Poppins', sans-serif;
+}
+
+.historico-professor-app,
+.historico-professor-app * {
   box-sizing: border-box;
 }
 
 /* ========================================
-   ESTRUTURA PRINCIPAL
+   ÍCONES ORIGINAIS DA SIDEBAR
 ======================================== */
 
-.historico-app {
-  --historico-sidebar-width: 266px;
-
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-
-  background-color: #f5f5f5;
-  font-family: 'Poppins', sans-serif;
-  color: #444444;
-}
-
-/* ========================================
-   SIDEBAR
-======================================== */
-
-.historico-app .sidebar {
-  position: fixed;
-  inset: 0 auto 0 0;
-  z-index: 10;
-
-  display: flex;
-  flex-direction: column;
-
-  width: 266px;
-  height: 100vh;
-  height: 100dvh;
-
-  padding: 25px 17px 0;
-
-  background-color: #4b75a0;
-  color: #ffffff;
-
-  border: none;
-}
-
-/* LOGO */
-
-.historico-app .sidebar-brand {
-  display: flex;
-  align-items: center;
-
-  gap: 14px;
-  min-height: 48px;
-
-  margin-bottom: 40px;
-  padding-left: 7px;
-
-  border: none;
-}
-
-.historico-app .sidebar-logo {
-  width: 43px;
-  height: 43px;
-
-  object-fit: contain;
-}
-
-.historico-app .sidebar-brand span {
-  color: #ffffff;
-  font-size: 25px;
-  font-weight: 700;
-}
-
-/* MENU LATERAL */
-
-.historico-app .sidebar-nav {
-  display: flex;
-  flex-direction: column;
-
-  gap: 15px;
-  width: 100%;
-
-  padding: 0;
-  border: none;
-}
-
-.historico-app .sidebar-link {
-  display: flex;
-  align-items: center;
-
-  gap: 15px;
-
-  width: 100%;
-  min-height: 49px;
-
-  padding: 12px 15px;
-
-  border-radius: 10px;
-
-  color: #ffffff;
-  text-decoration: none;
-
-  transition: background-color 0.2s;
-}
-
-.historico-app .sidebar-link:hover:not(.active) {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.historico-app .sidebar-link.active {
-  color: #315f91;
-  background-color: #e4edf5;
-}
-
-.historico-app .sidebar-icon {
-  width: 27px;
-  height: 27px;
-
-  flex-shrink: 0;
-  object-fit: contain;
-}
-
-.historico-app .sidebar-icon-turmas {
+.historico-professor-app .sidebar-icon-turmas {
   filter: brightness(0) invert(1);
 }
 
-.historico-app .sidebar-link.active .sidebar-icon {
-  filter: brightness(0) saturate(100%)
-    invert(43%) sepia(24%) saturate(1120%)
-    hue-rotate(171deg) brightness(95%) contrast(90%);
-}
-
-.historico-app .sidebar-link span {
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-/* ========================================
-   PERFIL DO COORDENADOR
-======================================== */
-
-.historico-app .sidebar .sidebar-footer {
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-
-  width: 100%;
-  min-height: 68px;
-
-  margin-top: auto;
-  padding: 14px 9px;
-
-  flex-shrink: 0;
-
-  background: transparent !important;
-  border: none !important;
-  border-top: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-
-  appearance: none;
-
-  color: #ffffff;
-  text-align: left;
-
-  cursor: pointer;
-}
-
-.historico-app .sidebar-footer-avatar {
-  width: 36px;
-  height: 36px;
-
-  flex-shrink: 0;
-  object-fit: contain;
-
+.historico-professor-app .sidebar-footer-avatar {
   filter: brightness(0) invert(1);
-}
-
-.historico-app .sidebar-footer-text {
-  display: flex;
-  flex-direction: column;
-
-  gap: 2px;
-}
-
-.historico-app .sidebar-footer-text strong {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.historico-app .sidebar-footer-text span {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 400;
-  text-transform: capitalize;
 }
 
 /* ========================================
    CONTEÚDO PRINCIPAL
 ======================================== */
 
-.historico-app .historico-main {
+.historico-professor-app .historico-professor-main {
+  position: relative;
+
+  display: block;
   flex: 1;
 
-  width: calc(100% - var(--historico-sidebar-width));
+  width: calc(100% - var(--sidebar-width, 266px));
   min-width: 0;
 
   height: 100vh;
   height: 100dvh;
 
-  margin-left: var(--historico-sidebar-width);
-  padding: 45px 49px;
+  margin-left: var(--sidebar-width, 266px);
 
-  background-color: #f5f5f5;
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
 
   overflow-y: auto;
   overflow-x: hidden;
-
-  box-sizing: border-box;
 }
 
 /* ========================================
    CABEÇALHO
 ======================================== */
 
-.historico-app .page-header {
+.historico-professor-app .historico-professor-header {
   display: block;
   width: 100%;
 
-  margin-bottom: 35px;
+  margin: 0 0 28px;
+  padding: 0;
 }
 
-.historico-app .page-heading h1 {
+.historico-professor-app .historico-professor-header h1 {
   margin: 0;
 
   color: #4b75a5;
-  font-size: 36px;
-  font-weight: 600;
+
+  font-size: 32px;
+  font-weight: 700;
   line-height: 1.3;
+
+  letter-spacing: -0.5px;
 }
 
-.historico-app .page-heading p {
-  margin: 5px 0 0;
+.historico-professor-app .historico-professor-header p {
+  margin: 7px 0 0;
 
-  color: #5c5c5c;
-  font-size: 16px;
+  color: #738397;
+
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* ========================================
    BARRA DE PESQUISA
 ======================================== */
 
-.historico-app .historico-filters {
+.historico-professor-app .historico-professor-filtros {
   display: flex;
   width: 100%;
 
-  margin: 0 0 25px;
+  margin: 0 0 24px;
   padding: 0;
 }
 
-.historico-app .history-search-box {
+.historico-professor-app .historico-professor-pesquisa {
   display: flex;
   align-items: center;
 
   gap: 12px;
 
   width: 100%;
-  height: 48px;
+  height: 50px;
 
-  padding: 0 17px;
+  padding: 0 16px;
 
   background-color: #ffffff;
 
-  border: 1px solid #dddddd;
-  border-radius: 9px;
+  border: 1px solid #dce4ee;
+  border-radius: 11px;
+
+  box-shadow: 0 2px 8px rgba(46, 78, 115, 0.03);
 
   transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.historico-app .history-search-box:focus-within {
+.historico-professor-app .historico-professor-pesquisa:hover {
+  border-color: #b5c8df;
+}
+
+.historico-professor-app .historico-professor-pesquisa:focus-within {
   border-color: #4b75a5;
 
-  box-shadow: 0 0 0 3px rgba(75, 117, 165, 0.08);
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.1);
 }
 
-.historico-app .history-search-box img {
-  width: 18px;
-  height: 18px;
+/* ÍCONE ORIGINAL DA LUPA */
+
+.historico-professor-app .historico-professor-pesquisa img {
+  width: 20px;
+  height: 20px;
 
   flex-shrink: 0;
-  object-fit: contain;
 
-  filter: brightness(0) saturate(100%)
-    invert(43%) sepia(24%) saturate(1120%)
-    hue-rotate(171deg) brightness(95%) contrast(90%);
+  object-fit: contain;
 }
 
-.historico-app .history-search-box input {
+/* INPUT */
+
+.historico-professor-app .historico-professor-pesquisa input {
   flex: 1;
 
   width: 100%;
   min-width: 0;
   height: 100%;
 
+  margin: 0;
   padding: 0;
 
   border: none;
   outline: none;
   box-shadow: none;
 
-  background: transparent;
+  background-color: transparent;
 
-  color: #444444;
+  color: #34465d;
 
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
 
-.historico-app .history-search-box input::placeholder {
-  color: #888888;
+.historico-professor-app .historico-professor-pesquisa input::placeholder {
+  color: #98a5b5;
   opacity: 1;
 }
 
 /* ========================================
-   CONTAINER DA TABELA
+   CARD DA TABELA
 ======================================== */
 
-.historico-app .history-table-card {
+.historico-professor-app .historico-professor-card {
   display: block;
 
   width: 100%;
+  max-width: 100%;
+
+  margin: 0;
   padding: 0;
 
   background-color: #ffffff;
 
-  border: 1px solid #dddddd;
-  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
 
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.035);
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
 
   overflow: hidden;
+
+  animation: entradaHistoricoProfessor 0.4s ease-out;
 }
 
-.historico-app .table-scroll {
+.historico-professor-app .historico-professor-scroll {
   width: 100%;
+
   overflow-x: auto;
 }
 
@@ -359,11 +213,11 @@
    TABELA
 ======================================== */
 
-.historico-app .historico-table {
+.historico-professor-app .historico-professor-tabela {
   display: table;
 
   width: 100%;
-  min-width: 650px;
+  min-width: 620px;
 
   margin: 0;
 
@@ -371,122 +225,156 @@
   border-spacing: 0;
 
   table-layout: fixed;
-  text-align: center;
 
   background-color: #ffffff;
+
+  text-align: center;
 }
 
 /* ========================================
    CABEÇALHO DA TABELA
 ======================================== */
 
-.historico-app .historico-table thead {
-  background-color: #e4edf5;
+.historico-professor-app .historico-professor-tabela thead {
+  background-color: #eaf1f8;
 }
 
-.historico-app .historico-table thead th {
-  height: 58px;
+.historico-professor-app .historico-professor-tabela thead th {
+  height: 60px;
 
-  padding: 0 10px;
+  padding: 16px 12px;
 
-  background-color: #e4edf5;
+  background-color: #eaf1f8;
+
   color: #4b75a5;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-
-  text-align: center;
-  vertical-align: middle;
 
   white-space: nowrap;
 
   border: none;
+  border-bottom: 1px solid #dce6f0;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.historico-professor-app .historico-professor-tabela thead th:first-child {
+  padding-left: 26px;
+
+  text-align: left;
 }
 
 /* ========================================
-   LARGURA DAS COLUNAS
+   LARGURA DAS QUATRO COLUNAS
 ======================================== */
 
-.historico-app .historico-table th:nth-child(1) {
-  width: 22%;
+/* ESTUDANTE */
+
+.historico-professor-app .historico-professor-tabela th:nth-child(1) {
+  width: 28%;
 }
 
-.historico-app .historico-table th:nth-child(2) {
+/* TURMA */
+
+.historico-professor-app .historico-professor-tabela th:nth-child(2) {
+  width: 30%;
+}
+
+/* DATA */
+
+.historico-professor-app .historico-professor-tabela th:nth-child(3) {
   width: 20%;
 }
 
-.historico-app .historico-table th:nth-child(3) {
+/* HORÁRIO DE ENTRADA */
+
+.historico-professor-app .historico-professor-tabela th:nth-child(4) {
   width: 22%;
-}
-
-.historico-app .historico-table th:nth-child(4) {
-  width: 16%;
-}
-
-.historico-app .historico-table th:nth-child(5) {
-  width: 20%;
 }
 
 /* ========================================
-   INFORMAÇÕES DA TABELA
+   LINHAS DA TABELA
 ======================================== */
 
-.historico-app .historico-table tbody tr {
-  height: 48px;
-
+.historico-professor-app .historico-professor-tabela tbody tr {
   background-color: #ffffff;
 
-  border-bottom: 1px solid #e5e5e5;
-
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
 }
 
-.historico-app .historico-table tbody td {
-  height: 48px;
+.historico-professor-app .historico-professor-tabela tbody tr:hover {
+  background-color: #f7faff;
+}
 
-  padding: 10px;
+.historico-professor-app .historico-professor-tabela tbody td {
+  height: 60px;
 
-  background: transparent;
-  color: #444444;
+  padding: 12px;
+
+  background-color: transparent;
+
+  color: #45566b;
 
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
 
+  border: none;
+  border-bottom: 1px solid #edf0f4;
+
   text-align: center;
   vertical-align: middle;
-
-  border: none;
-  border-right: 1px solid #e5e5e5;
 }
 
-/* REMOVE A BORDA DA ÚLTIMA COLUNA */
-
-.historico-app .historico-table tbody td:last-child {
-  border-right: none;
-}
-
-/* REMOVE A BORDA DA ÚLTIMA LINHA */
-
-.historico-app .historico-table tbody tr:last-child {
+.historico-professor-app .historico-professor-tabela tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* EFEITO AO PASSAR O MOUSE */
+/* ========================================
+   NOME DO ESTUDANTE
+======================================== */
 
-.historico-app .historico-table tbody tr:hover {
-  background-color: #f6f9fc;
+.historico-professor-app .historico-professor-tabela tbody .historico-estudante {
+  padding-left: 26px;
+
+  color: #34465d;
+
+  font-weight: 500;
+
+  text-align: left;
+
+  overflow-wrap: anywhere;
 }
 
-/* NENHUM REGISTRO ENCONTRADO */
+/* ========================================
+   HORÁRIO DE ENTRADA
+======================================== */
 
-.historico-app .historico-table .empty-table {
-  height: 90px;
+.historico-professor-app .historico-professor-tabela tbody .historico-horario {
+  color: #4b75a5;
 
-  padding: 20px;
+  font-weight: 500;
 
-  color: #888888;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   NENHUM REGISTRO ENCONTRADO
+======================================== */
+
+.historico-professor-app .historico-professor-tabela .historico-vazio {
+  height: 140px;
+
+  padding: 24px;
+
+  color: #738397;
+
+  font-size: 14px;
+  font-weight: 400;
+
   text-align: center;
 }
 
@@ -494,23 +382,26 @@
    RODAPÉ DA TABELA
 ======================================== */
 
-.historico-app .table-footer {
+.historico-professor-app .historico-professor-rodape {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
-  min-height: 50px;
+  gap: 16px;
 
-  padding: 8px 18px;
+  width: 100%;
+  min-height: 64px;
+
+  padding: 14px 24px;
 
   background-color: #ffffff;
 
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #e9edf3;
 }
 
-.historico-app .table-footer > span {
-  color: #777777;
+.historico-professor-app .historico-professor-rodape > span {
+  color: #738397;
+
   font-size: 12px;
   font-weight: 400;
 }
@@ -519,69 +410,102 @@
    PAGINAÇÃO
 ======================================== */
 
-.historico-app .pagination {
+.historico-professor-app .historico-professor-paginacao {
   display: flex;
   align-items: center;
 
-  gap: 10px;
+  gap: 8px;
 }
 
-.historico-app .pagination-arrow,
-.historico-app .pagination-number,
-.historico-app .pagination-current {
+.historico-professor-app .historico-professor-paginacao button {
+  appearance: none;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
 
   padding: 0;
 
   background-color: #ffffff;
+
   color: #4b75a5;
 
-  border: 1px solid #dddddd;
-  border-radius: 6px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
+  line-height: 1;
 
   cursor: pointer;
 
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.historico-app .pagination-number:hover,
-.historico-app .pagination-arrow:not(:disabled):hover {
-  background-color: #edf3f9;
+/* HOVER */
+
+.historico-professor-app .historico-professor-paginacao button:hover:not(:disabled):not(.historico-pagina-atual) {
+  background-color: #eaf1fa;
+
+  border-color: #b5c8df;
 }
 
-/* PÁGINA SELECIONADA */
+/* ÍCONES ORIGINAIS DAS SETAS */
 
-.historico-app .pagination-current {
-  background-color: #4b75a5;
-  border-color: #4b75a5;
-
-  color: #ffffff;
-  font-weight: 500;
-}
-
-/* SETAS */
-
-.historico-app .pagination-arrow img {
+.historico-professor-app .historico-professor-paginacao button img {
   width: 13px;
   height: 13px;
 
   object-fit: contain;
 }
 
-.historico-app .pagination-arrow:disabled {
-  background-color: #f8f8f8;
+/* BOTÕES DESABILITADOS */
 
-  opacity: 0.5;
+.historico-professor-app .historico-professor-paginacao button:disabled {
+  background-color: #f8f9fb;
+
+  border-color: #e7ebf0;
+
+  opacity: 0.45;
+
   cursor: not-allowed;
+}
+
+/* PÁGINA SELECIONADA */
+
+.historico-professor-app .historico-professor-paginacao .historico-pagina-atual {
+  background-color: #4b75a5;
+
+  color: #ffffff;
+
+  border-color: #4b75a5;
+
+  font-weight: 500;
+
+  box-shadow: 0 3px 8px rgba(75, 117, 165, 0.15);
+}
+
+/* ========================================
+   ANIMAÇÃO
+======================================== */
+
+@keyframes entradaHistoricoProfessor {
+  from {
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
 }
 
 /* ========================================
@@ -589,87 +513,75 @@
 ======================================== */
 
 @media (max-width: 1100px) {
-  .historico-app .historico-main {
+
+  .historico-professor-app .historico-professor-main {
     padding: 35px 28px;
   }
 
-  .historico-app .historico-table thead th {
+  .historico-professor-app .historico-professor-tabela thead th {
     font-size: 13px;
   }
 
-  .historico-app .historico-table tbody td {
+  .historico-professor-app .historico-professor-tabela tbody td {
     font-size: 12px;
   }
+
 }
 
-@media (max-width: 900px) {
-  .historico-app {
-    --historico-sidebar-width: 210px;
+@media (max-width: 800px) {
+
+  .historico-professor-app .historico-professor-card {
+    border-radius: 14px;
   }
 
-  .historico-app .sidebar {
-    width: 210px;
-  }
-
-  .historico-app .historico-main {
-    padding: 35px 25px;
-  }
-
-  .historico-app .historico-table {
-    min-width: 700px;
-  }
 }
 
 @media (max-width: 600px) {
-  .historico-app {
-    --historico-sidebar-width: 75px;
+
+  .historico-professor-app .historico-professor-main {
+    padding: 25px 18px;
   }
 
-  .historico-app .sidebar {
-    width: 75px;
-    padding: 20px 9px;
+  .historico-professor-app .historico-professor-header {
+    margin-bottom: 22px;
   }
 
-  .historico-app .sidebar-brand {
-    justify-content: center;
-    padding: 0;
+  .historico-professor-app .historico-professor-header h1 {
+    font-size: 25px;
   }
 
-  .historico-app .sidebar-brand span,
-  .historico-app .sidebar-link span,
-  .historico-app .sidebar-footer-text {
-    display: none;
+  .historico-professor-app .historico-professor-header p {
+    font-size: 12px;
   }
 
-  .historico-app .sidebar-link {
-    justify-content: center;
-    padding: 10px 5px;
+  .historico-professor-app .historico-professor-pesquisa {
+    height: 46px;
   }
 
-  .historico-app .sidebar .sidebar-footer {
-    justify-content: center;
-    padding: 10px 0;
+  .historico-professor-app .historico-professor-pesquisa input {
+    font-size: 13px;
   }
 
-  .historico-app .historico-main {
-    padding: 28px 18px;
-  }
-
-  .historico-app .page-heading h1 {
-    font-size: 30px;
-  }
-
-  .historico-app .page-heading p {
-    font-size: 14px;
-  }
-
-  .historico-app .table-footer {
+  .historico-professor-app .historico-professor-rodape {
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 12px;
+
+    padding: 14px;
   }
 
-  .historico-app .pagination {
-    gap: 6px;
+  .historico-professor-app .historico-professor-rodape > span {
+    font-size: 11px;
   }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .historico-professor-app .historico-professor-card {
+    animation: none;
+  }
+
+  .historico-professor-app * {
+    transition: none;
+  }
+
 }

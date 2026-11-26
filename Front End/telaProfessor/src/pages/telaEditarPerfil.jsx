@@ -1,51 +1,71 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import "../styles/telaHistorico.css";
-import "../styles/telaPerfil.css";
 import "../styles/telaEditarPerfil.css";
 
 import logo from "../assets/logo-footer.png";
+import iconeTurmas from "../assets/minhasturmaswhite-footer.png";
 import iconeHistorico from "../assets/historico-footer.png";
 import perfilUsuario from "../assets/perfil-minhasturmas.png";
-import iconeMinhasTurmasWhite from "../assets/minhasturmaswhite-footer.png";
 
-export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
-  const [nome, setNome] = useState("Jucelino Pinheiro de Andrade");
-  const [email, setEmail] = useState("jucelinopinheiro134@gmail.com");
-  const [foto, setFoto] = useState(perfilUsuario);
+export default function EditarPerfil({
+  usuario,
+  foto,
+  aoNavegar,
+  aoCancelar,
+  aoSalvar,
+}) {
+  const [nome, setNome] = useState(
+    usuario?.nome ?? "Jucelino Pinheiro"
+  );
+
+  const [email, setEmail] = useState(
+    usuario?.email ?? "jucelino@senai.br"
+  );
+
+  const [fotoPerfil, setFotoPerfil] = useState(foto || "");
 
   const inputFoto = useRef(null);
 
-  const navegar = (tela) => {
-    if (typeof aoNavegar === "function") {
-      aoNavegar(tela);
+  function alterarFoto(event) {
+    const arquivo = event.target.files?.[0];
+
+    if (!arquivo || !arquivo.type.startsWith("image/")) {
+      return;
     }
-  };
 
-  const alterarFoto = (event) => {
-    const arquivo = event.target.files[0];
+    const leitor = new FileReader();
 
-    if (arquivo) {
-      const imagem = URL.createObjectURL(arquivo);
-      setFoto(imagem);
-    }
-  };
+    leitor.onload = () => {
+      setFotoPerfil(leitor.result);
+    };
 
-  const salvarPerfil = (event) => {
+    leitor.readAsDataURL(arquivo);
+  }
+
+  function salvar(event) {
     event.preventDefault();
 
-    // Integre o salvamento com seu backend aqui.
-    navegar("perfil");
-  };
+    aoSalvar?.({
+      nome: nome.trim(),
+      email: email.trim(),
+      foto: fotoPerfil,
+    });
+  }
 
-  const cancelarEdicao = () => {
-    navegar("perfil");
-  };
+  function cancelar() {
+    if (aoCancelar) {
+      aoCancelar();
+    } else {
+      aoNavegar?.("perfil");
+    }
+  }
 
   return (
-    <div className="historico-app perfil-app editar-perfil-app">
+    <div className="historico-app editar-perfil-app">
 
-      {/* SIDEBAR */}
+      {/* SIDEBAR ORIGINAL */}
+
       <aside className="sidebar">
 
         <div className="sidebar-brand">
@@ -58,17 +78,15 @@ export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
           <span>Azyra</span>
         </div>
 
-        <nav
-          className="sidebar-nav"
-          aria-label="Navegação principal"
-        >
+        <nav className="sidebar-nav">
+
           <button
             type="button"
             className="sidebar-link"
-            onClick={() => navegar("minhas-turmas")}
+            onClick={() => aoNavegar?.("minhas-turmas")}
           >
             <img
-              src={iconeMinhasTurmasWhite}
+              src={iconeTurmas}
               alt=""
               className="sidebar-icon"
             />
@@ -79,7 +97,7 @@ export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
           <button
             type="button"
             className="sidebar-link"
-            onClick={() => navegar("historico")}
+            onClick={() => aoNavegar?.("historico")}
           >
             <img
               src={iconeHistorico}
@@ -89,13 +107,13 @@ export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
 
             <span>Histórico</span>
           </button>
+
         </nav>
 
-        {/* RODAPÉ */}
         <button
           type="button"
           className="sidebar-footer"
-          onClick={() => navegar("perfil")}
+          onClick={() => aoNavegar?.("perfil")}
           aria-label="Abrir perfil"
         >
           <img
@@ -106,106 +124,139 @@ export default function PtelaEditarPerfil({ aoNavegar, telaAtual }) {
 
           <div className="sidebar-footer-text">
             <strong>Jucelino</strong>
-            <span>coordenador</span>
+            <span>Coordenador</span>
           </div>
         </button>
 
       </aside>
 
       {/* CONTEÚDO PRINCIPAL */}
-      <main className="turmas-main historico-main perfil-main editar-perfil-main">
 
-        {/* TÍTULO */}
-        <div className="page-header">
+      <main className="ep-professor-main">
+
+        {/* CABEÇALHO FORA DO CARD */}
+
+        <header className="ep-professor-header">
           <h1>Editar Perfil</h1>
-        </div>
+
+          <p>Atualize suas informações pessoais.</p>
+        </header>
 
         <form
-          className="editar-perfil-form"
-          onSubmit={salvarPerfil}
+          className="ep-professor-form"
+          onSubmit={salvar}
         >
 
-          {/* CARD DE EDIÇÃO */}
-          <section className="editar-perfil-card">
+          {/* CARD PRINCIPAL */}
 
-            {/* FOTO */}
-            <div className="editar-perfil-foto-area">
+          <section className="ep-professor-card">
 
-              <img
-                src={foto}
-                alt="Foto do perfil"
-                className="editar-perfil-avatar"
-              />
+            {/* FOTO DO PERFIL */}
 
-              <input
-                ref={inputFoto}
-                type="file"
-                accept="image/*"
-                className="editar-perfil-input-file"
-                onChange={alterarFoto}
-              />
+            <div className="ep-professor-foto-area">
 
-              <button
-                type="button"
-                className="editar-perfil-foto-botao"
-                onClick={() => inputFoto.current?.click()}
-              >
-                Alterar foto
-              </button>
+              <div className="ep-professor-foto-container">
+
+                <img
+                  src={fotoPerfil || perfilUsuario}
+                  alt="Foto do perfil"
+                  className="ep-professor-avatar"
+                />
+
+              </div>
+
+              <div className="ep-professor-foto-info">
+
+                <h2>Foto de perfil</h2>
+
+                <p>Personalize sua foto de perfil.</p>
+
+                <input
+                  ref={inputFoto}
+                  type="file"
+                  accept="image/*"
+                  className="ep-professor-file"
+                  onChange={alterarFoto}
+                  hidden
+                />
+
+                <button
+                  type="button"
+                  className="ep-professor-alterar-foto"
+                  onClick={() => inputFoto.current?.click()}
+                >
+                  Alterar foto
+                </button>
+
+              </div>
 
             </div>
 
-            {/* CAMPOS */}
-            <div className="editar-perfil-campos">
+            {/* DIVISÓRIA */}
 
-              <div className="editar-perfil-campo">
-                <label htmlFor="nome">
-                  Nome Completo
+            <div className="ep-professor-divisor"></div>
+
+            {/* CAMPOS */}
+
+            <div className="ep-professor-grid">
+
+              <div className="ep-professor-campo">
+
+                <label htmlFor="ep-nome">
+                  Nome completo
                 </label>
 
                 <input
-                  id="nome"
+                  id="ep-nome"
                   type="text"
                   value={nome}
-                  onChange={(event) => setNome(event.target.value)}
-                  placeholder="Digite seu nome completo"
+                  onChange={(event) =>
+                    setNome(event.target.value)
+                  }
+                  placeholder="Digite seu nome"
                   required
                 />
+
               </div>
 
-              <div className="editar-perfil-campo">
-                <label htmlFor="email">
+              <div className="ep-professor-campo">
+
+                <label htmlFor="ep-email">
                   E-mail
                 </label>
 
                 <input
-                  id="email"
+                  id="ep-email"
                   type="email"
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) =>
+                    setEmail(event.target.value)
+                  }
                   placeholder="Digite seu e-mail"
                   required
                 />
+
               </div>
 
             </div>
 
           </section>
 
-          {/* BOTÕES */}
-          <div className="editar-perfil-botoes">
+          {/* BOTÕES FORA DO CARD */}
+
+          <div className="ep-professor-acoes">
 
             <button
               type="button"
-              className="editar-perfil-cancelar"
-              onClick={cancelarEdicao}
+              className="ep-professor-cancelar"
+              onClick={cancelar}
             >
               Cancelar
             </button>
 
             <button
               type="submit"
-              className="editar-perfil-salvar"
+              className="ep-professor-salvar"
             >
               Salvar
             </button>

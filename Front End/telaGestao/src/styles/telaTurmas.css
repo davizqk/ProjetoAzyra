@@ -1,228 +1,421 @@
-/* CABEÇALHO */
+/* ================================
+   CONTEÚDO PRINCIPAL
+================================ */
 
-.turmas-header {
-  margin-bottom: 35px;
+.gestao-layout .pagina-turmas {
+  flex: 1;
+
+  width: calc(100% - var(--sidebar-width, 266px));
+  min-width: 0;
+
+  height: 100vh;
+  height: 100dvh;
+
+  margin-left: var(--sidebar-width, 266px);
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.turmas-header h1 {
+.pagina-turmas * {
+  box-sizing: border-box;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+.pagina-turmas .turmas-header {
+  margin-bottom: 28px;
+}
+
+.pagina-turmas .turmas-header h1 {
   color: #4b75a5;
-  font-size: 36px;
-  font-weight: 600;
+
+  font-size: 32px;
+  font-weight: 700;
   line-height: 1.3;
+
+  letter-spacing: -0.5px;
+
+  margin: 0;
 }
 
-.turmas-header p {
-  color: #5c5c5c;
-  font-size: 16px;
+.pagina-turmas .turmas-header p {
+  color: #738397;
+
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 5px;
+
+  margin: 7px 0 0;
 }
 
-/* PESQUISA E BOTÃO */
+/* ================================
+   PESQUISA E BOTÃO
+================================ */
 
-.turmas-acoes {
+.pagina-turmas .turmas-acoes {
   width: 100%;
+
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-.turmas-pesquisa {
+/* CAMPO DE PESQUISA */
+
+.pagina-turmas .turmas-pesquisa {
   flex: 1;
   min-width: 0;
-  height: 48px;
+  height: 50px;
 
   display: flex;
   align-items: center;
+
   gap: 12px;
+  padding: 0 16px;
 
-  padding: 0 15px;
-
-  border: 1px solid #dddddd;
-  border-radius: 9px;
   background-color: #ffffff;
 
-  transition: border-color 0.2s;
+  border: 1px solid #dce4ee;
+  border-radius: 11px;
+
+  box-shadow: 0 2px 8px rgba(46, 78, 115, 0.03);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.turmas-pesquisa:focus-within {
+.pagina-turmas .turmas-pesquisa:hover {
+  border-color: #b5c8df;
+}
+
+.pagina-turmas .turmas-pesquisa:focus-within {
   border-color: #4b75a5;
+
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.1);
 }
 
-.turmas-icone-pesquisa {
+/* ÍCONE ORIGINAL DA LUPA */
+
+.pagina-turmas .turmas-icone-pesquisa {
   width: 20px;
   height: 20px;
+
   color: #4b75a5;
+
   flex-shrink: 0;
 }
 
-.turmas-pesquisa input {
+/* INPUT */
+
+.pagina-turmas .turmas-pesquisa input {
   width: 100%;
+  min-width: 0;
   height: 100%;
 
   padding: 0;
+
   border: none;
   outline: none;
-  background: transparent;
+
+  background-color: transparent;
+
+  color: #34465d;
 
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  color: #333333;
 }
 
-.turmas-pesquisa input::placeholder {
-  color: #888888;
+.pagina-turmas .turmas-pesquisa input::placeholder {
+  color: #98a5b5;
 }
 
-/* BOTÃO NOVA TURMA */
+/* ================================
+   BOTÃO NOVA TURMA
+================================ */
 
-.btn-nova-turma {
-  height: 48px;
-  padding: 0 20px;
+.pagina-turmas .btn-nova-turma {
+  appearance: none;
+
+  height: 50px;
+  padding: 0 24px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+
+  gap: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #5c87b8,
+    #4b75a5
+  );
+
+  color: #ffffff;
 
   border: none;
-  border-radius: 9px;
-
-  background-color: #4b75a5;
-  color: #ffffff;
+  border-radius: 11px;
 
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 
   cursor: pointer;
+
   white-space: nowrap;
   flex-shrink: 0;
 
-  transition: background-color 0.2s;
+  box-shadow: 0 5px 15px rgba(75, 117, 165, 0.15);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.btn-nova-turma:hover {
-  background-color: #365f8d;
+.pagina-turmas .btn-nova-turma:hover {
+  background: linear-gradient(
+    135deg,
+    #4b75a5,
+    #3d6696
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(75, 117, 165, 0.2);
 }
 
-.btn-nova-turma span {
-  font-size: 21px;
+.pagina-turmas .btn-nova-turma:active {
+  transform: translateY(0);
+}
+
+.pagina-turmas .btn-nova-turma span {
+  font-size: 23px;
+  font-weight: 500;
   line-height: 1;
 }
 
-/* CONTAINER DA TABELA */
+/* ================================
+   CONTAINER DA TABELA
+================================ */
 
-.turmas-tabela-container {
+.pagina-turmas .turmas-tabela-container {
   width: 100%;
+  max-width: 100%;
 
   background-color: #ffffff;
 
-  border: 1px solid #dddddd;
-  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.035);
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
 
   overflow: hidden;
+
+  animation: entradaTabelaTurmas 0.4s ease-out;
 }
 
-.turmas-tabela-scroll {
+.pagina-turmas .turmas-tabela-scroll {
   width: 100%;
+
   overflow-x: auto;
 }
 
-/* TABELA */
+/* ================================
+   TABELA
+================================ */
 
-.turmas-tabela {
+.pagina-turmas .turmas-tabela {
   width: 100%;
+  min-width: 680px;
+
   border-collapse: collapse;
   table-layout: fixed;
+
   text-align: center;
 }
 
-/* CABEÇALHO DA TABELA */
+/* ================================
+   CABEÇALHO DA TABELA
+================================ */
 
-.turmas-tabela thead {
-  background-color: #e4edf5;
+.pagina-turmas .turmas-tabela thead {
+  background-color: #eaf1f8;
 }
 
-.turmas-tabela thead th {
-  height: 58px;
-  padding: 0 10px;
+.pagina-turmas .turmas-tabela thead th {
+  height: 60px;
+
+  padding: 16px 12px;
 
   color: #4b75a5;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
 
   white-space: nowrap;
+
   border: none;
-  text-align: center;
-}
-
-/* LARGURA DAS COLUNAS */
-
-.turmas-tabela th:nth-child(1) {
-  width: 27%;
-}
-
-.turmas-tabela th:nth-child(2) {
-  width: 19%;
-}
-
-.turmas-tabela th:nth-child(3) {
-  width: 19%;
-}
-
-.turmas-tabela th:nth-child(4) {
-  width: 18%;
-}
-
-.turmas-tabela th:nth-child(5) {
-  width: 17%;
-}
-
-/* INFORMAÇÕES DAS TURMAS */
-
-.turmas-tabela tbody tr {
-  background-color: #ffffff;
-  transition: background-color 0.2s;
-}
-
-.turmas-tabela tbody tr:hover {
-  background-color: #f7f9fc;
-}
-
-.turmas-tabela tbody td {
-  height: 65px;
-  padding: 10px;
-
-  color: #444444;
-
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-
-  border-bottom: 1px solid #e5e5e5;
-  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #dce6f0;
 
   text-align: center;
   vertical-align: middle;
 }
 
-.turmas-tabela tbody td:last-child {
-  border-right: none;
+/* PRIMEIRA COLUNA */
+
+.pagina-turmas .turmas-tabela thead th:first-child {
+  text-align: left;
+  padding-left: 26px;
 }
 
-.turmas-tabela tbody tr:last-child td {
+/* ================================
+   LARGURA DAS COLUNAS
+================================ */
+
+.pagina-turmas .turmas-tabela th:nth-child(1) {
+  width: 34%;
+}
+
+.pagina-turmas .turmas-tabela th:nth-child(2) {
+  width: 23%;
+}
+
+.pagina-turmas .turmas-tabela th:nth-child(3) {
+  width: 17%;
+}
+
+.pagina-turmas .turmas-tabela th:nth-child(4) {
+  width: 16%;
+}
+
+.pagina-turmas .turmas-tabela th:nth-child(5) {
+  width: 10%;
+}
+
+/* ================================
+   LINHAS DA TABELA
+================================ */
+
+.pagina-turmas .turmas-tabela tbody tr {
+  background-color: #ffffff;
+
+  transition: background-color 0.2s ease;
+}
+
+.pagina-turmas .turmas-tabela tbody tr:hover {
+  background-color: #f7faff;
+}
+
+/* CÉLULAS */
+
+.pagina-turmas .turmas-tabela tbody td {
+  height: 76px;
+
+  padding: 14px 12px;
+
+  color: #45566b;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+
+  border: none;
+  border-bottom: 1px solid #edf0f4;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pagina-turmas .turmas-tabela tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* BOTÃO EDITAR */
+/* ================================
+   NOME DA TURMA
+================================ */
 
-.btn-editar-turma {
+.pagina-turmas .turmas-tabela tbody .turma-nome {
+  color: #34465d;
+
+  font-weight: 500;
+  text-align: left;
+
+  padding-left: 26px;
+
+  overflow-wrap: anywhere;
+}
+
+/* ================================
+   MODELOS DE ENSINO
+================================ */
+
+.pagina-turmas .turma-modelo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 90px;
+
+  padding: 6px 14px;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+/* SEDUC */
+
+.pagina-turmas .modelo-seduc {
+  background-color: #e8f0fa;
+  color: #426d9d;
+
+  border: 1px solid #dce7f5;
+}
+
+/* COMUNIDADE */
+
+.pagina-turmas .modelo-comunidade {
+  background-color: #f0f3f7;
+  color: #63778f;
+
+  border: 1px solid #e5eaf0;
+}
+
+/* ================================
+   HORÁRIO
+================================ */
+
+.pagina-turmas .turmas-tabela tbody td:nth-child(4) {
+  color: #4b75a5;
+
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ================================
+   BOTÃO EDITAR TURMA
+================================ */
+
+.pagina-turmas .btn-editar-turma {
+  appearance: none;
+
   width: 38px;
   height: 38px;
 
@@ -232,65 +425,98 @@
 
   padding: 0;
 
-  border: none;
-  border-radius: 7px;
-  background: transparent;
+  background-color: #f0f5fa;
+
+  border: 1px solid #e3ebf4;
+  border-radius: 9px;
 
   cursor: pointer;
-  transition: background-color 0.2s;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.btn-editar-turma:hover {
-  background-color: #edf3f9;
+.pagina-turmas .btn-editar-turma:hover {
+  background-color: #e1ebf7;
+  border-color: #b5c8df;
+
+  transform: translateY(-2px);
 }
 
-.btn-editar-turma img {
-  width: 22px;
-  height: 22px;
+.pagina-turmas .btn-editar-turma:active {
+  transform: translateY(0);
+}
+
+/* ÍCONE ORIGINAL DO LÁPIS */
+
+.pagina-turmas .btn-editar-turma img {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+
   object-fit: contain;
 }
 
-/* NENHUMA TURMA ENCONTRADA */
+/* ================================
+   NENHUMA TURMA ENCONTRADA
+================================ */
 
-.turmas-vazio {
-  height: 90px !important;
+.pagina-turmas .turmas-tabela .turmas-vazio {
+  height: 140px;
+
+  color: #738397;
+
+  font-size: 14px;
+  font-weight: 400;
+
   text-align: center;
-  color: #888888 !important;
 }
 
-/* PAGINAÇÃO */
+/* ================================
+   PAGINAÇÃO
+================================ */
 
-.turmas-paginacao {
+.pagina-turmas .turmas-paginacao {
   width: 100%;
-  min-height: 48px;
-
-  padding: 10px 18px;
+  min-height: 64px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  gap: 16px;
+
+  padding: 14px 24px;
+
   background-color: #ffffff;
 
-  border-top: 1px solid #e5e5e5;
-  box-sizing: border-box;
+  border-top: 1px solid #e9edf3;
 }
 
-.turmas-paginacao > span {
-  color: #777777;
+.pagina-turmas .turmas-paginacao > span {
+  color: #738397;
+
   font-size: 12px;
   font-weight: 400;
 }
 
-.turmas-paginacao-botoes {
+/* BOTÕES DA PAGINAÇÃO */
+
+.pagina-turmas .turmas-paginacao-botoes {
   display: flex;
   align-items: center;
-  gap: 10px;
+
+  gap: 8px;
 }
 
-.turmas-paginacao-botoes button {
-  width: 30px;
-  height: 30px;
+.pagina-turmas .turmas-paginacao-botoes button {
+  appearance: none;
+
+  width: 34px;
+  height: 34px;
 
   display: flex;
   align-items: center;
@@ -298,91 +524,183 @@
 
   padding: 0;
 
-  border: 1px solid #dddddd;
-  border-radius: 6px;
-
   background-color: #ffffff;
   color: #4b75a5;
 
-  font-size: 21px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+
+  font-size: 22px;
   line-height: 1;
 
   cursor: pointer;
-  transition: background-color 0.2s;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.turmas-paginacao-botoes button:hover:not(:disabled) {
-  background-color: #edf3f9;
+.pagina-turmas .turmas-paginacao-botoes button:hover:not(:disabled) {
+  background-color: #eaf1fa;
+  border-color: #b5c8df;
 }
 
-.turmas-paginacao-botoes button:disabled {
-  background-color: #fafafa;
-  color: #bbbbbb;
+/* BOTÕES DESABILITADOS */
+
+.pagina-turmas .turmas-paginacao-botoes button:disabled {
+  background-color: #f8f9fb;
+  color: #b8c3d0;
+
+  border-color: #e7ebf0;
+
   cursor: not-allowed;
 }
 
-.turmas-paginacao-botoes .pagina-atual {
-  width: 30px;
-  height: 30px;
+/* PÁGINA ATUAL */
+
+.pagina-turmas .turmas-paginacao-botoes .pagina-atual {
+  width: 34px;
+  height: 34px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 6px;
-
   background-color: #4b75a5;
   color: #ffffff;
 
-  font-size: 12px;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  box-shadow: 0 3px 8px rgba(75, 117, 165, 0.15);
 }
 
-/* RESPONSIVIDADE */
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+.pagina-turmas button:focus-visible {
+  outline: 2px solid #4b75a5;
+  outline-offset: 3px;
+}
+
+/* ================================
+   ANIMAÇÃO
+================================ */
+
+@keyframes entradaTabelaTurmas {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
 
 @media (max-width: 1100px) {
 
-  .turmas-tabela thead th {
+  .gestao-layout .pagina-turmas {
+    padding: 35px 28px;
+  }
+
+  .pagina-turmas .turmas-tabela thead th {
     font-size: 13px;
   }
 
-  .turmas-tabela tbody td {
+  .pagina-turmas .turmas-tabela tbody td {
     font-size: 12px;
   }
 
-  .turmas-tabela {
-    min-width: 700px;
+  .pagina-turmas .turmas-tabela {
+    min-width: 680px;
   }
 
 }
 
 @media (max-width: 800px) {
 
-  .turmas-acoes {
+  .pagina-turmas .turmas-acoes {
     flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .turmas-pesquisa {
-    min-width: 100%;
+  .pagina-turmas .turmas-pesquisa {
+    flex-basis: 100%;
   }
 
-  .turmas-tabela {
-    min-width: 700px;
+  .pagina-turmas .btn-nova-turma {
+    margin-left: auto;
+  }
+
+  .pagina-turmas .turmas-tabela-container {
+    border-radius: 14px;
   }
 
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
 
-  .turmas-header h1 {
-    font-size: 30px;
+  .gestao-layout .pagina-turmas {
+    padding: 25px 18px;
   }
 
-  .turmas-header p {
-    font-size: 15px;
+  .pagina-turmas .turmas-header {
+    margin-bottom: 22px;
   }
 
-  .btn-nova-turma {
+  .pagina-turmas .turmas-header h1 {
+    font-size: 25px;
+  }
+
+  .pagina-turmas .turmas-header p {
     font-size: 12px;
   }
 
-} 
+  .pagina-turmas .turmas-pesquisa {
+    height: 46px;
+  }
+
+  .pagina-turmas .turmas-pesquisa input {
+    font-size: 13px;
+  }
+
+  .pagina-turmas .btn-nova-turma {
+    height: 46px;
+    font-size: 13px;
+  }
+
+  .pagina-turmas .turmas-paginacao {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+
+  .pagina-turmas .turmas-paginacao > span {
+    font-size: 11px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pagina-turmas .turmas-tabela-container {
+    animation: none;
+  }
+
+  .pagina-turmas * {
+    transition: none;
+  }
+
+  .pagina-turmas button:hover {
+    transform: none;
+  }
+
+}

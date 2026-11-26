@@ -1,16 +1,59 @@
-/* ========================================
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ================================
+   CONFIGURAÇÕES GERAIS
+================================ */
+
+.historico-app.turmas-app {
+  --sidebar-width: 266px;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+.turmas-app,
+.turmas-app * {
+  box-sizing: border-box;
+}
+
+/* ================================
    SIDEBAR
-======================================== */
+================================ */
 
 .turmas-app .sidebar {
-  width: 266px;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  width: var(--sidebar-width);
+
+  display: flex;
+  flex-direction: column;
+
   padding: 25px 17px 0;
+
   background-color: #4b75a0;
+  color: #ffffff;
+
+  z-index: 10;
 }
 
 .turmas-app .sidebar-brand {
+  display: flex;
+  align-items: center;
+
   gap: 14px;
+
   min-height: 48px;
+
   margin-bottom: 40px;
   padding-left: 7px;
 }
@@ -18,29 +61,51 @@
 .turmas-app .sidebar-logo {
   width: 43px;
   height: 43px;
+
   object-fit: contain;
 }
 
 .turmas-app .sidebar-brand span {
+  color: #ffffff;
+
   font-size: 25px;
   font-weight: 700;
 }
 
+/* MENU LATERAL */
+
 .turmas-app .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
   gap: 15px;
 }
 
 .turmas-app .sidebar-link {
+  display: flex;
+  align-items: center;
+
   min-height: 49px;
+
   padding: 12px 15px;
   gap: 15px;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
   border-radius: 10px;
+
+  transition: background-color 0.2s ease;
 }
 
 .turmas-app .sidebar-icon {
   width: 27px;
   height: 27px;
+
   object-fit: contain;
+
+  flex-shrink: 0;
 }
 
 .turmas-app .sidebar-link span {
@@ -48,168 +113,197 @@
   font-weight: 500;
 }
 
+.turmas-app .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
 .turmas-app .sidebar-link.active {
   background-color: #e4edf5;
   color: #315f91;
 }
 
-.turmas-app .sidebar-link.active span {
-  font-weight: 500;
-}
-
-.turmas-app .sidebar-link.active .sidebar-icon {
-  filter: brightness(0) saturate(100%)
-    invert(43%) sepia(24%) saturate(1120%)
-    hue-rotate(171deg) brightness(95%) contrast(90%);
-}
-
-/* ========================================
-   PERFIL DO COORDENADOR
-======================================== */
+/* ================================
+   PERFIL DA SIDEBAR
+================================ */
 
 .turmas-app .sidebar .sidebar-footer {
-  min-height: 68px;
-  gap: 13px;
-  padding: 14px 9px;
+  display: flex;
+  align-items: center;
 
-  margin-top: auto;
   width: 100%;
+  min-height: 68px;
+
+  gap: 13px;
+
+  padding: 14px 9px;
+  margin-top: auto;
 
   background: transparent !important;
+
   border: none !important;
-  outline: none !important;
   box-shadow: none !important;
 
-  appearance: none;
+  border-radius: 10px;
+
+  font-family: 'Poppins', sans-serif;
+
+  text-align: left;
+
   cursor: pointer;
+}
+
+.turmas-app .sidebar .sidebar-footer:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .turmas-app .sidebar-footer-avatar {
   width: 36px;
   height: 36px;
+
   object-fit: contain;
+
+  flex-shrink: 0;
 }
 
 .turmas-app .sidebar-footer-text {
   display: flex;
   flex-direction: column;
+
   gap: 2px;
 }
 
 .turmas-app .sidebar-footer-text strong {
   color: #ffffff;
+
   font-size: 14px;
   font-weight: 600;
 }
 
 .turmas-app .sidebar-footer-text span {
   color: #ffffff;
+
   font-size: 12px;
+  font-weight: 400;
 }
 
-/* ========================================
+/* ================================
    CONTEÚDO PRINCIPAL
-======================================== */
+================================ */
 
-.historico-app.turmas-app {
-  --turmas-sidebar-width: 266px;
-}
-
-.turmas-app .turmas-main {
+.turmas-app .pagina-turmas {
   flex: 1;
 
-  width: calc(100% - var(--turmas-sidebar-width));
+  width: calc(100% - var(--sidebar-width));
   min-width: 0;
 
   height: 100vh;
   height: 100dvh;
 
-  margin-left: var(--turmas-sidebar-width);
-  padding: 45px 49px;
+  margin-left: var(--sidebar-width);
 
-  background-color: #f5f5f5;
-  font-family: "Poppins", sans-serif;
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
 
   overflow-y: auto;
   overflow-x: hidden;
-  box-sizing: border-box;
 }
 
-/* ========================================
+/* ================================
    CABEÇALHO
-======================================== */
+================================ */
 
-.turmas-app .page-header {
-  display: block;
-  width: 100%;
-  margin-bottom: 35px;
+.turmas-app .turmas-header {
+  margin-bottom: 28px;
 }
 
-.turmas-app .page-heading h1 {
+.turmas-app .turmas-header h1 {
   color: #4b75a5;
-  font-size: 36px;
-  font-weight: 600;
+
+  font-size: 32px;
+  font-weight: 700;
   line-height: 1.3;
+
+  letter-spacing: -0.5px;
+
   margin: 0;
 }
 
-.turmas-app .page-heading p {
-  color: #5c5c5c;
-  font-size: 16px;
+.turmas-app .turmas-header p {
+  color: #738397;
+
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 5px;
+
+  margin: 7px 0 0;
 }
 
-/* ========================================
-   BARRA DE PESQUISA
-======================================== */
+/* ================================
+   PESQUISA
+================================ */
 
-.turmas-app .turmas-search-section {
+.turmas-app .turmas-acoes {
   width: 100%;
-  margin-bottom: 25px;
-}
 
-.turmas-app .turmas-search-box {
   display: flex;
   align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.turmas-app .turmas-pesquisa {
+  flex: 1;
+
+  min-width: 0;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
   gap: 12px;
 
-  width: 100%;
-  height: 48px;
-
-  padding: 0 17px;
+  padding: 0 16px;
 
   background-color: #ffffff;
 
-  border: 1px solid #dddddd;
-  border-radius: 9px;
+  border: 1px solid #dce4ee;
+  border-radius: 11px;
 
-  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(46, 78, 115, 0.03);
 
   transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.turmas-app .turmas-search-box:focus-within {
+.turmas-app .turmas-pesquisa:hover {
+  border-color: #b5c8df;
+}
+
+.turmas-app .turmas-pesquisa:focus-within {
   border-color: #4b75a5;
-  box-shadow: 0 0 0 3px rgba(75, 117, 165, 0.08);
+
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.1);
 }
 
-.turmas-app .turmas-search-box img {
-  width: 18px;
-  height: 18px;
+/* ÍCONE ORIGINAL DA LUPA */
 
-  flex-shrink: 0;
+.turmas-app .turmas-icone-pesquisa {
+  width: 20px;
+  height: 20px;
+
   object-fit: contain;
 
-  filter: brightness(0) saturate(100%)
-    invert(43%) sepia(24%) saturate(1120%)
-    hue-rotate(171deg) brightness(95%) contrast(90%);
+  flex-shrink: 0;
 }
 
-.turmas-app .turmas-search-box input {
-  flex: 1;
+/* INPUT */
+
+.turmas-app .turmas-pesquisa input {
   width: 100%;
   min-width: 0;
   height: 100%;
@@ -220,355 +314,487 @@
   outline: none;
   box-shadow: none;
 
-  background: transparent;
+  background-color: transparent;
 
-  font-family: "Poppins", sans-serif;
+  color: #34465d;
+
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 400;
-
-  color: #444444;
 }
 
-.turmas-app .turmas-search-box input::placeholder {
-  color: #888888;
+.turmas-app .turmas-pesquisa input::placeholder {
+  color: #98a5b5;
 }
 
-/* ========================================
+/* ================================
    CONTAINER DA TABELA
-======================================== */
+================================ */
 
-.turmas-app .turmas-table-card {
-  display: block;
+.turmas-app .turmas-tabela-container {
   width: 100%;
+  max-width: 100%;
 
-  padding: 0;
+  background-color: #ffffff;
 
-  background: #ffffff !important;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
 
-  border: 1px solid #dddddd !important;
-  border-radius: 12px !important;
-
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.035);
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
 
   overflow: hidden;
+
+  animation: entradaTabelaTurmasProfessor 0.4s ease-out;
 }
 
-.turmas-app .table-scroll {
+.turmas-app .turmas-tabela-scroll {
   width: 100%;
+
   overflow-x: auto;
 }
 
-/* ========================================
+/* ================================
    TABELA
-======================================== */
+================================ */
 
-.turmas-app .turmas-table {
-  display: table !important;
+.turmas-app .turmas-tabela {
+  width: 100%;
+  min-width: 680px;
 
-  width: 100% !important;
-  min-width: 650px;
+  margin: 0;
 
-  table-layout: fixed !important;
-  border-collapse: collapse !important;
-  border-spacing: 0 !important;
+  border-collapse: collapse;
+  table-layout: fixed;
 
-  margin: 0 !important;
-
-  background: #ffffff !important;
   text-align: center;
 }
 
-/* LARGURA DAS COLUNAS */
-
-.turmas-app .turmas-table th:nth-child(1),
-.turmas-app .turmas-table td:nth-child(1) {
-  width: 27% !important;
-}
-
-.turmas-app .turmas-table th:nth-child(2),
-.turmas-app .turmas-table td:nth-child(2) {
-  width: 19% !important;
-}
-
-.turmas-app .turmas-table th:nth-child(3),
-.turmas-app .turmas-table td:nth-child(3) {
-  width: 19% !important;
-}
-
-.turmas-app .turmas-table th:nth-child(4),
-.turmas-app .turmas-table td:nth-child(4) {
-  width: 18% !important;
-}
-
-.turmas-app .turmas-table th:nth-child(5),
-.turmas-app .turmas-table td:nth-child(5) {
-  width: 17% !important;
-}
-
-/* ========================================
+/* ================================
    CABEÇALHO DA TABELA
-======================================== */
+================================ */
 
-.turmas-app .turmas-table thead {
-  display: table-header-group !important;
-  background: #e4edf5 !important;
+.turmas-app .turmas-tabela thead {
+  background-color: #eaf1f8;
 }
 
-.turmas-app .turmas-table thead tr {
-  background: #e4edf5 !important;
-}
+.turmas-app .turmas-tabela thead th {
+  height: 60px;
 
-.turmas-app .turmas-table th {
-  height: 58px !important;
+  padding: 16px 12px;
 
-  padding: 0 10px !important;
+  background-color: #eaf1f8;
 
-  background: #e4edf5 !important;
-  color: #4b75a5 !important;
+  color: #4b75a5;
 
-  font-family: "Poppins", sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-
-  text-align: center !important;
-  vertical-align: middle !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
 
   white-space: nowrap;
-  border: none !important;
+
+  border: none;
+  border-bottom: 1px solid #dce6f0;
+
+  text-align: center;
+  vertical-align: middle;
 }
 
-/* ========================================
-   CORPO DA TABELA
-======================================== */
+.turmas-app .turmas-tabela thead th:first-child {
+  text-align: left;
 
-.turmas-app .turmas-table tbody {
-  display: table-row-group !important;
+  padding-left: 26px;
 }
 
-.turmas-app .turmas-table tbody tr {
-  display: table-row !important;
+/* ================================
+   LARGURA DAS COLUNAS
+================================ */
 
-  height: 65px !important;
-
-  background: #ffffff !important;
-
-  border-bottom: 1px solid #e5e5e5 !important;
-
-  transition: background-color 0.2s;
+.turmas-app .turmas-tabela th:nth-child(1) {
+  width: 34%;
 }
 
-.turmas-app .turmas-table tbody tr:last-child {
-  border-bottom: none !important;
+.turmas-app .turmas-tabela th:nth-child(2) {
+  width: 23%;
 }
 
-.turmas-app .turmas-table td {
-  height: 65px !important;
-
-  padding: 0 10px !important;
-
-  background: transparent !important;
-  color: #444444 !important;
-
-  font-family: "Poppins", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-
-  text-align: center !important;
-  vertical-align: middle !important;
-
-  border: none !important;
+.turmas-app .turmas-tabela th:nth-child(3) {
+  width: 17%;
 }
 
-/* DIVISÓRIAS VERTICAIS */
-
-.turmas-app .turmas-table tbody td:not(:last-child) {
-  border-right: 1px solid #e5e5e5 !important;
+.turmas-app .turmas-tabela th:nth-child(4) {
+  width: 16%;
 }
 
-/* HOVER DAS LINHAS */
-
-.turmas-app .turmas-table tbody tr:hover {
-  background: #f6f9fc !important;
+.turmas-app .turmas-tabela th:nth-child(5) {
+  width: 10%;
 }
 
-/* ========================================
-   BOTÃO VISUALIZAR
-======================================== */
+/* ================================
+   LINHAS DA TABELA
+================================ */
 
-.turmas-app .visualizar-turma {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+.turmas-app .turmas-tabela tbody tr {
+  background-color: #ffffff;
 
-  width: 38px !important;
-  height: 38px !important;
+  transition: background-color 0.2s ease;
+}
 
-  padding: 0 !important;
+.turmas-app .turmas-tabela tbody tr:hover {
+  background-color: #f7faff;
+}
 
-  background: transparent !important;
+.turmas-app .turmas-tabela tbody td {
+  height: 76px;
 
-  border: none !important;
-  border-radius: 7px !important;
+  padding: 14px 12px;
 
-  box-shadow: none !important;
+  background-color: transparent;
+
+  color: #45566b;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+
+  border: none;
+  border-bottom: 1px solid #edf0f4;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.turmas-app .turmas-tabela tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================================
+   NOME DA TURMA
+================================ */
+
+.turmas-app .turmas-tabela tbody .turma-nome {
+  color: #34465d;
+
+  font-weight: 500;
+
+  text-align: left;
+
+  padding-left: 26px;
+
+  overflow-wrap: anywhere;
+}
+
+/* ================================
+   MODELOS DE ENSINO
+================================ */
+
+.turmas-app .turma-modelo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 90px;
+
+  padding: 6px 14px;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+/* SEDUC */
+
+.turmas-app .modelo-seduc {
+  background-color: #e8f0fa;
+
+  color: #426d9d;
+
+  border: 1px solid #dce7f5;
+}
+
+/* COMUNIDADE */
+
+.turmas-app .modelo-comunidade {
+  background-color: #f0f3f7;
+
+  color: #63778f;
+
+  border: 1px solid #e5eaf0;
+}
+
+/* ================================
+   HORÁRIO
+================================ */
+
+.turmas-app .turmas-tabela tbody td:nth-child(4) {
+  color: #4b75a5;
+
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ================================
+   BOTÃO VISUALIZAR TURMA
+================================ */
+
+.turmas-app .btn-visualizar-turma {
+  appearance: none;
+
+  width: 38px;
+  height: 38px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background-color: #f0f5fa;
+
+  border: 1px solid #e3ebf4;
+  border-radius: 9px;
 
   cursor: pointer;
 
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.turmas-app .visualizar-turma:hover {
-  background: #e4edf5 !important;
+.turmas-app .btn-visualizar-turma:hover {
+  background-color: #e1ebf7;
+
+  border-color: #b5c8df;
+
+  transform: translateY(-2px);
 }
 
-.turmas-app .visualizar-turma img {
-  width: 22px !important;
-  height: 22px !important;
+.turmas-app .btn-visualizar-turma:active {
+  transform: translateY(0);
+}
+
+/* ÍCONE ORIGINAL DO OLHO */
+
+.turmas-app .btn-visualizar-turma img {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+
   object-fit: contain;
 }
 
-/* ========================================
-   TABELA VAZIA
-======================================== */
+/* ================================
+   NENHUMA TURMA ENCONTRADA
+================================ */
 
-.turmas-app .turmas-table .empty-table {
-  height: 90px !important;
-  text-align: center !important;
-  color: #888888 !important;
+.turmas-app .turmas-tabela .turmas-vazio {
+  height: 140px;
+
+  color: #738397;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  text-align: center;
 }
 
-/* ========================================
-   RODAPÉ DA TABELA
-======================================== */
+/* ================================
+   PAGINAÇÃO
+================================ */
 
-.turmas-app .turmas-table-card > .table-footer {
+.turmas-app .turmas-paginacao {
+  width: 100%;
+  min-height: 64px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  width: 100%;
-  min-height: 50px;
+  gap: 16px;
 
-  padding: 8px 18px;
+  padding: 14px 24px;
 
-  background: #ffffff;
+  background-color: #ffffff;
 
-  border-top: 1px solid #e5e5e5;
-
-  box-sizing: border-box;
+  border-top: 1px solid #e9edf3;
 }
 
-.turmas-app .turmas-table-card > .table-footer > span {
-  color: #777777;
+.turmas-app .turmas-paginacao > span {
+  color: #738397;
+
   font-size: 12px;
   font-weight: 400;
 }
 
-/* ========================================
-   PAGINAÇÃO
-======================================== */
+/* BOTÕES DA PAGINAÇÃO */
 
-.turmas-app .pagination {
+.turmas-app .turmas-paginacao-botoes {
   display: flex;
   align-items: center;
-  gap: 10px;
+
+  gap: 8px;
 }
 
-.turmas-app .pagination-arrow,
-.turmas-app .pagination-current,
-.turmas-app .pagination-number {
+.turmas-app .turmas-paginacao-botoes button {
+  appearance: none;
+
+  width: 34px;
+  height: 34px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 30px;
-  height: 30px;
-
   padding: 0;
 
-  background: #ffffff;
+  background-color: #ffffff;
   color: #4b75a5;
 
-  border: 1px solid #dddddd;
-  border-radius: 6px;
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
 
-  font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  line-height: 1;
 
   cursor: pointer;
 
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.turmas-app .pagination-number:hover,
-.turmas-app .pagination-arrow:not(:disabled):hover {
-  background: #edf3f9;
+.turmas-app .turmas-paginacao-botoes button:hover:not(:disabled):not(.pagina-atual) {
+  background-color: #eaf1fa;
+
+  border-color: #b5c8df;
 }
 
-.turmas-app .pagination-current {
-  background: #4b75a5;
-  border-color: #4b75a5;
-  color: #ffffff;
-  font-weight: 500;
-}
+/* ÍCONES ORIGINAIS DAS SETAS */
 
-.turmas-app .pagination-arrow img {
+.turmas-app .turmas-paginacao-botoes button img {
   width: 13px;
   height: 13px;
+
   object-fit: contain;
 }
 
-.turmas-app .pagination-arrow:disabled {
-  background: #f8f8f8;
-  opacity: 0.5;
+/* BOTÕES DESABILITADOS */
+
+.turmas-app .turmas-paginacao-botoes button:disabled {
+  background-color: #f8f9fb;
+
+  border-color: #e7ebf0;
+
+  opacity: 0.45;
+
   cursor: not-allowed;
 }
 
-/* ========================================
+/* PÁGINA ATUAL */
+
+.turmas-app .turmas-paginacao-botoes .pagina-atual {
+  background-color: #4b75a5;
+
+  color: #ffffff;
+
+  border-color: #4b75a5;
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  box-shadow: 0 3px 8px rgba(75, 117, 165, 0.15);
+}
+
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+.turmas-app button:focus-visible,
+.turmas-app a:focus-visible {
+  outline: 2px solid #8aafd5;
+
+  outline-offset: 3px;
+}
+
+/* ================================
+   ANIMAÇÃO
+================================ */
+
+@keyframes entradaTabelaTurmasProfessor {
+  from {
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* ================================
    RESPONSIVIDADE
-======================================== */
+================================ */
 
 @media (max-width: 1100px) {
-  .turmas-app .turmas-main {
+
+  .turmas-app .pagina-turmas {
     padding: 35px 28px;
   }
 
-  .turmas-app .turmas-table th {
-    font-size: 13px !important;
+  .turmas-app .turmas-tabela thead th {
+    font-size: 13px;
   }
 
-  .turmas-app .turmas-table td {
-    font-size: 12px !important;
+  .turmas-app .turmas-tabela tbody td {
+    font-size: 12px;
   }
 }
 
 @media (max-width: 900px) {
+
   .historico-app.turmas-app {
-    --turmas-sidebar-width: 210px;
+    --sidebar-width: 210px;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .turmas-app .turmas-acoes {
+    flex-wrap: wrap;
+
+    gap: 12px;
   }
 
-  .turmas-app .sidebar {
-    width: 210px;
+  .turmas-app .turmas-pesquisa {
+    flex-basis: 100%;
   }
 
-  .turmas-app .turmas-main {
-    padding: 35px 25px;
+  .turmas-app .turmas-tabela-container {
+    border-radius: 14px;
   }
 }
 
 @media (max-width: 600px) {
+
   .historico-app.turmas-app {
-    --turmas-sidebar-width: 75px;
+    --sidebar-width: 75px;
   }
 
   .turmas-app .sidebar {
-    width: 75px;
-    padding: 20px 9px;
+    padding: 20px 9px 0;
   }
 
   .turmas-app .sidebar-brand {
     justify-content: center;
+
     padding: 0;
   }
 
@@ -580,33 +806,62 @@
 
   .turmas-app .sidebar-link {
     justify-content: center;
+
     padding: 10px 5px;
   }
 
   .turmas-app .sidebar .sidebar-footer {
     justify-content: center;
+
     padding: 10px 0;
   }
 
-  .turmas-app .turmas-main {
-    padding: 28px 18px;
+  .turmas-app .pagina-turmas {
+    padding: 25px 18px;
   }
 
-  .turmas-app .page-heading h1 {
-    font-size: 30px;
+  .turmas-app .turmas-header {
+    margin-bottom: 22px;
   }
 
-  .turmas-app .page-heading p {
-    font-size: 14px;
+  .turmas-app .turmas-header h1 {
+    font-size: 25px;
   }
 
-  .turmas-app .turmas-table-card > .table-footer {
+  .turmas-app .turmas-header p {
+    font-size: 12px;
+  }
+
+  .turmas-app .turmas-pesquisa {
+    height: 46px;
+  }
+
+  .turmas-app .turmas-pesquisa input {
+    font-size: 13px;
+  }
+
+  .turmas-app .turmas-paginacao {
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 12px;
+
+    padding: 14px;
   }
 
-  .turmas-app .pagination {
-    gap: 6px;
+  .turmas-app .turmas-paginacao > span {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .turmas-app .turmas-tabela-container {
+    animation: none;
+  }
+
+  .turmas-app * {
+    transition: none;
+  }
+
+  .turmas-app button:hover {
+    transform: none;
   }
 }

@@ -1,231 +1,542 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 /* =========================================
-   TELA EDITAR ALUNO - AZYRA
-   (sidebar e footer vêm de historico-app + turmas-app)
+   CONFIGURAÇÕES GERAIS
 ========================================= */
 
-.editar-app {
-  min-height: 100vh;
+.historico-app.turmas-app.editar-aluno-app {
   width: 100%;
-  font-family: "Poppins", sans-serif;
-  background: #f5f5f5;
-  box-sizing: border-box;
-}
-
-/* ÁREA PRINCIPAL */
-
-.editar-app .editar-main {
-  width: calc(100% - 265px);
   min-height: 100vh;
-  margin-left: 265px;
-  padding: 32px 30px 24px;
-  background: #f5f5f5;
+
+  display: flex;
+
+  background-color: #f4f6f9;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+.editar-aluno-app,
+.editar-aluno-app * {
   box-sizing: border-box;
 }
 
-/* TÍTULO */
+/* =========================================
+   CONTEÚDO PRINCIPAL
+========================================= */
 
-.editar-app .editar-header {
-  margin-bottom: 18px;
+.editar-aluno-app .editar-aluno-main {
+  position: relative;
+
+  display: block;
+
+  flex: 1;
+
+  width: calc(100% - var(--sidebar-width, 266px));
+  min-width: 0;
+
+  height: 100vh;
+  height: 100dvh;
+
+  margin-left: var(--sidebar-width, 266px);
+
+  padding: 40px 36px;
+
+  background-color: #f4f6f9;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.editar-app .editar-header h1 {
-  margin: 0 0 2px;
-  color: #4b75a0;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.25;
-}
+/* =========================================
+   FORMULÁRIO
+========================================= */
 
-.editar-app .editar-header p {
+.editar-aluno-app .editar-aluno-form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 100%;
+
+  gap: 24px;
+
   margin: 0;
-  color: #555;
-  font-size: 15px;
-  font-weight: 400;
+  padding: 0;
 }
 
-/* CARTÃO DO FORMULÁRIO */
+/* =========================================
+   CARD PRINCIPAL
+========================================= */
 
-.editar-app .editar-card {
+.editar-aluno-app .editar-aluno-card {
+  display: block;
+
   width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #ffffff;
+
+  border: 1px solid #dce4ee;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 25px rgba(46, 78, 115, 0.05);
+
   overflow: hidden;
-  border: 1px solid #d9dfe3;
-  border-radius: 12px;
-  background: #f8f8f8;
-  box-sizing: border-box;
+
+  animation: entradaEditarAluno 0.4s ease-out;
 }
 
-.editar-app .editar-card-header {
-  height: 46px;
-  padding: 0 24px;
+/* =========================================
+   TÍTULO DENTRO DO CARD
+========================================= */
+
+.editar-aluno-app .editar-aluno-cabecalho {
+  display: block;
+
+  width: 100%;
+
+  padding: 26px 30px;
+
+  background-color: #ffffff;
+
+  border-bottom: 1px solid #e7ecf2;
+}
+
+.editar-aluno-app .editar-aluno-cabecalho h1 {
+  margin: 0;
+
+  color: #4b75a5;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.editar-aluno-app .editar-aluno-cabecalho p {
+  margin: 8px 0 0;
+
+  color: #8491a1;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* =========================================
+   GRID DOS CAMPOS
+========================================= */
+
+.editar-aluno-app .editar-aluno-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 28px;
+  row-gap: 26px;
+
+  width: 100%;
+
+  padding: 30px 30px 38px;
+}
+
+/* =========================================
+   CAMPOS DO FORMULÁRIO
+========================================= */
+
+.editar-aluno-app .editar-aluno-campo {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 10px;
+
+  margin: 0;
+}
+
+.editar-aluno-app .editar-aluno-campo > label,
+.editar-aluno-app .editar-aluno-rotulo {
+  display: block;
+
+  margin: 0;
+
+  color: #34465d;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================
+   INPUTS E SELECTS
+========================================= */
+
+.editar-aluno-app .editar-aluno-campo input,
+.editar-aluno-app .editar-aluno-campo select {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 52px;
+
+  margin: 0;
+  padding: 0 16px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 10px;
+
+  outline: none;
+
+  color: #34465d;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.editar-aluno-app .editar-aluno-campo input:hover,
+.editar-aluno-app .editar-aluno-campo select:hover {
+  border-color: #b5c8df;
+}
+
+.editar-aluno-app .editar-aluno-campo input:focus,
+.editar-aluno-app .editar-aluno-campo select:focus {
+  border-color: #4b75a5;
+
+  box-shadow: 0 0 0 4px rgba(75, 117, 165, 0.09);
+}
+
+/* =========================================
+   SELECT PERSONALIZADO
+========================================= */
+
+.editar-aluno-app .editar-aluno-campo select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  padding-right: 42px;
+
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='M2 2l5 5 5-5' fill='none' stroke='%234b75a5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+
+/* =========================================
+   MODELO DE ENSINO
+========================================= */
+
+.editar-aluno-app .editar-aluno-modelo {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  gap: 10px;
+}
+
+.editar-aluno-app .editar-aluno-opcoes {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* OPÇÃO NÃO SELECIONADA */
+
+.editar-aluno-app .editar-aluno-opcao {
   display: flex;
   align-items: center;
-  background: #4b75a0;
-  color: #fff;
-  font-size: 17px;
+
+  gap: 12px;
+
+  width: 100%;
+  min-height: 52px;
+
+  margin: 0;
+  padding: 12px 16px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d5e0ed;
+  border-radius: 10px;
+
+  color: #34465d;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.editar-aluno-app .editar-aluno-opcao:hover {
+  background-color: #f5f8fc;
+
+  border-color: #a9bfd9;
+}
+
+/* RADIO PERSONALIZADO */
+
+.editar-aluno-app .editar-aluno-opcao input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: grid;
+  place-content: center;
+
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: #ffffff;
+
+  border: 1.5px solid #b5c5d8;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.editar-aluno-app .editar-aluno-opcao input[type="radio"]::before {
+  content: "";
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background-color: #4b75a5;
+
+  transform: scale(0);
+
+  transition: transform 0.15s ease;
+}
+
+.editar-aluno-app .editar-aluno-opcao input[type="radio"]:checked {
+  border-color: #4b75a5;
+}
+
+.editar-aluno-app .editar-aluno-opcao input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+/* OPÇÃO SELECIONADA */
+
+.editar-aluno-app .editar-aluno-opcao.selecionada {
+  background-color: #eaf1fa;
+
+  border-color: #4b75a5;
+
+  color: #4b75a5;
+
   font-weight: 600;
 }
 
-.editar-app .editar-card-body {
-  padding: 16px 24px 22px;
+.editar-aluno-app .editar-aluno-opcao:focus-within {
+  box-shadow: 0 0 0 3px rgba(75, 117, 165, 0.1);
 }
 
-/* CAMPOS */
+/* =========================================
+   BOTÕES FORA DO CARD
+========================================= */
 
-.editar-app .editar-campo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 14px;
-}
+.editar-aluno-app .editar-aluno-acoes {
+  display: grid;
 
-.editar-app .editar-campo label,
-.editar-app .editar-rotulo {
-  margin-bottom: 5px;
-  color: #111;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.3;
-}
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
-.editar-app .editar-campo input[type="text"],
-.editar-app .editar-campo select {
+  gap: 20px;
+
   width: 100%;
-  height: 40px;
-  padding: 0 14px;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  background: #fff;
-  color: #444;
-  font-family: "Poppins", sans-serif;
-  font-size: 13px;
-  box-sizing: border-box;
-  outline: none;
-}
 
-.editar-app .editar-campo input[type="text"]:focus,
-.editar-app .editar-campo select:focus {
-  border-color: #4b75a0;
-  box-shadow: 0 0 0 2px rgba(75, 117, 160, 0.15);
-}
-
-.editar-app .editar-campo select {
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 38px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%234b75a0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-
-/* OPÇÕES DE MARCAR (MODELO DE ENSINO) */
-
-.editar-app .editar-opcoes {
-  display: flex;
-  gap: 12px;
-}
-
-.editar-app .editar-campo .editar-opcao {
-  flex: 1;
-  height: 40px;
   margin: 0;
-  padding: 0 14px;
+  padding: 0;
+}
+
+.editar-aluno-app .editar-aluno-cancelar,
+.editar-aluno-app .editar-aluno-salvar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  background: #fff;
-  color: #444;
-  font-size: 13px;
-  font-weight: 500;
-  box-sizing: border-box;
-  cursor: pointer;
-}
+  justify-content: center;
 
-.editar-app .editar-opcao input[type="radio"] {
-  width: 16px;
-  height: 16px;
+  width: 100%;
+  min-height: 54px;
+
   margin: 0;
-  accent-color: #4b75a0;
+  padding: 12px 16px;
+
+  border-radius: 11px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.editar-app .editar-campo .editar-opcao.selecionada {
-  border-color: #4b75a0;
-  background: #e8f0f7;
-  color: #315f91;
+/* CANCELAR */
+
+.editar-aluno-app .editar-aluno-cancelar {
+  background-color: #ffffff;
+
+  color: #4b75a5;
+
+  border: 1px solid #d5e0ed;
 }
 
-/* BOTÕES */
+.editar-aluno-app .editar-aluno-cancelar:hover {
+  background-color: #eaf1fa;
 
-.editar-app .editar-acoes {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
+  border-color: #b5c8df;
 }
 
-.editar-app .editar-cancelar,
-.editar-app .editar-salvar {
-  height: 40px;
-  border-radius: 6px;
-  font-family: "Poppins", sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
+/* SALVAR ALTERAÇÕES */
+
+.editar-aluno-app .editar-aluno-salvar {
+  background: linear-gradient(
+    135deg,
+    #5c87b8,
+    #4b75a5
+  );
+
+  color: #ffffff;
+
+  border: 1px solid #4b75a5;
+
+  box-shadow: 0 5px 15px rgba(75, 117, 165, 0.15);
 }
 
-.editar-app .editar-cancelar {
-  width: 130px;
-  border: 1px solid #d9d9d9;
-  background: #fff;
-  color: #444;
+.editar-aluno-app .editar-aluno-salvar:hover {
+  background: linear-gradient(
+    135deg,
+    #4b75a5,
+    #3d6696
+  );
+
+  box-shadow: 0 7px 18px rgba(75, 117, 165, 0.22);
+
+  transform: translateY(-2px);
 }
 
-.editar-app .editar-cancelar:hover {
-  background: #f0f0f0;
+.editar-aluno-app .editar-aluno-salvar:active {
+  transform: translateY(0);
 }
 
-.editar-app .editar-salvar {
-  width: 170px;
-  border: 1px solid #4b75a0;
-  background: #4b75a0;
-  color: #fff;
-}
+/* =========================================
+   ANIMAÇÃO
+========================================= */
 
-.editar-app .editar-salvar:hover {
-  background: #3f6690;
-}
+@keyframes entradaEditarAluno {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 
-/* RESPONSIVIDADE */
-
-@media (max-width: 900px) {
-  .editar-app .editar-main {
-    padding: 28px 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 650px) {
-  .editar-app .editar-main {
-    width: calc(100% - 75px);
-    margin-left: 75px;
-    padding: 25px 15px;
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1100px) {
+  .editar-aluno-app .editar-aluno-main {
+    padding: 35px 28px;
   }
 
-  .editar-app .editar-header h1 {
-    font-size: 24px;
+  .editar-aluno-app .editar-aluno-grid {
+    column-gap: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .editar-aluno-app .editar-aluno-grid {
+    grid-template-columns: 1fr;
+
+    padding: 24px;
+
+    gap: 22px;
   }
 
-  .editar-app .editar-opcoes {
-    flex-direction: column;
+  .editar-aluno-app .editar-aluno-cabecalho {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .editar-aluno-app .editar-aluno-main {
+    padding: 25px 18px;
   }
 
-  .editar-app .editar-acoes {
-    flex-direction: column;
+  .editar-aluno-app .editar-aluno-cabecalho {
+    padding: 20px;
   }
 
-  .editar-app .editar-cancelar,
-  .editar-app .editar-salvar {
-    width: 100%;
+  .editar-aluno-app .editar-aluno-cabecalho h1 {
+    font-size: 19px;
+  }
+
+  .editar-aluno-app .editar-aluno-cabecalho p {
+    font-size: 12px;
+  }
+
+  .editar-aluno-app .editar-aluno-grid {
+    padding: 20px;
+  }
+
+  .editar-aluno-app .editar-aluno-opcoes,
+  .editar-aluno-app .editar-aluno-acoes {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .editar-aluno-app .editar-aluno-card {
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editar-aluno-app .editar-aluno-card {
+    animation: none;
+  }
+
+  .editar-aluno-app * {
+    transition: none;
   }
 }
