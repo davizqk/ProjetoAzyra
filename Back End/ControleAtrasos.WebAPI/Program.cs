@@ -151,9 +151,9 @@ if (args.Contains("--verificar-banco", StringComparer.OrdinalIgnoreCase) ||
     var email = Environment.GetEnvironmentVariable("CONTROLE_ADMIN_EMAIL")?.Trim().ToLowerInvariant();
     var senha = Environment.GetEnvironmentVariable("CONTROLE_ADMIN_PASSWORD");
     if (string.IsNullOrWhiteSpace(email) || !email.Contains('@') ||
-        string.IsNullOrWhiteSpace(senha) || senha.Length < 12)
+        string.IsNullOrWhiteSpace(senha) || senha.Length < 8)
     {
-        Console.Error.WriteLine("Defina CONTROLE_ADMIN_EMAIL e CONTROLE_ADMIN_PASSWORD (senha com 12+ caracteres).");
+        Console.Error.WriteLine("Defina CONTROLE_ADMIN_EMAIL e CONTROLE_ADMIN_PASSWORD (senha com 8+ caracteres).");
         Environment.ExitCode = 4;
         return;
     }

@@ -46,6 +46,33 @@ public sealed class AdminTurmasController(IAdministracaoService admin, ICadastro
     [HttpPut("horarios/{id:int}")]
     public async Task<ActionResult<HorarioTurma>> AtualizarHorario(int id, [FromBody] AtualizarHorarioRequest req, CancellationToken ct) =>
         Ok(await admin.AtualizarHorarioAsync(id, req, ct));
+    [HttpDelete("horarios/{id:int}")]
+    public async Task<IActionResult> ExcluirHorario(int id, CancellationToken ct)
+    {
+        await admin.ExcluirHorarioAsync(id, ct);
+        return NoContent();
+    }
+    [HttpGet("calendario")]
+    public Task<IReadOnlyList<DiaCalendario>> Calendario([FromQuery] int ano, CancellationToken ct) =>
+        admin.CalendarioAsync(ano, ct);
+
+    [HttpPut("calendario/reconfigurar")]
+    public async Task<ActionResult<ReconfigurarCalendarioResponse>> ReconfigurarCalendario(
+        [FromBody] ReconfigurarCalendarioRequest req, CancellationToken ct) =>
+        Ok(await admin.ReconfigurarCalendarioAsync(req, ct));
+
+    [HttpDelete("calendario/{data:datetime}")]
+    public async Task<IActionResult> ExcluirDiaCalendario(DateTime data, CancellationToken ct)
+    {
+        await admin.ExcluirDiaCalendarioAsync(data, ct);
+        return NoContent();
+    }
+
+    [HttpDelete("calendario/ano/{ano:int}")]
+    public async Task<ActionResult<object>> ExcluirAnoCalendario(
+        int ano, [FromQuery] bool confirmar, CancellationToken ct) =>
+        Ok(new { diasExcluidos = await admin.ExcluirAnoCalendarioAsync(ano, confirmar, ct) });
+
     [HttpPost("calendario/gerar")]
     public async Task<ActionResult<object>> GerarCalendario(
         [FromBody] GerarCalendarioRequest req, CancellationToken ct)

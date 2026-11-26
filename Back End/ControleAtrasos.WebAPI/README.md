@@ -61,7 +61,7 @@ No PowerShell, dentro da pasta do projeto:
 
 ```powershell
 $env:CONTROLE_ADMIN_EMAIL = 'admin@teste.local'
-$env:CONTROLE_ADMIN_PASSWORD = 'ESCOLHA_UMA_SENHA_FORTE_COM_12+_CARACTERES'
+$env:CONTROLE_ADMIN_PASSWORD = 'ESCOLHA_UMA_SENHA_FORTE_COM_8+_CARACTERES'
 dotnet run -- --seed-admin
 Remove-Item Env:CONTROLE_ADMIN_EMAIL
 Remove-Item Env:CONTROLE_ADMIN_PASSWORD
@@ -105,8 +105,13 @@ O horário da turma deve estar cadastrado para o dia atual e a tolerância deve 
 | GET,POST,PUT | `/api/admin/turmas` | Admin |
 | GET,POST | `/api/admin/matriculas` | Admin |
 | POST | `/api/admin/professor-turmas` | Admin |
-| GET,POST,PUT | `/api/admin/horarios` | Admin |
-| PUT | `/api/admin/calendario/{data}` | Admin |
+| GET,POST | `/api/admin/horarios` | Admin |
+| PUT,DELETE | `/api/admin/horarios/{id}` | Admin |
+| GET | `/api/admin/calendario?ano=2026` | Admin |
+| POST | `/api/admin/calendario/gerar` | Admin |
+| PUT | `/api/admin/calendario/reconfigurar` | Admin |
+| PUT, DELETE | `/api/admin/calendario/{data}` | Admin |
+| DELETE | `/api/admin/calendario/ano/{ano}?confirmar=true` | Admin |
 | GET | `/api/admin/modelos`, `/api/admin/periodos` | Admin |
 
 **Datas** em ISO (`2026-11-12`), **horários** no formato de TimeSpan (`"07:30:00"`).
@@ -172,7 +177,7 @@ nao se existirem usuarios comuns.
 .\scripts\criar-admin.ps1
 ```
 
-Serao pedidos o e-mail e uma senha com no minimo 12 caracteres (digitada de modo oculto).
+Serao pedidos o e-mail e uma senha com no minimo 8 caracteres (digitada de modo oculto).
 O script executa `dotnet run -- --seed-admin`, sem gravar senha no projeto.
 Se ja existir um ADMIN ativo, ele informa a situacao e NAO altera esse usuario.
 Se o e-mail ja estiver cadastrado, escolha outro; o bootstrap nao muda o papel de uma conta existente.
@@ -343,3 +348,18 @@ Esta entrega não altera o relógio nem insere atrasos retroativos.
 
 O projeto foi revisado estaticamente; compile e teste com .NET 10 e SQL Server
 antes de utilizá-lo com dados reais.
+
+
+## Gerenciamento administrativo do calendário
+
+Consulte [GERENCIAMENTO-CALENDARIO.md](GERENCIAMENTO-CALENDARIO.md) para corrigir, consultar e excluir datas pelo Swagger, sem alteração no schema do banco.
+
+
+## Cadastro de alunos sem número de matrícula
+
+O `POST /api/admin/alunos` recebe apenas `nome` e `cpf`. O número de matrícula não aparece mais nas respostas de cadastro, edição, listagem de alunos ou consultas de atrasos. O CPF continua sendo validado e verificado quanto a duplicidade, inclusive para alunos inativos. A coluna legada `Alunos.Matricula` permanece no banco: para novos alunos, a API gera automaticamente um código interno `AUTO-` seguido de um GUID. Nenhuma alteração de DDL, scaffold ou migração é necessária. O endpoint `/api/admin/matriculas` permanece para vincular o aluno à turma, com vigência, e não solicita número de matrícula. Consulte `ALTERACAO-MATRICULA.md` para os testes.
+
+
+## Remoção de dias do calendário
+
+Veja [REMOCAO-DIAS-CALENDARIO.md](REMOCAO-DIAS-CALENDARIO.md) para reconfigurar e excluir datas não selecionadas sem modificar o histórico protegido.

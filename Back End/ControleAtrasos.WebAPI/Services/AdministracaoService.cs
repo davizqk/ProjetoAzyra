@@ -21,14 +21,17 @@ public sealed class AdministracaoService(
     {
         var cpf = seguranca.NormalizarCpf(req.Cpf);
         if (!seguranca.ValidarCpf(cpf)) throw Erro("CPF inválido.");
-        var nome = req.Nome.Trim(); var numero = req.Matricula.Trim();
-        if (nome.Length == 0 || numero.Length == 0) throw Erro("Nome e matrícula são obrigatórios.");
+        var nome = req.Nome.Trim();
+        if (nome.Length == 0) throw Erro("Nome obrigatório.");
         var hash = seguranca.HashCpf(cpf);
-        if (await alunos.CpfOuMatriculaExisteAsync(hash, numero, ct)) throw Erro("CPF ou matrícula já cadastrado.", 409);
+        if (await alunos.CpfExisteAsync(hash, ct)) throw Erro("CPF já cadastrado.", 409);
+        // A coluna legada Alunos.Matricula é NOT NULL e UNIQUE.
+        // Gera um código interno sem utilizar o CPF e sem alterar o banco existente.
+        var codigoInterno = $"AUTO-{Guid.NewGuid():N}";
         var novo = await alunos.CriarAsync(new Aluno {
-            Nome = nome, CPFHash = hash, Matricula = numero, Ativo = true, DataCadastro = DateTime.Now
+            Nome = nome, CPFHash = hash, Matricula = codigoInterno, Ativo = true, DataCadastro = DateTime.Now
         }, ct);
-        return new(novo.IdAluno, novo.Nome, novo.Matricula, novo.Ativo);
+        return new(novo.IdAluno, novo.Nome, novo.Ativo);
     }
     public async Task<AlunoResponse> AtualizarAlunoAsync(int id, AtualizarAlunoRequest req, CancellationToken ct)
     {
@@ -36,16 +39,16 @@ public sealed class AdministracaoService(
         if (string.IsNullOrWhiteSpace(req.Nome)) throw Erro("Nome obrigatório.");
         aluno.Nome = req.Nome.Trim(); aluno.Ativo = req.Ativo;
         await alunos.SalvarAsync(ct);
-        return new(aluno.IdAluno, aluno.Nome, aluno.Matricula, aluno.Ativo);
+        return new(aluno.IdAluno, aluno.Nome, aluno.Ativo);
     }
     public async Task<IReadOnlyList<AlunoResponse>> AlunosAsync(CancellationToken ct) =>
-        (await alunos.ListarAsync(ct)).Select(x => new AlunoResponse(x.IdAluno, x.Nome, x.Matricula, x.Ativo)).ToArray();
+        (await alunos.ListarAsync(ct)).Select(x => new AlunoResponse(x.IdAluno, x.Nome, x.Ativo)).ToArray();
 
     public async Task<FuncionarioResponse> CriarFuncionarioAsync(CriarFuncionarioRequest req, CancellationToken ct)
     {
         var email = req.Email.Trim().ToLowerInvariant();
-        if (string.IsNullOrWhiteSpace(req.Nome) || req.Senha.Length < 12 || !email.Contains('@'))
-            throw Erro("Informe nome, e-mail e senha de no mínimo 12 caracteres.");
+        if (string.IsNullOrWhiteSpace(req.Nome) || req.Senha.Length < 8 || !email.Contains('@'))
+            throw Erro("Informe nome, e-mail e senha de no mínimo 8 caracteres.");
         if (await usuarios.EmailExisteAsync(email, ct)) throw Erro("E-mail já cadastrado.", 409);
         var papeis = NormalizarPapeis(req.Papeis);
         var dados = await usuarios.CriarFuncionarioAsync(new Usuario {
@@ -128,10 +131,15 @@ public sealed class AdministracaoService(
         await cadastros.SalvarAsync(ct);
         return horario;
     }
+    public Task ExcluirHorarioAsync(int id, CancellationToken ct)
+    {
+        if (id <= 0) throw Erro("Identificador de horário inválido.");
+        return cadastros.ExcluirHorarioAsync(id, ct);
+    }
     public async Task<int> GerarCalendarioPeriodoAsync(GerarCalendarioRequest req, CancellationToken ct)
     {
-        if (req.Inicio == default || req.Fim < req.Inicio ||
-            (req.Fim.Date - req.Inicio.Date).TotalDays > 366 ||
+        if (req.Inicio == default || req.Fim.Year > 9998 || req.Fim.Date < req.Inicio.Date ||
+            (req.Fim.Date - req.Inicio.Date).TotalDays >= 366 ||
             req.DiasSemanaLetivos is null || req.DiasSemanaLetivos.Any(x => x is < 1 or > 7))
             throw Erro("Datas ou dias da semana inválidos (máximo 366 dias).");
         return await cadastros.GerarCalendarioPeriodoAsync(
@@ -162,8 +170,54 @@ public sealed class AdministracaoService(
         if (!await cadastros.ExcluirExcecaoAsync(idTurma, data, ct))
             throw Erro("Exceção não encontrada.", 404);
     }
-    public Task AtualizarDiaLetivoAsync(DateTime data, CalendarioRequest req, CancellationToken ct) =>
-        cadastros.SalvarDiaLetivoAsync(new DiaCalendario {
-            DataLetiva = data.Date, DiaLetivo = req.DiaLetivo, Descricao = req.Descricao
+    private static (DateTime Inicio, DateTime Fim) LimitesAno(int ano)
+    {
+        if (ano is < 1 or > 9998) throw Erro("Informe um ano válido (1 a 9998).");
+        return (new DateTime(ano, 1, 1), new DateTime(ano, 12, 31));
+    }
+
+    private static void ValidarDataCalendario(DateTime data)
+    {
+        if (data == default || data.Year > 9998) throw Erro("Data inválida.");
+    }
+
+    public Task<IReadOnlyList<DiaCalendario>> CalendarioAsync(int ano, CancellationToken ct)
+    {
+        var (inicio, fim) = LimitesAno(ano);
+        return cadastros.CalendarioAsync(inicio, fim, ct);
+    }
+
+    public Task<ReconfigurarCalendarioResponse> ReconfigurarCalendarioAsync(
+        ReconfigurarCalendarioRequest req, CancellationToken ct)
+    {
+        if (req.Inicio is not DateTime inicio || req.Fim is not DateTime fim ||
+            inicio == default || fim.Year > 9998 || fim.Date < inicio.Date ||
+            (fim.Date - inicio.Date).TotalDays >= 366 ||
+            req.DiasSemanaLetivos is null || req.DiasSemanaLetivos.Any(x => x is < 1 or > 7))
+            throw Erro("Datas ou dias da semana inválidos (máximo 366 dias).");
+        return cadastros.ReconfigurarCalendarioAsync(inicio.Date, fim.Date,
+            req.DiasSemanaLetivos.Distinct().ToArray(), req.PreservarExcecoes,
+            req.RemoverDiasNaoLetivos, ct);
+    }
+
+    public async Task ExcluirDiaCalendarioAsync(DateTime data, CancellationToken ct)
+    {
+        ValidarDataCalendario(data);
+        await cadastros.ExcluirCalendarioAsync(data.Date, data.Date, ct);
+    }
+
+    public Task<int> ExcluirAnoCalendarioAsync(int ano, bool confirmar, CancellationToken ct)
+    {
+        var (inicio, fim) = LimitesAno(ano);
+        if (!confirmar) throw Erro("Confirme a exclusão anual com confirmar=true.");
+        return cadastros.ExcluirCalendarioAsync(inicio, fim, ct);
+    }
+
+    public Task AtualizarDiaLetivoAsync(DateTime data, CalendarioRequest req, CancellationToken ct)
+    {
+        ValidarDataCalendario(data);
+        return cadastros.SalvarDiaLetivoAsync(new DiaCalendario {
+            DataLetiva = data.Date, DiaLetivo = req.DiaLetivo, Descricao = req.Descricao?.Trim()
         }, ct);
+    }
 }

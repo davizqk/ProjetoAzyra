@@ -17,8 +17,8 @@ public sealed class AlunoRepository(AppDbContext db) : IAlunoRepository
          select new MatriculaAtiva(m.IdMatricula, t.IdTurma, t.Nome, t.IdModelo)).FirstOrDefaultAsync(ct);
 
     public Task<Aluno?> PorIdAsync(int id, CancellationToken ct) => db.Alunos.FirstOrDefaultAsync(x => x.IdAluno == id, ct);
-    public Task<bool> CpfOuMatriculaExisteAsync(byte[] hash, string numeroMatricula, CancellationToken ct) =>
-        db.Alunos.AnyAsync(x => x.CPFHash == hash || x.Matricula == numeroMatricula, ct);
+    public Task<bool> CpfExisteAsync(byte[] hash, CancellationToken ct) =>
+        db.Alunos.AnyAsync(x => x.CPFHash == hash, ct);
     public async Task<Aluno> CriarAsync(Aluno aluno, CancellationToken ct)
     {
         db.Alunos.Add(aluno);

@@ -4,19 +4,18 @@ public sealed class CriarAlunoRequest
 {
     [Required, MaxLength(150)] public string Nome { get; set; } = "";
     [Required] public string Cpf { get; set; } = "";
-    [Required, MaxLength(60)] public string Matricula { get; set; } = "";
 }
 public sealed class AtualizarAlunoRequest
 {
     [Required, MaxLength(150)] public string Nome { get; set; } = "";
     public bool Ativo { get; set; }
 }
-public sealed record AlunoResponse(int IdAluno, string Nome, string Matricula, bool Ativo);
+public sealed record AlunoResponse(int IdAluno, string Nome, bool Ativo);
 public sealed class CriarFuncionarioRequest
 {
     [Required, MaxLength(150)] public string Nome { get; set; } = "";
     [Required, EmailAddress] public string Email { get; set; } = "";
-    [Required, MinLength(12)] public string Senha { get; set; } = "";
+    [Required, MinLength(8)] public string Senha { get; set; } = "";
     [Required, MinLength(1)] public string[] Papeis { get; set; } = [];
     [MaxLength(60)] public string? CodigoFuncionario { get; set; }
 }
@@ -75,6 +74,20 @@ public sealed class GerarCalendarioRequest
     // Segunda-feira = 1 ... domingo = 7; a excecao de turma pode alterar um dia.
     public int[] DiasSemanaLetivos { get; set; } = [1, 2, 3, 4, 5];
 }
+public sealed class ReconfigurarCalendarioRequest
+{
+    [Required] public DateTime? Inicio { get; set; }
+    [Required] public DateTime? Fim { get; set; }
+    [Required] public int[]? DiasSemanaLetivos { get; set; }
+    // Preserva feriados, recessos e outros dias editados manualmente por padrão.
+    public bool PreservarExcecoes { get; set; } = true;
+    // Opcional: exclui as datas dos dias da semana desmarcados, sem histórico protegido.
+    public bool RemoverDiasNaoLetivos { get; set; } = false;
+}
+public sealed record ReconfigurarCalendarioResponse(
+    int DiasInseridos, int DiasAtualizados, int DiasSemAlteracao,
+    IReadOnlyList<DateTime> DatasManuaisPreservadas, IReadOnlyList<DateTime> DatasProtegidas,
+    int DiasExcluidos);
 public sealed class ExcecaoCalendarioTurmaRequest
 {
     [Required] public bool? TemAula { get; set; }

@@ -9,12 +9,12 @@ try {
     $env:ASPNETCORE_ENVIRONMENT = 'Development'
     $email = (Read-Host 'E-mail do primeiro administrador').Trim()
     if (-not $email.Contains('@')) { throw 'E-mail invalido.' }
-    $securePassword = Read-Host 'Senha do administrador (12+ caracteres)' -AsSecureString
+    $securePassword = Read-Host 'Senha do administrador (8+ caracteres)' -AsSecureString
     $pointer = [IntPtr]::Zero
     try {
         $pointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePassword)
         $password = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($pointer)
-        if ($password.Length -lt 12) { throw 'A senha precisa ter no minimo 12 caracteres.' }
+        if ($password.Length -lt 8) { throw 'A senha precisa ter no minimo 8 caracteres.' }
         $env:CONTROLE_ADMIN_EMAIL = $email
         $env:CONTROLE_ADMIN_PASSWORD = $password
     }

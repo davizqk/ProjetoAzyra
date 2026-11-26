@@ -11,5 +11,5 @@ public sealed class ConfirmarRequest
 public sealed record IdentificarResponse(string Aluno, string Turma, string HorarioEntrada,
     int MinutosAtrasoEstimados, string TokenConfirmacao, DateTime ExpiraEm);
 public sealed record ConfirmarResponse(int IdRegistro, DateTime DataHoraRegistro, int MinutosAtraso);
-public sealed record AtrasoResponse(int IdRegistro, string Aluno, string Matricula, string Turma,
+public sealed record AtrasoResponse(int IdRegistro, string Aluno, string Turma,
     DateTime DataHoraRegistro, string HorarioPrevisto, int MinutosAtraso);

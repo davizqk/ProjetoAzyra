@@ -6,17 +6,6 @@ using Microsoft.EntityFrameworkCore;
 namespace ControleAtrasos.Api.Repositories;
 public sealed class ConsultasRepository(AppDbContext db) : IConsultasRepository
 {
-    private sealed record AtrasoLinha(int IdRegistro, string Aluno, string Matricula, string Turma,
-        DateTime DataHoraRegistro, TimeSpan HorarioPrevisto, int MinutosAtraso);
-
-    private IQueryable<AtrasoLinha> ConsultaAtrasos() =>
-        from r in db.RegistrosAtraso
-        join m in db.Matriculas on r.IdMatricula equals m.IdMatricula
-        join a in db.Alunos on m.IdAluno equals a.IdAluno
-        join t in db.Turmas on m.IdTurma equals t.IdTurma
-        select new AtrasoLinha(r.IdRegistro, a.Nome, a.Matricula, t.Nome,
-            r.DataHoraRegistro, r.HorarioPrevisto, r.MinutosAtraso);
-
     public async Task<IReadOnlyList<object>> TurmasDoProfessorAsync(int idUsuario, DateTime data, CancellationToken ct)
     {
         var result = await (from f in db.Funcionarios
@@ -38,32 +27,33 @@ public sealed class ConsultasRepository(AppDbContext db) : IConsultasRepository
     }
 
     public Task<PaginaResponse<AtrasoResponse>> AtrasosDaTurmaAsync(int idTurma, DateTime inicio, DateTime fim,
-        int pagina, int tamanho, CancellationToken ct) => PaginadoAsync(
-        from r in db.RegistrosAtraso
-        join m in db.Matriculas on r.IdMatricula equals m.IdMatricula
-        join a in db.Alunos on m.IdAluno equals a.IdAluno
-        join t in db.Turmas on m.IdTurma equals t.IdTurma
-        where t.IdTurma == idTurma && r.DataHoraRegistro >= inicio && r.DataHoraRegistro < fim
-        select new AtrasoLinha(r.IdRegistro, a.Nome, a.Matricula, t.Nome, r.DataHoraRegistro,
-            r.HorarioPrevisto, r.MinutosAtraso), pagina, tamanho, ct);
+        int pagina, int tamanho, CancellationToken ct) => PaginadoAsync(idTurma, inicio, fim, pagina, tamanho, ct);
 
     public Task<PaginaResponse<AtrasoResponse>> AtrasosGestaoAsync(int? idTurma, DateTime inicio, DateTime fim,
-        int pagina, int tamanho, CancellationToken ct) => PaginadoAsync(
-        from r in db.RegistrosAtraso
-        join m in db.Matriculas on r.IdMatricula equals m.IdMatricula
-        join a in db.Alunos on m.IdAluno equals a.IdAluno
-        join t in db.Turmas on m.IdTurma equals t.IdTurma
-        where (idTurma == null || t.IdTurma == idTurma) && r.DataHoraRegistro >= inicio && r.DataHoraRegistro < fim
-        select new AtrasoLinha(r.IdRegistro, a.Nome, a.Matricula, t.Nome, r.DataHoraRegistro,
-            r.HorarioPrevisto, r.MinutosAtraso), pagina, tamanho, ct);
+        int pagina, int tamanho, CancellationToken ct) => PaginadoAsync(idTurma, inicio, fim, pagina, tamanho, ct);
 
-    private static async Task<PaginaResponse<AtrasoResponse>> PaginadoAsync(IQueryable<AtrasoLinha> query,
-        int pagina, int tamanho, CancellationToken ct)
+    private async Task<PaginaResponse<AtrasoResponse>> PaginadoAsync(int? idTurma, DateTime inicio,
+        DateTime fim, int pagina, int tamanho, CancellationToken ct)
     {
+        var query = from r in db.RegistrosAtraso
+                    join m in db.Matriculas on r.IdMatricula equals m.IdMatricula
+                    join a in db.Alunos on m.IdAluno equals a.IdAluno
+                    join t in db.Turmas on m.IdTurma equals t.IdTurma
+                    where (idTurma == null || t.IdTurma == idTurma) &&
+                          r.DataHoraRegistro >= inicio && r.DataHoraRegistro < fim
+                    select new { Registro = r, Aluno = a.Nome, Turma = t.Nome };
+
         var total = await query.CountAsync(ct);
-        var linhas = await query.OrderByDescending(x => x.DataHoraRegistro).ThenByDescending(x => x.IdRegistro)
-            .Skip((pagina - 1) * tamanho).Take(tamanho).ToListAsync(ct);
-        var itens = linhas.Select(x => new AtrasoResponse(x.IdRegistro, x.Aluno, x.Matricula, x.Turma,
+        // Ordenar e paginar pelas colunas mapeadas antes de construir o DTO.
+        var linhas = await query.OrderByDescending(x => x.Registro.DataHoraRegistro)
+            .ThenByDescending(x => x.Registro.IdRegistro)
+            .Skip((pagina - 1) * tamanho).Take(tamanho)
+            .Select(x => new
+            {
+                x.Registro.IdRegistro, x.Aluno, x.Turma, x.Registro.DataHoraRegistro,
+                x.Registro.HorarioPrevisto, x.Registro.MinutosAtraso
+            }).ToListAsync(ct);
+        var itens = linhas.Select(x => new AtrasoResponse(x.IdRegistro, x.Aluno, x.Turma,
             x.DataHoraRegistro, x.HorarioPrevisto.ToString(@"hh\:mm"), x.MinutosAtraso)).ToList();
         return new(itens, pagina, tamanho, total);
     }
@@ -83,12 +73,20 @@ public sealed class ConsultasRepository(AppDbContext db) : IConsultasRepository
                 join a in db.Alunos on m.IdAluno equals a.IdAluno
                 join t in db.Turmas on m.IdTurma equals t.IdTurma
                 where status == null || al.Status == status
-                select new AlertaResponse(al.IdAlerta, al.IdMatricula, a.Nome, t.Nome,
-                    al.QuantidadeAtrasos, al.DataInicioSequencia, al.DataFimSequencia,
-                    al.DataIdentificacao, al.Status, al.Observacao);
+                select new { Alerta = al, Aluno = a.Nome, Turma = t.Nome };
         var total = await q.CountAsync(ct);
-        var itens = await q.OrderByDescending(x => x.DataIdentificacao).ThenByDescending(x => x.IdAlerta)
-            .Skip((pagina-1)*tamanho).Take(tamanho).ToListAsync(ct);
+        var linhas = await q.OrderByDescending(x => x.Alerta.DataIdentificacao)
+            .ThenByDescending(x => x.Alerta.IdAlerta)
+            .Skip((pagina - 1) * tamanho).Take(tamanho)
+            .Select(x => new
+            {
+                x.Alerta.IdAlerta, x.Alerta.IdMatricula, x.Aluno, x.Turma,
+                x.Alerta.QuantidadeAtrasos, x.Alerta.DataInicioSequencia, x.Alerta.DataFimSequencia,
+                x.Alerta.DataIdentificacao, x.Alerta.Status, x.Alerta.Observacao
+            }).ToListAsync(ct);
+        var itens = linhas.Select(x => new AlertaResponse(x.IdAlerta, x.IdMatricula, x.Aluno, x.Turma,
+            x.QuantidadeAtrasos, x.DataInicioSequencia, x.DataFimSequencia,
+            x.DataIdentificacao, x.Status, x.Observacao)).ToList();
         return new(itens, pagina, tamanho, total);
     }
 

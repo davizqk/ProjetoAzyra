@@ -40,3 +40,70 @@ POST {{baseUrl}}/api/registro/confirmar
 Content-Type: application/json
 
 { "tokenConfirmacao": "INSIRA_TOKEN_RECEBIDO" }
+
+### Listar calendario geral
+GET {{baseUrl}}/api/admin/calendario?ano=2026
+Authorization: Bearer {{token}}
+
+### Reconfigurar calendario (preservando feriados manuais)
+PUT {{baseUrl}}/api/admin/calendario/reconfigurar
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "inicio": "2026-01-01",
+  "fim": "2026-12-31",
+  "diasSemanaLetivos": [1, 2, 3, 4, 5, 6],
+  "preservarExcecoes": true
+}
+
+### Editar um dia sem historico (exemplo de feriado)
+PUT {{baseUrl}}/api/admin/calendario/2026-12-25
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "diaLetivo": false, "descricao": "Natal" }
+
+### Excluir um dia (somente banco de teste)
+DELETE {{baseUrl}}/api/admin/calendario/2027-01-01
+Authorization: Bearer {{token}}
+
+### Excluir ano (somente banco de teste, sem historico)
+DELETE {{baseUrl}}/api/admin/calendario/ano/2027?confirmar=true
+Authorization: Bearer {{token}}
+
+
+### Cadastrar aluno (sem numero de matricula)
+POST {{baseUrl}}/api/admin/alunos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "nome": "Aluno Teste", "cpf": "INSIRA_UM_CPF_VALIDO_DE_TESTE" }
+
+### Consultar alunos (sem numero de matricula)
+GET {{baseUrl}}/api/admin/alunos
+Authorization: Bearer {{token}}
+
+### Vincular aluno a turma (matricula como vinculo, nao como numero)
+POST {{baseUrl}}/api/admin/matriculas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "idAluno": 1, "idTurma": 1, "dataMatricula": "2026-11-24", "dataSaida": null }
+
+
+### Reconfigurar calendário removendo dias não selecionados (admin)
+PUT http://localhost:5080/api/admin/calendario/reconfigurar
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"inicio":"2026-01-01","fim":"2026-12-31","diasSemanaLetivos":[1,2,3,4,5,6],"preservarExcecoes":true,"removerDiasNaoLetivos":true}
+
+
+### Listar horários de uma turma (troque o ID)
+GET {{baseUrl}}/api/admin/horarios?turmaId=1
+Authorization: Bearer {{token}}
+
+### Excluir horário cadastrado incorretamente (troque pelo idHorario real, não idTurma)
+DELETE {{baseUrl}}/api/admin/horarios/123
+Authorization: Bearer {{token}}
